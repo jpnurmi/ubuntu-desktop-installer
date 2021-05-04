@@ -6,7 +6,7 @@ import 'package:ubuntu_wizard/app.dart';
 import 'installer.dart';
 import 'services.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   final options = parseCommandLine(args, onPopulateOptions: (parser) {
     parser.addOption('machine-config',
         valueHelp: 'path',
@@ -16,6 +16,9 @@ void main(List<String> args) {
 
   final subiquityClient = SubiquityClient();
   final subiquityServer = SubiquityServer();
+
+  final networkService = NetworkService();
+  await networkService.connect();
 
   runWizardApp(
     UbuntuDesktopInstallerApp(),
@@ -32,6 +35,7 @@ void main(List<String> args) {
     providers: [
       Provider(create: (_) => DiskStorageService(subiquityClient)),
       Provider(create: (_) => KeyboardService()),
+      Provider.value(value: networkService),
     ],
   );
 }

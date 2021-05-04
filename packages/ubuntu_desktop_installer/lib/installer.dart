@@ -78,6 +78,7 @@ class _UbuntuDesktopInstallerWizardState
         Routes.tryOrInstall: TryOrInstallPage.create,
         if (model.hasRst) Routes.turnOffRST: TurnOffRSTPage.create,
         Routes.keyboardLayout: KeyboardLayoutPage.create,
+        Routes.connectToInternet: ConnectToInternetPage.create,
         Routes.updatesOtherSoftware: UpdatesOtherSoftwarePage.create,
         if (model.hasBitLocker)
           Routes.turnOffBitlocker: TurnOffBitLockerPage.create,

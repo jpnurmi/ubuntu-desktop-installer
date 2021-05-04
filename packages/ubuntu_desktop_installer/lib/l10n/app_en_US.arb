@@ -10,7 +10,9 @@
   "windowTitle": "Install Ubuntu",
 
   "backButtonText": "Go Back",
+  "cancelButtonText": "Cancel",
   "changeButtonText": "Change",
+  "connectButtonText": "Connect",
   "continueButtonText": "Continue",
   "restartButtonText": "Restart",
   "revertButtonText": "Revert",
@@ -46,6 +48,30 @@
   "chooseYourKeyboardLayout": "Choose your keyboard layout:",
   "typeToTest": "Type here to test your keyboard",
   "detectLayout": "Detect Keyboard Layout",
+
+  "connectToInternetPageTitle": "Connect to internet",
+  "connectToInternetDescription": "Connecting this computer to the internet will help Ubuntu install any extra software needed and help choose your time zone.\n\nConnect by ethernet cable, or choose a Wi-Fi network",
+  "useWiredConnection": "Use wired connection",
+  "noWiredConnection": "No wired connection detected",
+  "selectWifiNetwork": "Connect to this Wi-Fi network",
+  "hiddenWifiNetwork": "Connect to a hidden Wi-Fi network",
+  "noInternet": "I don't want to connect to the internet just now",
+  "wifiAuthenticationRequired": "Authentication required by Wi-Fi network",
+  "wifiPasswordRequired": "Passwords or encryption keys are required to access the Wi-Fi network \"{network}\"",
+  "@wifiPasswordRequired": {
+    "type": "network",
+    "placeholders": {
+      "network": {}
+    }
+  },
+  "wifiSecurity": "Wi-Fi security",
+  "wpa2Personal": "WPA & WPA2 Personal",
+  "wpa3Personal": "WPA3 Personal",
+  "wifiPassword": "Password",
+  "storeWifiPasswordThisUser": "Store the password only for this user",
+  "storeWifiPasswordAllUsers": "Store the password for all users",
+  "askWifiPasswordAlways": "Ask for this password every time",
+  "showPassword": "Show password",
 
   "updatesOtherSoftwarePageTitle": "Updates and other software",
   "updatesOtherSoftwarePageDescription": "What apps would you like to install to start with?",
