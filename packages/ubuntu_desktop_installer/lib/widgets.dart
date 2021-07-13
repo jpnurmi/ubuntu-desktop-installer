@@ -1,5 +1,6 @@
 export 'widgets/affinity_expansion_tile.dart';
 export 'widgets/animated_expanded.dart';
+export 'widgets/check_button.dart';
 export 'widgets/dropdown_builder.dart';
 export 'widgets/localized_view.dart';
 export 'widgets/menu_button_builder.dart';
