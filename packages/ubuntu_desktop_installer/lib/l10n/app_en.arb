@@ -130,5 +130,22 @@
   "advancedSetupResolvConfGenerationTitle": "Enable resolv.conf Generation",
   "advancedSetupResolvConfGenerationSubtitle": "Selecting enables /etc/resolv.conf re-generation at every start.",
   "advancedSetupGUIIntegrationTitle": "GUI Integration",
-  "advancedSetupGUIIntegrationSubtitle": "Selecting enables automatic DISPLAY environment set-up. Third-party X server required."
+  "advancedSetupGUIIntegrationSubtitle": "Selecting enables automatic DISPLAY environment set-up. Third-party X server required.",
+
+  "configurationUITitle": "Ubuntu WSL configuration UI (experimental)",
+  "configurationUIInteroperabilityHeader": "Interoperability",
+  "configurationUILegacyGUIIntegrationTitle": "Legacy GUI Integration",
+  "configurationUILegacyGUIIntegrationSubtitle": "This option enables the Legacy GUI Integration on Windows 10. Requires Third-party X server.",
+  "configurationUILegacyAudioIntegrationTitle": "Legacy Audio Integration",
+  "configurationUILegacyAudioIntegrationSubtitle": "This option enables the Legacy Audio Integration on Windows 10. Requires PulseAudio for Windows installed.",
+  "configurationUIAdvancedIPDetectionTitle": "Advanced IP Detection",
+  "configurationUIAdvancedIPDetectionSubtitle": "This option enables advanced detection of IP by Windows IPv4 Address which is more reliable to use with WSL2. Requires WSL interoperability enabled.",
+  "configurationUIMessageOfTheDayHeader": "Message Of The Day (MOTD)",
+  "configurationUIWSLNewsTitle": "WSL News",
+  "configurationUIWSLNewsSubtitle": "This option allows you to control your MOTD News. Toggling it on allows you to see the MOTD.",
+  "configurationUIAutoMountHeader": "Auto-Mount",
+  "configurationUIAutoMountTitle": "Enabled",
+  "configurationUIAutoMountSubtitle": "Whether the Auto-Mount feature is enabled. This feature allows you to mount Windows drive in WSL.",
+  "configurationUIMountFstabTitle": "Mount /etc/fstab",
+  "configurationUIMountFstabSubtitle": "Whether /etc/fstab will be mounted. The configuration file /etc/fstab contains the???"
 }

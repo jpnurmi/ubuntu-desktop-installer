@@ -10,6 +10,7 @@ import 'l10n/app_localizations.dart';
 import 'pages/advanced_setup/advanced_setup_page.dart';
 import 'pages/allocate_disk_space_page.dart';
 import 'pages/choose_your_look_page.dart';
+import 'pages/configuration_ui/configuration_ui_page.dart';
 import 'pages/keyboard_layout/keyboard_layout_page.dart';
 import 'pages/profile_setup/profile_setup_page.dart';
 import 'pages/try_or_install/try_or_install_page.dart';
@@ -54,6 +55,7 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
             Routes.welcome: WelcomePage.create,
             Routes.profileSetup: ProfileSetupPage.create,
             Routes.advancedSetup: AdvancedSetupPage.create,
+            Routes.configurationUI: ConfigurationUIPage.create,
             Routes.tryOrInstall: TryOrInstallPage.create,
             Routes.turnOffRST: TurnOffRSTPage.create,
             Routes.keyboardLayout: KeyboardLayoutPage.create,
