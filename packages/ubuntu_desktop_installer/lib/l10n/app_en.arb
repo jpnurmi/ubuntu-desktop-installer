@@ -7,6 +7,7 @@
 
   "backButtonText": "Go Back",
   "continueButtonText": "Continue",
+  "finishButtonText": "Finish",
   "restartButtonText": "Restart",
 
   "welcome": "Welcome",
@@ -147,5 +148,17 @@
   "configurationUIAutoMountTitle": "Enabled",
   "configurationUIAutoMountSubtitle": "Whether the Auto-Mount feature is enabled. This feature allows you to mount Windows drive in WSL.",
   "configurationUIMountFstabTitle": "Mount /etc/fstab",
-  "configurationUIMountFstabSubtitle": "Whether /etc/fstab will be mounted. The configuration file /etc/fstab contains the???"
+  "configurationUIMountFstabSubtitle": "Whether /etc/fstab will be mounted. The configuration file /etc/fstab contains the???",
+
+  "setupCompleteTitle": "Setup complete",
+  "setupCompleteHeader": "Hi {user},\nYou have successfully completed the setup.",
+  "@setupCompleteHeader": {
+    "type": "text",
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "setupCompleteUpdate": "It is suggested to run the following command to update Ubuntu to the latest version:",
+  "setupCompleteManage": "You can use the builtin ubuntuwsl command to manage your WSL settings:",
+  "setupCompleteRestart": "* All settings will take effect after restarting Ubuntu."
 }

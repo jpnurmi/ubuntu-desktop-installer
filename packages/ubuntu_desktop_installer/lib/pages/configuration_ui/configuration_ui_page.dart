@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../routes.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'configuration_ui_model.dart';
@@ -110,7 +111,7 @@ class _ConfigurationUIPageState extends State<ConfigurationUIPage> {
               label: lang.continueButtonText,
               enabled: model.isValid,
               onActivated: () {
-                // Navigator.pushNamed(context, Routes.xxx);
+                Navigator.pushNamed(context, Routes.setupComplete);
               },
             ),
           ],

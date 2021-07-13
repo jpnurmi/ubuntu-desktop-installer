@@ -13,4 +13,5 @@ abstract class Routes {
   static const profileSetup = 'profilesetup';
   static const advancedSetup = 'advancedsetup';
   static const configurationUI = 'configurationui';
+  static const setupComplete = 'setupcomplete';
 }

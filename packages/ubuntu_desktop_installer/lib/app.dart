@@ -13,6 +13,7 @@ import 'pages/choose_your_look_page.dart';
 import 'pages/configuration_ui/configuration_ui_page.dart';
 import 'pages/keyboard_layout/keyboard_layout_page.dart';
 import 'pages/profile_setup/profile_setup_page.dart';
+import 'pages/setup_complete/setup_complete_page.dart';
 import 'pages/try_or_install/try_or_install_page.dart';
 import 'pages/turn_off_rst_page.dart';
 import 'pages/updates_other_software/updates_other_software_page.dart';
@@ -63,6 +64,7 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
             Routes.allocateDiskSpace: AllocateDiskSpacePage.create,
             Routes.writeChangesToDisk: WriteChangesToDiskPage.create,
             Routes.chooseYourLook: ChooseYourLookPage.create,
+            Routes.setupComplete: SetupCompletePage.create,
           },
           onNext: (settings) {
             switch (settings.name) {
