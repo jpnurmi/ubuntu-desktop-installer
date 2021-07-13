@@ -109,5 +109,13 @@
   "chooseYourLookPageDarkSetting": "Dark",
   "chooseYourLookPageLightSetting": "Light",
   "chooseYourLookPageLightBodyText": "Everything is light and bright",
-  "chooseYourLookPageDarkBodyText": "Hello darkness my old friend"
+  "chooseYourLookPageDarkBodyText": "Hello darkness my old friend",
+
+  "profileSetupTitle": "Profile setup",
+  "profileSetupHeader": "Please create a default UNIX user account. For more information visit: <a href=\"https://https://aka.ms/wslusers\"/>",
+  "profileSetupUsernameHint": "Pick a username",
+  "profileSetupUsernameHelper": "The username does not need to match your windows username.",
+  "profileSetupPasswordHint": "Choose a password",
+  "profileSetupConfirmPasswordHint": "Confirm your password",
+  "profileSetupShowAdvancedOptions": "Show advanced options next page"
 }
