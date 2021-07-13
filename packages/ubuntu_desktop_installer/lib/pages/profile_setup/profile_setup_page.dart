@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants.dart';
+import '../../routes.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'profile_setup_model.dart';
@@ -115,7 +116,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
               label: lang.continueButtonText,
               enabled: model.isValid,
               onActivated: () {
-                // Navigator.pushNamed(context, Routes.xxx);
+                Navigator.pushNamed(context, Routes.advancedSetup);
               },
             ),
           ],

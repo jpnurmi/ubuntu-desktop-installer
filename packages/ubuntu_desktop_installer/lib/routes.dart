@@ -11,4 +11,5 @@ abstract class Routes {
   static const chooseYourLook = '/chooseyourlook';
 
   static const profileSetup = 'profilesetup';
+  static const advancedSetup = 'advancedsetup';
 }

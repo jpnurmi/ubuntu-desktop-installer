@@ -7,6 +7,7 @@ import 'package:wizard_router/wizard_router.dart';
 
 import 'app_theme.dart';
 import 'l10n/app_localizations.dart';
+import 'pages/advanced_setup/advanced_setup_page.dart';
 import 'pages/allocate_disk_space_page.dart';
 import 'pages/choose_your_look_page.dart';
 import 'pages/keyboard_layout/keyboard_layout_page.dart';
@@ -52,6 +53,7 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
           routes: <String, WidgetBuilder>{
             Routes.welcome: WelcomePage.create,
             Routes.profileSetup: ProfileSetupPage.create,
+            Routes.advancedSetup: AdvancedSetupPage.create,
             Routes.tryOrInstall: TryOrInstallPage.create,
             Routes.turnOffRST: TurnOffRSTPage.create,
             Routes.keyboardLayout: KeyboardLayoutPage.create,
