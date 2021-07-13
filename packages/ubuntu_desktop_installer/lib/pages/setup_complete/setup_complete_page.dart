@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
+import '../../services.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'setup_complete_model.dart';
@@ -12,8 +13,9 @@ class SetupCompletePage extends StatelessWidget {
   }) : super(key: key);
 
   static Widget create(BuildContext context) {
-    return Provider.value(
-      value: SetupCompleteModel(),
+    final service = Provider.of<UserService>(context);
+    return ChangeNotifierProvider(
+      create: (_) => SetupCompleteModel(service: service),
       child: SetupCompletePage(),
     );
   }

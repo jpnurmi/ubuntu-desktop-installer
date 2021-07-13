@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 
+import '../../services.dart';
+
 /// Implements the business logic of the WSL Profile Setup page.
 class ProfileSetupModel extends ChangeNotifier {
   /// Creates a profile setup model.
-  ProfileSetupModel() {
+  ProfileSetupModel({required UserService service}) : _service = service {
     Listenable.merge([
       _username,
       _password,
@@ -12,10 +14,15 @@ class ProfileSetupModel extends ChangeNotifier {
     ]).addListener(notifyListeners);
   }
 
+  final UserService _service;
+
   /// The username for the profile.
   String get username => _username.value;
   final _username = ValueNotifier<String>('');
-  set username(String value) => _username.value = value;
+  set username(String value) {
+    _service.storeUsername(value);
+    _username.value = value;
+  }
 
   /// The password for the profile.
   String get password => _password.value;
@@ -39,5 +46,7 @@ class ProfileSetupModel extends ChangeNotifier {
       password == confirmedPassword;
 
   /// Loads the profile setup.
-  Future<void> loadProfileSetup() async {}
+  Future<void> loadProfileSetup() async {
+    _username.value = await _service.fetchUsername();
+  }
 }

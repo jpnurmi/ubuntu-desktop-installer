@@ -11,6 +11,7 @@ import 'app.dart';
 import 'app_theme.dart';
 import 'disk_storage_model.dart';
 import 'keyboard_model.dart';
+import 'services.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
@@ -62,6 +63,7 @@ Future<void> main() async {
       ),
       ChangeNotifierProvider(create: (_) => DiskStorageModel(subiquityClient)),
       ChangeNotifierProvider(create: (_) => KeyboardModel()),
+      Provider(create: (_) => UserService()),
     ],
     child: UbuntuDesktopInstallerApp(),
   ));
