@@ -8,3 +8,4 @@ export 'widgets/option_card.dart';
 export 'widgets/radio_icon_tile.dart';
 export 'widgets/rounded_container.dart';
 export 'widgets/rounded_list_view.dart';
+export 'widgets/validated_form_field.dart';
