@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wizard_router/wizard_router.dart';
 
+import '../../app_theme.dart';
 import '../../constants.dart';
 import '../../services.dart';
 import '../../widgets.dart';
@@ -30,42 +32,21 @@ class ProfileSetupPage extends StatefulWidget {
 }
 
 class _ProfileSetupPageState extends State<ProfileSetupPage> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
 
     final model = Provider.of<ProfileSetupModel>(context, listen: false);
-    model.loadProfileSetup().then((_) {
-      _usernameController.text = model.username;
-    });
-
-    _usernameController.addListener(() {
-      model.username = _usernameController.text;
-    });
-    _passwordController.addListener(() {
-      model.password = _passwordController.text;
-    });
-    _confirmPasswordController.addListener(() {
-      model.confirmedPassword = _confirmPasswordController.text;
-    });
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-
-    super.dispose();
+    model.loadProfileSetup();
   }
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<ProfileSetupModel>(context);
+
+    final successIcon =
+        Icon(Icons.check_circle, color: Theme.of(context).successColor);
+
     return LocalizedView(
       builder: (context, lang) {
         return WizardPage(
@@ -81,22 +62,38 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             widthFactor: _kContentWidthFactor,
             child: ListView(
               children: <Widget>[
-                _createTextField(
-                  controller: _usernameController,
-                  hintText: lang.profileSetupUsernameHint,
+                ValidatedFormField(
+                  initialValue: model.username,
+                  onChanged: (value) => model.username = value,
+                  labelText: lang.profileSetupUsernameHint,
                   helperText: lang.profileSetupUsernameHelper,
+                  successWidget: successIcon,
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: 'username is required'),
+                    MinLengthValidator(2,
+                        errorText: 'username must be at least 2 characters'),
+                    PatternValidator(
+                        r'^(?=.{2,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
+                        errorText: 'invalid username')
+                  ]),
                 ),
                 const SizedBox(height: kContentSpacing),
-                _createTextField(
+                ValidatedFormField(
+                  initialValue: model.password,
+                  onChanged: (value) => model.password = value,
                   obscureText: true,
-                  controller: _passwordController,
-                  hintText: lang.profileSetupPasswordHint,
+                  labelText: lang.profileSetupPasswordHint,
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: 'password is required'),
+                    MinLengthValidator(2,
+                        errorText: 'password must be at least 2 characters'),
+                  ]),
                 ),
-                _createTextField(
-                  obscureText: true,
-                  controller: _confirmPasswordController,
-                  hintText: lang.profileSetupConfirmPasswordHint,
-                ),
+                // _createTextField(
+                //   obscureText: true,
+                //   controller: _confirmPasswordController,
+                //   hintText: lang.profileSetupConfirmPasswordHint,
+                // ),
                 const SizedBox(height: kContentSpacing),
                 Align(
                   alignment: Alignment.centerLeft,
