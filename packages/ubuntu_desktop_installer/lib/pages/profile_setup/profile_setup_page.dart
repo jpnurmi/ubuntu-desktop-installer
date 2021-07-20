@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wizard_router/wizard_router.dart';
 
 import '../../constants.dart';
 import '../../routes.dart';
@@ -112,14 +113,12 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           actions: <WizardAction>[
             WizardAction(
               label: lang.backButtonText,
-              onActivated: Navigator.of(context).pop,
+              onActivated: Wizard.of(context).back,
             ),
             WizardAction(
               label: lang.continueButtonText,
               enabled: model.isValid,
-              onActivated: () {
-                Navigator.pushNamed(context, Routes.advancedSetup);
-              },
+              onActivated: Wizard.of(context).next,
             ),
           ],
         );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wizard_router/wizard_router.dart';
 
 import '../../constants.dart';
 import '../../routes.dart';
@@ -105,14 +106,12 @@ class _ConfigurationUIPageState extends State<ConfigurationUIPage> {
           actions: <WizardAction>[
             WizardAction(
               label: lang.backButtonText,
-              onActivated: Navigator.of(context).pop,
+              onActivated: Wizard.of(context).back,
             ),
             WizardAction(
               label: lang.continueButtonText,
               enabled: model.isValid,
-              onActivated: () {
-                Navigator.pushNamed(context, Routes.setupComplete);
-              },
+              onActivated: Wizard.of(context).next,
             ),
           ],
         );
