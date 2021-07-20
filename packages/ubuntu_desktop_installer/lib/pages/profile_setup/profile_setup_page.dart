@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
+import 'package:subiquity_client/subiquity_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wizard_router/wizard_router.dart';
 
 import '../../app_theme.dart';
 import '../../constants.dart';
-import '../../services.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'profile_setup_model.dart';
@@ -21,9 +21,9 @@ class ProfileSetupPage extends StatefulWidget {
   }) : super(key: key);
 
   static Widget create(BuildContext context) {
-    final service = Provider.of<UserService>(context, listen: false);
+    final client = Provider.of<SubiquityClient>(context, listen: false);
     return ChangeNotifierProvider(
-      create: (_) => ProfileSetupModel(service: service),
+      create: (_) => ProfileSetupModel(client),
       child: ProfileSetupPage(),
     );
   }
@@ -50,6 +50,25 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
 
     return LocalizedView(
       builder: (context, lang) {
+        Widget buildPasswordStrengthLabel() {
+          switch (model.passwordStrength) {
+            case PasswordStrength.weakPassword:
+              return Text(
+                'Weak',
+                style: TextStyle(color: Theme.of(context).errorColor),
+              );
+            case PasswordStrength.averagePassword:
+              return Text('Average');
+            case PasswordStrength.strongPassword:
+              return Text(
+                'Strong',
+                style: TextStyle(color: Theme.of(context).successColor),
+              );
+            default:
+              return SizedBox.shrink();
+          }
+        }
+
         return WizardPage(
           contentPadding: EdgeInsets.zero,
           title: Text(lang.profileSetupTitle),
@@ -72,12 +91,13 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     helperText: lang.profileSetupUsernameHelper,
                     successWidget: successIcon,
                     validator: MultiValidator([
-                      RequiredValidator(errorText: 'username is required'),
+                      RequiredValidator(errorText: 'A username is required'),
                       MinLengthValidator(2,
-                          errorText: 'username must be at least 2 characters'),
+                          errorText:
+                              'The username must be at least 2 characters'),
                       PatternValidator(
                           r'^(?=.{2,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
-                          errorText: 'invalid username')
+                          errorText: 'The username is invalid')
                     ]),
                   ),
                   const SizedBox(height: kContentSpacing),
@@ -88,33 +108,31 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     onChanged: (value) => model.password = value,
                     obscureText: true,
                     labelText: lang.profileSetupPasswordHint,
-                    successWidget: successIcon,
+                    successWidget: buildPasswordStrengthLabel(),
                     validator: MultiValidator([
-                      RequiredValidator(errorText: 'password is required'),
+                      RequiredValidator(errorText: 'A password is required'),
                       MinLengthValidator(2,
-                          errorText: 'password must be at least 2 characters'),
+                          errorText:
+                              'The password must be at least 2 characters'),
                     ]),
                   ),
                   const SizedBox(height: kContentSpacing),
                   ValidatedFormField(
                     spacing: _kIconSpacing,
                     fieldWidth: constraints.maxWidth * _kContentWidthFactor,
-                    initialValue: model.password,
-                    onChanged: (value) => model.password = value,
                     obscureText: true,
-                    //labelText: lang.profileSetupPasswordHint,
-                    labelText: lang.profileSetupConfirmPasswordHint,
+                    labelText: 'Confirm your password',
                     successWidget: successIcon,
-                    validator: MultiValidator([
-                      RequiredValidator(errorText: 'password is required'),
-                      MinLengthValidator(2,
-                          errorText: 'password must be at least 2 characters'),
-                    ]),
+                    validator: _ConfirmPasswordValidator(
+                      model.password,
+                      errorText: 'The passwords do not match',
+                    ),
                   ),
                   const SizedBox(height: kContentSpacing),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: CheckButton(
+                      contentPadding: EdgeInsets.only(left: _kIconSpacing),
                       title: Text(lang.profileSetupShowAdvancedOptions),
                       value: model.showAdvancedOptions,
                       onChanged: (value) => model.showAdvancedOptions = value,
@@ -132,27 +150,26 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             WizardAction(
               label: lang.continueButtonText,
               enabled: model.isValid,
-              onActivated: Wizard.of(context).next,
+              onActivated: () {
+                model.saveProfileSetup();
+                Wizard.of(context).next();
+              },
             ),
           ],
         );
       },
     );
   }
+}
 
-  static Widget _createTextField({
-    required TextEditingController controller,
-    bool? obscureText,
-    String? hintText,
-    String? helperText,
-  }) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: kContentPadding.left),
-      child: TextField(
-        controller: controller,
-        obscureText: obscureText == true,
-        decoration: InputDecoration(hintText: hintText, helperText: helperText),
-      ),
-    );
+class _ConfirmPasswordValidator extends FieldValidator<String?> {
+  final String _password;
+
+  _ConfirmPasswordValidator(this._password, {required String errorText})
+      : super(errorText);
+
+  @override
+  bool isValid(String? value) {
+    return value?.isNotEmpty == true && value == _password;
   }
 }

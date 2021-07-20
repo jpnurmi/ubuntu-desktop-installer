@@ -9,6 +9,7 @@ class CheckButton extends StatelessWidget {
     this.subtitle,
     required this.value,
     required this.onChanged,
+    this.contentPadding,
   }) : super(key: key);
 
   /// The title of the checkbox (shown above subtitle).
@@ -22,6 +23,8 @@ class CheckButton extends StatelessWidget {
 
   /// Called when the checkbox state is changed.
   final ValueChanged<bool> onChanged;
+
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,7 @@ class CheckButton extends StatelessWidget {
             subtitle: subtitle,
             tileColor: Colors.transparent,
             controlAffinity: ListTileControlAffinity.leading,
+            contentPadding: contentPadding,
             value: value,
             onChanged: (value) => onChanged(value == true),
           ),
