@@ -47,6 +47,8 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
     final successIcon =
         Icon(Icons.check_circle, color: Theme.of(context).successColor);
 
+    final padding = EdgeInsets.symmetric(horizontal: kContentPadding.left);
+
     return LocalizedView(
       builder: (context, lang) {
         return WizardPage(
@@ -60,50 +62,55 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           content: FractionallySizedBox(
             alignment: Alignment.centerLeft,
             widthFactor: _kContentWidthFactor,
-            child: ListView(
-              children: <Widget>[
-                ValidatedFormField(
-                  initialValue: model.username,
-                  onChanged: (value) => model.username = value,
-                  labelText: lang.profileSetupUsernameHint,
-                  helperText: lang.profileSetupUsernameHelper,
-                  successWidget: successIcon,
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'username is required'),
-                    MinLengthValidator(2,
-                        errorText: 'username must be at least 2 characters'),
-                    PatternValidator(
-                        r'^(?=.{2,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
-                        errorText: 'invalid username')
-                  ]),
-                ),
-                const SizedBox(height: kContentSpacing),
-                ValidatedFormField(
-                  initialValue: model.password,
-                  onChanged: (value) => model.password = value,
-                  obscureText: true,
-                  labelText: lang.profileSetupPasswordHint,
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'password is required'),
-                    MinLengthValidator(2,
-                        errorText: 'password must be at least 2 characters'),
-                  ]),
-                ),
-                // _createTextField(
-                //   obscureText: true,
-                //   controller: _confirmPasswordController,
-                //   hintText: lang.profileSetupConfirmPasswordHint,
-                // ),
-                const SizedBox(height: kContentSpacing),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: CheckButton(
-                    title: Text(lang.profileSetupShowAdvancedOptions),
-                    value: model.showAdvancedOptions,
-                    onChanged: (value) => model.showAdvancedOptions = value,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: kContentPadding.left),
+              child: ListView(
+                children: <Widget>[
+                  ValidatedFormField(
+                    spacing: 10,
+                    initialValue: model.username,
+                    onChanged: (value) => model.username = value,
+                    labelText: lang.profileSetupUsernameHint,
+                    helperText: lang.profileSetupUsernameHelper,
+                    successWidget: successIcon,
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: 'username is required'),
+                      MinLengthValidator(2,
+                          errorText: 'username must be at least 2 characters'),
+                      PatternValidator(
+                          r'^(?=.{2,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
+                          errorText: 'invalid username')
+                    ]),
                   ),
-                ),
-              ],
+                  const SizedBox(height: kContentSpacing),
+                  ValidatedFormField(
+                    spacing: 10,
+                    initialValue: model.password,
+                    onChanged: (value) => model.password = value,
+                    obscureText: true,
+                    labelText: lang.profileSetupPasswordHint,
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: 'password is required'),
+                      MinLengthValidator(2,
+                          errorText: 'password must be at least 2 characters'),
+                    ]),
+                  ),
+                  // _createTextField(
+                  //   obscureText: true,
+                  //   controller: _confirmPasswordController,
+                  //   hintText: lang.profileSetupConfirmPasswordHint,
+                  // ),
+                  const SizedBox(height: kContentSpacing),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CheckButton(
+                      title: Text(lang.profileSetupShowAdvancedOptions),
+                      value: model.showAdvancedOptions,
+                      onChanged: (value) => model.showAdvancedOptions = value,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           actions: <WizardAction>[
