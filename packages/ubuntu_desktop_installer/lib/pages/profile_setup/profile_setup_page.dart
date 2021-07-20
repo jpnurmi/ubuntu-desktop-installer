@@ -12,6 +12,7 @@ import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'profile_setup_model.dart';
 
+const _kIconSpacing = 10.0;
 const _kContentWidthFactor = 0.75;
 
 class ProfileSetupPage extends StatefulWidget {
@@ -47,8 +48,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
     final successIcon =
         Icon(Icons.check_circle, color: Theme.of(context).successColor);
 
-    final padding = EdgeInsets.symmetric(horizontal: kContentPadding.left);
-
     return LocalizedView(
       builder: (context, lang) {
         return WizardPage(
@@ -59,15 +58,14 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             style: {'body': Style(margin: EdgeInsets.all(0))},
             onLinkTap: (url, _, __, ___) => launch(url!),
           ),
-          content: FractionallySizedBox(
-            alignment: Alignment.centerLeft,
-            widthFactor: _kContentWidthFactor,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: kContentPadding.left),
-              child: ListView(
+          content: Padding(
+            padding: EdgeInsets.symmetric(horizontal: kContentPadding.left),
+            child: LayoutBuilder(builder: (context, constraints) {
+              return ListView(
                 children: <Widget>[
                   ValidatedFormField(
-                    spacing: 10,
+                    spacing: _kIconSpacing,
+                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
                     initialValue: model.username,
                     onChanged: (value) => model.username = value,
                     labelText: lang.profileSetupUsernameHint,
@@ -84,22 +82,35 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                   ),
                   const SizedBox(height: kContentSpacing),
                   ValidatedFormField(
-                    spacing: 10,
+                    spacing: _kIconSpacing,
+                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
                     initialValue: model.password,
                     onChanged: (value) => model.password = value,
                     obscureText: true,
                     labelText: lang.profileSetupPasswordHint,
+                    successWidget: successIcon,
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'password is required'),
                       MinLengthValidator(2,
                           errorText: 'password must be at least 2 characters'),
                     ]),
                   ),
-                  // _createTextField(
-                  //   obscureText: true,
-                  //   controller: _confirmPasswordController,
-                  //   hintText: lang.profileSetupConfirmPasswordHint,
-                  // ),
+                  const SizedBox(height: kContentSpacing),
+                  ValidatedFormField(
+                    spacing: _kIconSpacing,
+                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
+                    initialValue: model.password,
+                    onChanged: (value) => model.password = value,
+                    obscureText: true,
+                    //labelText: lang.profileSetupPasswordHint,
+                    labelText: lang.profileSetupConfirmPasswordHint,
+                    successWidget: successIcon,
+                    validator: MultiValidator([
+                      RequiredValidator(errorText: 'password is required'),
+                      MinLengthValidator(2,
+                          errorText: 'password must be at least 2 characters'),
+                    ]),
+                  ),
                   const SizedBox(height: kContentSpacing),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -110,8 +121,8 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     ),
                   ),
                 ],
-              ),
-            ),
+              );
+            }),
           ),
           actions: <WizardAction>[
             WizardAction(
