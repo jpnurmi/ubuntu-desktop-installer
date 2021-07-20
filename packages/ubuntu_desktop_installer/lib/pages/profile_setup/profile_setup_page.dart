@@ -5,7 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wizard_router/wizard_router.dart';
 
 import '../../constants.dart';
-import '../../routes.dart';
 import '../../services.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
@@ -19,7 +18,7 @@ class ProfileSetupPage extends StatefulWidget {
   }) : super(key: key);
 
   static Widget create(BuildContext context) {
-    final service = Provider.of<UserService>(context);
+    final service = Provider.of<UserService>(context, listen: false);
     return ChangeNotifierProvider(
       create: (_) => ProfileSetupModel(service: service),
       child: ProfileSetupPage(),

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:wizard_router/wizard_router.dart';
 
 import '../../constants.dart';
-import '../../routes.dart';
 import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'configuration_ui_model.dart';
