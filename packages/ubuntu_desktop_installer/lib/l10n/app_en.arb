@@ -160,5 +160,13 @@
   },
   "setupCompleteUpdate": "It is suggested to run the following command to update Ubuntu to the latest version:",
   "setupCompleteManage": "You can use the builtin ubuntuwsl command to manage your WSL settings:",
-  "setupCompleteRestart": "* All settings will take effect after restarting Ubuntu."
+  "setupCompleteRestart": "* All settings will take effect after restarting Ubuntu.",
+
+  "usernameRequired": "A username is required",
+  "usernameInvalid": "The username is invalid",
+  "passwordRequired": "A password is required",
+  "passwordMismatch": "The passwords do not match",
+  "strongPassword": "Strong",
+  "moderatePassword": "Moderate",
+  "weakPassword": "Weak"
 }

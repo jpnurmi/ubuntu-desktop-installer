@@ -13,7 +13,6 @@ import '../wizard_page.dart';
 import 'profile_setup_model.dart';
 
 const _kIconSpacing = 10.0;
-const _kContentWidthFactor = 0.75;
 
 class ProfileSetupPage extends StatefulWidget {
   const ProfileSetupPage({
@@ -50,25 +49,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
 
     return LocalizedView(
       builder: (context, lang) {
-        Widget buildPasswordStrengthLabel() {
-          switch (model.passwordStrength) {
-            case PasswordStrength.weakPassword:
-              return Text(
-                'Weak',
-                style: TextStyle(color: Theme.of(context).errorColor),
-              );
-            case PasswordStrength.averagePassword:
-              return Text('Average');
-            case PasswordStrength.strongPassword:
-              return Text(
-                'Strong',
-                style: TextStyle(color: Theme.of(context).successColor),
-              );
-            default:
-              return SizedBox.shrink();
-          }
-        }
-
         return WizardPage(
           contentPadding: EdgeInsets.zero,
           title: Text(lang.profileSetupTitle),
@@ -84,48 +64,46 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                 children: <Widget>[
                   ValidatedFormField(
                     spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
+                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
                     initialValue: model.username,
                     onChanged: (value) => model.username = value,
                     labelText: lang.profileSetupUsernameHint,
                     helperText: lang.profileSetupUsernameHelper,
                     successWidget: successIcon,
                     validator: MultiValidator([
-                      RequiredValidator(errorText: 'A username is required'),
-                      MinLengthValidator(2,
-                          errorText:
-                              'The username must be at least 2 characters'),
+                      RequiredValidator(errorText: lang.usernameRequired),
                       PatternValidator(
-                          r'^(?=.{2,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
-                          errorText: 'The username is invalid')
+                        kValidUsernamePattern,
+                        errorText: lang.usernameInvalid,
+                      )
                     ]),
                   ),
                   const SizedBox(height: kContentSpacing),
                   ValidatedFormField(
                     spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
+                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
                     initialValue: model.password,
                     onChanged: (value) => model.password = value,
                     obscureText: true,
                     labelText: lang.profileSetupPasswordHint,
-                    successWidget: buildPasswordStrengthLabel(),
-                    validator: MultiValidator([
-                      RequiredValidator(errorText: 'A password is required'),
-                      MinLengthValidator(2,
-                          errorText:
-                              'The password must be at least 2 characters'),
-                    ]),
+                    successWidget: _PasswordStrengthLabel(
+                      password: model.password,
+                      strength: model.passwordStrength,
+                    ),
+                    validator: RequiredValidator(
+                      errorText: lang.passwordRequired,
+                    ),
                   ),
                   const SizedBox(height: kContentSpacing),
                   ValidatedFormField(
                     spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * _kContentWidthFactor,
+                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
                     obscureText: true,
-                    labelText: 'Confirm your password',
+                    labelText: lang.profileSetupConfirmPasswordHint,
                     successWidget: successIcon,
                     validator: _ConfirmPasswordValidator(
                       model.password,
-                      errorText: 'The passwords do not match',
+                      errorText: lang.passwordMismatch,
                     ),
                   ),
                   const SizedBox(height: kContentSpacing),
@@ -152,7 +130,7 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
               enabled: model.isValid,
               onActivated: () {
                 model.saveProfileSetup();
-                Wizard.of(context).next();
+                Wizard.of(context).next(arguments: model.showAdvancedOptions);
               },
             ),
           ],
@@ -171,5 +149,40 @@ class _ConfirmPasswordValidator extends FieldValidator<String?> {
   @override
   bool isValid(String? value) {
     return value?.isNotEmpty == true && value == _password;
+  }
+}
+
+class _PasswordStrengthLabel extends StatelessWidget {
+  const _PasswordStrengthLabel({
+    Key? key,
+    required this.password,
+    required this.strength,
+  }) : super(key: key);
+
+  final String password;
+  final PasswordStrength strength;
+
+  @override
+  Widget build(BuildContext context) {
+    return LocalizedView(
+      builder: (context, lang) {
+        switch (strength) {
+          case PasswordStrength.weak:
+            return Text(
+              lang.weakPassword,
+              style: TextStyle(color: Theme.of(context).errorColor),
+            );
+          case PasswordStrength.moderate:
+            return Text(lang.moderatePassword);
+          case PasswordStrength.strong:
+            return Text(
+              lang.strongPassword,
+              style: TextStyle(color: Theme.of(context).successColor),
+            );
+          default:
+            return SizedBox.shrink();
+        }
+      },
+    );
   }
 }

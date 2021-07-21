@@ -1,6 +1,10 @@
-import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:crypt/crypt.dart';
 import 'package:flutter/foundation.dart';
 import 'package:subiquity_client/subiquity_client.dart';
+
+import '../../utils.dart';
+
+export '../../utils.dart' show PasswordStrength;
 
 /// Implements the business logic of the WSL Profile Setup page.
 class ProfileSetupModel extends ChangeNotifier {
@@ -27,22 +31,8 @@ class ProfileSetupModel extends ChangeNotifier {
   final _password = ValueNotifier<String>('');
   set password(String value) => _password.value = value;
 
-  /// Determine the strength of the password.
-  PasswordStrength? get passwordStrength {
-    final strongPassword = RegExp(r'(?=.*?[#?!@$%^&*-])');
-    final averagePassword = RegExp(r'(^.*(?=.{6,})(?=.*\d).*$)');
-
-    if (strongPassword.hasMatch(password) && password.length > 8) {
-      return PasswordStrength.strongPassword;
-    }
-    if (averagePassword.hasMatch(password)) {
-      return PasswordStrength.averagePassword;
-    }
-    if (password.isNotEmpty && password.length > 1) {
-      return PasswordStrength.weakPassword;
-    }
-    return null;
-  }
+  /// Estimates the strength of the password.
+  PasswordStrength get passwordStrength => estimatePasswordStrength(password);
 
   /// Whether to show the advanced options.
   bool get showAdvancedOptions => _showAdvanced.value;
@@ -64,33 +54,10 @@ class ProfileSetupModel extends ChangeNotifier {
     );
   }
 
-  static final _encryptionIV = encrypt.IV.fromLength(16);
-  static encrypt.Encrypter get _encrypter =>
-      encrypt.Encrypter(encrypt.AES(encrypt.Key.fromLength(32)));
-
   /// Encrypts a password.
   @visibleForTesting
   static String encryptPassword(String password) {
     assert(password.isNotEmpty);
-    return _encrypter.encrypt(password, iv: _encryptionIV).base64;
+    return Crypt.sha512(password).toString();
   }
-
-  /// Decrypts a password.
-  @visibleForTesting
-  static String decryptPassword(String encryptedPassword) {
-    assert(encryptedPassword.isNotEmpty);
-    return _encrypter.decrypt64(encryptedPassword, iv: _encryptionIV);
-  }
-}
-
-/// The strength of the password
-enum PasswordStrength {
-  /// Representing weak password
-  weakPassword,
-
-  /// Representing an average password
-  averagePassword,
-
-  /// Representing a strong password
-  strongPassword
 }
