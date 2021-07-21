@@ -56,88 +56,46 @@ void main() {
     verify(client.setIdentity(identity)).called(1);
   });
 
-  test('encrypt password', () {
-    const salt = 'abcdefghijklmnopqrstuvwxyz'
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        '0123456789./';
+  test('password strength', () {
+    // see password_test.dart for more detailed password strength tests
+    final model = ProfileSetupModel(MockSubiquityClient());
 
-    final password = 'passwd';
-    final encrypted =
-        ProfileSetupModel.encryptPassword(password, salt: 'ubuntu');
-    final decrypted = ProfileSetupModel.decryptPassword(encrypted);
-    expect(decrypted, equals(password));
-    expect(encrypted, isNot(equals(password)));
+    void testPasswordStrength(String password, Matcher matcher) {
+      model.password = password;
+      expect(model.passwordStrength, matcher);
+    }
+
+    testPasswordStrength('password', equals(PasswordStrength.weak));
+    testPasswordStrength('P4ssword', equals(PasswordStrength.moderate));
+    testPasswordStrength('P@ssw0rd123', equals(PasswordStrength.strong));
   });
 
-  // test('notify changes', () {
-  //   final model = WhoAreYouModel(MockSubiquityClient());
+  test('encrypt password', () {
+    // see password_test.dart for more detailed password encryption tests
+    final encrypted = ProfileSetupModel.encryptPassword('password');
+    expect(encrypted, isNotEmpty);
+    expect(encrypted, isNot(equals('password')));
+  });
 
-  //   var wasNotified = false;
-  //   model.addListener(() => wasNotified = true);
+  test('notify changes', () {
+    final model = ProfileSetupModel(MockSubiquityClient());
 
-  //   wasNotified = false;
-  //   expect(model.loginStrategy, LoginStrategy.requirePassword);
-  //   model.loginStrategy = LoginStrategy.autoLogin;
-  //   expect(wasNotified, isTrue);
+    var wasNotified = false;
+    model.addListener(() => wasNotified = true);
 
-  //   wasNotified = false;
-  //   expect(model.realName, isEmpty);
-  //   model.realName = 'Ubuntu';
-  //   expect(wasNotified, isTrue);
+    wasNotified = false;
+    expect(model.username, isEmpty);
+    model.username = 'ubuntu';
+    expect(wasNotified, isTrue);
 
-  //   wasNotified = false;
-  //   expect(model.username, isEmpty);
-  //   model.username = 'ubuntu';
-  //   expect(wasNotified, isTrue);
+    wasNotified = false;
+    expect(model.password, isEmpty);
+    model.password = 'password';
+    expect(wasNotified, isTrue);
 
-  //   wasNotified = false;
-  //   expect(model.password, isEmpty);
-  //   model.password = 'passwd';
-  //   expect(wasNotified, isTrue);
-
-  //   wasNotified = false;
-  //   expect(model.hostName, isEmpty);
-  //   model.hostName = 'impish';
-  //   expect(wasNotified, isTrue);
-  // });
-
-  // test('password strength', () {
-  //   final model = WhoAreYouModel(MockSubiquityClient());
-
-  //   void testPasswordStrength(String password, Matcher matcher) {
-  //     model.password = password;
-  //     expect(model.passwordStrength, matcher);
-  //   }
-
-  //   testPasswordStrength('', isNull);
-  //   testPasswordStrength('p', isNull);
-
-  //   // 2
-  //   testPasswordStrength('pw', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('p4', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('p@', equals(PasswordStrength.weakPassword));
-
-  //   // 6
-  //   testPasswordStrength('passwd', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('p4sswd', equals(PasswordStrength.averagePassword));
-  //   // FIXME: 'p@sswd' should be considered average if 'p4sswd' is
-  //   testPasswordStrength('p@sswd', equals(PasswordStrength.weakPassword));
-
-  //   // 8
-  //   testPasswordStrength('password', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('Password', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('p4ssword', equals(PasswordStrength.averagePassword));
-  //   testPasswordStrength('P4ssword', equals(PasswordStrength.averagePassword));
-  //   testPasswordStrength('p@ssw0rd', equals(PasswordStrength.averagePassword));
-  //   testPasswordStrength('P@ssw0rd', equals(PasswordStrength.averagePassword));
-
-  //   // 9
-  //   testPasswordStrength('passsword', equals(PasswordStrength.weakPassword));
-  //   testPasswordStrength('p4sssword', equals(PasswordStrength.averagePassword));
-  //   testPasswordStrength('P4sssword', equals(PasswordStrength.averagePassword));
-  //   testPasswordStrength('p@sssword', equals(PasswordStrength.strongPassword));
-  //   testPasswordStrength('P@sssword', equals(PasswordStrength.strongPassword));
-  //   testPasswordStrength('p@sssw0rd', equals(PasswordStrength.strongPassword));
-  //   testPasswordStrength('P@sssw0rd', equals(PasswordStrength.strongPassword));
-  // });
+    wasNotified = false;
+    expect(model.showAdvancedOptions, isFalse);
+    model.showAdvancedOptions = true;
+    expect(wasNotified, isTrue);
+  });
 }
