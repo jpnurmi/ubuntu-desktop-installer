@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
@@ -12,13 +13,20 @@ import '../../widgets.dart';
 import '../wizard_page.dart';
 import 'profile_setup_model.dart';
 
+part 'profile_setup_widgets.dart';
+
 const _kIconSpacing = 10.0;
 
+/// WSL Profile setup page.
+///
+/// See also:
+/// * [ProfileSetupModel]
 class ProfileSetupPage extends StatefulWidget {
-  const ProfileSetupPage({
-    Key? key,
-  }) : super(key: key);
+  /// Use [create] instead.
+  @visibleForTesting
+  const ProfileSetupPage({Key? key}) : super(key: key);
 
+  /// Creates an instance with [ProfileSetupModel].
   static Widget create(BuildContext context) {
     final client = Provider.of<SubiquityClient>(context, listen: false);
     return ChangeNotifierProvider(
@@ -43,10 +51,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<ProfileSetupModel>(context);
-
-    final successIcon =
-        Icon(Icons.check_circle, color: Theme.of(context).successColor);
-
     return LocalizedView(
       builder: (context, lang) {
         return WizardPage(
@@ -60,51 +64,25 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           content: Padding(
             padding: EdgeInsets.symmetric(horizontal: kContentPadding.left),
             child: LayoutBuilder(builder: (context, constraints) {
+              final fieldWidth = constraints.maxWidth * kContentWidthFraction;
               return ListView(
                 children: <Widget>[
-                  ValidatedFormField(
-                    spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
-                    initialValue: model.username,
-                    onChanged: (value) => model.username = value,
-                    labelText: lang.profileSetupUsernameHint,
-                    helperText: lang.profileSetupUsernameHelper,
-                    successWidget: successIcon,
-                    validator: MultiValidator([
-                      RequiredValidator(errorText: lang.usernameRequired),
-                      PatternValidator(
-                        kValidUsernamePattern,
-                        errorText: lang.usernameInvalid,
-                      )
-                    ]),
+                  _UsernameFormField(
+                    lang: lang,
+                    model: model,
+                    fieldWidth: fieldWidth,
                   ),
                   const SizedBox(height: kContentSpacing),
-                  ValidatedFormField(
-                    spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
-                    initialValue: model.password,
-                    onChanged: (value) => model.password = value,
-                    obscureText: true,
-                    labelText: lang.profileSetupPasswordHint,
-                    successWidget: _PasswordStrengthLabel(
-                      password: model.password,
-                      strength: model.passwordStrength,
-                    ),
-                    validator: RequiredValidator(
-                      errorText: lang.passwordRequired,
-                    ),
+                  _PasswordFormField(
+                    lang: lang,
+                    model: model,
+                    fieldWidth: fieldWidth,
                   ),
                   const SizedBox(height: kContentSpacing),
-                  ValidatedFormField(
-                    spacing: _kIconSpacing,
-                    fieldWidth: constraints.maxWidth * kContentWidthFraction,
-                    obscureText: true,
-                    labelText: lang.profileSetupConfirmPasswordHint,
-                    successWidget: successIcon,
-                    validator: _ConfirmPasswordValidator(
-                      model.password,
-                      errorText: lang.passwordMismatch,
-                    ),
+                  _ConfirmPasswordFormField(
+                    lang: lang,
+                    model: model,
+                    fieldWidth: fieldWidth,
                   ),
                   const SizedBox(height: kContentSpacing),
                   Align(
@@ -135,53 +113,6 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
             ),
           ],
         );
-      },
-    );
-  }
-}
-
-class _ConfirmPasswordValidator extends FieldValidator<String?> {
-  final String _password;
-
-  _ConfirmPasswordValidator(this._password, {required String errorText})
-      : super(errorText);
-
-  @override
-  bool isValid(String? value) {
-    return value?.isNotEmpty == true && value == _password;
-  }
-}
-
-class _PasswordStrengthLabel extends StatelessWidget {
-  const _PasswordStrengthLabel({
-    Key? key,
-    required this.password,
-    required this.strength,
-  }) : super(key: key);
-
-  final String password;
-  final PasswordStrength strength;
-
-  @override
-  Widget build(BuildContext context) {
-    return LocalizedView(
-      builder: (context, lang) {
-        switch (strength) {
-          case PasswordStrength.weak:
-            return Text(
-              lang.weakPassword,
-              style: TextStyle(color: Theme.of(context).errorColor),
-            );
-          case PasswordStrength.moderate:
-            return Text(lang.moderatePassword);
-          case PasswordStrength.strong:
-            return Text(
-              lang.strongPassword,
-              style: TextStyle(color: Theme.of(context).successColor),
-            );
-          default:
-            return SizedBox.shrink();
-        }
       },
     );
   }

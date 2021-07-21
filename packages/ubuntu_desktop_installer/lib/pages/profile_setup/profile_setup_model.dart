@@ -1,9 +1,7 @@
-import 'package:crypt/crypt.dart';
 import 'package:flutter/foundation.dart';
 import 'package:subiquity_client/subiquity_client.dart';
 
 import '../../utils.dart';
-
 export '../../utils.dart' show PasswordStrength;
 
 /// Implements the business logic of the WSL Profile Setup page.
@@ -32,7 +30,9 @@ class ProfileSetupModel extends ChangeNotifier {
   set password(String value) => _password.value = value;
 
   /// Estimates the strength of the password.
-  PasswordStrength get passwordStrength => estimatePasswordStrength(password);
+  PasswordStrength get passwordStrength {
+    return estimatePasswordStrength(password);
+  }
 
   /// Whether to show the advanced options.
   bool get showAdvancedOptions => _showAdvanced.value;
@@ -48,16 +48,10 @@ class ProfileSetupModel extends ChangeNotifier {
   }
 
   /// Saves the profile setup.
-  Future<void> saveProfileSetup() async {
+  Future<void> saveProfileSetup({@visibleForTesting String? salt}) async {
+    final cryptedPassword = encryptPassword(password, salt: salt);
     return _client.setIdentity(
-      _identity.value.copyWith(cryptedPassword: encryptPassword(password)),
+      _identity.value.copyWith(cryptedPassword: cryptedPassword),
     );
-  }
-
-  /// Encrypts a password.
-  @visibleForTesting
-  static String encryptPassword(String password) {
-    assert(password.isNotEmpty);
-    return Crypt.sha512(password).toString();
   }
 }

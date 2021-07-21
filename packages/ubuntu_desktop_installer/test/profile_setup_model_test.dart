@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_desktop_installer/pages/profile_setup/profile_setup_model.dart';
+import 'package:ubuntu_desktop_installer/utils.dart';
 
 import 'profile_setup_model_test.mocks.dart';
 
@@ -38,21 +39,18 @@ void main() {
   });
 
   test('save profile', () async {
-    final identity = IdentityData(
-      realname: 'Ubuntu',
-      username: 'ubuntu',
-      cryptedPassword: ProfileSetupModel.encryptPassword('passwd'),
-      hostname: 'impish',
-    );
-
     final client = MockSubiquityClient();
 
     final model = ProfileSetupModel(client);
-    model.username = identity.username!;
-    model.password = 'passwd';
+    model.username = 'ubuntu';
+    model.password = 'password';
 
-    await model.saveProfileSetup();
+    final identity = IdentityData(
+      username: model.username,
+      cryptedPassword: encryptPassword('password', salt: 'test'),
+    );
 
+    await model.saveProfileSetup(salt: 'test');
     verify(client.setIdentity(identity)).called(1);
   });
 
@@ -68,13 +66,6 @@ void main() {
     testPasswordStrength('password', equals(PasswordStrength.weak));
     testPasswordStrength('P4ssword', equals(PasswordStrength.moderate));
     testPasswordStrength('P@ssw0rd123', equals(PasswordStrength.strong));
-  });
-
-  test('encrypt password', () {
-    // see password_test.dart for more detailed password encryption tests
-    final encrypted = ProfileSetupModel.encryptPassword('password');
-    expect(encrypted, isNotEmpty);
-    expect(encrypted, isNot(equals('password')));
   });
 
   test('notify changes', () {
