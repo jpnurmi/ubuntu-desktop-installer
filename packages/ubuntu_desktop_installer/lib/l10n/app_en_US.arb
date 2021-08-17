@@ -73,6 +73,7 @@
   "bootLoaderDevice": "Device for boot loader installation",
 
   "partitionCreateTitle": "Create partition",
+  "partitionEditTitle": "Edit partition",
   "partitionSizeLabel": "Size:",
   "partitionUnitB": "B",
   "partitionUnitKB": "KB",
@@ -98,6 +99,7 @@
   "partitionFormatEfi": "EFI System Partition",
   "partitionFormatPhysical": "physical volume for encryption",
   "partitionFormatNone": "do not use the partition",
+  "partitionErase": "Format the partition",
   "partitionMountPointLabel": "Mount point:",
   "partitionMountPointAutomatic": "Automatic",
 
