@@ -11,7 +11,7 @@ void main(List<String> args) {
   runWizardApp(
     UbuntuWslSetupApp(reconfigure: options['reconfigure'] == true),
     subiquityClient: SubiquityClient(),
-    subiquityServer: SubiquityServer(),
+    subiquityServer: SubiquityServer.wsl(),
     serverMode:
         options['dry-run'] == true ? ServerMode.DRY_RUN : ServerMode.LIVE,
     serverArgs: [
