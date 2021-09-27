@@ -101,7 +101,7 @@ class WifiListTile extends StatelessWidget {
     final model = Provider.of<WifiDeviceModel>(context);
     final textColor = Theme.of(context).textTheme.subtitle1!.color;
     final iconSize = IconTheme.of(context).size;
-    return AffinityExpansionTile(
+    return ExpansionTile(
       initiallyExpanded: true,
       controlAffinity: ListTileControlAffinity.leading,
       title: Text(model.model ?? model.interface),

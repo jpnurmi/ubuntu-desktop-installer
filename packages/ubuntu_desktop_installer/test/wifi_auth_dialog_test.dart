@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -11,6 +10,7 @@ import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_mod
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
+import 'widget_tester_extensions.dart';
 import 'wifi_auth_dialog_test.mocks.dart';
 
 @GenerateMocks([
@@ -40,10 +40,6 @@ void main() {
     );
   }
 
-  AppLocalizations lang(WidgetTester tester) {
-    return AppLocalizations.of(tester.element(find.byType(AlertDialog)));
-  }
-
   testWidgets('cancel', (tester) async {
     final model = MockWifiAuthModel();
     when(model.showPassword).thenReturn(false);
@@ -63,7 +59,7 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.tap(
-      find.widgetWithText(OutlinedButton, lang(tester).cancelButtonText),
+      find.widgetWithText(OutlinedButton, tester.lang.cancelButtonText),
     );
     expect(await result, isNull);
   });
@@ -90,7 +86,7 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.tap(
-        find.widgetWithText(OutlinedButton, lang(tester).connectButtonText));
+        find.widgetWithText(OutlinedButton, tester.lang.connectButtonText));
     final auth = await result;
     expect(auth, isNotNull);
     expect(auth!.password, equals('Ubuntu'));
@@ -183,7 +179,7 @@ void main() {
     await tester.tap(dropdownButton);
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text(lang(tester).wpa3Personal).last);
+    await tester.tap(find.text(tester.lang.wpa3Personal).last);
     await tester.pumpAndSettle();
     verify(model.wifiSecurity = WifiSecurity.wpa3Personal).called(1);
     when(model.wifiSecurity).thenReturn(WifiSecurity.wpa3Personal);
@@ -191,7 +187,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '...');
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text(lang(tester).connectButtonText));
+    await tester.tap(find.text(tester.lang.connectButtonText));
     final auth = await result;
     expect(auth, isNotNull);
     expect(auth!.wifiSecurity, equals(WifiSecurity.wpa3Personal));
@@ -220,7 +216,7 @@ void main() {
     await tester.tap(dropdownButton);
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text(lang(tester).storeWifiPasswordAllUsers).last);
+    await tester.tap(find.text(tester.lang.storeWifiPasswordAllUsers).last);
     await tester.pumpAndSettle();
     verify(model.storePassword = StorePassword.allUsers).called(1);
     when(model.storePassword).thenReturn(StorePassword.allUsers);
@@ -228,7 +224,7 @@ void main() {
     await tester.enterText(find.byType(TextField), '...');
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text(lang(tester).connectButtonText));
+    await tester.tap(find.text(tester.lang.connectButtonText));
     final auth = await result;
     expect(auth, isNotNull);
     expect(auth!.storePassword, equals(StorePassword.allUsers));
