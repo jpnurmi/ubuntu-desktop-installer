@@ -43,7 +43,7 @@ void main() {
 
   Widget buildApp(AdvancedSetupModel model) {
     return MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: localizationsDelegates,
       home: Wizard(
         routes: {'/': (_) => buildPage(model)},
         onNext: (settings) => '/',
@@ -132,11 +132,11 @@ void main() {
 
   testWidgets('creates a model', (tester) async {
     final client = MockSubiquityClient();
-    when(client.wslConfiguration1())
-        .thenAnswer((_) async => WSLConfiguration1Data());
+    when(client.wslConfigurationBase())
+        .thenAnswer((_) async => WSLConfigurationBase());
 
     await tester.pumpWidget(MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: localizationsDelegates,
       home: Provider<SubiquityClient>.value(
         value: client,
         child: Wizard(

@@ -8,6 +8,15 @@ class UbuntuLocalizationsRu extends UbuntuLocalizations {
   UbuntuLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get languageName => '';
+
+  @override
+  String get backAction => 'Go Back';
+
+  @override
+  String get continueAction => 'Continue';
+
+  @override
   String get strongPassword => 'Strong password';
 
   @override
@@ -21,5 +30,12 @@ class UbuntuLocalizationsRu extends UbuntuLocalizations {
 class UbuntuLocalizationsRuRu extends UbuntuLocalizationsRu {
   UbuntuLocalizationsRuRu(): super('ru_RU');
 
+  @override
+  String get languageName => 'Русский';
 
+  @override
+  String get backAction => 'Назад';
+
+  @override
+  String get continueAction => 'Продолжить';
 }

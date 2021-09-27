@@ -1,7 +1,15 @@
-part of 'allocate_disk_space_page.dart';
+import 'package:filesize/filesize.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ubuntu_wizard/widgets.dart';
+import 'package:yaru_icons/widgets/yaru_icons.dart';
 
-class _PartitionBar extends StatelessWidget {
-  _PartitionBar({Key? key}) : super(key: key);
+import '../../l10n.dart';
+import 'allocate_disk_space_dialogs.dart';
+import 'allocate_disk_space_model.dart';
+
+class PartitionBar extends StatelessWidget {
+  PartitionBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +68,13 @@ class _PartitionPainter extends CustomPainter {
   }
 }
 
-class _PartitionLegend extends StatelessWidget {
-  const _PartitionLegend({Key? key}) : super(key: key);
+class PartitionLegend extends StatelessWidget {
+  const PartitionLegend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<AllocateDiskSpaceModel>(context);
+    final lang = AppLocalizations.of(context);
 
     final partitions = model.selectedDisk?.partitions;
     final partitionCount = partitions?.length ?? 0;
@@ -73,34 +82,30 @@ class _PartitionLegend extends StatelessWidget {
 
     return SizedBox(
       height: 48,
-      child: LocalizedView(
-        builder: (context, lang) {
-          return ListView.separated(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(vertical: 8),
-            itemCount: partitionCount + 1,
-            separatorBuilder: (context, index) => SizedBox(width: 40),
-            itemBuilder: (context, index) {
-              if (index >= partitionCount) {
-                return _PartitionLabel(
-                  size: freeSpace,
-                  title: lang.freeDiskSpace,
-                  borderColor: Theme.of(context).dividerColor,
-                );
-              }
+      child: ListView.separated(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(vertical: 8),
+        itemCount: partitionCount + 1,
+        separatorBuilder: (context, index) => SizedBox(width: 40),
+        itemBuilder: (context, index) {
+          if (index >= partitionCount) {
+            return _PartitionLabel(
+              size: freeSpace,
+              title: lang.freeDiskSpace,
+              borderColor: Theme.of(context).dividerColor,
+            );
+          }
 
-              final partition = partitions![index];
+          final partition = partitions![index];
 
-              return _PartitionLabel(
-                // TODO:
-                // - localize?
-                // - partition type?
-                title: '${model.selectedDisk!.id}${partition.number}',
-                size: partition.size,
-                color: _partitionColor(index, partitions.length),
-              );
-            },
+          return _PartitionLabel(
+            // TODO:
+            // - localize?
+            // - partition type?
+            title: '${model.selectedDisk!.id}${partition.number}',
+            size: partition.size,
+            color: _partitionColor(index, partitions.length),
           );
         },
       ),
@@ -172,8 +177,8 @@ class _PartitionFormatCheckboxState extends State<_PartitionFormatCheckbox> {
   }
 }
 
-class _PartitionTable extends StatelessWidget {
-  const _PartitionTable({Key? key}) : super(key: key);
+class PartitionTable extends StatelessWidget {
+  const PartitionTable({Key? key}) : super(key: key);
 
   List<DataRow> _buildDataRows({
     required AllocateDiskSpaceModel model,
@@ -240,137 +245,144 @@ class _PartitionTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<AllocateDiskSpaceModel>(context);
-    return LocalizedView(builder: (context, lang) {
-      return RoundedContainer(
-        child: SingleChildScrollView(
-          child: DataTable(
-            showCheckboxColumn: false,
-            headingTextStyle: Theme.of(context).textTheme.subtitle2,
-            dataTextStyle: Theme.of(context).textTheme.bodyText2,
-            columns: <DataColumn>[
-              DataColumn(
-                label: Text(lang.diskHeadersDevice),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersType),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersMountPoint),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersSize),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersUsed),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersSystem),
-              ),
-              DataColumn(
-                label: Text(lang.diskHeadersFormat),
-              ),
-            ],
-            rows: List.generate(model.disks.length,
-                    (index) => _buildDataRows(model: model, diskIndex: index))
-                .fold<List<DataRow>>([], (allRows, diskRows) {
-              allRows.addAll(diskRows);
-              return allRows;
-            }).toList(),
-          ),
+    final lang = AppLocalizations.of(context);
+    return RoundedContainer(
+      child: SingleChildScrollView(
+        child: DataTable(
+          showCheckboxColumn: false,
+          headingTextStyle: Theme.of(context).textTheme.subtitle2,
+          dataTextStyle: Theme.of(context).textTheme.bodyText2,
+          columns: <DataColumn>[
+            DataColumn(
+              label: Text(lang.diskHeadersDevice),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersType),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersMountPoint),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersSize),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersUsed),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersSystem),
+            ),
+            DataColumn(
+              label: Text(lang.diskHeadersFormat),
+            ),
+          ],
+          rows: List.generate(model.disks.length,
+                  (index) => _buildDataRows(model: model, diskIndex: index))
+              .fold<List<DataRow>>([], (allRows, diskRows) {
+            allRows.addAll(diskRows);
+            return allRows;
+          }).toList(),
         ),
-      );
-    });
+      ),
+    );
   }
 }
 
-class _PartitionButtonRow extends StatelessWidget {
-  const _PartitionButtonRow({Key? key}) : super(key: key);
+class PartitionButtonRow extends StatelessWidget {
+  const PartitionButtonRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LocalizedView(builder: (context, lang) {
-      return Row(
-        children: [
-          RoundedContainer(
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  OutlinedButton(
-                    child: const Icon(Icons.add),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide.none,
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: () {},
+    final model = Provider.of<AllocateDiskSpaceModel>(context, listen: false);
+    final lang = AppLocalizations.of(context);
+
+    return Row(
+      children: [
+        RoundedContainer(
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                OutlinedButton(
+                  child: const Icon(Icons.add),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide.none,
+                    shape: RoundedRectangleBorder(),
                   ),
-                  VerticalDivider(width: 1),
-                  OutlinedButton(
-                    child: const Icon(Icons.remove),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide.none,
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: null,
+                  onPressed: model.selectedDisk != null
+                      ? () => showCreatePartitionDialog(
+                          context, model.selectedDisk!)
+                      : null,
+                ),
+                VerticalDivider(width: 1),
+                OutlinedButton(
+                  child: const Icon(Icons.remove),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide.none,
+                    shape: RoundedRectangleBorder(),
                   ),
-                  VerticalDivider(width: 1),
-                  OutlinedButton(
-                    child: Text(lang.changeButtonText),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide.none,
-                      shape: RoundedRectangleBorder(),
-                    ),
-                    onPressed: null,
+                  onPressed: null,
+                ),
+                VerticalDivider(width: 1),
+                OutlinedButton(
+                  child: Text(lang.changeButtonText),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide.none,
+                    shape: RoundedRectangleBorder(),
                   ),
-                ],
-              ),
+                  onPressed: model.selectedPartitionIndex != -1
+                      ? () => showEditPartitionDialog(
+                          context,
+                          model.selectedDisk!
+                              .partitions[model.selectedPartitionIndex])
+                      : null,
+                ),
+              ],
             ),
           ),
-          const Spacer(),
-          ButtonBar(
-            children: [
-              OutlinedButton(
-                child: Text(lang.newPartitionTable),
-                onPressed: null,
-              ),
-            ],
-          ),
-          OutlinedButton(
-            child: Text(lang.revertButtonText),
-            onPressed: () {},
-          ),
-        ],
-      );
-    });
+        ),
+        const Spacer(),
+        ButtonBar(
+          children: [
+            OutlinedButton(
+              child: Text(lang.newPartitionTable),
+              onPressed: null,
+            ),
+          ],
+        ),
+        OutlinedButton(
+          child: Text(lang.revertButtonText),
+          onPressed: () {},
+        ),
+      ],
+    );
   }
 }
 
-class _BootDiskSelector extends StatelessWidget {
-  const _BootDiskSelector({Key? key}) : super(key: key);
+class BootDiskSelector extends StatelessWidget {
+  const BootDiskSelector({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<AllocateDiskSpaceModel>(context);
-    return LocalizedView(builder: (context, lang) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(lang.bootLoaderDevice),
-          const SizedBox(height: 8),
-          FractionallySizedBox(
-            widthFactor: 0.5,
-            child: DropdownBuilder<int>(
-              values: List.generate(model.disks.length, (index) => index),
-              selected: model.bootDiskIndex,
-              onSelected: model.selectBootDisk,
-              itemBuilder: (context, index, _) {
-                return Text(model.disks[index].id);
-              },
-            ),
-          )
-        ],
-      );
-    });
+    final lang = AppLocalizations.of(context);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(lang.bootLoaderDevice),
+        const SizedBox(height: 8),
+        FractionallySizedBox(
+          widthFactor: 0.5,
+          child: DropdownBuilder<int>(
+            values: List.generate(model.disks.length, (index) => index),
+            selected: model.bootDiskIndex,
+            onSelected: model.selectBootDisk,
+            itemBuilder: (context, index, _) {
+              return Text(model.disks[index].id);
+            },
+          ),
+        )
+      ],
+    );
   }
 }

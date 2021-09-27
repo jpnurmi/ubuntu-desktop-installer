@@ -14,12 +14,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get windowTitle => 'Ubuntu WSL';
 
   @override
-  String get backButton => 'Go Back';
-
-  @override
-  String get continueButton => 'Continue';
-
-  @override
   String get exitButton => 'Exit';
 
   @override
@@ -39,6 +33,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileSetupHeader => 'Please create a default UNIX user account. For more information visit: <a href=\"https://aka.ms/wslusers\">https://aka.ms/wslusers</a>';
+
+  @override
+  String get profileSetupRealnameLabel => 'Your name';
+
+  @override
+  String get profileSetupRealnameRequired => 'A name is required';
 
   @override
   String get profileSetupUsernameHint => 'Pick a username';
@@ -183,12 +183,6 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get windowTitle => 'Ubuntu WSL';
 
   @override
-  String get backButton => 'Go Back';
-
-  @override
-  String get continueButton => 'Continue';
-
-  @override
   String get exitButton => 'Exit';
 
   @override
@@ -208,6 +202,12 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get profileSetupHeader => 'Please create a default UNIX user account. For more information visit: <a href=\"https://aka.ms/wslusers\">https://aka.ms/wslusers</a>';
+
+  @override
+  String get profileSetupRealnameLabel => 'Your name';
+
+  @override
+  String get profileSetupRealnameRequired => 'A name is required';
 
   @override
   String get profileSetupUsernameHint => 'Pick a username';

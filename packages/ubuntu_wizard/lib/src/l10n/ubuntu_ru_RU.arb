@@ -1,3 +1,8 @@
 {
-  "@@locale": "ru_RU"
+  "@@locale": "ru_RU",
+
+  "languageName": "Русский",
+
+  "backAction": "Назад",
+  "continueAction": "Продолжить"
 }

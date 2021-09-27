@@ -12,6 +12,475 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+SourceSelection _$SourceSelectionFromJson(Map<String, dynamic> json) {
+  return _SourceSelection.fromJson(json);
+}
+
+/// @nodoc
+class _$SourceSelectionTearOff {
+  const _$SourceSelectionTearOff();
+
+  _SourceSelection call(
+      {String? name,
+      String? description,
+      String? id,
+      int? size,
+      String? variant,
+      @JsonKey(name: 'default') bool? isDefault}) {
+    return _SourceSelection(
+      name: name,
+      description: description,
+      id: id,
+      size: size,
+      variant: variant,
+      isDefault: isDefault,
+    );
+  }
+
+  SourceSelection fromJson(Map<String, Object> json) {
+    return SourceSelection.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $SourceSelection = _$SourceSelectionTearOff();
+
+/// @nodoc
+mixin _$SourceSelection {
+  String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  int? get size => throw _privateConstructorUsedError;
+  String? get variant => throw _privateConstructorUsedError;
+  @JsonKey(name: 'default')
+  bool? get isDefault => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SourceSelectionCopyWith<SourceSelection> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SourceSelectionCopyWith<$Res> {
+  factory $SourceSelectionCopyWith(
+          SourceSelection value, $Res Function(SourceSelection) then) =
+      _$SourceSelectionCopyWithImpl<$Res>;
+  $Res call(
+      {String? name,
+      String? description,
+      String? id,
+      int? size,
+      String? variant,
+      @JsonKey(name: 'default') bool? isDefault});
+}
+
+/// @nodoc
+class _$SourceSelectionCopyWithImpl<$Res>
+    implements $SourceSelectionCopyWith<$Res> {
+  _$SourceSelectionCopyWithImpl(this._value, this._then);
+
+  final SourceSelection _value;
+  // ignore: unused_field
+  final $Res Function(SourceSelection) _then;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? id = freezed,
+    Object? size = freezed,
+    Object? variant = freezed,
+    Object? isDefault = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int?,
+      variant: variant == freezed
+          ? _value.variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: isDefault == freezed
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$SourceSelectionCopyWith<$Res>
+    implements $SourceSelectionCopyWith<$Res> {
+  factory _$SourceSelectionCopyWith(
+          _SourceSelection value, $Res Function(_SourceSelection) then) =
+      __$SourceSelectionCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? name,
+      String? description,
+      String? id,
+      int? size,
+      String? variant,
+      @JsonKey(name: 'default') bool? isDefault});
+}
+
+/// @nodoc
+class __$SourceSelectionCopyWithImpl<$Res>
+    extends _$SourceSelectionCopyWithImpl<$Res>
+    implements _$SourceSelectionCopyWith<$Res> {
+  __$SourceSelectionCopyWithImpl(
+      _SourceSelection _value, $Res Function(_SourceSelection) _then)
+      : super(_value, (v) => _then(v as _SourceSelection));
+
+  @override
+  _SourceSelection get _value => super._value as _SourceSelection;
+
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? id = freezed,
+    Object? size = freezed,
+    Object? variant = freezed,
+    Object? isDefault = freezed,
+  }) {
+    return _then(_SourceSelection(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: size == freezed
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int?,
+      variant: variant == freezed
+          ? _value.variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDefault: isDefault == freezed
+          ? _value.isDefault
+          : isDefault // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SourceSelection implements _SourceSelection {
+  const _$_SourceSelection(
+      {this.name,
+      this.description,
+      this.id,
+      this.size,
+      this.variant,
+      @JsonKey(name: 'default') this.isDefault});
+
+  factory _$_SourceSelection.fromJson(Map<String, dynamic> json) =>
+      _$_$_SourceSelectionFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? description;
+  @override
+  final String? id;
+  @override
+  final int? size;
+  @override
+  final String? variant;
+  @override
+  @JsonKey(name: 'default')
+  final bool? isDefault;
+
+  @override
+  String toString() {
+    return 'SourceSelection(name: $name, description: $description, id: $id, size: $size, variant: $variant, isDefault: $isDefault)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SourceSelection &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.size, size) ||
+                const DeepCollectionEquality().equals(other.size, size)) &&
+            (identical(other.variant, variant) ||
+                const DeepCollectionEquality()
+                    .equals(other.variant, variant)) &&
+            (identical(other.isDefault, isDefault) ||
+                const DeepCollectionEquality()
+                    .equals(other.isDefault, isDefault)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(description) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(size) ^
+      const DeepCollectionEquality().hash(variant) ^
+      const DeepCollectionEquality().hash(isDefault);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SourceSelectionCopyWith<_SourceSelection> get copyWith =>
+      __$SourceSelectionCopyWithImpl<_SourceSelection>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_SourceSelectionToJson(this);
+  }
+}
+
+abstract class _SourceSelection implements SourceSelection {
+  const factory _SourceSelection(
+      {String? name,
+      String? description,
+      String? id,
+      int? size,
+      String? variant,
+      @JsonKey(name: 'default') bool? isDefault}) = _$_SourceSelection;
+
+  factory _SourceSelection.fromJson(Map<String, dynamic> json) =
+      _$_SourceSelection.fromJson;
+
+  @override
+  String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get description => throw _privateConstructorUsedError;
+  @override
+  String? get id => throw _privateConstructorUsedError;
+  @override
+  int? get size => throw _privateConstructorUsedError;
+  @override
+  String? get variant => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'default')
+  bool? get isDefault => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$SourceSelectionCopyWith<_SourceSelection> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SourceSelectionAndSetting _$SourceSelectionAndSettingFromJson(
+    Map<String, dynamic> json) {
+  return _SourceSelectionAndSetting.fromJson(json);
+}
+
+/// @nodoc
+class _$SourceSelectionAndSettingTearOff {
+  const _$SourceSelectionAndSettingTearOff();
+
+  _SourceSelectionAndSetting call(
+      {List<SourceSelection>? sources,
+      @JsonKey(name: 'current_id') String? currentId}) {
+    return _SourceSelectionAndSetting(
+      sources: sources,
+      currentId: currentId,
+    );
+  }
+
+  SourceSelectionAndSetting fromJson(Map<String, Object> json) {
+    return SourceSelectionAndSetting.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $SourceSelectionAndSetting = _$SourceSelectionAndSettingTearOff();
+
+/// @nodoc
+mixin _$SourceSelectionAndSetting {
+  List<SourceSelection>? get sources => throw _privateConstructorUsedError;
+  @JsonKey(name: 'current_id')
+  String? get currentId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SourceSelectionAndSettingCopyWith<SourceSelectionAndSetting> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SourceSelectionAndSettingCopyWith<$Res> {
+  factory $SourceSelectionAndSettingCopyWith(SourceSelectionAndSetting value,
+          $Res Function(SourceSelectionAndSetting) then) =
+      _$SourceSelectionAndSettingCopyWithImpl<$Res>;
+  $Res call(
+      {List<SourceSelection>? sources,
+      @JsonKey(name: 'current_id') String? currentId});
+}
+
+/// @nodoc
+class _$SourceSelectionAndSettingCopyWithImpl<$Res>
+    implements $SourceSelectionAndSettingCopyWith<$Res> {
+  _$SourceSelectionAndSettingCopyWithImpl(this._value, this._then);
+
+  final SourceSelectionAndSetting _value;
+  // ignore: unused_field
+  final $Res Function(SourceSelectionAndSetting) _then;
+
+  @override
+  $Res call({
+    Object? sources = freezed,
+    Object? currentId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      sources: sources == freezed
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as List<SourceSelection>?,
+      currentId: currentId == freezed
+          ? _value.currentId
+          : currentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$SourceSelectionAndSettingCopyWith<$Res>
+    implements $SourceSelectionAndSettingCopyWith<$Res> {
+  factory _$SourceSelectionAndSettingCopyWith(_SourceSelectionAndSetting value,
+          $Res Function(_SourceSelectionAndSetting) then) =
+      __$SourceSelectionAndSettingCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {List<SourceSelection>? sources,
+      @JsonKey(name: 'current_id') String? currentId});
+}
+
+/// @nodoc
+class __$SourceSelectionAndSettingCopyWithImpl<$Res>
+    extends _$SourceSelectionAndSettingCopyWithImpl<$Res>
+    implements _$SourceSelectionAndSettingCopyWith<$Res> {
+  __$SourceSelectionAndSettingCopyWithImpl(_SourceSelectionAndSetting _value,
+      $Res Function(_SourceSelectionAndSetting) _then)
+      : super(_value, (v) => _then(v as _SourceSelectionAndSetting));
+
+  @override
+  _SourceSelectionAndSetting get _value =>
+      super._value as _SourceSelectionAndSetting;
+
+  @override
+  $Res call({
+    Object? sources = freezed,
+    Object? currentId = freezed,
+  }) {
+    return _then(_SourceSelectionAndSetting(
+      sources: sources == freezed
+          ? _value.sources
+          : sources // ignore: cast_nullable_to_non_nullable
+              as List<SourceSelection>?,
+      currentId: currentId == freezed
+          ? _value.currentId
+          : currentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SourceSelectionAndSetting implements _SourceSelectionAndSetting {
+  const _$_SourceSelectionAndSetting(
+      {this.sources, @JsonKey(name: 'current_id') this.currentId});
+
+  factory _$_SourceSelectionAndSetting.fromJson(Map<String, dynamic> json) =>
+      _$_$_SourceSelectionAndSettingFromJson(json);
+
+  @override
+  final List<SourceSelection>? sources;
+  @override
+  @JsonKey(name: 'current_id')
+  final String? currentId;
+
+  @override
+  String toString() {
+    return 'SourceSelectionAndSetting(sources: $sources, currentId: $currentId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SourceSelectionAndSetting &&
+            (identical(other.sources, sources) ||
+                const DeepCollectionEquality()
+                    .equals(other.sources, sources)) &&
+            (identical(other.currentId, currentId) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentId, currentId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(sources) ^
+      const DeepCollectionEquality().hash(currentId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SourceSelectionAndSettingCopyWith<_SourceSelectionAndSetting>
+      get copyWith =>
+          __$SourceSelectionAndSettingCopyWithImpl<_SourceSelectionAndSetting>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_SourceSelectionAndSettingToJson(this);
+  }
+}
+
+abstract class _SourceSelectionAndSetting implements SourceSelectionAndSetting {
+  const factory _SourceSelectionAndSetting(
+          {List<SourceSelection>? sources,
+          @JsonKey(name: 'current_id') String? currentId}) =
+      _$_SourceSelectionAndSetting;
+
+  factory _SourceSelectionAndSetting.fromJson(Map<String, dynamic> json) =
+      _$_SourceSelectionAndSetting.fromJson;
+
+  @override
+  List<SourceSelection>? get sources => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'current_id')
+  String? get currentId => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$SourceSelectionAndSettingCopyWith<_SourceSelectionAndSetting>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 KeyboardSetting _$KeyboardSettingFromJson(Map<String, dynamic> json) {
   return _KeyboardSetting.fromJson(json);
 }
@@ -3228,21 +3697,20 @@ abstract class _StorageResponse implements StorageResponse {
       throw _privateConstructorUsedError;
 }
 
-WSLConfiguration1Data _$WSLConfiguration1DataFromJson(
-    Map<String, dynamic> json) {
-  return _WSLConfiguration1Data.fromJson(json);
+WSLConfigurationBase _$WSLConfigurationBaseFromJson(Map<String, dynamic> json) {
+  return _WSLConfigurationBase.fromJson(json);
 }
 
 /// @nodoc
-class _$WSLConfiguration1DataTearOff {
-  const _$WSLConfiguration1DataTearOff();
+class _$WSLConfigurationBaseTearOff {
+  const _$WSLConfigurationBaseTearOff();
 
-  _WSLConfiguration1Data call(
+  _WSLConfigurationBase call(
       {@JsonKey(name: 'custom_path') String? customPath,
       @JsonKey(name: 'custom_mount_opt') String? customMountOpt,
       @JsonKey(name: 'gen_host') bool? genHost,
       @JsonKey(name: 'gen_resolvconf') bool? genResolvconf}) {
-    return _WSLConfiguration1Data(
+    return _WSLConfigurationBase(
       customPath: customPath,
       customMountOpt: customMountOpt,
       genHost: genHost,
@@ -3250,16 +3718,16 @@ class _$WSLConfiguration1DataTearOff {
     );
   }
 
-  WSLConfiguration1Data fromJson(Map<String, Object> json) {
-    return WSLConfiguration1Data.fromJson(json);
+  WSLConfigurationBase fromJson(Map<String, Object> json) {
+    return WSLConfigurationBase.fromJson(json);
   }
 }
 
 /// @nodoc
-const $WSLConfiguration1Data = _$WSLConfiguration1DataTearOff();
+const $WSLConfigurationBase = _$WSLConfigurationBaseTearOff();
 
 /// @nodoc
-mixin _$WSLConfiguration1Data {
+mixin _$WSLConfigurationBase {
   @JsonKey(name: 'custom_path')
   String? get customPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'custom_mount_opt')
@@ -3271,15 +3739,15 @@ mixin _$WSLConfiguration1Data {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WSLConfiguration1DataCopyWith<WSLConfiguration1Data> get copyWith =>
+  $WSLConfigurationBaseCopyWith<WSLConfigurationBase> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WSLConfiguration1DataCopyWith<$Res> {
-  factory $WSLConfiguration1DataCopyWith(WSLConfiguration1Data value,
-          $Res Function(WSLConfiguration1Data) then) =
-      _$WSLConfiguration1DataCopyWithImpl<$Res>;
+abstract class $WSLConfigurationBaseCopyWith<$Res> {
+  factory $WSLConfigurationBaseCopyWith(WSLConfigurationBase value,
+          $Res Function(WSLConfigurationBase) then) =
+      _$WSLConfigurationBaseCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'custom_path') String? customPath,
       @JsonKey(name: 'custom_mount_opt') String? customMountOpt,
@@ -3288,13 +3756,13 @@ abstract class $WSLConfiguration1DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WSLConfiguration1DataCopyWithImpl<$Res>
-    implements $WSLConfiguration1DataCopyWith<$Res> {
-  _$WSLConfiguration1DataCopyWithImpl(this._value, this._then);
+class _$WSLConfigurationBaseCopyWithImpl<$Res>
+    implements $WSLConfigurationBaseCopyWith<$Res> {
+  _$WSLConfigurationBaseCopyWithImpl(this._value, this._then);
 
-  final WSLConfiguration1Data _value;
+  final WSLConfigurationBase _value;
   // ignore: unused_field
-  final $Res Function(WSLConfiguration1Data) _then;
+  final $Res Function(WSLConfigurationBase) _then;
 
   @override
   $Res call({
@@ -3325,11 +3793,11 @@ class _$WSLConfiguration1DataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WSLConfiguration1DataCopyWith<$Res>
-    implements $WSLConfiguration1DataCopyWith<$Res> {
-  factory _$WSLConfiguration1DataCopyWith(_WSLConfiguration1Data value,
-          $Res Function(_WSLConfiguration1Data) then) =
-      __$WSLConfiguration1DataCopyWithImpl<$Res>;
+abstract class _$WSLConfigurationBaseCopyWith<$Res>
+    implements $WSLConfigurationBaseCopyWith<$Res> {
+  factory _$WSLConfigurationBaseCopyWith(_WSLConfigurationBase value,
+          $Res Function(_WSLConfigurationBase) then) =
+      __$WSLConfigurationBaseCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'custom_path') String? customPath,
@@ -3339,15 +3807,15 @@ abstract class _$WSLConfiguration1DataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$WSLConfiguration1DataCopyWithImpl<$Res>
-    extends _$WSLConfiguration1DataCopyWithImpl<$Res>
-    implements _$WSLConfiguration1DataCopyWith<$Res> {
-  __$WSLConfiguration1DataCopyWithImpl(_WSLConfiguration1Data _value,
-      $Res Function(_WSLConfiguration1Data) _then)
-      : super(_value, (v) => _then(v as _WSLConfiguration1Data));
+class __$WSLConfigurationBaseCopyWithImpl<$Res>
+    extends _$WSLConfigurationBaseCopyWithImpl<$Res>
+    implements _$WSLConfigurationBaseCopyWith<$Res> {
+  __$WSLConfigurationBaseCopyWithImpl(
+      _WSLConfigurationBase _value, $Res Function(_WSLConfigurationBase) _then)
+      : super(_value, (v) => _then(v as _WSLConfigurationBase));
 
   @override
-  _WSLConfiguration1Data get _value => super._value as _WSLConfiguration1Data;
+  _WSLConfigurationBase get _value => super._value as _WSLConfigurationBase;
 
   @override
   $Res call({
@@ -3356,7 +3824,7 @@ class __$WSLConfiguration1DataCopyWithImpl<$Res>
     Object? genHost = freezed,
     Object? genResolvconf = freezed,
   }) {
-    return _then(_WSLConfiguration1Data(
+    return _then(_WSLConfigurationBase(
       customPath: customPath == freezed
           ? _value.customPath
           : customPath // ignore: cast_nullable_to_non_nullable
@@ -3379,15 +3847,15 @@ class __$WSLConfiguration1DataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WSLConfiguration1Data implements _WSLConfiguration1Data {
-  const _$_WSLConfiguration1Data(
+class _$_WSLConfigurationBase implements _WSLConfigurationBase {
+  const _$_WSLConfigurationBase(
       {@JsonKey(name: 'custom_path') this.customPath,
       @JsonKey(name: 'custom_mount_opt') this.customMountOpt,
       @JsonKey(name: 'gen_host') this.genHost,
       @JsonKey(name: 'gen_resolvconf') this.genResolvconf});
 
-  factory _$_WSLConfiguration1Data.fromJson(Map<String, dynamic> json) =>
-      _$_$_WSLConfiguration1DataFromJson(json);
+  factory _$_WSLConfigurationBase.fromJson(Map<String, dynamic> json) =>
+      _$_$_WSLConfigurationBaseFromJson(json);
 
   @override
   @JsonKey(name: 'custom_path')
@@ -3404,13 +3872,13 @@ class _$_WSLConfiguration1Data implements _WSLConfiguration1Data {
 
   @override
   String toString() {
-    return 'WSLConfiguration1Data(customPath: $customPath, customMountOpt: $customMountOpt, genHost: $genHost, genResolvconf: $genResolvconf)';
+    return 'WSLConfigurationBase(customPath: $customPath, customMountOpt: $customMountOpt, genHost: $genHost, genResolvconf: $genResolvconf)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _WSLConfiguration1Data &&
+        (other is _WSLConfigurationBase &&
             (identical(other.customPath, customPath) ||
                 const DeepCollectionEquality()
                     .equals(other.customPath, customPath)) &&
@@ -3435,26 +3903,26 @@ class _$_WSLConfiguration1Data implements _WSLConfiguration1Data {
 
   @JsonKey(ignore: true)
   @override
-  _$WSLConfiguration1DataCopyWith<_WSLConfiguration1Data> get copyWith =>
-      __$WSLConfiguration1DataCopyWithImpl<_WSLConfiguration1Data>(
+  _$WSLConfigurationBaseCopyWith<_WSLConfigurationBase> get copyWith =>
+      __$WSLConfigurationBaseCopyWithImpl<_WSLConfigurationBase>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_WSLConfiguration1DataToJson(this);
+    return _$_$_WSLConfigurationBaseToJson(this);
   }
 }
 
-abstract class _WSLConfiguration1Data implements WSLConfiguration1Data {
-  const factory _WSLConfiguration1Data(
+abstract class _WSLConfigurationBase implements WSLConfigurationBase {
+  const factory _WSLConfigurationBase(
           {@JsonKey(name: 'custom_path') String? customPath,
           @JsonKey(name: 'custom_mount_opt') String? customMountOpt,
           @JsonKey(name: 'gen_host') bool? genHost,
           @JsonKey(name: 'gen_resolvconf') bool? genResolvconf}) =
-      _$_WSLConfiguration1Data;
+      _$_WSLConfigurationBase;
 
-  factory _WSLConfiguration1Data.fromJson(Map<String, dynamic> json) =
-      _$_WSLConfiguration1Data.fromJson;
+  factory _WSLConfigurationBase.fromJson(Map<String, dynamic> json) =
+      _$_WSLConfigurationBase.fromJson;
 
   @override
   @JsonKey(name: 'custom_path')
@@ -3470,20 +3938,20 @@ abstract class _WSLConfiguration1Data implements WSLConfiguration1Data {
   bool? get genResolvconf => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WSLConfiguration1DataCopyWith<_WSLConfiguration1Data> get copyWith =>
+  _$WSLConfigurationBaseCopyWith<_WSLConfigurationBase> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-WSLConfiguration2Data _$WSLConfiguration2DataFromJson(
+WSLConfigurationAdvanced _$WSLConfigurationAdvancedFromJson(
     Map<String, dynamic> json) {
-  return _WSLConfiguration2Data.fromJson(json);
+  return _WSLConfigurationAdvanced.fromJson(json);
 }
 
 /// @nodoc
-class _$WSLConfiguration2DataTearOff {
-  const _$WSLConfiguration2DataTearOff();
+class _$WSLConfigurationAdvancedTearOff {
+  const _$WSLConfigurationAdvancedTearOff();
 
-  _WSLConfiguration2Data call(
+  _WSLConfigurationAdvanced call(
       {@JsonKey(name: 'gui_theme')
           String? guiTheme,
       @JsonKey(name: 'gui_followwintheme')
@@ -3498,19 +3966,11 @@ class _$WSLConfiguration2DataTearOff {
           bool? wslMotdNews,
       bool? automount,
       bool? mountfstab,
-      @JsonKey(name: 'custom_path')
-          String? customPath,
-      @JsonKey(name: 'custom_mount_opt')
-          String? customMountOpt,
-      @JsonKey(name: 'gen_host')
-          bool? genHost,
-      @JsonKey(name: 'gen_resolvconf')
-          bool? genResolvconf,
       @JsonKey(name: 'interop_enabled')
           bool? interopEnabled,
       @JsonKey(name: 'interop_appendwindowspath')
           bool? interopAppendwindowspath}) {
-    return _WSLConfiguration2Data(
+    return _WSLConfigurationAdvanced(
       guiTheme: guiTheme,
       guiFollowwintheme: guiFollowwintheme,
       legacyGui: legacyGui,
@@ -3519,25 +3979,21 @@ class _$WSLConfiguration2DataTearOff {
       wslMotdNews: wslMotdNews,
       automount: automount,
       mountfstab: mountfstab,
-      customPath: customPath,
-      customMountOpt: customMountOpt,
-      genHost: genHost,
-      genResolvconf: genResolvconf,
       interopEnabled: interopEnabled,
       interopAppendwindowspath: interopAppendwindowspath,
     );
   }
 
-  WSLConfiguration2Data fromJson(Map<String, Object> json) {
-    return WSLConfiguration2Data.fromJson(json);
+  WSLConfigurationAdvanced fromJson(Map<String, Object> json) {
+    return WSLConfigurationAdvanced.fromJson(json);
   }
 }
 
 /// @nodoc
-const $WSLConfiguration2Data = _$WSLConfiguration2DataTearOff();
+const $WSLConfigurationAdvanced = _$WSLConfigurationAdvancedTearOff();
 
 /// @nodoc
-mixin _$WSLConfiguration2Data {
+mixin _$WSLConfigurationAdvanced {
   @JsonKey(name: 'gui_theme')
   String? get guiTheme => throw _privateConstructorUsedError;
   @JsonKey(name: 'gui_followwintheme')
@@ -3552,14 +4008,6 @@ mixin _$WSLConfiguration2Data {
   bool? get wslMotdNews => throw _privateConstructorUsedError;
   bool? get automount => throw _privateConstructorUsedError;
   bool? get mountfstab => throw _privateConstructorUsedError;
-  @JsonKey(name: 'custom_path')
-  String? get customPath => throw _privateConstructorUsedError;
-  @JsonKey(name: 'custom_mount_opt')
-  String? get customMountOpt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gen_host')
-  bool? get genHost => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gen_resolvconf')
-  bool? get genResolvconf => throw _privateConstructorUsedError;
   @JsonKey(name: 'interop_enabled')
   bool? get interopEnabled => throw _privateConstructorUsedError;
   @JsonKey(name: 'interop_appendwindowspath')
@@ -3567,15 +4015,15 @@ mixin _$WSLConfiguration2Data {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WSLConfiguration2DataCopyWith<WSLConfiguration2Data> get copyWith =>
+  $WSLConfigurationAdvancedCopyWith<WSLConfigurationAdvanced> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WSLConfiguration2DataCopyWith<$Res> {
-  factory $WSLConfiguration2DataCopyWith(WSLConfiguration2Data value,
-          $Res Function(WSLConfiguration2Data) then) =
-      _$WSLConfiguration2DataCopyWithImpl<$Res>;
+abstract class $WSLConfigurationAdvancedCopyWith<$Res> {
+  factory $WSLConfigurationAdvancedCopyWith(WSLConfigurationAdvanced value,
+          $Res Function(WSLConfigurationAdvanced) then) =
+      _$WSLConfigurationAdvancedCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'gui_theme')
           String? guiTheme,
@@ -3591,14 +4039,6 @@ abstract class $WSLConfiguration2DataCopyWith<$Res> {
           bool? wslMotdNews,
       bool? automount,
       bool? mountfstab,
-      @JsonKey(name: 'custom_path')
-          String? customPath,
-      @JsonKey(name: 'custom_mount_opt')
-          String? customMountOpt,
-      @JsonKey(name: 'gen_host')
-          bool? genHost,
-      @JsonKey(name: 'gen_resolvconf')
-          bool? genResolvconf,
       @JsonKey(name: 'interop_enabled')
           bool? interopEnabled,
       @JsonKey(name: 'interop_appendwindowspath')
@@ -3606,13 +4046,13 @@ abstract class $WSLConfiguration2DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WSLConfiguration2DataCopyWithImpl<$Res>
-    implements $WSLConfiguration2DataCopyWith<$Res> {
-  _$WSLConfiguration2DataCopyWithImpl(this._value, this._then);
+class _$WSLConfigurationAdvancedCopyWithImpl<$Res>
+    implements $WSLConfigurationAdvancedCopyWith<$Res> {
+  _$WSLConfigurationAdvancedCopyWithImpl(this._value, this._then);
 
-  final WSLConfiguration2Data _value;
+  final WSLConfigurationAdvanced _value;
   // ignore: unused_field
-  final $Res Function(WSLConfiguration2Data) _then;
+  final $Res Function(WSLConfigurationAdvanced) _then;
 
   @override
   $Res call({
@@ -3624,10 +4064,6 @@ class _$WSLConfiguration2DataCopyWithImpl<$Res>
     Object? wslMotdNews = freezed,
     Object? automount = freezed,
     Object? mountfstab = freezed,
-    Object? customPath = freezed,
-    Object? customMountOpt = freezed,
-    Object? genHost = freezed,
-    Object? genResolvconf = freezed,
     Object? interopEnabled = freezed,
     Object? interopAppendwindowspath = freezed,
   }) {
@@ -3664,22 +4100,6 @@ class _$WSLConfiguration2DataCopyWithImpl<$Res>
           ? _value.mountfstab
           : mountfstab // ignore: cast_nullable_to_non_nullable
               as bool?,
-      customPath: customPath == freezed
-          ? _value.customPath
-          : customPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customMountOpt: customMountOpt == freezed
-          ? _value.customMountOpt
-          : customMountOpt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      genHost: genHost == freezed
-          ? _value.genHost
-          : genHost // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      genResolvconf: genResolvconf == freezed
-          ? _value.genResolvconf
-          : genResolvconf // ignore: cast_nullable_to_non_nullable
-              as bool?,
       interopEnabled: interopEnabled == freezed
           ? _value.interopEnabled
           : interopEnabled // ignore: cast_nullable_to_non_nullable
@@ -3693,11 +4113,11 @@ class _$WSLConfiguration2DataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$WSLConfiguration2DataCopyWith<$Res>
-    implements $WSLConfiguration2DataCopyWith<$Res> {
-  factory _$WSLConfiguration2DataCopyWith(_WSLConfiguration2Data value,
-          $Res Function(_WSLConfiguration2Data) then) =
-      __$WSLConfiguration2DataCopyWithImpl<$Res>;
+abstract class _$WSLConfigurationAdvancedCopyWith<$Res>
+    implements $WSLConfigurationAdvancedCopyWith<$Res> {
+  factory _$WSLConfigurationAdvancedCopyWith(_WSLConfigurationAdvanced value,
+          $Res Function(_WSLConfigurationAdvanced) then) =
+      __$WSLConfigurationAdvancedCopyWithImpl<$Res>;
   @override
   $Res call(
       {@JsonKey(name: 'gui_theme')
@@ -3714,14 +4134,6 @@ abstract class _$WSLConfiguration2DataCopyWith<$Res>
           bool? wslMotdNews,
       bool? automount,
       bool? mountfstab,
-      @JsonKey(name: 'custom_path')
-          String? customPath,
-      @JsonKey(name: 'custom_mount_opt')
-          String? customMountOpt,
-      @JsonKey(name: 'gen_host')
-          bool? genHost,
-      @JsonKey(name: 'gen_resolvconf')
-          bool? genResolvconf,
       @JsonKey(name: 'interop_enabled')
           bool? interopEnabled,
       @JsonKey(name: 'interop_appendwindowspath')
@@ -3729,15 +4141,16 @@ abstract class _$WSLConfiguration2DataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$WSLConfiguration2DataCopyWithImpl<$Res>
-    extends _$WSLConfiguration2DataCopyWithImpl<$Res>
-    implements _$WSLConfiguration2DataCopyWith<$Res> {
-  __$WSLConfiguration2DataCopyWithImpl(_WSLConfiguration2Data _value,
-      $Res Function(_WSLConfiguration2Data) _then)
-      : super(_value, (v) => _then(v as _WSLConfiguration2Data));
+class __$WSLConfigurationAdvancedCopyWithImpl<$Res>
+    extends _$WSLConfigurationAdvancedCopyWithImpl<$Res>
+    implements _$WSLConfigurationAdvancedCopyWith<$Res> {
+  __$WSLConfigurationAdvancedCopyWithImpl(_WSLConfigurationAdvanced _value,
+      $Res Function(_WSLConfigurationAdvanced) _then)
+      : super(_value, (v) => _then(v as _WSLConfigurationAdvanced));
 
   @override
-  _WSLConfiguration2Data get _value => super._value as _WSLConfiguration2Data;
+  _WSLConfigurationAdvanced get _value =>
+      super._value as _WSLConfigurationAdvanced;
 
   @override
   $Res call({
@@ -3749,14 +4162,10 @@ class __$WSLConfiguration2DataCopyWithImpl<$Res>
     Object? wslMotdNews = freezed,
     Object? automount = freezed,
     Object? mountfstab = freezed,
-    Object? customPath = freezed,
-    Object? customMountOpt = freezed,
-    Object? genHost = freezed,
-    Object? genResolvconf = freezed,
     Object? interopEnabled = freezed,
     Object? interopAppendwindowspath = freezed,
   }) {
-    return _then(_WSLConfiguration2Data(
+    return _then(_WSLConfigurationAdvanced(
       guiTheme: guiTheme == freezed
           ? _value.guiTheme
           : guiTheme // ignore: cast_nullable_to_non_nullable
@@ -3789,22 +4198,6 @@ class __$WSLConfiguration2DataCopyWithImpl<$Res>
           ? _value.mountfstab
           : mountfstab // ignore: cast_nullable_to_non_nullable
               as bool?,
-      customPath: customPath == freezed
-          ? _value.customPath
-          : customPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-      customMountOpt: customMountOpt == freezed
-          ? _value.customMountOpt
-          : customMountOpt // ignore: cast_nullable_to_non_nullable
-              as String?,
-      genHost: genHost == freezed
-          ? _value.genHost
-          : genHost // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      genResolvconf: genResolvconf == freezed
-          ? _value.genResolvconf
-          : genResolvconf // ignore: cast_nullable_to_non_nullable
-              as bool?,
       interopEnabled: interopEnabled == freezed
           ? _value.interopEnabled
           : interopEnabled // ignore: cast_nullable_to_non_nullable
@@ -3819,8 +4212,8 @@ class __$WSLConfiguration2DataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
-  const _$_WSLConfiguration2Data(
+class _$_WSLConfigurationAdvanced implements _WSLConfigurationAdvanced {
+  const _$_WSLConfigurationAdvanced(
       {@JsonKey(name: 'gui_theme')
           this.guiTheme,
       @JsonKey(name: 'gui_followwintheme')
@@ -3835,21 +4228,13 @@ class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
           this.wslMotdNews,
       this.automount,
       this.mountfstab,
-      @JsonKey(name: 'custom_path')
-          this.customPath,
-      @JsonKey(name: 'custom_mount_opt')
-          this.customMountOpt,
-      @JsonKey(name: 'gen_host')
-          this.genHost,
-      @JsonKey(name: 'gen_resolvconf')
-          this.genResolvconf,
       @JsonKey(name: 'interop_enabled')
           this.interopEnabled,
       @JsonKey(name: 'interop_appendwindowspath')
           this.interopAppendwindowspath});
 
-  factory _$_WSLConfiguration2Data.fromJson(Map<String, dynamic> json) =>
-      _$_$_WSLConfiguration2DataFromJson(json);
+  factory _$_WSLConfigurationAdvanced.fromJson(Map<String, dynamic> json) =>
+      _$_$_WSLConfigurationAdvancedFromJson(json);
 
   @override
   @JsonKey(name: 'gui_theme')
@@ -3874,18 +4259,6 @@ class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
   @override
   final bool? mountfstab;
   @override
-  @JsonKey(name: 'custom_path')
-  final String? customPath;
-  @override
-  @JsonKey(name: 'custom_mount_opt')
-  final String? customMountOpt;
-  @override
-  @JsonKey(name: 'gen_host')
-  final bool? genHost;
-  @override
-  @JsonKey(name: 'gen_resolvconf')
-  final bool? genResolvconf;
-  @override
   @JsonKey(name: 'interop_enabled')
   final bool? interopEnabled;
   @override
@@ -3894,13 +4267,13 @@ class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
 
   @override
   String toString() {
-    return 'WSLConfiguration2Data(guiTheme: $guiTheme, guiFollowwintheme: $guiFollowwintheme, legacyGui: $legacyGui, legacyAudio: $legacyAudio, advIpDetect: $advIpDetect, wslMotdNews: $wslMotdNews, automount: $automount, mountfstab: $mountfstab, customPath: $customPath, customMountOpt: $customMountOpt, genHost: $genHost, genResolvconf: $genResolvconf, interopEnabled: $interopEnabled, interopAppendwindowspath: $interopAppendwindowspath)';
+    return 'WSLConfigurationAdvanced(guiTheme: $guiTheme, guiFollowwintheme: $guiFollowwintheme, legacyGui: $legacyGui, legacyAudio: $legacyAudio, advIpDetect: $advIpDetect, wslMotdNews: $wslMotdNews, automount: $automount, mountfstab: $mountfstab, interopEnabled: $interopEnabled, interopAppendwindowspath: $interopAppendwindowspath)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _WSLConfiguration2Data &&
+        (other is _WSLConfigurationAdvanced &&
             (identical(other.guiTheme, guiTheme) ||
                 const DeepCollectionEquality()
                     .equals(other.guiTheme, guiTheme)) &&
@@ -3925,18 +4298,6 @@ class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
             (identical(other.mountfstab, mountfstab) ||
                 const DeepCollectionEquality()
                     .equals(other.mountfstab, mountfstab)) &&
-            (identical(other.customPath, customPath) ||
-                const DeepCollectionEquality()
-                    .equals(other.customPath, customPath)) &&
-            (identical(other.customMountOpt, customMountOpt) ||
-                const DeepCollectionEquality()
-                    .equals(other.customMountOpt, customMountOpt)) &&
-            (identical(other.genHost, genHost) ||
-                const DeepCollectionEquality()
-                    .equals(other.genHost, genHost)) &&
-            (identical(other.genResolvconf, genResolvconf) ||
-                const DeepCollectionEquality()
-                    .equals(other.genResolvconf, genResolvconf)) &&
             (identical(other.interopEnabled, interopEnabled) ||
                 const DeepCollectionEquality()
                     .equals(other.interopEnabled, interopEnabled)) &&
@@ -3957,27 +4318,23 @@ class _$_WSLConfiguration2Data implements _WSLConfiguration2Data {
       const DeepCollectionEquality().hash(wslMotdNews) ^
       const DeepCollectionEquality().hash(automount) ^
       const DeepCollectionEquality().hash(mountfstab) ^
-      const DeepCollectionEquality().hash(customPath) ^
-      const DeepCollectionEquality().hash(customMountOpt) ^
-      const DeepCollectionEquality().hash(genHost) ^
-      const DeepCollectionEquality().hash(genResolvconf) ^
       const DeepCollectionEquality().hash(interopEnabled) ^
       const DeepCollectionEquality().hash(interopAppendwindowspath);
 
   @JsonKey(ignore: true)
   @override
-  _$WSLConfiguration2DataCopyWith<_WSLConfiguration2Data> get copyWith =>
-      __$WSLConfiguration2DataCopyWithImpl<_WSLConfiguration2Data>(
+  _$WSLConfigurationAdvancedCopyWith<_WSLConfigurationAdvanced> get copyWith =>
+      __$WSLConfigurationAdvancedCopyWithImpl<_WSLConfigurationAdvanced>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_WSLConfiguration2DataToJson(this);
+    return _$_$_WSLConfigurationAdvancedToJson(this);
   }
 }
 
-abstract class _WSLConfiguration2Data implements WSLConfiguration2Data {
-  const factory _WSLConfiguration2Data(
+abstract class _WSLConfigurationAdvanced implements WSLConfigurationAdvanced {
+  const factory _WSLConfigurationAdvanced(
       {@JsonKey(name: 'gui_theme')
           String? guiTheme,
       @JsonKey(name: 'gui_followwintheme')
@@ -3992,21 +4349,13 @@ abstract class _WSLConfiguration2Data implements WSLConfiguration2Data {
           bool? wslMotdNews,
       bool? automount,
       bool? mountfstab,
-      @JsonKey(name: 'custom_path')
-          String? customPath,
-      @JsonKey(name: 'custom_mount_opt')
-          String? customMountOpt,
-      @JsonKey(name: 'gen_host')
-          bool? genHost,
-      @JsonKey(name: 'gen_resolvconf')
-          bool? genResolvconf,
       @JsonKey(name: 'interop_enabled')
           bool? interopEnabled,
       @JsonKey(name: 'interop_appendwindowspath')
-          bool? interopAppendwindowspath}) = _$_WSLConfiguration2Data;
+          bool? interopAppendwindowspath}) = _$_WSLConfigurationAdvanced;
 
-  factory _WSLConfiguration2Data.fromJson(Map<String, dynamic> json) =
-      _$_WSLConfiguration2Data.fromJson;
+  factory _WSLConfigurationAdvanced.fromJson(Map<String, dynamic> json) =
+      _$_WSLConfigurationAdvanced.fromJson;
 
   @override
   @JsonKey(name: 'gui_theme')
@@ -4031,18 +4380,6 @@ abstract class _WSLConfiguration2Data implements WSLConfiguration2Data {
   @override
   bool? get mountfstab => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'custom_path')
-  String? get customPath => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'custom_mount_opt')
-  String? get customMountOpt => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'gen_host')
-  bool? get genHost => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'gen_resolvconf')
-  bool? get genResolvconf => throw _privateConstructorUsedError;
-  @override
   @JsonKey(name: 'interop_enabled')
   bool? get interopEnabled => throw _privateConstructorUsedError;
   @override
@@ -4050,6 +4387,566 @@ abstract class _WSLConfiguration2Data implements WSLConfiguration2Data {
   bool? get interopAppendwindowspath => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WSLConfiguration2DataCopyWith<_WSLConfiguration2Data> get copyWith =>
+  _$WSLConfigurationAdvancedCopyWith<_WSLConfigurationAdvanced> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+KeyboardStep _$KeyboardStepFromJson(Map<String, dynamic> json) {
+  switch (json['\$type'] as String) {
+    case 'StepPressKey':
+      return StepPressKey.fromJson(json);
+    case 'StepKeyPresent':
+      return StepKeyPresent.fromJson(json);
+    case 'StepResult':
+      return StepResult.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
+
+/// @nodoc
+class _$KeyboardStepTearOff {
+  const _$KeyboardStepTearOff();
+
+  StepPressKey pressKey(
+      {List<String>? symbols, List<List<dynamic>>? keycodes}) {
+    return StepPressKey(
+      symbols: symbols,
+      keycodes: keycodes,
+    );
+  }
+
+  StepKeyPresent keyPresent({String? symbol, String? yes, String? no}) {
+    return StepKeyPresent(
+      symbol: symbol,
+      yes: yes,
+      no: no,
+    );
+  }
+
+  StepResult result({String? layout, String? variant}) {
+    return StepResult(
+      layout: layout,
+      variant: variant,
+    );
+  }
+
+  KeyboardStep fromJson(Map<String, Object> json) {
+    return KeyboardStep.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $KeyboardStep = _$KeyboardStepTearOff();
+
+/// @nodoc
+mixin _$KeyboardStep {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? symbols, List<List<dynamic>>? keycodes)
+        pressKey,
+    required TResult Function(String? symbol, String? yes, String? no)
+        keyPresent,
+    required TResult Function(String? layout, String? variant) result,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? symbols, List<List<dynamic>>? keycodes)?
+        pressKey,
+    TResult Function(String? symbol, String? yes, String? no)? keyPresent,
+    TResult Function(String? layout, String? variant)? result,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StepPressKey value) pressKey,
+    required TResult Function(StepKeyPresent value) keyPresent,
+    required TResult Function(StepResult value) result,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StepPressKey value)? pressKey,
+    TResult Function(StepKeyPresent value)? keyPresent,
+    TResult Function(StepResult value)? result,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $KeyboardStepCopyWith<$Res> {
+  factory $KeyboardStepCopyWith(
+          KeyboardStep value, $Res Function(KeyboardStep) then) =
+      _$KeyboardStepCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$KeyboardStepCopyWithImpl<$Res> implements $KeyboardStepCopyWith<$Res> {
+  _$KeyboardStepCopyWithImpl(this._value, this._then);
+
+  final KeyboardStep _value;
+  // ignore: unused_field
+  final $Res Function(KeyboardStep) _then;
+}
+
+/// @nodoc
+abstract class $StepPressKeyCopyWith<$Res> {
+  factory $StepPressKeyCopyWith(
+          StepPressKey value, $Res Function(StepPressKey) then) =
+      _$StepPressKeyCopyWithImpl<$Res>;
+  $Res call({List<String>? symbols, List<List<dynamic>>? keycodes});
+}
+
+/// @nodoc
+class _$StepPressKeyCopyWithImpl<$Res> extends _$KeyboardStepCopyWithImpl<$Res>
+    implements $StepPressKeyCopyWith<$Res> {
+  _$StepPressKeyCopyWithImpl(
+      StepPressKey _value, $Res Function(StepPressKey) _then)
+      : super(_value, (v) => _then(v as StepPressKey));
+
+  @override
+  StepPressKey get _value => super._value as StepPressKey;
+
+  @override
+  $Res call({
+    Object? symbols = freezed,
+    Object? keycodes = freezed,
+  }) {
+    return _then(StepPressKey(
+      symbols: symbols == freezed
+          ? _value.symbols
+          : symbols // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      keycodes: keycodes == freezed
+          ? _value.keycodes
+          : keycodes // ignore: cast_nullable_to_non_nullable
+              as List<List<dynamic>>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@FreezedUnionValue('StepPressKey')
+class _$StepPressKey implements StepPressKey {
+  const _$StepPressKey({this.symbols, this.keycodes});
+
+  factory _$StepPressKey.fromJson(Map<String, dynamic> json) =>
+      _$_$StepPressKeyFromJson(json);
+
+  @override
+  final List<String>? symbols;
+  @override
+  final List<List<dynamic>>? keycodes;
+
+  @override
+  String toString() {
+    return 'KeyboardStep.pressKey(symbols: $symbols, keycodes: $keycodes)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is StepPressKey &&
+            (identical(other.symbols, symbols) ||
+                const DeepCollectionEquality()
+                    .equals(other.symbols, symbols)) &&
+            (identical(other.keycodes, keycodes) ||
+                const DeepCollectionEquality()
+                    .equals(other.keycodes, keycodes)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(symbols) ^
+      const DeepCollectionEquality().hash(keycodes);
+
+  @JsonKey(ignore: true)
+  @override
+  $StepPressKeyCopyWith<StepPressKey> get copyWith =>
+      _$StepPressKeyCopyWithImpl<StepPressKey>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? symbols, List<List<dynamic>>? keycodes)
+        pressKey,
+    required TResult Function(String? symbol, String? yes, String? no)
+        keyPresent,
+    required TResult Function(String? layout, String? variant) result,
+  }) {
+    return pressKey(symbols, keycodes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? symbols, List<List<dynamic>>? keycodes)?
+        pressKey,
+    TResult Function(String? symbol, String? yes, String? no)? keyPresent,
+    TResult Function(String? layout, String? variant)? result,
+    required TResult orElse(),
+  }) {
+    if (pressKey != null) {
+      return pressKey(symbols, keycodes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StepPressKey value) pressKey,
+    required TResult Function(StepKeyPresent value) keyPresent,
+    required TResult Function(StepResult value) result,
+  }) {
+    return pressKey(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StepPressKey value)? pressKey,
+    TResult Function(StepKeyPresent value)? keyPresent,
+    TResult Function(StepResult value)? result,
+    required TResult orElse(),
+  }) {
+    if (pressKey != null) {
+      return pressKey(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$StepPressKeyToJson(this)..['\$type'] = 'StepPressKey';
+  }
+}
+
+abstract class StepPressKey implements KeyboardStep {
+  const factory StepPressKey(
+      {List<String>? symbols, List<List<dynamic>>? keycodes}) = _$StepPressKey;
+
+  factory StepPressKey.fromJson(Map<String, dynamic> json) =
+      _$StepPressKey.fromJson;
+
+  List<String>? get symbols => throw _privateConstructorUsedError;
+  List<List<dynamic>>? get keycodes => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StepPressKeyCopyWith<StepPressKey> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StepKeyPresentCopyWith<$Res> {
+  factory $StepKeyPresentCopyWith(
+          StepKeyPresent value, $Res Function(StepKeyPresent) then) =
+      _$StepKeyPresentCopyWithImpl<$Res>;
+  $Res call({String? symbol, String? yes, String? no});
+}
+
+/// @nodoc
+class _$StepKeyPresentCopyWithImpl<$Res>
+    extends _$KeyboardStepCopyWithImpl<$Res>
+    implements $StepKeyPresentCopyWith<$Res> {
+  _$StepKeyPresentCopyWithImpl(
+      StepKeyPresent _value, $Res Function(StepKeyPresent) _then)
+      : super(_value, (v) => _then(v as StepKeyPresent));
+
+  @override
+  StepKeyPresent get _value => super._value as StepKeyPresent;
+
+  @override
+  $Res call({
+    Object? symbol = freezed,
+    Object? yes = freezed,
+    Object? no = freezed,
+  }) {
+    return _then(StepKeyPresent(
+      symbol: symbol == freezed
+          ? _value.symbol
+          : symbol // ignore: cast_nullable_to_non_nullable
+              as String?,
+      yes: yes == freezed
+          ? _value.yes
+          : yes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      no: no == freezed
+          ? _value.no
+          : no // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@FreezedUnionValue('StepKeyPresent')
+class _$StepKeyPresent implements StepKeyPresent {
+  const _$StepKeyPresent({this.symbol, this.yes, this.no});
+
+  factory _$StepKeyPresent.fromJson(Map<String, dynamic> json) =>
+      _$_$StepKeyPresentFromJson(json);
+
+  @override
+  final String? symbol;
+  @override
+  final String? yes;
+  @override
+  final String? no;
+
+  @override
+  String toString() {
+    return 'KeyboardStep.keyPresent(symbol: $symbol, yes: $yes, no: $no)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is StepKeyPresent &&
+            (identical(other.symbol, symbol) ||
+                const DeepCollectionEquality().equals(other.symbol, symbol)) &&
+            (identical(other.yes, yes) ||
+                const DeepCollectionEquality().equals(other.yes, yes)) &&
+            (identical(other.no, no) ||
+                const DeepCollectionEquality().equals(other.no, no)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(symbol) ^
+      const DeepCollectionEquality().hash(yes) ^
+      const DeepCollectionEquality().hash(no);
+
+  @JsonKey(ignore: true)
+  @override
+  $StepKeyPresentCopyWith<StepKeyPresent> get copyWith =>
+      _$StepKeyPresentCopyWithImpl<StepKeyPresent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? symbols, List<List<dynamic>>? keycodes)
+        pressKey,
+    required TResult Function(String? symbol, String? yes, String? no)
+        keyPresent,
+    required TResult Function(String? layout, String? variant) result,
+  }) {
+    return keyPresent(symbol, yes, no);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? symbols, List<List<dynamic>>? keycodes)?
+        pressKey,
+    TResult Function(String? symbol, String? yes, String? no)? keyPresent,
+    TResult Function(String? layout, String? variant)? result,
+    required TResult orElse(),
+  }) {
+    if (keyPresent != null) {
+      return keyPresent(symbol, yes, no);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StepPressKey value) pressKey,
+    required TResult Function(StepKeyPresent value) keyPresent,
+    required TResult Function(StepResult value) result,
+  }) {
+    return keyPresent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StepPressKey value)? pressKey,
+    TResult Function(StepKeyPresent value)? keyPresent,
+    TResult Function(StepResult value)? result,
+    required TResult orElse(),
+  }) {
+    if (keyPresent != null) {
+      return keyPresent(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$StepKeyPresentToJson(this)..['\$type'] = 'StepKeyPresent';
+  }
+}
+
+abstract class StepKeyPresent implements KeyboardStep {
+  const factory StepKeyPresent({String? symbol, String? yes, String? no}) =
+      _$StepKeyPresent;
+
+  factory StepKeyPresent.fromJson(Map<String, dynamic> json) =
+      _$StepKeyPresent.fromJson;
+
+  String? get symbol => throw _privateConstructorUsedError;
+  String? get yes => throw _privateConstructorUsedError;
+  String? get no => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StepKeyPresentCopyWith<StepKeyPresent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StepResultCopyWith<$Res> {
+  factory $StepResultCopyWith(
+          StepResult value, $Res Function(StepResult) then) =
+      _$StepResultCopyWithImpl<$Res>;
+  $Res call({String? layout, String? variant});
+}
+
+/// @nodoc
+class _$StepResultCopyWithImpl<$Res> extends _$KeyboardStepCopyWithImpl<$Res>
+    implements $StepResultCopyWith<$Res> {
+  _$StepResultCopyWithImpl(StepResult _value, $Res Function(StepResult) _then)
+      : super(_value, (v) => _then(v as StepResult));
+
+  @override
+  StepResult get _value => super._value as StepResult;
+
+  @override
+  $Res call({
+    Object? layout = freezed,
+    Object? variant = freezed,
+  }) {
+    return _then(StepResult(
+      layout: layout == freezed
+          ? _value.layout
+          : layout // ignore: cast_nullable_to_non_nullable
+              as String?,
+      variant: variant == freezed
+          ? _value.variant
+          : variant // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+@FreezedUnionValue('StepResult')
+class _$StepResult implements StepResult {
+  const _$StepResult({this.layout, this.variant});
+
+  factory _$StepResult.fromJson(Map<String, dynamic> json) =>
+      _$_$StepResultFromJson(json);
+
+  @override
+  final String? layout;
+  @override
+  final String? variant;
+
+  @override
+  String toString() {
+    return 'KeyboardStep.result(layout: $layout, variant: $variant)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is StepResult &&
+            (identical(other.layout, layout) ||
+                const DeepCollectionEquality().equals(other.layout, layout)) &&
+            (identical(other.variant, variant) ||
+                const DeepCollectionEquality().equals(other.variant, variant)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(layout) ^
+      const DeepCollectionEquality().hash(variant);
+
+  @JsonKey(ignore: true)
+  @override
+  $StepResultCopyWith<StepResult> get copyWith =>
+      _$StepResultCopyWithImpl<StepResult>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            List<String>? symbols, List<List<dynamic>>? keycodes)
+        pressKey,
+    required TResult Function(String? symbol, String? yes, String? no)
+        keyPresent,
+    required TResult Function(String? layout, String? variant) result,
+  }) {
+    return result(layout, variant);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<String>? symbols, List<List<dynamic>>? keycodes)?
+        pressKey,
+    TResult Function(String? symbol, String? yes, String? no)? keyPresent,
+    TResult Function(String? layout, String? variant)? result,
+    required TResult orElse(),
+  }) {
+    if (result != null) {
+      return result(layout, variant);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StepPressKey value) pressKey,
+    required TResult Function(StepKeyPresent value) keyPresent,
+    required TResult Function(StepResult value) result,
+  }) {
+    return result(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StepPressKey value)? pressKey,
+    TResult Function(StepKeyPresent value)? keyPresent,
+    TResult Function(StepResult value)? result,
+    required TResult orElse(),
+  }) {
+    if (result != null) {
+      return result(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$StepResultToJson(this)..['\$type'] = 'StepResult';
+  }
+}
+
+abstract class StepResult implements KeyboardStep {
+  const factory StepResult({String? layout, String? variant}) = _$StepResult;
+
+  factory StepResult.fromJson(Map<String, dynamic> json) =
+      _$StepResult.fromJson;
+
+  String? get layout => throw _privateConstructorUsedError;
+  String? get variant => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StepResultCopyWith<StepResult> get copyWith =>
       throw _privateConstructorUsedError;
 }

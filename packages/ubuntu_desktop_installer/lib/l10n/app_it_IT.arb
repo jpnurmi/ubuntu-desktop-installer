@@ -1,13 +1,9 @@
 {
   "@@locale": "it_IT",
 
-  "languageName": "Italiano",
-
   "appTitle": "Installer di Ubuntu Desktop",
   "windowTitle": "Installa Ubuntu",
 
-  "backButtonText": "Torna indietro",
-  "continueButtonText": "Continua",
   "restartButtonText": "Riavvia",
 
   "welcome": "Benvenuto",

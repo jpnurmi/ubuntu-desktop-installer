@@ -4,7 +4,6 @@ import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_wizard/settings.dart';
 import 'package:ubuntu_wizard/utils.dart';
 import 'package:ubuntu_wizard/widgets.dart';
-import 'package:yaru/yaru.dart' as yaru;
 
 import 'l10n.dart';
 import 'pages.dart';
@@ -24,15 +23,11 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
         setWindowTitle(lang.windowTitle);
         return lang.appTitle;
       },
-      theme: yaru.lightTheme,
-      darkTheme: yaru.darkTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: Settings.of(context).theme,
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
-        ...AppLocalizations.localizationsDelegates,
-        ...UbuntuLocalizations.localizationsDelegates,
-        const LocalizationsDelegateOc(),
-      ],
+      localizationsDelegates: localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: _UbuntuDesktopInstallerWizard.create(context),
     );
@@ -80,8 +75,11 @@ class _UbuntuDesktopInstallerWizardState
         Routes.keyboardLayout: KeyboardLayoutPage.create,
         Routes.connectToInternet: ConnectToInternetPage.create,
         Routes.updatesOtherSoftware: UpdatesOtherSoftwarePage.create,
+        if (model.hasSecureBoot)
+          Routes.configureSecureBoot: ConfigureSecureBootPage.create,
         if (model.hasBitLocker)
           Routes.turnOffBitlocker: TurnOffBitLockerPage.create,
+        Routes.installationType: InstallationTypePage.create,
         Routes.allocateDiskSpace: AllocateDiskSpacePage.create,
         Routes.writeChangesToDisk: WriteChangesToDiskPage.create,
         Routes.whoAreYou: WhoAreYouPage.create,
@@ -118,6 +116,8 @@ class _UbuntuDesktopInstallerModel extends ChangeNotifier {
 
   bool get hasRst => _hasRst;
   bool get hasBitLocker => _hasBitLocker;
+  // TODO: add secure boot support
+  bool get hasSecureBoot => false;
 
   Future<void> init() {
     return Future.wait([

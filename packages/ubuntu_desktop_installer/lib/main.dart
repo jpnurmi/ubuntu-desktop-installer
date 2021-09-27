@@ -22,10 +22,9 @@ Future<void> main(List<String> args) async {
 
   runWizardApp(
     UbuntuDesktopInstallerApp(),
+    options: options,
     subiquityClient: subiquityClient,
     subiquityServer: subiquityServer,
-    serverMode:
-        options['dry-run'] == true ? ServerMode.DRY_RUN : ServerMode.LIVE,
     serverArgs: [
       if (options['machine-config'] != null) ...[
         '--machine-config',

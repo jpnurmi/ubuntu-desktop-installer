@@ -1,5 +1,35 @@
 part of 'profile_setup_page.dart';
 
+class _RealNameFormField extends StatelessWidget {
+  const _RealNameFormField({
+    Key? key,
+    required this.fieldWidth,
+  }) : super(key: key);
+
+  final double? fieldWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context);
+    final realname =
+        context.select<ProfileSetupModel, String>((model) => model.realname);
+
+    return ValidatedFormField(
+      fieldWidth: fieldWidth,
+      labelText: lang.profileSetupRealnameLabel,
+      successWidget: const SuccessIcon(),
+      initialValue: realname,
+      validator: RequiredValidator(
+        errorText: lang.profileSetupRealnameRequired,
+      ),
+      onChanged: (value) {
+        final model = Provider.of<ProfileSetupModel>(context, listen: false);
+        model.realname = value;
+      },
+    );
+  }
+}
+
 class _UsernameFormField extends StatelessWidget {
   const _UsernameFormField({
     Key? key,
@@ -89,8 +119,9 @@ class _ConfirmPasswordFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       obscureText: true,
       labelText: lang.profileSetupConfirmPasswordHint,
-      successWidget: const SuccessIcon(),
+      successWidget: password.isNotEmpty ? const SuccessIcon() : null,
       initialValue: confirmedPassword,
+      autovalidateMode: AutovalidateMode.always,
       validator: EqualValidator(
         password,
         errorText: lang.profileSetupPasswordMismatch,

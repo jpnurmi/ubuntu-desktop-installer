@@ -8,6 +8,15 @@ class UbuntuLocalizationsEn extends UbuntuLocalizations {
   UbuntuLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get languageName => '';
+
+  @override
+  String get backAction => 'Go Back';
+
+  @override
+  String get continueAction => 'Continue';
+
+  @override
   String get strongPassword => 'Strong password';
 
   @override
@@ -20,6 +29,15 @@ class UbuntuLocalizationsEn extends UbuntuLocalizations {
 /// The translations for English, as used in the United States (`en_US`).
 class UbuntuLocalizationsEnUs extends UbuntuLocalizationsEn {
   UbuntuLocalizationsEnUs(): super('en_US');
+
+  @override
+  String get languageName => 'English';
+
+  @override
+  String get backAction => 'Go Back';
+
+  @override
+  String get continueAction => 'Continue';
 
   @override
   String get strongPassword => 'Strong password';

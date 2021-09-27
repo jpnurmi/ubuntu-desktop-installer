@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:subiquity_client/subiquity_client.dart';
@@ -6,7 +7,7 @@ import 'package:ubuntu_wsl_setup/pages/configuration_ui/configuration_ui_model.d
 
 void main() {
   test('load UI configuration', () async {
-    const conf = WSLConfiguration2Data(
+    const conf = WSLConfigurationAdvanced(
       legacyGui: true,
       legacyAudio: true,
       advIpDetect: true,
@@ -16,11 +17,11 @@ void main() {
     );
 
     final client = MockSubiquityClient();
-    when(client.wslConfiguration2()).thenAnswer((_) async => conf);
+    when(client.wslConfigurationAdvanced()).thenAnswer((_) async => conf);
 
     final model = ConfigurationUIModel(client);
     await model.loadConfiguration();
-    verify(client.wslConfiguration2()).called(1);
+    verify(client.wslConfigurationAdvanced()).called(1);
 
     expect(model.legacyGUI, equals(conf.legacyGui));
     expect(model.legacyAudio, equals(conf.legacyAudio));
@@ -29,6 +30,8 @@ void main() {
   });
 
   test('save UI configuration', () async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
     final client = MockSubiquityClient();
 
     final model = ConfigurationUIModel(client);
@@ -39,7 +42,7 @@ void main() {
     model.automount = false;
     model.mountFstab = false;
 
-    final conf = WSLConfiguration2Data(
+    final conf = WSLConfigurationAdvanced(
       legacyGui: true,
       legacyAudio: true,
       advIpDetect: true,
@@ -48,8 +51,16 @@ void main() {
       mountfstab: false,
     );
 
+    var windowClosed = false;
+    final methodChannel = MethodChannel('ubuntu_wizard');
+    methodChannel.setMockMethodCallHandler((call) {
+      expect(call.method, equals('closeWindow'));
+      windowClosed = true;
+    });
+
     await model.saveConfiguration();
-    verify(client.setWslConfiguration2(conf)).called(1);
+    verify(client.setWslConfigurationAdvanced(conf)).called(1);
+    expect(windowClosed, isTrue);
   });
 
   test('notify changes', () {

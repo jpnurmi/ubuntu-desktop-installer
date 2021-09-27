@@ -8,6 +8,15 @@ class UbuntuLocalizationsNl extends UbuntuLocalizations {
   UbuntuLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
+  String get languageName => '';
+
+  @override
+  String get backAction => 'Go Back';
+
+  @override
+  String get continueAction => 'Continue';
+
+  @override
   String get strongPassword => 'Strong password';
 
   @override
@@ -21,5 +30,12 @@ class UbuntuLocalizationsNl extends UbuntuLocalizations {
 class UbuntuLocalizationsNlNl extends UbuntuLocalizationsNl {
   UbuntuLocalizationsNlNl(): super('nl_NL');
 
+  @override
+  String get languageName => 'Nederlands';
 
+  @override
+  String get backAction => 'Terug';
+
+  @override
+  String get continueAction => 'Volgende';
 }

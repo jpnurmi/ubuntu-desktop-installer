@@ -66,6 +66,10 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
           children: <Widget>[
             Padding(
               padding: fieldPadding,
+              child: _RealNameFormField(fieldWidth: fieldWidth),
+            ),
+            Padding(
+              padding: fieldPadding,
               child: _UsernameFormField(fieldWidth: fieldWidth),
             ),
             const SizedBox(height: kContentSpacing),
@@ -83,12 +87,9 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
         );
       }),
       actions: <WizardAction>[
-        WizardAction(
-          label: lang.backButton,
-          onActivated: Wizard.of(context).back,
-        ),
-        WizardAction(
-          label: lang.continueButton,
+        WizardAction.back(context),
+        WizardAction.next(
+          context,
           enabled: model.isValid,
           onActivated: () {
             model.saveProfileSetup();

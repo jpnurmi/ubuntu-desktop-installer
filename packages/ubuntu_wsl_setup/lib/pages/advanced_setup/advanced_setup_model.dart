@@ -10,7 +10,7 @@ class AdvancedSetupModel extends ChangeNotifier {
   }
 
   final SubiquityClient _client;
-  final _conf = ValueNotifier(WSLConfiguration1Data());
+  final _conf = ValueNotifier(WSLConfigurationBase());
 
   /// Location for the automount.
   String get mountLocation => _conf.value.customPath ?? '';
@@ -39,7 +39,7 @@ class AdvancedSetupModel extends ChangeNotifier {
   /// Returns `true` if the mount location is valid.
   static bool isValidMountLocation(String? path) {
     if (path == null || path.isEmpty) return true;
-    return p.isAbsolute(path) && !path.endsWith(p.separator);
+    return p.isAbsolute(path);
   }
 
   /// Whether the current input is valid.
@@ -47,11 +47,11 @@ class AdvancedSetupModel extends ChangeNotifier {
 
   /// Loads the advanced setup.
   Future<void> loadAdvancedSetup() async {
-    return _client.wslConfiguration1().then((conf) => _conf.value = conf);
+    return _client.wslConfigurationBase().then((conf) => _conf.value = conf);
   }
 
   /// Saves the advanced setup.
   Future<void> saveAdvancedSetup() async {
-    return _client.setWslConfiguration1(_conf.value);
+    return _client.setWslConfigurationBase(_conf.value);
   }
 }

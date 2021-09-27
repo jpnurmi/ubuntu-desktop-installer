@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'ubuntu_localizations_en.dart';
 import 'ubuntu_localizations_es.dart';
+import 'ubuntu_localizations_fi.dart';
 import 'ubuntu_localizations_fr.dart';
 import 'ubuntu_localizations_it.dart';
 import 'ubuntu_localizations_nl.dart';
@@ -100,6 +101,8 @@ abstract class UbuntuLocalizations {
     Locale('en', 'US'),
     Locale('es'),
     Locale('es', 'ES'),
+    Locale('fi'),
+    Locale('fi', 'FI'),
     Locale('fr'),
     Locale('fr', 'FR'),
     Locale('it'),
@@ -113,6 +116,24 @@ abstract class UbuntuLocalizations {
     Locale('ru'),
     Locale('ru', 'RU')
   ];
+
+  /// The display name for the language. Leave empty to exclude the language from the list of languages on the welcome screen.
+  ///
+  /// In en_US, this message translates to:
+  /// **'English'**
+  String get languageName;
+
+  /// No description provided for @backAction.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Go Back'**
+  String get backAction;
+
+  /// No description provided for @continueAction.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Continue'**
+  String get continueAction;
 
   /// No description provided for @strongPassword.
   ///
@@ -142,7 +163,7 @@ class _UbuntuLocalizationsDelegate extends LocalizationsDelegate<UbuntuLocalizat
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'it', 'nl', 'oc', 'pt', 'ru'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fi', 'fr', 'it', 'nl', 'oc', 'pt', 'ru'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_UbuntuLocalizationsDelegate old) => false;
@@ -161,6 +182,12 @@ UbuntuLocalizations lookupUbuntuLocalizations(Locale locale) {
     case 'es': {
   switch (locale.countryCode) {
     case 'ES': return UbuntuLocalizationsEsEs();
+   }
+  break;
+   }
+    case 'fi': {
+  switch (locale.countryCode) {
+    case 'FI': return UbuntuLocalizationsFiFi();
    }
   break;
    }
@@ -206,6 +233,7 @@ UbuntuLocalizations lookupUbuntuLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en': return UbuntuLocalizationsEn();
     case 'es': return UbuntuLocalizationsEs();
+    case 'fi': return UbuntuLocalizationsFi();
     case 'fr': return UbuntuLocalizationsFr();
     case 'it': return UbuntuLocalizationsIt();
     case 'nl': return UbuntuLocalizationsNl();

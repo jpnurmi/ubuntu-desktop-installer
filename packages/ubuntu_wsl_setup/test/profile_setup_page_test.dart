@@ -7,7 +7,6 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_test/mocks.dart';
-import 'package:ubuntu_wizard/l10n.dart';
 import 'package:ubuntu_wizard/utils.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 import 'package:ubuntu_wsl_setup/l10n.dart';
@@ -23,6 +22,7 @@ void main() {
 
   ProfileSetupModel buildModel({
     bool? isValid,
+    String? realname,
     String? username,
     String? password,
     String? confirmedPassword,
@@ -31,6 +31,7 @@ void main() {
   }) {
     final model = MockProfileSetupModel();
     when(model.isValid).thenReturn(isValid ?? false);
+    when(model.realname).thenReturn(realname ?? '');
     when(model.username).thenReturn(username ?? '');
     when(model.password).thenReturn(password ?? '');
     when(model.confirmedPassword).thenReturn(confirmedPassword ?? '');
@@ -51,16 +52,23 @@ void main() {
     tester.binding.window.devicePixelRatioTestValue = 1;
     tester.binding.window.physicalSizeTestValue = Size(960, 680);
     return MaterialApp(
-      localizationsDelegates: [
-        ...AppLocalizations.localizationsDelegates,
-        ...UbuntuLocalizations.localizationsDelegates,
-      ],
+      localizationsDelegates: localizationsDelegates,
       home: Wizard(
         routes: {'/': (_) => buildPage(model)},
         onNext: (settings) => '/',
       ),
     );
   }
+
+  testWidgets('realname input', (tester) async {
+    final model = buildModel(realname: 'realname');
+    await tester.pumpWidget(buildApp(tester, model));
+
+    final textField = find.widgetWithText(TextField, 'realname');
+    expect(textField, findsOneWidget);
+    await tester.enterText(textField, 'ubuntu');
+    verify(model.realname = 'ubuntu').called(1);
+  });
 
   testWidgets('username input', (tester) async {
     final model = buildModel(username: 'username');
@@ -138,7 +146,7 @@ void main() {
     await tester.pumpWidget(buildApp(tester, model));
 
     final continueButton =
-        find.widgetWithText(OutlinedButton, tester.lang.continueButton);
+        find.widgetWithText(OutlinedButton, tester.ulang.continueAction);
     expect(continueButton, findsOneWidget);
     expect(tester.widget<OutlinedButton>(continueButton).enabled, isTrue);
   });
@@ -148,7 +156,7 @@ void main() {
     await tester.pumpWidget(buildApp(tester, model));
 
     final continueButton =
-        find.widgetWithText(OutlinedButton, tester.lang.continueButton);
+        find.widgetWithText(OutlinedButton, tester.ulang.continueAction);
     expect(continueButton, findsOneWidget);
     expect(tester.widget<OutlinedButton>(continueButton).enabled, isFalse);
   });
@@ -177,7 +185,7 @@ void main() {
     verifyNever(model.saveProfileSetup());
 
     final continueButton =
-        find.widgetWithText(OutlinedButton, tester.lang.continueButton);
+        find.widgetWithText(OutlinedButton, tester.ulang.continueAction);
     expect(continueButton, findsOneWidget);
 
     await tester.tap(continueButton);
@@ -205,7 +213,7 @@ void main() {
     when(client.identity()).thenAnswer((_) async => IdentityData());
 
     await tester.pumpWidget(MaterialApp(
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: localizationsDelegates,
       home: Provider<SubiquityClient>.value(
         value: client,
         child: Wizard(

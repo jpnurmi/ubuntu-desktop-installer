@@ -1,13 +1,9 @@
 {
   "@@locale": "nl_NL",
 
-  "languageName": "Nederlands",
-
   "appTitle": "Ubuntu Desktop instalatie programma",
   "windowTitle": "Ubuntu installeren",
 
-  "backButtonText": "Terug",
-  "continueButtonText": "Volgende",
   "restartButtonText": "Opnieuw opstarten",
 
   "welcome": "Welkom",

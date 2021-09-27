@@ -1,13 +1,9 @@
 {
   "@@locale": "es_ES",
 
-  "languageName": "Español",
-
   "appTitle": "Instalador de Ubuntu para escritorio",
   "windowTitle": "Instalar Ubuntu",
 
-  "backButtonText": "Volver",
-  "continueButtonText": "Continuar",
   "restartButtonText": "Reiniciar",
 
   "welcome": "Bienvenido",

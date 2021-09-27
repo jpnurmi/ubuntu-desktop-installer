@@ -48,6 +48,12 @@ class ValidatedFormField extends StatefulWidget {
   /// Sets the optional space between the [TextField] and the successWidget
   final double? spacing;
 
+  /// See [FormField.autovalidateMode].
+  final AutovalidateMode autovalidateMode;
+
+  // Enables or disables TextField (defaults to true)
+  final bool enabled;
+
   /// Creates a [TextFormField] and a check mark.
   ///
   /// The `validator' helps to decide when to show the check mark.
@@ -64,6 +70,8 @@ class ValidatedFormField extends StatefulWidget {
     this.successWidget,
     this.spacing = _kIconSpacing,
     this.fieldWidth,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.enabled = true,
   })  : validator = validator ?? _NoValidator(),
         super(key: key);
 
@@ -73,6 +81,7 @@ class ValidatedFormField extends StatefulWidget {
 
 class _ValidatedFormFieldState extends State<ValidatedFormField> {
   late final TextEditingController _controller;
+  final _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -82,14 +91,33 @@ class _ValidatedFormFieldState extends State<ValidatedFormField> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(ValidatedFormField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!_focusNode.hasFocus &&
+        widget.initialValue != null &&
+        oldWidget.initialValue != widget.initialValue) {
+      _controller.text = widget.initialValue!;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final formField = TextFormField(
       autofocus: widget.autofocus,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: widget.autovalidateMode,
       controller: _controller,
+      focusNode: _focusNode,
       onChanged: widget.onChanged,
       validator: widget.validator,
       obscureText: widget.obscureText,
+      enabled: widget.enabled,
       decoration: InputDecoration(
         labelText: widget.labelText,
         helperText: widget.helperText,

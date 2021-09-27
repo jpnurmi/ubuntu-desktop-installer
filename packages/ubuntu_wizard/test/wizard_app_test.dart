@@ -6,6 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:subiquity_client/subiquity_client.dart';
+import 'package:subiquity_client/subiquity_server.dart';
 import 'package:ubuntu_test/mocks.dart';
 import 'package:ubuntu_wizard/app.dart';
 
@@ -22,11 +23,11 @@ void main() {
       Container(),
       subiquityClient: client,
       subiquityServer: server,
-      serverMode: ServerMode.DRY_RUN,
       serverArgs: ['--foo', 'bar'],
     );
     verify(server.start(ServerMode.DRY_RUN, ['--foo', 'bar'])).called(1);
     verify(client.open('socket path')).called(1);
+    verify(client.setVariant(Variant.DESKTOP)).called(1);
   });
 
   testWidgets('provides the client', (tester) async {
@@ -37,7 +38,6 @@ void main() {
       Container(key: ValueKey('app')),
       subiquityClient: MockSubiquityClient(),
       subiquityServer: server,
-      serverMode: ServerMode.DRY_RUN,
     );
 
     final app = find.byKey(ValueKey('app'));
