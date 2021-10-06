@@ -111,15 +111,25 @@ jobs:
         echo bar > untracked-file
         rm LICENSE
 
-        echo "::warning file=app.js,line=1,col=5::Missing semicolon"
-
         if [ -n "$(git status --porcelain)" ]; then
-          for f in $(git ls-files --modified); do
-            echo "::warning file=${f}::May be outdated"
-          done
-          for f in $(git ls-files --others --exclude-standard); do
-            echo "::warning file=${f}::May be untracked"
-          done
+          modified=$(git ls-files --modified)
+          if [ -n "$modified"]; then
+            echo "::group::The following files may be outdated"
+            for f in "$modified"; do
+              echo "::warning ::$f"
+            done
+            echo "::endgroup::"
+          fi
+
+          untracked=$(git ls-files --others --exclude-standard)
+          if [ -n "$untracked" ]; then
+            echo "::group::The following files may be untracked"
+            for f in "$untracked"; do
+              echo "::warning ::$f"
+            done
+            echo "::endgroup::"
+          fi
+
           git diff
           exit 1
         fi
