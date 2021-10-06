@@ -5,79 +5,79 @@ on:
     # branches:
     #   - main
     #   - ci-generate-warning2
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+  # pull_request:
+  #   branches:
+  #     - main
+  # workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
+  # build:
+  #   runs-on: ubuntu-20.04
+  #   steps:
     
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       submodules: recursive
 
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+  #   - uses: subosito/flutter-action@v1
+  #     with:
+  #       channel: 'stable'
 
-    - name: Enable Linux desktop support
-      run: flutter config --enable-linux-desktop
+  #   - name: Enable Linux desktop support
+  #     run: flutter config --enable-linux-desktop
 
-    - name: Install Melos
-      run: flutter pub global activate melos
+  #   - name: Install Melos
+  #     run: flutter pub global activate melos
 
-    - name: Install lcov
-      run: sudo apt update && sudo apt install lcov
+  #   - name: Install lcov
+  #     run: sudo apt update && sudo apt install lcov
 
-    # subiquity
+  #   # subiquity
 
-    - name: Get subiquity dependencies
-      working-directory: ./packages/subiquity_client/subiquity
-      run: sudo ./scripts/installdeps.sh
+  #   - name: Get subiquity dependencies
+  #     working-directory: ./packages/subiquity_client/subiquity
+  #     run: sudo ./scripts/installdeps.sh
 
-    - name: Check subiquity integration
-      run: ./scripts/subiquity_integration
+  #   - name: Check subiquity integration
+  #     run: ./scripts/subiquity_integration
 
-    # test all packages
+  #   # test all packages
 
-    - name: Bootstrap workspace
-      run: melos bootstrap
+  #   - name: Bootstrap workspace
+  #     run: melos bootstrap
     
-    - name: Run tests
-      run: melos run coverage
+  #   - name: Run tests
+  #     run: melos run coverage
 
-    - name: Upload coverage results
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
+  #   - name: Upload coverage results
+  #     uses: codecov/codecov-action@v1
+  #     with:
+  #       token: ${{secrets.CODECOV_TOKEN}}
 
-  analyze:
-    runs-on: ubuntu-20.04
-    steps:
+  # analyze:
+  #   runs-on: ubuntu-20.04
+  #   steps:
 
-    - uses: actions/checkout@v2
+  #   - uses: actions/checkout@v2
 
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+  #   - uses: subosito/flutter-action@v1
+  #     with:
+  #       channel: 'stable'
 
-    - name: Enable Linux desktop support
-      run: flutter config --enable-linux-desktop
+  #   - name: Enable Linux desktop support
+  #     run: flutter config --enable-linux-desktop
 
-    - name: Install Melos
-      run: flutter pub global activate melos
+  #   - name: Install Melos
+  #     run: flutter pub global activate melos
 
-    - name: Bootstrap workspace
-      run: melos bootstrap
+  #   - name: Bootstrap workspace
+  #     run: melos bootstrap
 
-    - name: Check for any formatting issues
-      run: melos run format
+  #   - name: Check for any formatting issues
+  #     run: melos run format
 
-    - name: Check for any analyzer issues
-      run: melos run analyze
+  #   - name: Check for any analyzer issues
+  #     run: melos run analyze
 
   generate:
     runs-on: ubuntu-20.04
@@ -110,6 +110,8 @@ jobs:
         echo foo > README.md
         echo bar > untracked-file
         rm LICENSE
+
+        echo "::warning file=app.js,line=1,col=5::Missing semicolon"
 
         if [ -n "$(git status --porcelain)" ]; then
           for f in $(git ls-files --modified); do
