@@ -115,6 +115,7 @@ jobs:
             echo "::warning file=$f::May be untracked"
           done
           git diff
+          exit 1
         fi
 
     - name: Commit outdated generated files

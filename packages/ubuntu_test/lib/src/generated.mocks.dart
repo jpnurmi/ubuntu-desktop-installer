@@ -118,6 +118,10 @@ class MockSubiquityClient extends _i1.Mock implements _i6.SubiquityClient {
   _i5.Future<bool> get isOpen => (super.noSuchMethod(Invocation.getter(#isOpen),
       returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
   @override
+  bool get testMockChange => (super
+          .noSuchMethod(Invocation.getter(#testMockChange), returnValue: false)
+      as bool);
+  @override
   void open(String? socketPath) =>
       super.noSuchMethod(Invocation.method(#open, [socketPath]),
           returnValueForMissingStub: null);

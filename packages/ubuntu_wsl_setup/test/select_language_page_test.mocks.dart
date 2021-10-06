@@ -96,6 +96,10 @@ class MockSettings extends _i1.Mock implements _i5.Settings {
   }
 
   @override
+  bool get testAnotherMockChange =>
+      (super.noSuchMethod(Invocation.getter(#testAnotherMockChange),
+          returnValue: false) as bool);
+  @override
   _i6.ThemeMode get theme => (super.noSuchMethod(Invocation.getter(#theme),
       returnValue: _i6.ThemeMode.system) as _i6.ThemeMode);
   @override

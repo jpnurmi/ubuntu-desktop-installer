@@ -134,6 +134,10 @@ class MockKeyboardService extends _i1.Mock implements _i5.KeyboardService {
       super.noSuchMethod(Invocation.setter(#layouts, _layouts),
           returnValueForMissingStub: null);
   @override
+  bool get testYetAnotherMockChange =>
+      (super.noSuchMethod(Invocation.getter(#testYetAnotherMockChange),
+          returnValue: false) as bool);
+  @override
   _i3.Future<void> load(_i6.SubiquityClient? client) =>
       (super.noSuchMethod(Invocation.method(#load, [client]),
           returnValue: Future<void>.value(),
