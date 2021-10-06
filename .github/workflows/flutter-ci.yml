@@ -107,15 +107,15 @@ jobs:
     - name: Warn about outdated generated files
       if: github.event_name == 'pull_request'
       run: |
-        echo foo > README.md
+        echo foo >> README.md
         echo bar > untracked-file
         rm LICENSE
 
         if [ -n "$(git status --porcelain)" ]; then
-          for f in "$(git ls-files --modified)"; do
-              echo "::warning ::$f may be outdated"
+          for f in $(git ls-files --modified); do
+            echo "::warning ::$f may be outdated"
           done
-          for f in "$(git ls-files --others --exclude-standard)"; do
+          for f in $(git ls-files --others --exclude-standard); do
             echo "::warning ::$f may be untracked"
           done
           git diff
