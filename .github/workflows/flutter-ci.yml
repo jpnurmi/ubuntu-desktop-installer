@@ -112,24 +112,12 @@ jobs:
         rm LICENSE
 
         if [ -n "$(git status --porcelain)" ]; then
-          modified=$(git ls-files --modified)
-          if [ -n "$modified"]; then
-            echo "::group::The following files may be outdated"
-            for f in "$modified"; do
-              echo "::warning ::$f"
-            done
-            echo "::endgroup::"
-          fi
-
-          untracked=$(git ls-files --others --exclude-standard)
-          if [ -n "$untracked" ]; then
-            echo "::group::The following files may be untracked"
-            for f in "$untracked"; do
-              echo "::warning ::$f"
-            done
-            echo "::endgroup::"
-          fi
-
+          for f in "$(git ls-files --modified)"; do
+              echo "::warning ::$f may be outdated"
+          done
+          for f in "$(git ls-files --others --exclude-standard)"; do
+            echo "::warning ::$f may be untracked"
+          done
           git diff
           exit 1
         fi
