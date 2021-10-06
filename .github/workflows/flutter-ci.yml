@@ -2,9 +2,9 @@ name: Flutter CI
 
 on:
   push:
-    branches:
-      - main
-      - ci-generate-warning2
+    # branches:
+    #   - main
+    #   - ci-generate-warning2
   pull_request:
     branches:
       - main
@@ -98,15 +98,18 @@ jobs:
     - name: Bootstrap workspace
       run: melos bootstrap
 
-    - name: Generate source code
-      run: melos run generate
+    # - name: Generate source code
+    #   run: melos run generate
 
-    - name: Generate l10n files
-      run: melos run gen-l10n
+    # - name: Generate l10n files
+    #   run: melos run gen-l10n
 
     - name: Warn about outdated generated files
       if: github.event_name == 'pull_request'
       run: |
+        echo foo > README.md
+        touch untracked-file
+
         if [ -n "$(git status --porcelain)" ]; then
           for f in $(git ls-files --modified); do
             echo "::warning file=$f::May be outdated"
@@ -115,7 +118,7 @@ jobs:
             echo "::warning file=$f::May be untracked"
           done
           git diff
-          exit 1
+          exit 1g
         fi
 
     - name: Commit outdated generated files
