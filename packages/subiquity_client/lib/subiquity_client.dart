@@ -36,6 +36,8 @@ class SubiquityClient {
 
   Future<bool> get isOpen => _isOpen.future;
 
+  bool get injectMockChange => true;
+
   void open(String socketPath) {
     log.info('Opening socket $socketPath');
     _client = HttpUnixClient(socketPath);

@@ -3,8 +3,8 @@
 // Do not manually edit this file.
 
 import 'dart:async' as _i4;
-import 'dart:convert' as _i2;
 import 'dart:io' as _i3;
+import 'dart:convert' as _i2;
 
 import 'package:mockito/mockito.dart' as _i1;
 
