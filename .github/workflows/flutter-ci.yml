@@ -84,9 +84,9 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+    # - uses: subosito/flutter-action@v1
+    #   with:
+    #     channel: 'stable'
 
     # - name: Enable Linux desktop support
     #   run: flutter config --enable-linux-desktop
@@ -106,6 +106,10 @@ jobs:
     - name: Warn about outdated generated files
       if: github.event_name == 'pull_request'
       run: |
+        echo modification >> README.md
+        rm LICENSE
+        touch new-file
+
         if [ -n "$(git status --porcelain)" ]; then
           modified=$(git diff --stat)
           if [ -n "$modified" ]; then
