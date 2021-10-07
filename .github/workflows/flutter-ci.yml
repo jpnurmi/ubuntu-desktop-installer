@@ -111,23 +111,22 @@ jobs:
         touch new-file
 
         if [ -n "$(git status --porcelain)" ]; then
-          modified=$(git diff --stat)
-          if [ -n "$modified" ]; then
-            warning="Outdated files:\\n$modified"
-            warning="${warning//'%'/'%25'}"
-            warning="${warning//$'\n'/'%0A'}"
-            warning="${warning//$'\r'/'%0D'}"
-            echo "::warning ::$warning"
+          outdated=$(git diff --stat)
+          if [ -n "$outdated" ]; then
+            outdated="${outdated//'%'/'%25'}"
+            outdated="${outdated//$'\n'/'%0A'}"
+            outdated="${outdated//$'\r'/'%0D'}"
+            echo "::warning ::Outdated files:%0A$outdated"
           fi
           untracked=$(git ls-files --others --exclude-standard)
           if [ -n "$untracked" ]; then
-            warning="Untracked files:\n$untracked"
-            warning="${warning//'%'/'%25'}"
-            warning="${warning//$'\n'/'%0A'}"
-            warning="${warning//$'\r'/'%0D'}"
-            echo "::warning ::$warning"
+            untracked="${untracked//'%'/'%25'}"
+            untracked="${untracked//$'\n'/'%0A'}"
+            untracked="${untracked//$'\r'/'%0D'}"
+            echo "::warning ::Untracked files:%0A$untracked"
           fi
-          echo "\n\n"
+          echo ""
+          echo ""
           git diff
           exit 1
         fi
