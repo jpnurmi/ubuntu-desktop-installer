@@ -113,7 +113,7 @@ jobs:
         if [ -n "$(git status --porcelain)" ]; then
           modified=$(git diff --stat)
           if [ -n "$modified" ]; then
-            warning="Outdated files:%0A$modified"
+            warning="Outdated files:\\n$modified"
             warning="${warning//'%'/'%25'}"
             warning="${warning//$'\n'/'%0A'}"
             warning="${warning//$'\r'/'%0D'}"
@@ -121,12 +121,13 @@ jobs:
           fi
           untracked=$(git ls-files --others --exclude-standard)
           if [ -n "$untracked" ]; then
-            warning="Untracked files:%0A$untracked"
+            warning="Untracked files:\n$untracked"
             warning="${warning//'%'/'%25'}"
             warning="${warning//$'\n'/'%0A'}"
             warning="${warning//$'\r'/'%0D'}"
             echo "::warning ::$warning"
           fi
+          echo "\n\n"
           git diff
           exit 1
         fi
