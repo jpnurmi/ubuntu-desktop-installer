@@ -10,73 +10,73 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
+  # build:
+  #   runs-on: ubuntu-20.04
+  #   steps:
     
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       submodules: recursive
 
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+  #   - uses: subosito/flutter-action@v1
+  #     with:
+  #       channel: 'stable'
 
-    - name: Enable Linux desktop support
-      run: flutter config --enable-linux-desktop
+  #   - name: Enable Linux desktop support
+  #     run: flutter config --enable-linux-desktop
 
-    - name: Install Melos
-      run: flutter pub global activate melos
+  #   - name: Install Melos
+  #     run: flutter pub global activate melos
 
-    - name: Install lcov
-      run: sudo apt update && sudo apt install lcov
+  #   - name: Install lcov
+  #     run: sudo apt update && sudo apt install lcov
 
-    # subiquity
+  #   # subiquity
 
-    - name: Get subiquity dependencies
-      working-directory: ./packages/subiquity_client/subiquity
-      run: sudo ./scripts/installdeps.sh
+  #   - name: Get subiquity dependencies
+  #     working-directory: ./packages/subiquity_client/subiquity
+  #     run: sudo ./scripts/installdeps.sh
 
-    - name: Check subiquity integration
-      run: ./scripts/subiquity_integration
+  #   - name: Check subiquity integration
+  #     run: ./scripts/subiquity_integration
 
-    # test all packages
+  #   # test all packages
 
-    - name: Bootstrap workspace
-      run: melos bootstrap
+  #   - name: Bootstrap workspace
+  #     run: melos bootstrap
     
-    - name: Run tests
-      run: melos run coverage
+  #   - name: Run tests
+  #     run: melos run coverage
 
-    - name: Upload coverage results
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
+  #   - name: Upload coverage results
+  #     uses: codecov/codecov-action@v1
+  #     with:
+  #       token: ${{secrets.CODECOV_TOKEN}}
 
-  analyze:
-    runs-on: ubuntu-20.04
-    steps:
+  # analyze:
+  #   runs-on: ubuntu-20.04
+  #   steps:
 
-    - uses: actions/checkout@v2
+  #   - uses: actions/checkout@v2
 
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+  #   - uses: subosito/flutter-action@v1
+  #     with:
+  #       channel: 'stable'
 
-    - name: Enable Linux desktop support
-      run: flutter config --enable-linux-desktop
+  #   - name: Enable Linux desktop support
+  #     run: flutter config --enable-linux-desktop
 
-    - name: Install Melos
-      run: flutter pub global activate melos
+  #   - name: Install Melos
+  #     run: flutter pub global activate melos
 
-    - name: Bootstrap workspace
-      run: melos bootstrap
+  #   - name: Bootstrap workspace
+  #     run: melos bootstrap
 
-    - name: Check for any formatting issues
-      run: melos run format
+  #   - name: Check for any formatting issues
+  #     run: melos run format
 
-    - name: Check for any analyzer issues
-      run: melos run analyze
+  #   - name: Check for any analyzer issues
+  #     run: melos run analyze
 
   generate:
     runs-on: ubuntu-20.04
@@ -88,31 +88,41 @@ jobs:
       with:
         channel: 'stable'
 
-    - name: Enable Linux desktop support
-      run: flutter config --enable-linux-desktop
+    # - name: Enable Linux desktop support
+    #   run: flutter config --enable-linux-desktop
 
-    - name: Install Melos
-      run: flutter pub global activate melos
+    # - name: Install Melos
+    #   run: flutter pub global activate melos
 
-    - name: Bootstrap workspace
-      run: melos bootstrap
+    # - name: Bootstrap workspace
+    #   run: melos bootstrap
 
-    - name: Generate source code
-      run: melos run generate
+    # - name: Generate source code
+    #   run: melos run generate
 
-    - name: Generate l10n files
-      run: melos run gen-l10n
+    # - name: Generate l10n files
+    #   run: melos run gen-l10n
 
     - name: Warn about outdated generated files
       if: github.event_name == 'pull_request'
       run: |
         if [ -n "$(git status --porcelain)" ]; then
-          for f in $(git ls-files --modified); do
-            echo "::warning ::$f may be outdated"
-          done
-          for f in $(git ls-files --others --exclude-standard); do
-            echo "::warning ::$f may be untracked"
-          done
+          modified=$(git diff --stat)
+          if [ -n "$modified" ]; then
+            warning="Outdated files:\n$modified"
+            warning="${warning//'%'/'%25'}"
+            warning="${warning//$'\n'/'%0A'}"
+            warning="${warning//$'\r'/'%0D'}"
+            echo "::warning ::$warning"
+          fi
+          untracked=$(git ls-files --others --exclude-standard)
+          if [ -n "$untracked" ]; then
+            warning="Untracked files:\n$modified"
+            warning="${warning//'%'/'%25'}"
+            warning="${warning//$'\n'/'%0A'}"
+            warning="${warning//$'\r'/'%0D'}"
+            echo "::warning ::$warning"
+          fi
           git diff
           exit 1
         fi
