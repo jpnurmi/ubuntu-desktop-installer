@@ -8,6 +8,9 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String get test => 'Testing...';
+
+  @override
   String get appTitle => 'Ubuntu Desktop Installer';
 
   @override

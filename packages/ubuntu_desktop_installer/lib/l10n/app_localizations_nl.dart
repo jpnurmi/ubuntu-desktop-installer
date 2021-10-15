@@ -8,6 +8,9 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
+  String get test => 'Testing...';
+
+  @override
   String get appTitle => 'Ubuntu Desktop Installer';
 
   @override

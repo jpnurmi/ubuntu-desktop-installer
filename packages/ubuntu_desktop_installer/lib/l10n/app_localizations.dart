@@ -114,6 +114,12 @@ abstract class AppLocalizations {
     Locale('ru', 'RU')
   ];
 
+  /// No description provided for @test.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Testing...'**
+  String get test;
+
   /// No description provided for @appTitle.
   ///
   /// In en_US, this message translates to:

@@ -8,6 +8,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get test => 'Testing...';
+
+  @override
   String get appTitle => 'Ubuntu Desktop Installer';
 
   @override
@@ -493,6 +496,9 @@ class AppLocalizationsEn extends AppLocalizations {
 /// The translations for English, as used in the United States (`en_US`).
 class AppLocalizationsEnUs extends AppLocalizationsEn {
   AppLocalizationsEnUs(): super('en_US');
+
+  @override
+  String get test => 'Testing...';
 
   @override
   String get appTitle => 'Ubuntu Desktop Installer';
