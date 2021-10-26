@@ -61,7 +61,7 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
         connection: connection,
         accessPoint: accessPoint.accessPoint,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       print('TODO: $e');
     }
   }

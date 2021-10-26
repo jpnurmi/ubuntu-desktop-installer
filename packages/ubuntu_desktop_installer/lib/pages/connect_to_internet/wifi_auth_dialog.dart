@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ubuntu_desktop_installer/l10n.dart';
 import 'package:ubuntu_wizard/constants.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
+import '../../l10n.dart';
 import 'connect_model.dart';
 import 'wifi_auth_model.dart';
 import 'wifi_model.dart';
@@ -129,7 +129,7 @@ Future<Authentication?> showWifiAuthDialog({
                               itemBuilder: (context, value, _) {
                                 return Text(dropdownText(value));
                               },
-                              onSelected: (value) => model.wifiSecurity = value,
+                              onSelected: (v) => model.wifiSecurity = v!,
                             ),
                           ),
                           const SizedBox(height: kContentSpacing),

@@ -37,7 +37,7 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
     try {
       await _service.activateConnection(
           device: _selected!.device, connection: connection);
-    } catch (e) {
+    } on Exception catch (e) {
       print('TODO: $e');
     }
   }

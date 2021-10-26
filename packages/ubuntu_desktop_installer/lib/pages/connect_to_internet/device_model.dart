@@ -39,7 +39,7 @@ class DeviceModel extends PropertyStreamNotifier {
 
   void _updateUdi() {
     final udev = Udev();
-    final dev = udev.device(syspath: _device.udi);
+    final dev = UdevDevice.fromSyspath(udev, syspath: _device.udi);
     _model = dev?.model;
     _vendor = dev?.vendor;
     udev.dispose();
