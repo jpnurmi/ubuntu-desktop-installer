@@ -23,10 +23,12 @@ void main() {
     final client = MockSubiquityClient();
 
     final model = ProfileSetupModel(client);
+    model.realname = 'Ubuntu';
     model.username = 'ubuntu';
     model.password = 'password';
 
     final identity = IdentityData(
+      realname: model.realname,
       username: model.username,
       cryptedPassword: encryptPassword('password', salt: 'test'),
     );
@@ -83,10 +85,13 @@ void main() {
     model.confirmedPassword = 'password';
     expect(wasNotified, isTrue);
 
-    wasNotified = false;
-    expect(model.showAdvancedOptions, isFalse);
-    model.showAdvancedOptions = true;
-    expect(wasNotified, isTrue);
+    // NOTE: The advanced options cannot be skipped for now (#431).
+    //       See [ProfileSetupModel.showAdvancedOptions] for more details.
+    //
+    // wasNotified = false;
+    // expect(model.showAdvancedOptions, isFalse);
+    // model.showAdvancedOptions = true;
+    // expect(wasNotified, isTrue);
   });
 
   test('validation', () {
@@ -111,7 +116,7 @@ void main() {
     testValid('', 'username', 'password', 'password', isFalse);
     testValid('realname', '', 'password', '', isFalse);
     testValid('realname', '', '', 'password', isFalse);
-    testValid('realname', '', 'password', 'password', isTrue); // generated
+    testValid('realname', '', 'password', 'password', isFalse);
     testValid('realname', 'username', '', '', isFalse);
     testValid('realname', 'username', 'password', '', isFalse);
     testValid('realname', 'username', '', 'password', isFalse);

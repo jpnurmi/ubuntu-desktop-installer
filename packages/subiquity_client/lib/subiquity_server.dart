@@ -13,7 +13,7 @@ enum ServerMode { LIVE, DRY_RUN }
 final log = Logger('subiquity_server');
 
 abstract class SubiquityServer {
-  late Process _serverProcess;
+  Process? _serverProcess;
 
   SubiquityServer._();
 
@@ -53,17 +53,23 @@ abstract class SubiquityServer {
 
   Future<String> start(ServerMode serverMode, [List<String>? args]) async {
     final socketPath = _getSocketPath(serverMode);
-    if (!_shouldStart(serverMode)) {
-      return socketPath;
+    if (_shouldStart(serverMode)) {
+      var subiquityCmd = <String>[
+        '-m',
+        _pythonModule,
+        if (serverMode == ServerMode.DRY_RUN) '--dry-run',
+        ...?args,
+      ];
+      await _startSubiquity(subiquityCmd);
     }
 
-    var subiquityCmd = <String>[
-      '-m',
-      _pythonModule,
-      if (serverMode == ServerMode.DRY_RUN) '--dry-run',
-      ...?args,
-    ];
+    return _waitSubiquity(socketPath).then((_) {
+      startupCallback?.call(socketPath);
+      return socketPath;
+    });
+  }
 
+  Future<void> _startSubiquity(List<String> subiquityCmd) async {
     var subiquityPath = p.join(Directory.current.path, 'subiquity');
     String? workingDirectory;
     // try using local subiquity
@@ -88,10 +94,14 @@ abstract class SubiquityServer {
       stderr.addStream(process.stderr);
       return process;
     });
-    log.info('Starting server (PID: ${_serverProcess.pid})');
+    log.info(
+      'Starting server (PID: ${_serverProcess!.pid}) with args: $subiquityCmd',
+    );
 
-    await _writePidFile(_serverProcess.pid);
+    await _writePidFile(_serverProcess!.pid);
+  }
 
+  static Future<void> _waitSubiquity(String socketPath) async {
     final client = HttpUnixClient(socketPath);
     final request = Request('GET', Uri.http('localhost', 'meta/status'));
 
@@ -101,13 +111,9 @@ abstract class SubiquityServer {
         await client.send(request);
         break;
       } on Exception catch (_) {
-        sleep(Duration(seconds: 1));
+        await Future.delayed(Duration(seconds: 1));
       }
     }
-
-    startupCallback?.call(socketPath);
-
-    return socketPath;
   }
 
   static File _pidFile() {
@@ -138,8 +144,8 @@ abstract class SubiquityServer {
     try {
       await _pidFile().delete();
     } on FileSystemException catch (_) {}
-    _serverProcess.kill();
-    await _serverProcess.exitCode;
+    _serverProcess?.kill();
+    await _serverProcess?.exitCode;
   }
 }
 

@@ -30,8 +30,8 @@ class _RealNameFormField extends StatelessWidget {
   }
 }
 
-class _HostNameFormField extends StatelessWidget {
-  const _HostNameFormField({
+class _HostnameFormField extends StatelessWidget {
+  const _HostnameFormField({
     Key? key,
     this.fieldWidth,
   }) : super(key: key);
@@ -41,27 +41,27 @@ class _HostNameFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lang = AppLocalizations.of(context);
-    final hostName =
-        context.select<WhoAreYouModel, String>((model) => model.hostName);
+    final hostname =
+        context.select<WhoAreYouModel, String>((model) => model.hostname);
 
     return ValidatedFormField(
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPageComputerNameLabel,
       helperText: lang.whoAreYouPageComputerNameInfo,
       successWidget: const SuccessIcon(),
-      initialValue: hostName,
+      initialValue: hostname,
       validator: MultiValidator([
         RequiredValidator(
           errorText: lang.whoAreYouPageComputerNameRequired,
         ),
         PatternValidator(
-          kValidHostNamePattern,
+          kValidHostnamePattern,
           errorText: lang.whoAreYouPageInvalidComputerName,
         )
       ]),
       onChanged: (value) {
         final model = Provider.of<WhoAreYouModel>(context, listen: false);
-        model.hostName = value;
+        model.hostname = value;
       },
     );
   }
@@ -171,30 +171,30 @@ class _ConfirmPasswordFormField extends StatelessWidget {
   }
 }
 
-class _LoginStrategyTile extends StatelessWidget {
-  const _LoginStrategyTile({
-    Key? key,
-    required this.value,
-    required this.label,
-  }) : super(key: key);
+// class _LoginStrategyTile extends StatelessWidget {
+//   const _LoginStrategyTile({
+//     Key? key,
+//     required this.value,
+//     required this.label,
+//   }) : super(key: key);
 
-  final LoginStrategy value;
-  final String label;
+//   final LoginStrategy value;
+//   final String label;
 
-  @override
-  Widget build(BuildContext context) {
-    final loginStrategy = context
-        .select<WhoAreYouModel, LoginStrategy>((model) => model.loginStrategy);
+//   @override
+//   Widget build(BuildContext context) {
+//     final loginStrategy = context
+//         .select<WhoAreYouModel, LoginStrategy>((model) => model.loginStrategy);
 
-    return RadioButton<LoginStrategy>(
-      title: Text(label),
-      contentPadding: EdgeInsets.only(left: _kRadioButtonIndentation),
-      value: value,
-      groupValue: loginStrategy,
-      onChanged: (value) {
-        final model = Provider.of<WhoAreYouModel>(context, listen: false);
-        model.loginStrategy = value!;
-      },
-    );
-  }
-}
+//     return RadioButton<LoginStrategy>(
+//       title: Text(label),
+//       contentPadding: EdgeInsets.only(left: _kRadioButtonIndentation),
+//       value: value,
+//       groupValue: loginStrategy,
+//       onChanged: (value) {
+//         final model = Provider.of<WhoAreYouModel>(context, listen: false);
+//         model.loginStrategy = value!;
+//       },
+//     );
+//   }
+// }

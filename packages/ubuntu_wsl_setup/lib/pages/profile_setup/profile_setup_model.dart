@@ -12,7 +12,8 @@ class ProfileSetupModel extends ChangeNotifier {
   /// Creates a profile setup model.
   ProfileSetupModel(this._client) {
     Listenable.merge([
-      _identity,
+      _realname,
+      _username,
       _password,
       _confirmedPassword,
       _showAdvanced,
@@ -20,27 +21,18 @@ class ProfileSetupModel extends ChangeNotifier {
   }
 
   final SubiquityClient _client;
-  final _identity = ValueNotifier(IdentityData());
+  final _realname = ValueNotifier<String?>(null);
+  final _username = ValueNotifier<String?>(null);
   final _password = ValueNotifier('');
   final _confirmedPassword = ValueNotifier('');
 
   /// The real name for the profile.
-  String get realname => _identity.value.realname ?? '';
-  set realname(String realname) {
-    _identity.value = _identity.value.copyWith(realname: realname);
-  }
+  String get realname => _realname.value ?? '';
+  set realname(String realname) => _realname.value = realname;
 
-  /// The username for the profile.
-  String get username => _getUserName();
-  set username(String username) {
-    _identity.value = _identity.value.copyWith(username: username);
-  }
-
-  // Returns the current username or a sanitized real name if not set.
-  String _getUserName() {
-    final username = _identity.value.username ?? '';
-    return username.orIfEmpty(realname.sanitize());
-  }
+  /// The current username or a sanitized real name if not set.
+  String get username => _username.value ?? realname.sanitize();
+  set username(String username) => _username.value = username;
 
   /// The password for the profile.
   String get password => _password.value;
@@ -54,27 +46,41 @@ class ProfileSetupModel extends ChangeNotifier {
   PasswordStrength get passwordStrength => estimatePasswordStrength(password);
 
   /// Whether to show the advanced options.
-  bool get showAdvancedOptions => _showAdvanced.value;
+  ///
+  /// NOTE: The advanced options cannot be skipped for now. This ensures that
+  /// the UI posts a `/wslconfbase` request. That way, the respective controller
+  /// in Subiquity is always marked as configured and the `wsl.conf` file is
+  /// forced to be written.
+  ///
+  /// More details:
+  /// https://github.com/canonical/ubuntu-desktop-installer/issues/431
+  ///
+  bool get showAdvancedOptions => true; // _showAdvanced.value;
   final _showAdvanced = ValueNotifier<bool>(false);
   set showAdvancedOptions(bool value) => _showAdvanced.value = value;
 
   /// Whether the current input is valid.
   bool get isValid =>
       realname.isNotEmpty &&
+      username.isNotEmpty &&
       RegExp(kValidUsernamePattern).hasMatch(username) &&
       password.isNotEmpty &&
       password == confirmedPassword;
 
   /// Loads the profile setup.
   Future<void> loadProfileSetup() async {
-    return _client.identity().then((identity) => _identity.value = identity);
+    final identity = await _client.identity();
+    _realname.value = identity.realname?.orIfEmpty(null);
+    _username.value = identity.username?.orIfEmpty(null);
   }
 
   /// Saves the profile setup.
   Future<void> saveProfileSetup({@visibleForTesting String? salt}) async {
-    final cryptedPassword = encryptPassword(password, salt: salt);
-    return _client.setIdentity(
-      _identity.value.copyWith(cryptedPassword: cryptedPassword),
+    final identity = IdentityData(
+      realname: realname,
+      username: username,
+      cryptedPassword: encryptPassword(password, salt: salt),
     );
+    return _client.setIdentity(identity);
   }
 }
