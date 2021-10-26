@@ -70,15 +70,6 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
               model.select(context.read<EthernetModel>());
             },
           ),
-          EthernetView(
-            title: Text(lang.useWiredConnection),
-            contentPadding: kContentPadding,
-            contentWidthFactor: kContentWidthFraction,
-            expanded: model.connectMode == ConnectMode.ethernet,
-            onSelected: (device) {
-              model.select(context.read<EthernetModel>());
-            },
-          ),
           RadioListTile<ConnectMode>(
             title: Text(lang.selectWifiNetwork),
             contentPadding: kContentPadding,

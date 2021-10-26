@@ -4,8 +4,6 @@ import 'package:ubuntu_wizard/widgets.dart';
 
 import 'ethernet_model.dart';
 
-typedef OnEthernetSelected = void Function(EthernetDeviceModel device);
-
 class EthernetRadioListTile<T> extends StatelessWidget {
   const EthernetRadioListTile({
     Key? key,
@@ -41,98 +39,6 @@ class EthernetRadioListTile<T> extends StatelessWidget {
       value: value,
       groupValue: groupValue,
       onChanged: onChanged,
-    );
-  }
-}
-
-class EthernetView extends StatelessWidget {
-  const EthernetView({
-    Key? key,
-    this.title,
-    this.contentPadding,
-    this.contentWidthFactor,
-    required this.expanded,
-    required this.onSelected,
-  }) : super(key: key);
-
-  final Widget? title;
-  final EdgeInsetsGeometry? contentPadding;
-  final double? contentWidthFactor;
-  final bool expanded;
-  final OnEthernetSelected onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final model = Provider.of<EthernetModel>(context);
-    if (model.devices.length <= 1) return SizedBox.shrink();
-
-    return AnimatedExpanded(
-      expanded: expanded,
-      child: FractionallySizedBox(
-        alignment: Alignment.centerLeft,
-        widthFactor: contentWidthFactor ?? 1.0,
-        child: RadioIconTile(
-          contentPadding: contentPadding,
-          title: _EthernetListView(
-            onSelected: (device) {
-              model.selectDevice(device);
-              onSelected(device);
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _EthernetListView extends StatelessWidget {
-  const _EthernetListView({
-    Key? key,
-    required this.onSelected,
-  }) : super(key: key);
-
-  final OnEthernetSelected onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final model = Provider.of<EthernetModel>(context);
-    return RoundedContainer(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: model.devices.length,
-        itemBuilder: (context, index) {
-          return ChangeNotifierProvider.value(
-            value: model.devices[index],
-            child: _EthernetListTile(
-              selected: model.isSelectedDevice(model.devices[index]),
-              onSelected: () => onSelected(model.devices[index]),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class _EthernetListTile extends StatelessWidget {
-  const _EthernetListTile({
-    Key? key,
-    required this.selected,
-    required this.onSelected,
-  }) : super(key: key);
-
-  final bool selected;
-  final VoidCallback onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final model = Provider.of<EthernetDeviceModel>(context);
-    return ListTile(
-      title: Text(model.model ?? 'Unknown Ethernet Adapter'),
-      subtitle: Text(model.vendor ?? ''),
-      trailing: Icon(model.isActive ? Icons.check : null),
-      selected: selected,
-      onTap: onSelected,
     );
   }
 }
