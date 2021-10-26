@@ -21,6 +21,7 @@ import 'wifi_auth_dialog_test.mocks.dart';
 void main() {
   setUpAll(() async {
     await setupAppLocalizations();
+    LangTester.context = Scaffold;
   });
 
   Future<void> pumpWifiAuthApp(
@@ -30,11 +31,11 @@ void main() {
     tester.binding.window.devicePixelRatioTestValue = 1;
 
     return tester.pumpWidget(
-      MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        home: ChangeNotifierProvider<WifiAuthModel>.value(
-          value: model,
-          child: Scaffold(),
+      ChangeNotifierProvider<WifiAuthModel>.value(
+        value: model,
+        builder: (_, __) => MaterialApp(
+          localizationsDelegates: localizationsDelegates,
+          routes: {'/': (_) => Scaffold()},
         ),
       ),
     );

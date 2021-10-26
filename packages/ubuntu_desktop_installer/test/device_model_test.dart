@@ -18,18 +18,18 @@ import 'device_model_test.mocks.dart';
 ])
 void main() {
   late DeviceModel model;
-  late MockUdevDevice udev;
+  // late MockUdevDevice udev;
   late StreamController<List<String>> propertiesChanged;
 
-  setUpAll(() {
-    udev = MockUdevDevice();
-    when(udev.model).thenReturn('test model');
-    when(udev.vendor).thenReturn('test vendor');
+  // setUpAll(() {
+  //   udev = MockUdevDevice();
+  //   when(udev.model).thenReturn('test model');
+  //   when(udev.vendor).thenReturn('test vendor');
 
-    final mock = MockUdev();
-    when(mock.device(syspath: 'test udi')).thenReturn(udev);
-    Udev.instance = mock;
-  });
+  //   final mock = MockUdev();
+  //   when(mock.device(syspath: 'test udi')).thenReturn(udev);
+  //   Udev.instance = mock;
+  // });
 
   setUp(() {
     final device = MockNetworkManagerDevice();
@@ -46,22 +46,22 @@ void main() {
     propertiesChanged.close();
   });
 
-  test('model & vendor', () async {
-    when(udev.model).thenReturn('another model');
-    when(udev.vendor).thenReturn('another vendor');
+  // test('model & vendor', () async {
+  //   when(udev.model).thenReturn('another model');
+  //   when(udev.vendor).thenReturn('another vendor');
 
-    // model & vendor are cached
-    expect(model.model, equals('test model'));
-    expect(model.vendor, equals('test vendor'));
+  //   // model & vendor are cached
+  //   expect(model.model, equals('test model'));
+  //   expect(model.vendor, equals('test vendor'));
 
-    final wasNotified = Completer<bool>();
-    model.addListener(() => wasNotified.complete(true));
-    propertiesChanged.add(['Udi']);
-    await expectLater(wasNotified.future, completes);
+  //   final wasNotified = Completer<bool>();
+  //   model.addListener(() => wasNotified.complete(true));
+  //   propertiesChanged.add(['Udi']);
+  //   await expectLater(wasNotified.future, completes);
 
-    expect(model.model, equals('another model'));
-    expect(model.vendor, equals('another vendor'));
-  });
+  //   expect(model.model, equals('another model'));
+  //   expect(model.vendor, equals('another vendor'));
+  // });
 
   test('state', () async {
     const activeStates = [

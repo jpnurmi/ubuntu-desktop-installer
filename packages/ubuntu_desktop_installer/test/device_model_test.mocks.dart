@@ -292,10 +292,6 @@ class MockUdev extends _i1.Mock implements _i5.Udev {
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
   @override
-  _i5.UdevDevice? device({String? syspath}) =>
-      (super.noSuchMethod(Invocation.method(#device, [], {#syspath: syspath}))
-          as _i5.UdevDevice?);
-  @override
   String toString() => super.toString();
 }
 

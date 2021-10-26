@@ -52,7 +52,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: localizationsDelegates,
         home: Scaffold(
           body: Wizard(
             routes: {
@@ -116,7 +116,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: localizationsDelegates,
         home: Scaffold(
           body: Provider<NetworkService>.value(
             value: service,
