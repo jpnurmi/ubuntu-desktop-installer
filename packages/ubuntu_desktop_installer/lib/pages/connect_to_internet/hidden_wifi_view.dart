@@ -63,7 +63,6 @@ class _HiddenWifiViewState extends State<HiddenWifiView> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HiddenWifiModel>(context);
-    final iconSize = IconTheme.of(context).size;
     return AnimatedExpanded(
       expanded: widget.expanded,
       child: FractionallySizedBox(
@@ -76,8 +75,8 @@ class _HiddenWifiViewState extends State<HiddenWifiView> {
             focusNode: _focusNode,
             decoration: InputDecoration(
               suffix: SizedBox(
-                width: iconSize,
-                height: iconSize,
+                width: 16,
+                height: 16,
                 child: model.selectedDevice?.isBusy == true
                     ? CircularProgressIndicator()
                     : null,
