@@ -70,7 +70,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
               model.select(context.read<EthernetModel>());
             },
           ),
-          RadioListTile<ConnectMode>(
+          WifiRadioListTile<ConnectMode>(
             title: Text(lang.selectWifiNetwork),
             contentPadding: kContentPadding,
             value: ConnectMode.wifi,
@@ -87,7 +87,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
               model.select(context.read<WifiModel>());
             },
           ),
-          RadioListTile<ConnectMode>(
+          HiddenWifiRadioListTile<ConnectMode>(
             title: Text(lang.hiddenWifiNetwork),
             contentPadding: kContentPadding,
             value: ConnectMode.hiddenWifi,

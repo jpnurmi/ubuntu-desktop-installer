@@ -4,6 +4,39 @@ import 'package:ubuntu_wizard/widgets.dart';
 
 import 'hidden_wifi_model.dart';
 
+class HiddenWifiRadioListTile<T> extends StatelessWidget {
+  const HiddenWifiRadioListTile({
+    Key? key,
+    this.title,
+    this.errorTitle,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
+    this.contentPadding,
+  }) : super(key: key);
+
+  final Widget? title;
+  final Widget? errorTitle;
+  final T value;
+  final T? groupValue;
+  final ValueChanged<T?>? onChanged;
+  final EdgeInsetsGeometry? contentPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    final model = Provider.of<HiddenWifiModel>(context);
+    if (!model.isEnabled || model.devices.isEmpty) return SizedBox.shrink();
+
+    return RadioListTile<T>(
+      title: title,
+      contentPadding: contentPadding,
+      value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
+    );
+  }
+}
+
 class HiddenWifiView extends StatefulWidget {
   const HiddenWifiView({
     Key? key,
@@ -63,6 +96,8 @@ class _HiddenWifiViewState extends State<HiddenWifiView> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HiddenWifiModel>(context);
+    if (!model.isEnabled || model.devices.isEmpty) return SizedBox.shrink();
+
     return AnimatedExpanded(
       expanded: widget.expanded,
       child: FractionallySizedBox(

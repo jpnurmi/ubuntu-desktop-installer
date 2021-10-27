@@ -15,6 +15,7 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   WifiModel(this._service) {
     addProperties(_service.propertiesChanged);
     addPropertyListener('Devices', _resetDevices);
+    addPropertyListener('WirelessEnabled', notifyListeners);
   }
 
   @override
@@ -28,6 +29,9 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
 
   @override
   ConnectMode get connectMode => ConnectMode.wifi;
+
+  bool get isEnabled => _service.wirelessEnabled;
+  void setEnabled(bool value) => _service.setWirelessEnabled(value);
 
   @override
   void init() {

@@ -10,6 +10,54 @@ typedef OnWifiSelected = void Function(
   AccessPointModel accessPoint,
 );
 
+class WifiRadioListTile<T> extends StatelessWidget {
+  const WifiRadioListTile({
+    Key? key,
+    this.title,
+    this.errorTitle,
+    required this.value,
+    required this.groupValue,
+    required this.onChanged,
+    this.contentPadding,
+  }) : super(key: key);
+
+  final Widget? title;
+  final Widget? errorTitle;
+  final T value;
+  final T? groupValue;
+  final ValueChanged<T?>? onChanged;
+  final EdgeInsetsGeometry? contentPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    final model = Provider.of<WifiModel>(context);
+    if (!model.isEnabled) {
+      return RadioIconTile(
+        contentPadding: contentPadding,
+        icon: Icon(Icons.close, color: Theme.of(context).errorColor),
+        title: Text('Wireless networking disabled'),
+        subtitle: Text('To use Wi-Fi on this computer, Wi-Fi must be enabled'),
+      );
+    }
+
+    if (model.devices.isEmpty) {
+      return RadioIconTile(
+        contentPadding: contentPadding,
+        icon: Icon(Icons.close, color: Theme.of(context).errorColor),
+        title: const Text('No Wi-Fi devices detected'),
+      );
+    }
+
+    return RadioListTile<T>(
+      title: title,
+      contentPadding: contentPadding,
+      value: value,
+      groupValue: groupValue,
+      onChanged: onChanged,
+    );
+  }
+}
+
 class WifiView extends StatefulWidget {
   const WifiView({
     Key? key,
@@ -37,6 +85,19 @@ class _WifiViewState extends State<WifiView> {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<WifiModel>(context);
+    if (!model.isEnabled) {
+      return RadioIconTile(
+        title: Align(
+          alignment: Alignment.topLeft,
+          child: OutlinedButton(
+            onPressed: () => model.setEnabled(true),
+            child: Text('Enable Wi-Fi'),
+          ),
+        ),
+      );
+    }
+
     return AnimatedExpanded(
       expanded: widget.expanded,
       child: FractionallySizedBox(
@@ -44,9 +105,7 @@ class _WifiViewState extends State<WifiView> {
         widthFactor: widget.contentWidthFactor ?? 1.0,
         child: RadioIconTile(
           contentPadding: widget.contentPadding,
-          title: WifiListView(
-            onSelected: widget.onSelected,
-          ),
+          title: WifiListView(onSelected: widget.onSelected),
         ),
       ),
     );
