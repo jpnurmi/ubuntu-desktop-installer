@@ -10,14 +10,6 @@ import 'wifi_model.dart';
 
 const _kIconSize = 96.0;
 
-// TODO: share somewhere
-// material/list_tile.dart
-double _defaultTileHeight(BuildContext context) {
-  final baseDensity = Theme.of(context).visualDensity.baseSizeAdjustment;
-  final isDense = ListTileTheme.of(context).dense;
-  return (isDense ? 48.0 : 56.0) + baseDensity.dy;
-}
-
 /// Shows a dialog to authenticate to a WiFi network.
 Future<Authentication?> showWifiAuthDialog({
   required BuildContext context,
@@ -33,7 +25,7 @@ Future<Authentication?> showWifiAuthDialog({
     builder: (context) {
       final lang = AppLocalizations.of(context);
       final model = Provider.of<WifiAuthModel>(context);
-      final tileHeight = _defaultTileHeight(context);
+      final tileHeight = defaultTileHeight(context);
 
       String dropdownText(WifiSecurity value) {
         switch (value) {
