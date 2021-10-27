@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
+import 'package:safe_change_notifier/safe_change_notifier.dart';
 
 import 'connect_model.dart';
 
-class ConnectToInternetModel extends ChangeNotifier implements ConnectModel {
+class ConnectToInternetModel extends SafeChangeNotifier
+    implements ConnectModel {
   @override
   bool get canConnect => _connectModel?.canConnect ?? false;
 

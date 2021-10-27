@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:safe_change_notifier/safe_change_notifier.dart';
 
 import 'connect_model.dart';
 
-class WifiAuthModel extends ChangeNotifier {
+class WifiAuthModel extends SafeChangeNotifier {
   WifiAuthModel() {
     Listenable.merge([
       _showPassword,

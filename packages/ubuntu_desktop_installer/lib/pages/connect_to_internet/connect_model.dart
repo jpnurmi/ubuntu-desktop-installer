@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:safe_change_notifier/safe_change_notifier.dart';
 
 import 'wifi_model.dart';
 
@@ -29,7 +29,7 @@ class Authentication {
   final WifiSecurity? wifiSecurity;
 }
 
-abstract class ConnectModel extends ChangeNotifier {
+abstract class ConnectModel extends SafeChangeNotifier {
   bool get canConnect;
   bool get canContinue;
   bool get isBusy;
