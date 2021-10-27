@@ -18,6 +18,7 @@ class DeviceModel extends PropertyStreamNotifier {
 
   String get interface => _device.interface;
   NetworkManagerDeviceState get state => _device.state;
+
   bool get isActive => state == NetworkManagerDeviceState.activated;
   bool get isBusy {
     switch (state) {
@@ -31,6 +32,8 @@ class DeviceModel extends PropertyStreamNotifier {
         return false;
     }
   }
+
+  bool get isAvailable => state != NetworkManagerDeviceState.unavailable;
 
   String? _model;
   String? _vendor;

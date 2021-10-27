@@ -95,7 +95,9 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   Future requestScan({String? ssid}) async {
     final scans = <Future<void>>[];
     for (final device in devices) {
-      scans.add(device.requestScan(ssid: ssid));
+      if (device.isAvailable) {
+        scans.add(device.requestScan(ssid: ssid));
+      }
     }
     return Future.wait(scans);
   }
@@ -215,7 +217,7 @@ class WifiDeviceModel extends DeviceModel {
     notifyListeners();
   }
 
-  Future<void> requestScan({String? ssid}) {
+  Future<void> requestScan({String? ssid}) async {
     final ssids = <List<int>>[if (ssid != null) ssid.codeUnits];
     _setScanning(true);
     _completer = Completer();
@@ -224,6 +226,7 @@ class WifiDeviceModel extends DeviceModel {
       _setScanning(false);
       _completer?.complete(null);
     });
+    if (!isAvailable) return;
     _wireless.requestScan(ssids: ssids);
     return _completer!.future;
   }

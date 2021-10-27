@@ -110,13 +110,15 @@ class WifiListTile extends StatelessWidget {
       trailing: SizedBox(
         width: iconSize,
         height: iconSize,
-        child: model.scanning
-            ? CircularProgressIndicator()
-            : IconButton(
-                icon: const Icon(Icons.refresh),
-                padding: EdgeInsets.zero,
-                onPressed: model.requestScan,
-              ),
+        child: !model.isAvailable
+            ? SizedBox.shrink()
+            : model.scanning
+                ? CircularProgressIndicator()
+                : IconButton(
+                    icon: const Icon(Icons.refresh),
+                    padding: EdgeInsets.zero,
+                    onPressed: model.requestScan,
+                  ),
       ),
       children: <Widget>[
         for (final accessPoint in model.accessPoints)
