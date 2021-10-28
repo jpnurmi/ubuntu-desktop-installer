@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
@@ -253,8 +254,7 @@ class AccessPointModel extends PropertyStreamNotifier {
 
   List<int> get ssid => _accessPoint.ssid;
 
-  // TODO: non-text binary form
-  String get name => String.fromCharCodes(ssid);
+  String get name => utf8.decode(ssid, allowMalformed: true);
 
   int get strength => _accessPoint.strength;
 
