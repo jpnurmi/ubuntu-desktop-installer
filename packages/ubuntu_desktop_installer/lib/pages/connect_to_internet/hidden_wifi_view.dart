@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ubuntu_wizard/constants.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
+import '../../l10n.dart';
+import 'connect_model.dart';
 import 'hidden_wifi_model.dart';
+import 'network_tile.dart';
 
-class HiddenWifiRadioListTile<T> extends StatelessWidget {
-  const HiddenWifiRadioListTile({
+class HiddenWifiRadioButton extends StatelessWidget {
+  const HiddenWifiRadioButton({
     Key? key,
-    this.title,
-    this.errorTitle,
     required this.value,
-    required this.groupValue,
     required this.onChanged,
-    this.contentPadding,
   }) : super(key: key);
 
-  final Widget? title;
-  final Widget? errorTitle;
-  final T value;
-  final T? groupValue;
-  final ValueChanged<T?>? onChanged;
-  final EdgeInsetsGeometry? contentPadding;
+  final ConnectMode? value;
+  final ValueChanged<ConnectMode?> onChanged;
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HiddenWifiModel>(context);
     if (!model.isEnabled || model.devices.isEmpty) return SizedBox.shrink();
 
-    return RadioListTile<T>(
-      title: title,
-      contentPadding: contentPadding,
-      value: value,
-      groupValue: groupValue,
+    final lang = AppLocalizations.of(context);
+    return RadioButton<ConnectMode>(
+      title: Text(lang.hiddenWifiNetwork),
+      contentPadding: EdgeInsets.only(top: 8),
+      value: ConnectMode.hiddenWifi,
+      groupValue: value,
       onChanged: onChanged,
     );
   }
@@ -40,14 +37,10 @@ class HiddenWifiRadioListTile<T> extends StatelessWidget {
 class HiddenWifiView extends StatefulWidget {
   const HiddenWifiView({
     Key? key,
-    this.contentPadding,
-    this.contentWidthFactor,
     required this.expanded,
     required this.onSelected,
   }) : super(key: key);
 
-  final EdgeInsetsGeometry? contentPadding;
-  final double? contentWidthFactor;
   final bool expanded;
   final VoidCallback onSelected;
 
@@ -102,9 +95,8 @@ class _HiddenWifiViewState extends State<HiddenWifiView> {
       expanded: widget.expanded,
       child: FractionallySizedBox(
         alignment: Alignment.centerLeft,
-        widthFactor: widget.contentWidthFactor ?? 1.0,
-        child: RadioIconTile(
-          contentPadding: widget.contentPadding,
+        widthFactor: kContentWidthFraction,
+        child: NetworkTile(
           title: TextField(
             controller: _editingController,
             focusNode: _focusNode,

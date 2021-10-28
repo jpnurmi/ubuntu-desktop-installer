@@ -75,7 +75,7 @@ class _UbuntuDesktopInstallerWizardState
     final service = Provider.of<DiskStorageService>(context, listen: false);
 
     return Wizard(
-      initialRoute: widget.initialRoute ?? Routes.connectToInternet,
+      initialRoute: widget.initialRoute ?? Routes.welcome,
       routes: <String, WidgetBuilder>{
         Routes.welcome: WelcomePage.create,
         // https://github.com/canonical/ubuntu-desktop-installer/issues/373

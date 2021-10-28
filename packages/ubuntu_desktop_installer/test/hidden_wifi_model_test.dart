@@ -45,6 +45,7 @@ void main() {
     when(device.udi).thenReturn('test udi');
     deviceChanged = StreamController<List<String>>.broadcast();
     when(device.propertiesChanged).thenAnswer((_) => deviceChanged.stream);
+    when(device.state).thenReturn(NetworkManagerDeviceState.activated);
 
     ap = MockNetworkManagerAccessPoint();
     accessPointChanged = StreamController<List<String>>.broadcast();

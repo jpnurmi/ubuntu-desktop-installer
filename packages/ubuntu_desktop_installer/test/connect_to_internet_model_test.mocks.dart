@@ -38,6 +38,10 @@ class MockConnectModel extends _i1.Mock implements _i2.ConnectModel {
       (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
           as bool);
   @override
+  bool get isDisposed =>
+      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
+          as bool);
+  @override
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
@@ -51,6 +55,10 @@ class MockConnectModel extends _i1.Mock implements _i2.ConnectModel {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
+  void notifyListeners() =>
+      super.noSuchMethod(Invocation.method(#notifyListeners, []),
+          returnValueForMissingStub: null);
+  @override
   void addListener(_i4.VoidCallback? listener) =>
       super.noSuchMethod(Invocation.method(#addListener, [listener]),
           returnValueForMissingStub: null);
@@ -61,10 +69,6 @@ class MockConnectModel extends _i1.Mock implements _i2.ConnectModel {
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
-  @override
-  void notifyListeners() =>
-      super.noSuchMethod(Invocation.method(#notifyListeners, []),
-          returnValueForMissingStub: null);
   @override
   String toString() => super.toString();
 }

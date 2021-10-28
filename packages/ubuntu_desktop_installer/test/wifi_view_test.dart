@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:ubuntu_desktop_installer/l10n.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_view.dart';
 
@@ -14,6 +15,7 @@ void main() {
     final device1 = MockWifiDeviceModel();
     when(device1.model).thenReturn('model1');
     when(device1.scanning).thenReturn(false);
+    when(device1.isAvailable).thenReturn(true);
 
     final accessPoint1 = MockAccessPointModel();
     when(accessPoint1.name).thenReturn('ap1');
@@ -27,6 +29,7 @@ void main() {
     when(device2.model).thenReturn('model2');
     when(device2.scanning).thenReturn(true);
     when(device2.isBusy).thenReturn(true);
+    when(device2.isAvailable).thenReturn(true);
 
     final accessPoint2 = MockAccessPointModel();
     when(accessPoint2.name).thenReturn('ap2');
@@ -40,12 +43,14 @@ void main() {
     when(model.devices).thenReturn([device1, device2]);
     when(model.isSelectedDevice(any)).thenReturn(false);
     when(model.requestScan()).thenAnswer((_) async => null);
+    when(model.isEnabled).thenReturn(true);
 
     WifiDeviceModel? selectedDevice;
     AccessPointModel? selectedAccessPoint;
 
     await tester.pumpWidget(
       MaterialApp(
+        localizationsDelegates: localizationsDelegates,
         home: ChangeNotifierProvider<WifiModel>.value(
           value: model,
           child: Material(

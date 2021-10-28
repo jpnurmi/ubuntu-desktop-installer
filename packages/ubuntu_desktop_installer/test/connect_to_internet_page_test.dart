@@ -10,9 +10,12 @@ import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_model
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_to_internet_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_to_internet_page.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_model.dart';
+import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_view.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_model.dart';
+import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_view.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
+import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_view.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
@@ -26,6 +29,7 @@ import 'connect_to_internet_page_test.mocks.dart';
   NetworkService,
   WifiAuthModel,
   WifiModel,
+  WifiDeviceModel,
 ])
 void main() {
   setUpAll(() async {
@@ -43,12 +47,23 @@ void main() {
     when(hiddenWifiModel.connectMode).thenReturn(ConnectMode.hiddenWifi);
     when(hiddenWifiModel.ssid).thenReturn('');
     when(hiddenWifiModel.selectedDevice).thenReturn(null);
+    when(hiddenWifiModel.isEnabled).thenReturn(true);
+    when(hiddenWifiModel.devices).thenReturn([MockWifiDeviceModel()]);
+
+    final wifiDevice = MockWifiDeviceModel();
+    when(wifiDevice.model).thenReturn('model');
+    when(wifiDevice.isAvailable).thenReturn(true);
+    when(wifiDevice.scanning).thenReturn(false);
+    when(wifiDevice.accessPoints).thenReturn([]);
 
     final wifiModel = MockWifiModel();
     when(wifiModel.connectMode).thenReturn(ConnectMode.wifi);
     when(wifiModel.devices).thenReturn([]);
     when(wifiModel.requestScan(ssid: anyNamed('ssid')))
         .thenAnswer((_) async => null);
+    when(wifiModel.isEnabled).thenReturn(true);
+    when(wifiModel.devices).thenReturn([wifiDevice]);
+    when(wifiModel.isSelectedDevice(any)).thenReturn(false);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -78,30 +93,23 @@ void main() {
       ),
     );
 
-    final ethernetTile = find.byWidgetPredicate((widget) =>
-        widget is RadioListTile<ConnectMode> &&
-        widget.value == ConnectMode.ethernet);
+    final ethernetTile = find.byType(EthernetRadioButton);
     expect(ethernetTile, findsOneWidget);
     await tester.tap(ethernetTile);
     expect(connectToInternetModel.connectMode, ConnectMode.ethernet);
 
-    final wifiTile = find.byWidgetPredicate((widget) =>
-        widget is RadioListTile<ConnectMode> &&
-        widget.value == ConnectMode.wifi);
+    final wifiTile = find.byType(WifiRadioButton);
     expect(wifiTile, findsOneWidget);
     await tester.tap(wifiTile);
     expect(connectToInternetModel.connectMode, ConnectMode.wifi);
 
-    final hiddenWifiTile = find.byWidgetPredicate((widget) =>
-        widget is RadioListTile<ConnectMode> &&
-        widget.value == ConnectMode.hiddenWifi);
+    final hiddenWifiTile = find.byType(HiddenWifiRadioButton);
     expect(wifiTile, findsOneWidget);
     await tester.tap(hiddenWifiTile);
     expect(connectToInternetModel.connectMode, ConnectMode.hiddenWifi);
 
     final noConnectTile = find.byWidgetPredicate((widget) =>
-        widget is RadioListTile<ConnectMode> &&
-        widget.value == ConnectMode.none);
+        widget is RadioButton<ConnectMode> && widget.value == ConnectMode.none);
     expect(noConnectTile, findsOneWidget);
     await tester.tap(noConnectTile);
     expect(connectToInternetModel.connectMode, ConnectMode.none);
@@ -113,6 +121,7 @@ void main() {
         .thenAnswer((_) => Stream<List<String>>.empty());
     when(service.wiredDevices).thenReturn([]);
     when(service.wirelessDevices).thenReturn([]);
+    when(service.wirelessEnabled).thenReturn(true);
 
     await tester.pumpWidget(
       MaterialApp(

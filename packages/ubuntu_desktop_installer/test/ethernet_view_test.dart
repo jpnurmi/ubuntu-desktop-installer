@@ -3,9 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
+import 'package:ubuntu_desktop_installer/l10n.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_view.dart';
+import 'package:ubuntu_desktop_installer/pages/connect_to_internet/network_tile.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
 import 'ethernet_view_test.mocks.dart';
@@ -20,14 +22,14 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        localizationsDelegates: localizationsDelegates,
         home: ChangeNotifierProvider<EthernetModel>.value(
           value: model,
           child: Material(
             child: Column(
               children: [
-                EthernetRadioListTile<ConnectMode>(
-                  value: ConnectMode.ethernet,
-                  groupValue: ConnectMode.none,
+                EthernetRadioButton(
+                  value: ConnectMode.none,
                   onChanged: (value) => mode = value,
                 ),
               ],
@@ -37,9 +39,7 @@ void main() {
       ),
     );
 
-    final tile = find.byWidgetPredicate((widget) {
-      return widget is EthernetRadioListTile<ConnectMode>;
-    });
+    final tile = find.byType(EthernetRadioButton);
     expect(tile, findsOneWidget);
     await tester.tap(tile);
     expect(mode, equals(ConnectMode.ethernet));
@@ -51,14 +51,14 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        localizationsDelegates: localizationsDelegates,
         home: ChangeNotifierProvider<EthernetModel>.value(
           value: model,
           child: Material(
             child: Column(
               children: [
-                EthernetRadioListTile<dynamic>(
-                  value: ConnectMode.ethernet,
-                  groupValue: ConnectMode.none,
+                EthernetRadioButton(
+                  value: ConnectMode.none,
                   onChanged: (value) {},
                 ),
               ],
@@ -68,7 +68,7 @@ void main() {
       ),
     );
 
-    expect(find.byType(RadioIconTile), findsOneWidget);
-    expect(find.byType(RadioListTile), findsNothing);
+    expect(find.byType(NetworkTile), findsOneWidget);
+    expect(find.byType(RadioButton), findsNothing);
   });
 }

@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nm/nm.dart';
 import 'package:provider/provider.dart';
+import 'package:ubuntu_desktop_installer/l10n.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_view.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
@@ -20,6 +21,7 @@ void main() {
   }) {
     return tester.pumpWidget(
       MaterialApp(
+        localizationsDelegates: localizationsDelegates,
         home: ChangeNotifierProvider<HiddenWifiModel>.value(
           value: model,
           child: Material(
@@ -41,6 +43,8 @@ void main() {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('Ubuntu');
     when(model.selectedDevice).thenReturn(null);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([MockWifiDeviceModel()]);
 
     await pumpHiddenWifiView(tester, model: model);
 
@@ -57,6 +61,8 @@ void main() {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('Ubuntu');
     when(model.selectedDevice).thenReturn(device);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([MockWifiDeviceModel()]);
 
     await pumpHiddenWifiView(tester, model: model);
 
@@ -67,6 +73,8 @@ void main() {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('');
     when(model.selectedDevice).thenReturn(null);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([MockWifiDeviceModel()]);
 
     await pumpHiddenWifiView(tester, model: model, expanded: false);
 
@@ -89,6 +97,8 @@ void main() {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('');
     when(model.selectedDevice).thenReturn(null);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([MockWifiDeviceModel()]);
 
     var wasSelected = false;
 
@@ -100,5 +110,35 @@ void main() {
 
     await tester.tap(find.byType(TextField));
     expect(wasSelected, isTrue);
+  });
+
+  testWidgets('builds nothing when disabled', (tester) async {
+    final model = MockHiddenWifiModel();
+    when(model.ssid).thenReturn('');
+    when(model.selectedDevice).thenReturn(null);
+    when(model.isEnabled).thenReturn(false);
+    when(model.devices).thenReturn([MockWifiDeviceModel()]);
+
+    await pumpHiddenWifiView(
+      tester,
+      model: model,
+    );
+
+    expect(find.byType(TextField), findsNothing);
+  });
+
+  testWidgets('builds nothing when no devices', (tester) async {
+    final model = MockHiddenWifiModel();
+    when(model.ssid).thenReturn('');
+    when(model.selectedDevice).thenReturn(null);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([]);
+
+    await pumpHiddenWifiView(
+      tester,
+      model: model,
+    );
+
+    expect(find.byType(TextField), findsNothing);
   });
 }

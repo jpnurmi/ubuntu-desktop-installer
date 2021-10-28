@@ -56,62 +56,35 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
     return WizardPage(
       title: Text(lang.connectToInternetPageTitle),
       header: Text(lang.connectToInternetDescription),
-      contentPadding: EdgeInsets.zero,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          EthernetRadioListTile<ConnectMode>(
-            title: Text(lang.useWiredConnection),
-            errorTitle: Text(lang.noWiredConnection),
-            contentPadding: kContentPadding,
-            value: ConnectMode.ethernet,
-            groupValue: model.connectMode,
-            onChanged: (_) {
-              model.select(context.read<EthernetModel>());
-            },
+          EthernetRadioButton(
+            value: model.connectMode,
+            onChanged: (_) => model.select(context.read<EthernetModel>()),
           ),
-          WifiRadioListTile<ConnectMode>(
-            title: Text(lang.selectWifiNetwork),
-            contentPadding: kContentPadding,
-            value: ConnectMode.wifi,
-            groupValue: model.connectMode,
-            onChanged: (_) {
-              model.select(context.read<WifiModel>());
-            },
+          WifiRadioButton(
+            value: model.connectMode,
+            onChanged: (_) => model.select(context.read<WifiModel>()),
           ),
           WifiView(
-            contentPadding: kContentPadding,
-            contentWidthFactor: kContentWidthFraction,
             expanded: model.connectMode == ConnectMode.wifi,
-            onSelected: (device, accessPoint) {
-              model.select(context.read<WifiModel>());
-            },
+            onSelected: (_, __) => model.select(context.read<WifiModel>()),
           ),
-          HiddenWifiRadioListTile<ConnectMode>(
-            title: Text(lang.hiddenWifiNetwork),
-            contentPadding: kContentPadding,
-            value: ConnectMode.hiddenWifi,
-            groupValue: model.connectMode,
-            onChanged: (_) {
-              model.select(context.read<HiddenWifiModel>());
-            },
+          HiddenWifiRadioButton(
+            value: model.connectMode,
+            onChanged: (_) => model.select(context.read<HiddenWifiModel>()),
           ),
           HiddenWifiView(
-            contentPadding: kContentPadding,
-            contentWidthFactor: kContentWidthFraction,
             expanded: model.connectMode == ConnectMode.hiddenWifi,
-            onSelected: () {
-              model.select(context.read<HiddenWifiModel>());
-            },
+            onSelected: () => model.select(context.read<HiddenWifiModel>()),
           ),
-          RadioListTile<ConnectMode>(
+          RadioButton<ConnectMode>(
             title: Text(lang.noInternet),
-            contentPadding: kContentPadding,
             value: ConnectMode.none,
+            contentPadding: EdgeInsets.only(top: 8),
             groupValue: model.connectMode,
-            onChanged: (_) {
-              model.select(NoConnectModel());
-            },
+            onChanged: (_) => model.select(NoConnectModel()),
           ),
         ],
       ),
