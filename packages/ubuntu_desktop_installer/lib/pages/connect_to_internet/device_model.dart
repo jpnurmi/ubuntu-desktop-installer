@@ -23,7 +23,6 @@ class DeviceModel extends PropertyStreamNotifier {
   bool get isBusy {
     switch (state) {
       case NetworkManagerDeviceState.config:
-      case NetworkManagerDeviceState.deactivating:
       case NetworkManagerDeviceState.ip_check:
       case NetworkManagerDeviceState.ip_config:
       case NetworkManagerDeviceState.prepare:

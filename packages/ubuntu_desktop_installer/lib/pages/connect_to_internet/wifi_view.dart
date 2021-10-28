@@ -161,7 +161,7 @@ class WifiListTile extends StatelessWidget {
         height: iconSize,
         child: !model.isAvailable
             ? SizedBox.shrink()
-            : model.scanning
+            : model.scanning || model.isBusy
                 ? CircularProgressIndicator()
                 : IconButton(
                     icon: const Icon(Icons.refresh),
@@ -176,16 +176,14 @@ class WifiListTile extends StatelessWidget {
             child: ListTile(
               key: ValueKey(accessPoint.name),
               title: Text(accessPoint.name),
-              leading: SizedBox.shrink(),
+              leading: model.isActive && model.isActiveAccessPoint(accessPoint)
+                  ? Icon(Icons.check)
+                  : SizedBox.shrink(),
               selected: selected && model.isSelectedAccessPoint(accessPoint),
               trailing: SizedBox(
                 width: iconSize,
                 height: iconSize,
-                child: model.isActiveAccessPoint(accessPoint)
-                    ? model.isBusy
-                        ? CircularProgressIndicator()
-                        : Icon(Icons.check)
-                    : Icon(_wifiIcon(accessPoint)),
+                child: Icon(_wifiIcon(accessPoint)),
               ),
               onTap: () {
                 model.selectAccessPoint(accessPoint);
