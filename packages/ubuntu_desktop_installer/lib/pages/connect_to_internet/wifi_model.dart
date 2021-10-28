@@ -97,6 +97,7 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   Future requestScan({String? ssid}) async {
+    if (!isEnabled) return;
     final scans = <Future<void>>[];
     for (final device in devices) {
       if (device.isAvailable) {

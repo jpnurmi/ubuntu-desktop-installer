@@ -120,4 +120,47 @@ void main() {
       findsOneWidget,
     );
   });
+
+  testWidgets('wifi disabled', (tester) async {
+    final model = MockWifiModel();
+    when(model.requestScan()).thenAnswer((_) async => null);
+    when(model.isEnabled).thenReturn(false);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: localizationsDelegates,
+        home: ChangeNotifierProvider<WifiModel>.value(
+          value: model,
+          child: WifiView(
+            expanded: true,
+            onSelected: (device, accessPoint) {},
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(WifiListView), findsNothing);
+  });
+
+  testWidgets('no wifi devices', (tester) async {
+    final model = MockWifiModel();
+    when(model.requestScan()).thenAnswer((_) async => null);
+    when(model.isEnabled).thenReturn(true);
+    when(model.devices).thenReturn([]);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: localizationsDelegates,
+        home: ChangeNotifierProvider<WifiModel>.value(
+          value: model,
+          child: WifiView(
+            expanded: true,
+            onSelected: (device, accessPoint) {},
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(WifiListView), findsNothing);
+  });
 }

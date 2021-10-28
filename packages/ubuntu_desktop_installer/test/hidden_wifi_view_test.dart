@@ -112,7 +112,7 @@ void main() {
     expect(wasSelected, isTrue);
   });
 
-  testWidgets('builds nothing when disabled', (tester) async {
+  testWidgets('wifi disabled', (tester) async {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('');
     when(model.selectedDevice).thenReturn(null);
@@ -127,7 +127,7 @@ void main() {
     expect(find.byType(TextField), findsNothing);
   });
 
-  testWidgets('builds nothing when no devices', (tester) async {
+  testWidgets('no wifi devices', (tester) async {
     final model = MockHiddenWifiModel();
     when(model.ssid).thenReturn('');
     when(model.selectedDevice).thenReturn(null);
