@@ -35,7 +35,5 @@ class ConnectToInternetModel extends SafeChangeNotifier
   void init() => _connectModel?.init();
 
   @override
-  Future<void> connect({OnAuthenticate? onAuthenticate}) async {
-    _connectModel!.connect(onAuthenticate: onAuthenticate);
-  }
+  Future<void> connect() => _connectModel!.connect();
 }

@@ -140,9 +140,8 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i4.Future<void> connect({_i6.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i4.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override

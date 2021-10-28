@@ -9,26 +9,6 @@ enum ConnectMode {
   hiddenWifi,
 }
 
-typedef OnAuthenticate = Future<Authentication?> Function(
-  WifiDeviceModel device,
-  AccessPointModel accessPoint,
-);
-
-enum StorePassword { thisUser, allUsers, askAlways }
-enum WifiSecurity { wpa2Personal, wpa3Personal }
-
-class Authentication {
-  const Authentication({
-    required this.password,
-    required this.storePassword,
-    required this.wifiSecurity,
-  });
-
-  final String password;
-  final StorePassword storePassword;
-  final WifiSecurity? wifiSecurity;
-}
-
 abstract class ConnectModel extends SafeChangeNotifier {
   bool get canConnect;
   bool get canContinue;
@@ -36,7 +16,7 @@ abstract class ConnectModel extends SafeChangeNotifier {
   bool get isBusy;
   ConnectMode? get connectMode;
   void init();
-  Future<void> connect({OnAuthenticate? onAuthenticate});
+  Future<void> connect();
 }
 
 class NoConnectModel extends ConnectModel {
@@ -59,7 +39,7 @@ class NoConnectModel extends ConnectModel {
   void init() {}
 
   @override
-  Future<void> connect({OnAuthenticate? onAuthenticate}) {
+  Future<void> connect() {
     throw UnsupportedError('Nothing to connect');
   }
 }

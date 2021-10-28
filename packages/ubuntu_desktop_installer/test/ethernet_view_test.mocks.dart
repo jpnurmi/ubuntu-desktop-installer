@@ -68,9 +68,8 @@ class MockEthernetModel extends _i1.Mock implements _i3.EthernetModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i5.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i5.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override

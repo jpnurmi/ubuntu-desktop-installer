@@ -76,9 +76,8 @@ class MockHiddenWifiModel extends _i1.Mock implements _i3.HiddenWifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i6.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i6.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
   @override

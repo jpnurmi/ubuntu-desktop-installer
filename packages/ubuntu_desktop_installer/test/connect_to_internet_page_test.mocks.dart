@@ -5,6 +5,7 @@
 import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
+import 'package:dbus/dbus.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_model.dart'
     as _i4;
@@ -82,9 +83,8 @@ class MockConnectToInternetModel extends _i1.Mock
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i5.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i5.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
@@ -151,9 +151,8 @@ class MockEthernetModel extends _i1.Mock implements _i7.EthernetModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i5.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i5.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
@@ -318,9 +317,8 @@ class MockHiddenWifiModel extends _i1.Mock implements _i8.HiddenWifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i5.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i5.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
@@ -556,6 +554,20 @@ class MockNetworkService extends _i1.Mock implements _i2.NetworkService {
                   _FakeNetworkManagerActiveConnection_4()))
           as _i5.Future<_i2.NetworkManagerActiveConnection>);
   @override
+  _i5.Future<_i2.NetworkManagerSettingsConnection> addAndActivateConnection(
+          {Map<String, Map<String, _i10.DBusValue>>? connection,
+          _i2.NetworkManagerDevice? device,
+          _i2.NetworkManagerAccessPoint? accessPoint}) =>
+      (super.noSuchMethod(
+              Invocation.method(#addAndActivateConnection, [], {
+                #connection: connection,
+                #device: device,
+                #accessPoint: accessPoint
+              }),
+              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
+                  _FakeNetworkManagerSettingsConnection_3()))
+          as _i5.Future<_i2.NetworkManagerSettingsConnection>);
+  @override
   _i5.Future<void> deactivateConnection(
           _i2.NetworkManagerActiveConnection? connection) =>
       (super.noSuchMethod(
@@ -621,9 +633,8 @@ class MockWifiModel extends _i1.Mock implements _i9.WifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i5.Future<void> connect({_i4.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i5.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override

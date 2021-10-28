@@ -12,7 +12,6 @@ import 'ethernet_model.dart';
 import 'ethernet_view.dart';
 import 'hidden_wifi_model.dart';
 import 'hidden_wifi_view.dart';
-import 'wifi_auth_dialog.dart';
 import 'wifi_model.dart';
 import 'wifi_view.dart';
 
@@ -38,17 +37,6 @@ class ConnectToInternetPage extends StatefulWidget {
 }
 
 class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
-  Future<Authentication?> _authenticate(
-    WifiDeviceModel device,
-    AccessPointModel accessPoint,
-  ) async {
-    return showWifiAuthDialog(
-      context: context,
-      device: device,
-      accessPoint: accessPoint,
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -113,7 +101,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
           label: lang.connectButtonText,
           enabled: model.canConnect && !model.isBusy,
           visible: !model.canContinue,
-          onActivated: () => model.connect(onAuthenticate: _authenticate),
+          onActivated: model.connect,
         ),
         WizardAction.next(
           context,

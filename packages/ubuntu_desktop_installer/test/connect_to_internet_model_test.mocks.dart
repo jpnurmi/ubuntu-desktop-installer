@@ -53,9 +53,8 @@ class MockConnectModel extends _i1.Mock implements _i2.ConnectModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
-  _i3.Future<void> connect({_i2.OnAuthenticate? onAuthenticate}) =>
-      (super.noSuchMethod(
-          Invocation.method(#connect, [], {#onAuthenticate: onAuthenticate}),
+  _i3.Future<void> connect() =>
+      (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override

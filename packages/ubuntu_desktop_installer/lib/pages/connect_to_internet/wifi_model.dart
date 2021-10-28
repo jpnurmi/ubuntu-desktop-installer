@@ -47,26 +47,13 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   @override
-  Future<void> connect({OnAuthenticate? onAuthenticate}) async {
-    assert(onAuthenticate != null);
+  Future<void> connect() async {
     final device = selectedDevice!;
     final accessPoint = device.selectedAccessPoint!;
-    Authentication? authentication;
-    if (!accessPoint.isOpen) {
-      authentication = await onAuthenticate!(device, accessPoint);
-      if (authentication == null) return;
-    }
-
-    final connection = await device.findAvailableConnection(accessPoint) ??
-        await _service.addWirelessConnection(
-          ssid: accessPoint.ssid,
-          password: authentication?.password,
-          private: authentication?.storePassword == StorePassword.thisUser,
-        );
     try {
-      await _service.activateConnection(
+      await _service.addAndActivateConnection(
+        connection: <String, Map<String, DBusValue>>{},
         device: device.device,
-        connection: connection,
         accessPoint: accessPoint.accessPoint,
       );
     } on Exception catch (e) {

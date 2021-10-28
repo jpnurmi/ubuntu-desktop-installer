@@ -188,20 +188,6 @@ void main() {
       accessPoint: ap,
     )).thenAnswer((_) async => MockNetworkManagerActiveConnection());
 
-    var authenticated = false;
-
-    Future<Authentication?> onAuthenticate(
-      WifiDeviceModel device,
-      AccessPointModel accessPoint,
-    ) async {
-      authenticated = true;
-      return Authentication(
-        password: '',
-        storePassword: StorePassword.thisUser,
-        wifiSecurity: WifiSecurity.wpa2Personal,
-      );
-    }
-
     final settings = <String, Map<String, DBusValue>>{
       '802-11-wireless': <String, DBusValue>{
         'ssid': DBusArray.byte(kTestSsid),
@@ -211,8 +197,7 @@ void main() {
 
     // open
     when(ap.flags).thenReturn([]);
-    await model.connect(onAuthenticate: onAuthenticate);
-    expect(authenticated, isFalse);
+    await model.connect();
     verify(service.activateConnection(
       device: wifi.device,
       connection: connection,
@@ -221,13 +206,12 @@ void main() {
 
     // closed
     when(ap.flags).thenReturn([NetworkManagerWifiAccessPointFlag.privacy]);
-    await model.connect(onAuthenticate: onAuthenticate);
+    await model.connect();
     verify(service.activateConnection(
       device: wifi.device,
       connection: connection,
       accessPoint: ap,
     ));
-    expect(authenticated, isTrue);
   });
 
   test('add connection', () async {
@@ -248,19 +232,8 @@ void main() {
       accessPoint: ap,
     )).thenAnswer((_) async => MockNetworkManagerActiveConnection());
 
-    Future<Authentication?> onAuthenticate(
-      WifiDeviceModel device,
-      AccessPointModel accessPoint,
-    ) async {
-      return Authentication(
-        password: '',
-        storePassword: StorePassword.thisUser,
-        wifiSecurity: WifiSecurity.wpa2Personal,
-      );
-    }
-
     when(ap.flags).thenReturn([]);
-    await model.connect(onAuthenticate: onAuthenticate);
+    await model.connect();
     verify(service.activateConnection(
       device: wifi.device,
       connection: connection,

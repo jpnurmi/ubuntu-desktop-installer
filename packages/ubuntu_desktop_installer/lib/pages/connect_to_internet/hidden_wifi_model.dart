@@ -17,7 +17,7 @@ class HiddenWifiModel extends WifiModel {
   void init() {}
 
   @override
-  Future<void> connect({OnAuthenticate? onAuthenticate}) async {
+  Future<void> connect() async {
     final device = devices.firstWhereOrNull((device) {
       return device.activeAccessPoint?.name == ssid;
     });
@@ -40,7 +40,7 @@ class HiddenWifiModel extends WifiModel {
       }
       if (accessPoint != null) {
         device.selectAccessPoint(accessPoint);
-        return super.connect(onAuthenticate: onAuthenticate);
+        return super.connect();
       }
     }
     selectDevice(null);

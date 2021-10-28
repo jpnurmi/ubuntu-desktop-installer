@@ -153,7 +153,7 @@ void main() {
     expect(model.selectedDevice, isNull);
 
     model.setSsid(String.fromCharCodes(kTestSsid));
-    await model.connect(onAuthenticate: (_, __) async => null);
+    await model.connect();
     expect(model.selectedDevice, isNotNull);
     expect(model.selectedDevice!.selectedAccessPoint, isNotNull);
     expect(model.selectedDevice!.selectedAccessPoint!.ssid, kTestSsid);
