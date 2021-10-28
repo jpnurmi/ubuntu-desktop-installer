@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ubuntu_wizard/widgets.dart';
@@ -27,6 +29,7 @@ class ConnectToInternetPage extends StatefulWidget {
         ChangeNotifierProvider(create: (_) => HiddenWifiModel(service)),
         ChangeNotifierProvider(create: (_) => WifiAuthModel()),
         ChangeNotifierProvider(create: (_) => WifiModel(service)),
+        ChangeNotifierProvider(create: (_) => NoConnectModel()),
       ],
       child: ConnectToInternetPage(),
     );
@@ -46,6 +49,25 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
       device: device,
       accessPoint: accessPoint,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    scheduleMicrotask(() {
+      final model = context.read<ConnectToInternetModel>();
+      final ethernet = context.read<EthernetModel>();
+      final wifi = context.read<WifiModel>();
+      final none = context.read<NoConnectModel>();
+      if (ethernet.isActive) {
+        model.select(ethernet);
+      } else if (wifi.isActive) {
+        model.select(wifi);
+      } else {
+        model.select(none);
+      }
+    });
   }
 
   @override
@@ -83,7 +105,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
             value: ConnectMode.none,
             contentPadding: EdgeInsets.only(top: 8),
             groupValue: model.connectMode,
-            onChanged: (_) => model.select(NoConnectModel()),
+            onChanged: (_) => model.select(context.read<NoConnectModel>()),
           ),
         ],
       ),

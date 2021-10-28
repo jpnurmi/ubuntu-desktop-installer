@@ -21,6 +21,9 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
   bool get isBusy => _selected?.isBusy == true;
 
   @override
+  bool get isActive => devices.any((device) => device.isActive);
+
+  @override
   ConnectMode get connectMode => ConnectMode.ethernet;
 
   @override

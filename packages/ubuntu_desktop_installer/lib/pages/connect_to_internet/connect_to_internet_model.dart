@@ -11,6 +11,9 @@ class ConnectToInternetModel extends SafeChangeNotifier
   bool get canContinue => _connectModel?.canContinue ?? false;
 
   @override
+  bool get isActive => _connectModel?.isActive ?? false;
+
+  @override
   bool get isBusy => _connectModel?.isBusy ?? false;
 
   @override

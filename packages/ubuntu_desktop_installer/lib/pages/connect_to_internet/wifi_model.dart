@@ -25,6 +25,9 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   bool get canContinue => _selected?.isActive == true;
 
   @override
+  bool get isActive => devices.any((device) => device.isActive);
+
+  @override
   bool get isBusy => _selected?.isBusy == true || _selected?.scanning == true;
 
   @override
@@ -127,11 +130,7 @@ class WifiDeviceModel extends DeviceModel {
   void init() => selectAccessPoint(activeAccessPoint);
 
   @override
-  bool get isActive {
-    return super.isActive &&
-        _selected != null &&
-        _selected!.name == activeAccessPoint?.name;
-  }
+  bool get isActive => super.isActive && activeAccessPoint != null;
 
   final NetworkManagerDeviceWireless _wireless;
 

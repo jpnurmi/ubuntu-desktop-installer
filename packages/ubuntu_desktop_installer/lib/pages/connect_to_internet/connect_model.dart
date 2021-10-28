@@ -32,6 +32,7 @@ class Authentication {
 abstract class ConnectModel extends SafeChangeNotifier {
   bool get canConnect;
   bool get canContinue;
+  bool get isActive;
   bool get isBusy;
   ConnectMode? get connectMode;
   void init();
@@ -44,6 +45,9 @@ class NoConnectModel extends ConnectModel {
 
   @override
   bool get canContinue => true;
+
+  @override
+  bool get isActive => false;
 
   @override
   bool get isBusy => false;
