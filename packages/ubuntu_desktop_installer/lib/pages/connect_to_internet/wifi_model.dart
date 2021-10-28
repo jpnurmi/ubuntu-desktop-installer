@@ -51,22 +51,22 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
     assert(onAuthenticate != null);
     final device = selectedDevice!;
     final accessPoint = device.selectedAccessPoint!;
-    Authentication? authentication;
-    if (!accessPoint.isOpen) {
-      authentication = await onAuthenticate!(device, accessPoint);
-      if (authentication == null) return;
-    }
+    // Authentication? authentication;
+    // if (!accessPoint.isOpen) {
+    //   authentication = await onAuthenticate!(device, accessPoint);
+    //   if (authentication == null) return;
+    // }
 
-    final connection = await device.findAvailableConnection(accessPoint) ??
-        await _service.addWirelessConnection(
-          ssid: accessPoint.ssid,
-          password: authentication?.password,
-          private: authentication?.storePassword == StorePassword.thisUser,
-        );
+    // final connection = await device.findAvailableConnection(accessPoint) ??
+    //     await _service.addWirelessConnection(
+    //       ssid: accessPoint.ssid,
+    //       password: authentication?.password,
+    //       private: authentication?.storePassword == StorePassword.thisUser,
+    //     );
     try {
-      await _service.activateConnection(
+      await _service.addAndActivateConnection(
         device: device.device,
-        connection: connection,
+        // connection: connection,
         accessPoint: accessPoint.accessPoint,
       );
     } on Exception catch (e) {
