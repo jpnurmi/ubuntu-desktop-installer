@@ -39,6 +39,7 @@ void main() {
     serviceChanged = StreamController<List<String>>();
     when(service.propertiesChanged).thenAnswer((_) => serviceChanged.stream);
     when(service.wirelessDevices).thenReturn([]);
+    when(service.wirelessEnabled).thenReturn(true);
 
     device = MockNetworkManagerDevice();
     when(device.udi).thenReturn('test udi');
