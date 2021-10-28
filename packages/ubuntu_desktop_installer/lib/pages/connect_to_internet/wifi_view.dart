@@ -81,7 +81,7 @@ class _WifiViewState extends State<WifiView> {
               Text('To use Wi-Fi on this computer, Wi-Fi must be enabled'),
               const SizedBox(height: 16),
               OutlinedButton(
-                onPressed: () => model.setEnabled(true),
+                onPressed: model.enable,
                 child: Text('Enable Wi-Fi'),
               ),
             ],

@@ -31,7 +31,7 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   ConnectMode get connectMode => ConnectMode.wifi;
 
   bool get isEnabled => _service.wirelessEnabled;
-  void setEnabled(bool value) => _service.setWirelessEnabled(value);
+  void enable() => _service.setWirelessEnabled(true);
 
   @override
   void init() {
