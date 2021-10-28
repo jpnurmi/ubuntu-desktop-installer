@@ -72,20 +72,17 @@ class _WifiViewState extends State<WifiView> {
   Widget build(BuildContext context) {
     final model = Provider.of<WifiModel>(context);
     if (!model.isEnabled) {
-      return Container(
-        color: Colors.green,
-        child: NetworkTile(
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('To use Wi-Fi on this computer, Wi-Fi must be enabled'),
-              const SizedBox(height: 16),
-              OutlinedButton(
-                onPressed: model.enable,
-                child: Text('Enable Wi-Fi'),
-              ),
-            ],
-          ),
+      return NetworkTile(
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('To use Wi-Fi on this computer, Wi-Fi must be enabled'),
+            const SizedBox(height: 16),
+            OutlinedButton(
+              onPressed: model.enable,
+              child: Text('Enable Wi-Fi'),
+            ),
+          ],
         ),
       );
     }
