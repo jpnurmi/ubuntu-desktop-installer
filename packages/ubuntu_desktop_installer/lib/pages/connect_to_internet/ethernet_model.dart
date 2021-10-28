@@ -44,6 +44,12 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
     }
   }
 
+  @override
+  void dispose() {
+    _resetDevices();
+    super.dispose();
+  }
+
   final NetworkService _service;
 
   List<EthernetDeviceModel>? _devices;
@@ -56,6 +62,10 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   void _resetDevices() {
+    if (_devices == null) return;
+    for (final device in _devices!) {
+      device.dispose();
+    }
     _devices = null;
     notifyListeners();
   }

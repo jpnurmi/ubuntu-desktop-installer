@@ -47,6 +47,12 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   @override
+  void dispose() {
+    _resetDevices();
+    super.dispose();
+  }
+
+  @override
   Future<void> connect() async {
     final device = selectedDevice!;
     final accessPoint = device.selectedAccessPoint!;
@@ -73,6 +79,10 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   void _resetDevices() {
+    if (_devices == null) return;
+    for (final device in _devices!) {
+      device.dispose();
+    }
     _devices = null;
     notifyListeners();
   }
@@ -104,7 +114,7 @@ class WifiDeviceModel extends DeviceModel {
       : _wireless = device.wireless!,
         super(device) {
     addProperties(_wireless.propertiesChanged);
-    addPropertyListener('AccessPoints', _updateAccessPoints);
+    addPropertyListener('AccessPoints', _resetAccessPoints);
     addPropertyListener('ActiveAccessPoint', notifyListeners);
     addPropertyListener('LastScan', () {
       _setLastScan(device.wireless!.lastScan);
@@ -116,6 +126,12 @@ class WifiDeviceModel extends DeviceModel {
   }
 
   void init() => selectAccessPoint(activeAccessPoint);
+
+  @override
+  void dispose() {
+    _resetAccessPoints();
+    super.dispose();
+  }
 
   @override
   bool get isActive => super.isActive && activeAccessPoint != null;
@@ -152,19 +168,23 @@ class WifiDeviceModel extends DeviceModel {
         .sorted((a, b) => b.strength.compareTo(a.strength));
   }
 
-  void _updateAccessPoints() {
-    _accessPoints = _getAccessPoints();
+  void _resetAccessPoints() {
+    if (_accessPoints == null) return;
+    for (final ap in _accessPoints!) {
+      ap.dispose();
+    }
+    _accessPoints = null;
     notifyListeners();
   }
 
   AccessPointModel? get activeAccessPoint {
-    return _wireless.activeAccessPoint != null
-        ? AccessPointModel(_wireless.activeAccessPoint!)
-        : null;
+    if (_wireless.activeAccessPoint == null) return null;
+    return accessPoints
+        .firstWhere((ap) => ap.accessPoint == _wireless.activeAccessPoint);
   }
 
   bool isActiveAccessPoint(AccessPointModel accessPoint) {
-    return accessPoint._accessPoint == activeAccessPoint?._accessPoint;
+    return accessPoint._accessPoint == _wireless.activeAccessPoint;
   }
 
   AccessPointModel? _selected;
