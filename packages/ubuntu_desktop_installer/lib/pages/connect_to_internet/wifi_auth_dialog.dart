@@ -109,9 +109,7 @@ Future<Authentication?> showWifiAuthDialog({
                             ),
                             const SizedBox(height: kContentSpacing),
                             Text(
-                              lang.wifiPasswordRequired(
-                                String.fromCharCodes(accessPoint.ssid),
-                              ),
+                              lang.wifiPasswordRequired(accessPoint.name),
                               softWrap: true,
                             ),
                             const SizedBox(height: kContentSpacing * 2),
