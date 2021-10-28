@@ -34,6 +34,10 @@ class MockConnectModel extends _i1.Mock implements _i2.ConnectModel {
       (super.noSuchMethod(Invocation.getter(#canContinue), returnValue: false)
           as bool);
   @override
+  bool get isActive =>
+      (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
+          as bool);
+  @override
   bool get isBusy =>
       (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
           as bool);

@@ -44,6 +44,10 @@ class MockEthernetModel extends _i1.Mock implements _i3.EthernetModel {
       (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
           as bool);
   @override
+  bool get isActive =>
+      (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
+          as bool);
+  @override
   _i4.ConnectMode get connectMode =>
       (super.noSuchMethod(Invocation.getter(#connectMode),
           returnValue: _i4.ConnectMode.none) as _i4.ConnectMode);

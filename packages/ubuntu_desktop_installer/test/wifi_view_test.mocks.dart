@@ -106,6 +106,10 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
       (super.noSuchMethod(Invocation.getter(#canContinue), returnValue: false)
           as bool);
   @override
+  bool get isActive =>
+      (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
+          as bool);
+  @override
   bool get isBusy =>
       (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
           as bool);
@@ -130,9 +134,8 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  void setEnabled(bool? value) =>
-      super.noSuchMethod(Invocation.method(#setEnabled, [value]),
-          returnValueForMissingStub: null);
+  void enable() => super.noSuchMethod(Invocation.method(#enable, []),
+      returnValueForMissingStub: null);
   @override
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);

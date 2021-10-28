@@ -36,18 +36,26 @@ void main() {
     await setupAppLocalizations();
   });
 
-  testWidgets('selects the right connect mode on tap', (tester) async {
-    final connectToInternetModel = ConnectToInternetModel();
-
+  Future<void> buildTestApp(
+    WidgetTester tester, {
+    required ConnectToInternetModel model,
+    bool? ethernetActive,
+    bool? wifiActive,
+  }) async {
     final ethernetModel = MockEthernetModel();
     when(ethernetModel.connectMode).thenReturn(ConnectMode.ethernet);
     when(ethernetModel.devices).thenReturn([MockEthernetDeviceModel()]);
+    when(ethernetModel.isActive).thenReturn(ethernetActive ?? false);
+    when(ethernetModel.canConnect).thenReturn(true);
+    when(ethernetModel.canContinue).thenReturn(true);
+    when(ethernetModel.isBusy).thenReturn(false);
 
     final hiddenWifiModel = MockHiddenWifiModel();
     when(hiddenWifiModel.connectMode).thenReturn(ConnectMode.hiddenWifi);
     when(hiddenWifiModel.ssid).thenReturn('');
     when(hiddenWifiModel.selectedDevice).thenReturn(null);
     when(hiddenWifiModel.isEnabled).thenReturn(true);
+    when(hiddenWifiModel.isActive).thenReturn(wifiActive ?? false);
     when(hiddenWifiModel.devices).thenReturn([MockWifiDeviceModel()]);
 
     final wifiDevice = MockWifiDeviceModel();
@@ -64,6 +72,10 @@ void main() {
     when(wifiModel.isEnabled).thenReturn(true);
     when(wifiModel.devices).thenReturn([wifiDevice]);
     when(wifiModel.isSelectedDevice(any)).thenReturn(false);
+    when(wifiModel.isActive).thenReturn(wifiActive ?? false);
+    when(wifiModel.canConnect).thenReturn(true);
+    when(wifiModel.canContinue).thenReturn(true);
+    when(wifiModel.isBusy).thenReturn(false);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -75,7 +87,7 @@ void main() {
                 return MultiProvider(
                   providers: [
                     ChangeNotifierProvider<ConnectToInternetModel>.value(
-                        value: connectToInternetModel),
+                        value: model),
                     ChangeNotifierProvider<EthernetModel>.value(
                         value: ethernetModel),
                     ChangeNotifierProvider<HiddenWifiModel>.value(
@@ -83,6 +95,8 @@ void main() {
                     ChangeNotifierProvider<WifiAuthModel>(
                         create: (_) => MockWifiAuthModel()),
                     ChangeNotifierProvider<WifiModel>.value(value: wifiModel),
+                    ChangeNotifierProvider<NoConnectModel>(
+                        create: (_) => NoConnectModel()),
                   ],
                   child: ConnectToInternetPage(),
                 );
@@ -92,27 +106,68 @@ void main() {
         ),
       ),
     );
+  }
+
+  testWidgets('selects the right connect mode on tap', (tester) async {
+    final model = ConnectToInternetModel();
+    await buildTestApp(tester, model: model);
+    await tester.pumpAndSettle();
 
     final ethernetTile = find.byType(EthernetRadioButton);
     expect(ethernetTile, findsOneWidget);
     await tester.tap(ethernetTile);
-    expect(connectToInternetModel.connectMode, ConnectMode.ethernet);
+    expect(model.connectMode, ConnectMode.ethernet);
 
     final wifiTile = find.byType(WifiRadioButton);
     expect(wifiTile, findsOneWidget);
     await tester.tap(wifiTile);
-    expect(connectToInternetModel.connectMode, ConnectMode.wifi);
+    expect(model.connectMode, ConnectMode.wifi);
 
     final hiddenWifiTile = find.byType(HiddenWifiRadioButton);
     expect(wifiTile, findsOneWidget);
     await tester.tap(hiddenWifiTile);
-    expect(connectToInternetModel.connectMode, ConnectMode.hiddenWifi);
+    expect(model.connectMode, ConnectMode.hiddenWifi);
 
     final noConnectTile = find.byWidgetPredicate((widget) =>
         widget is RadioButton<ConnectMode> && widget.value == ConnectMode.none);
     expect(noConnectTile, findsOneWidget);
     await tester.tap(noConnectTile);
-    expect(connectToInternetModel.connectMode, ConnectMode.none);
+    expect(model.connectMode, ConnectMode.none);
+  });
+
+  testWidgets('pre-selects ethernet', (tester) async {
+    final model = ConnectToInternetModel();
+    await buildTestApp(tester, model: model, ethernetActive: true);
+    await tester.pumpAndSettle();
+
+    final ethernetTile = find.byType(EthernetRadioButton);
+    expect(ethernetTile, findsOneWidget);
+    expect(tester.widget<EthernetRadioButton>(ethernetTile).value,
+        ConnectMode.ethernet);
+    expect(model.connectMode, ConnectMode.ethernet);
+  });
+
+  testWidgets('pre-selects wifi', (tester) async {
+    final model = ConnectToInternetModel();
+    await buildTestApp(tester, model: model, wifiActive: true);
+    await tester.pumpAndSettle();
+
+    final wifiTile = find.byType(WifiRadioButton);
+    expect(wifiTile, findsOneWidget);
+    expect(tester.widget<WifiRadioButton>(wifiTile).value, ConnectMode.wifi);
+    expect(model.connectMode, ConnectMode.wifi);
+  });
+
+  testWidgets('pre-selects no connect', (tester) async {
+    final model = ConnectToInternetModel();
+    await buildTestApp(tester,
+        model: model, ethernetActive: false, wifiActive: false);
+    await tester.pumpAndSettle();
+
+    final noConnectTile = find.byWidgetPredicate((widget) =>
+        widget is RadioButton<ConnectMode> && widget.value == ConnectMode.none);
+    expect(noConnectTile, findsOneWidget);
+    expect(model.connectMode, ConnectMode.none);
   });
 
   testWidgets('creates all models', (tester) async {
