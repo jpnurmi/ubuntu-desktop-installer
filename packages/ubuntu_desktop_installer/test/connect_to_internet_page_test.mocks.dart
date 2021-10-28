@@ -14,8 +14,6 @@ import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_mode
     as _i7;
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_model.dart'
     as _i8;
-import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_model.dart'
-    as _i10;
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart'
     as _i9;
 import 'package:ubuntu_desktop_installer/services.dart' as _i2;
@@ -572,65 +570,6 @@ class MockNetworkService extends _i1.Mock implements _i2.NetworkService {
   String toString() => super.toString();
 }
 
-/// A class which mocks [WifiAuthModel].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockWifiAuthModel extends _i1.Mock implements _i10.WifiAuthModel {
-  MockWifiAuthModel() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  bool get showPassword =>
-      (super.noSuchMethod(Invocation.getter(#showPassword), returnValue: false)
-          as bool);
-  @override
-  set showPassword(bool? value) =>
-      super.noSuchMethod(Invocation.setter(#showPassword, value),
-          returnValueForMissingStub: null);
-  @override
-  _i4.StorePassword get storePassword =>
-      (super.noSuchMethod(Invocation.getter(#storePassword),
-          returnValue: _i4.StorePassword.thisUser) as _i4.StorePassword);
-  @override
-  set storePassword(_i4.StorePassword? value) =>
-      super.noSuchMethod(Invocation.setter(#storePassword, value),
-          returnValueForMissingStub: null);
-  @override
-  _i4.WifiSecurity get wifiSecurity =>
-      (super.noSuchMethod(Invocation.getter(#wifiSecurity),
-          returnValue: _i4.WifiSecurity.wpa2Personal) as _i4.WifiSecurity);
-  @override
-  set wifiSecurity(_i4.WifiSecurity? value) =>
-      super.noSuchMethod(Invocation.setter(#wifiSecurity, value),
-          returnValueForMissingStub: null);
-  @override
-  bool get isDisposed =>
-      (super.noSuchMethod(Invocation.getter(#isDisposed), returnValue: false)
-          as bool);
-  @override
-  bool get hasListeners =>
-      (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
-          as bool);
-  @override
-  void notifyListeners() =>
-      super.noSuchMethod(Invocation.method(#notifyListeners, []),
-          returnValueForMissingStub: null);
-  @override
-  void addListener(_i6.VoidCallback? listener) =>
-      super.noSuchMethod(Invocation.method(#addListener, [listener]),
-          returnValueForMissingStub: null);
-  @override
-  void removeListener(_i6.VoidCallback? listener) =>
-      super.noSuchMethod(Invocation.method(#removeListener, [listener]),
-          returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
-  @override
-  String toString() => super.toString();
-}
-
 /// A class which mocks [WifiModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -738,6 +677,10 @@ class MockWifiDeviceModel extends _i1.Mock implements _i9.WifiDeviceModel {
   @override
   bool get isActive =>
       (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
+          as bool);
+  @override
+  bool get canConnect =>
+      (super.noSuchMethod(Invocation.getter(#canConnect), returnValue: false)
           as bool);
   @override
   List<_i9.AccessPointModel> get accessPoints =>

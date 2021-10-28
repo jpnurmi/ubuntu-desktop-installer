@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 import 'package:ubuntu_desktop_installer/l10n.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/connect_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_dialog.dart';
-import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
@@ -15,7 +13,6 @@ import 'wifi_auth_dialog_test.mocks.dart';
 
 @GenerateMocks([
   AccessPointModel,
-  WifiAuthModel,
   WifiDeviceModel,
 ])
 void main() {
@@ -24,30 +21,19 @@ void main() {
     LangTester.context = Scaffold;
   });
 
-  Future<void> pumpWifiAuthApp(
-    WidgetTester tester, {
-    required WifiAuthModel model,
-  }) {
+  Future<void> pumpWifiAuthApp(WidgetTester tester) {
     tester.binding.window.devicePixelRatioTestValue = 1;
 
     return tester.pumpWidget(
-      ChangeNotifierProvider<WifiAuthModel>.value(
-        value: model,
-        builder: (_, __) => MaterialApp(
-          localizationsDelegates: localizationsDelegates,
-          routes: {'/': (_) => Scaffold()},
-        ),
+      MaterialApp(
+        localizationsDelegates: localizationsDelegates,
+        routes: {'/': (_) => Scaffold()},
       ),
     );
   }
 
   testWidgets('cancel', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(false);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
+    await pumpWifiAuthApp(tester);
 
     final accessPoint = MockAccessPointModel();
     when(accessPoint.ssid).thenReturn('ssid'.codeUnits);
@@ -66,12 +52,7 @@ void main() {
   });
 
   testWidgets('enter password', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(false);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
+    await pumpWifiAuthApp(tester);
 
     final accessPoint = MockAccessPointModel();
     when(accessPoint.ssid).thenReturn([]);
@@ -93,13 +74,8 @@ void main() {
     expect(auth!.password, equals('Ubuntu'));
   });
 
-  testWidgets('show password', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(false);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
+  testWidgets('show and hide password', (tester) async {
+    await pumpWifiAuthApp(tester);
 
     final accessPoint = MockAccessPointModel();
     when(accessPoint.ssid).thenReturn([]);
@@ -122,31 +98,7 @@ void main() {
 
     await tester.tap(find.byType(CheckButton));
     await tester.pumpAndSettle();
-    verify(model.showPassword = true).called(1);
-  });
 
-  testWidgets('hide password', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(true);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
-
-    final accessPoint = MockAccessPointModel();
-    when(accessPoint.ssid).thenReturn([]);
-
-    showWifiAuthDialog(
-      context: tester.element(find.byType(Scaffold)),
-      device: MockWifiDeviceModel(),
-      accessPoint: accessPoint,
-    );
-    await tester.pumpAndSettle();
-
-    expect(
-      tester.widget<CheckButton>(find.byType(CheckButton)).value,
-      isTrue,
-    );
     expect(
       tester.widget<TextField>(find.byType(TextField)).obscureText,
       isFalse,
@@ -154,16 +106,15 @@ void main() {
 
     await tester.tap(find.byType(CheckButton));
     await tester.pumpAndSettle();
-    verify(model.showPassword = false).called(1);
+
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).obscureText,
+      isTrue,
+    );
   });
 
   testWidgets('wifi security', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(false);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
+    await pumpWifiAuthApp(tester);
 
     final accessPoint = MockAccessPointModel();
     when(accessPoint.ssid).thenReturn([]);
@@ -182,8 +133,6 @@ void main() {
 
     await tester.tap(find.text(tester.lang.wpa3Personal).last);
     await tester.pumpAndSettle();
-    verify(model.wifiSecurity = WifiSecurity.wpa3Personal).called(1);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa3Personal);
 
     await tester.enterText(find.byType(TextField), '...');
     await tester.pumpAndSettle();
@@ -195,12 +144,7 @@ void main() {
   });
 
   testWidgets('store password', (tester) async {
-    final model = MockWifiAuthModel();
-    when(model.showPassword).thenReturn(false);
-    when(model.storePassword).thenReturn(StorePassword.thisUser);
-    when(model.wifiSecurity).thenReturn(WifiSecurity.wpa2Personal);
-
-    await pumpWifiAuthApp(tester, model: model);
+    await pumpWifiAuthApp(tester);
 
     final accessPoint = MockAccessPointModel();
     when(accessPoint.ssid).thenReturn([]);
@@ -219,8 +163,6 @@ void main() {
 
     await tester.tap(find.text(tester.lang.storeWifiPasswordAllUsers).last);
     await tester.pumpAndSettle();
-    verify(model.storePassword = StorePassword.allUsers).called(1);
-    when(model.storePassword).thenReturn(StorePassword.allUsers);
 
     await tester.enterText(find.byType(TextField), '...');
     await tester.pumpAndSettle();

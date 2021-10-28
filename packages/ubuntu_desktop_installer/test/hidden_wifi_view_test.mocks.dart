@@ -141,6 +141,10 @@ class MockWifiDeviceModel extends _i1.Mock implements _i5.WifiDeviceModel {
       (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
           as bool);
   @override
+  bool get canConnect =>
+      (super.noSuchMethod(Invocation.getter(#canConnect), returnValue: false)
+          as bool);
+  @override
   List<_i5.AccessPointModel> get accessPoints =>
       (super.noSuchMethod(Invocation.getter(#accessPoints),
           returnValue: <_i5.AccessPointModel>[]) as List<_i5.AccessPointModel>);

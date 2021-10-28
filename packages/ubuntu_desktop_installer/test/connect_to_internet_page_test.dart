@@ -13,7 +13,6 @@ import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_mode
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/ethernet_view.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/hidden_wifi_view.dart';
-import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_auth_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_model.dart';
 import 'package:ubuntu_desktop_installer/pages/connect_to_internet/wifi_view.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
@@ -27,7 +26,6 @@ import 'connect_to_internet_page_test.mocks.dart';
   EthernetDeviceModel,
   HiddenWifiModel,
   NetworkService,
-  WifiAuthModel,
   WifiModel,
   WifiDeviceModel,
 ])
@@ -92,8 +90,6 @@ void main() {
                         value: ethernetModel),
                     ChangeNotifierProvider<HiddenWifiModel>.value(
                         value: hiddenWifiModel),
-                    ChangeNotifierProvider<WifiAuthModel>(
-                        create: (_) => MockWifiAuthModel()),
                     ChangeNotifierProvider<WifiModel>.value(value: wifiModel),
                     ChangeNotifierProvider<NoConnectModel>(
                         create: (_) => NoConnectModel()),
@@ -200,7 +196,6 @@ void main() {
         Provider.of<ConnectToInternetModel>(context, listen: false), isNotNull);
     expect(Provider.of<EthernetModel>(context, listen: false), isNotNull);
     expect(Provider.of<HiddenWifiModel>(context, listen: false), isNotNull);
-    expect(Provider.of<WifiAuthModel>(context, listen: false), isNotNull);
     expect(Provider.of<WifiModel>(context, listen: false), isNotNull);
   });
 }

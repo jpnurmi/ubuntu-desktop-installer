@@ -13,7 +13,6 @@ import 'ethernet_view.dart';
 import 'hidden_wifi_model.dart';
 import 'hidden_wifi_view.dart';
 import 'wifi_auth_dialog.dart';
-import 'wifi_auth_model.dart';
 import 'wifi_model.dart';
 import 'wifi_view.dart';
 
@@ -27,7 +26,6 @@ class ConnectToInternetPage extends StatefulWidget {
         ChangeNotifierProvider(create: (_) => ConnectToInternetModel()),
         ChangeNotifierProvider(create: (_) => EthernetModel(service)),
         ChangeNotifierProvider(create: (_) => HiddenWifiModel(service)),
-        ChangeNotifierProvider(create: (_) => WifiAuthModel()),
         ChangeNotifierProvider(create: (_) => WifiModel(service)),
         ChangeNotifierProvider(create: (_) => NoConnectModel()),
       ],
