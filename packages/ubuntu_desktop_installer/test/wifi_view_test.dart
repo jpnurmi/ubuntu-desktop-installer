@@ -114,10 +114,10 @@ void main() {
     expect(selectedDevice, equals(device2));
     expect(selectedAccessPoint, equals(accessPoint2));
 
-    // ap is busy
+    // device is busy
     expect(
       find.descendant(
-        of: ap2,
+        of: find.widgetWithText(ListTile, 'model2').first,
         matching: find.byType(CircularProgressIndicator),
       ),
       findsOneWidget,

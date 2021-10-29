@@ -98,6 +98,7 @@ void main() {
   test('init', () {
     when(service.wirelessDevices).thenReturn([device]);
 
+    when(wireless.accessPoints).thenReturn([ap]);
     when(wireless.activeAccessPoint).thenReturn(null);
     model.init();
     expect(model.selectedDevice, isNull);
@@ -182,11 +183,11 @@ void main() {
 
     final connection = MockNetworkManagerSettingsConnection();
     when(device.availableConnections).thenReturn([connection]);
-    when(service.activateConnection(
+    when(service.addAndActivateConnection(
       device: wifi.device,
-      connection: connection,
+      connection: {},
       accessPoint: ap,
-    )).thenAnswer((_) async => MockNetworkManagerActiveConnection());
+    )).thenAnswer((_) async => MockNetworkManagerSettingsConnection());
 
     final settings = <String, Map<String, DBusValue>>{
       '802-11-wireless': <String, DBusValue>{
@@ -198,18 +199,18 @@ void main() {
     // open
     when(ap.flags).thenReturn([]);
     await model.connect();
-    verify(service.activateConnection(
+    verify(service.addAndActivateConnection(
       device: wifi.device,
-      connection: connection,
+      connection: {},
       accessPoint: ap,
     ));
 
     // closed
     when(ap.flags).thenReturn([NetworkManagerWifiAccessPointFlag.privacy]);
     await model.connect();
-    verify(service.activateConnection(
+    verify(service.addAndActivateConnection(
       device: wifi.device,
-      connection: connection,
+      connection: {},
       accessPoint: ap,
     ));
   });
@@ -226,17 +227,17 @@ void main() {
     when(service.addWirelessConnection(ssid: kTestSsid))
         .thenAnswer((_) async => connection);
 
-    when(service.activateConnection(
+    when(service.addAndActivateConnection(
       device: wifi.device,
-      connection: connection,
+      connection: {},
       accessPoint: ap,
-    )).thenAnswer((_) async => MockNetworkManagerActiveConnection());
+    )).thenAnswer((_) async => MockNetworkManagerSettingsConnection());
 
     when(ap.flags).thenReturn([]);
     await model.connect();
-    verify(service.activateConnection(
+    verify(service.addAndActivateConnection(
       device: wifi.device,
-      connection: connection,
+      connection: {},
       accessPoint: ap,
     ));
   });
@@ -274,6 +275,7 @@ void main() {
   });
 
   test('active access point', () {
+    when(wireless.accessPoints).thenReturn([ap]);
     when(wireless.activeAccessPoint).thenReturn(null);
     expect(wifi.activeAccessPoint, isNull);
     expect(wifi.isActiveAccessPoint(accessPoint), isFalse);

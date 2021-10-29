@@ -59,6 +59,7 @@ void main() {
     final wifiDevice = MockWifiDeviceModel();
     when(wifiDevice.model).thenReturn('model');
     when(wifiDevice.isAvailable).thenReturn(true);
+    when(wifiDevice.isBusy).thenReturn(false);
     when(wifiDevice.scanning).thenReturn(false);
     when(wifiDevice.accessPoints).thenReturn([]);
 

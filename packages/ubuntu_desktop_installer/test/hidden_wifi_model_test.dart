@@ -134,7 +134,8 @@ void main() {
 
     final connection = MockNetworkManagerSettingsConnection();
     when(device.availableConnections).thenReturn([connection]);
-    when(service.addAndActivateConnection(device: device, connection: {}))
+    when(service.addAndActivateConnection(
+            connection: {}, device: device, accessPoint: ap))
         .thenAnswer((_) async => MockNetworkManagerSettingsConnection());
 
     final settings = <String, Map<String, DBusValue>>{

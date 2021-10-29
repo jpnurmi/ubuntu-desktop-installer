@@ -15,7 +15,7 @@ const _kWifiScanTimeout = Duration(milliseconds: 7500);
 class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   WifiModel(this._service) {
     addProperties(_service.propertiesChanged);
-    addPropertyListener('Devices', _resetDevices);
+    addPropertyListener('Devices', _updateDevices);
     addPropertyListener('WirelessEnabled', notifyListeners);
   }
 
@@ -84,6 +84,10 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
       device.dispose();
     }
     _devices = null;
+  }
+
+  void _updateDevices() {
+    _resetDevices();
     notifyListeners();
   }
 
@@ -114,7 +118,7 @@ class WifiDeviceModel extends DeviceModel {
       : _wireless = device.wireless!,
         super(device) {
     addProperties(_wireless.propertiesChanged);
-    addPropertyListener('AccessPoints', _resetAccessPoints);
+    addPropertyListener('AccessPoints', _updateAccessPoints);
     addPropertyListener('ActiveAccessPoint', notifyListeners);
     addPropertyListener('LastScan', () {
       _setLastScan(device.wireless!.lastScan);
@@ -174,13 +178,18 @@ class WifiDeviceModel extends DeviceModel {
       ap.dispose();
     }
     _accessPoints = null;
+  }
+
+  void _updateAccessPoints() {
+    _resetAccessPoints();
     notifyListeners();
   }
 
   AccessPointModel? get activeAccessPoint {
     if (_wireless.activeAccessPoint == null) return null;
-    return accessPoints
-        .firstWhere((ap) => ap.accessPoint == _wireless.activeAccessPoint);
+    return accessPoints.firstWhereOrNull((ap) {
+      return ap.accessPoint == _wireless.activeAccessPoint;
+    });
   }
 
   bool isActiveAccessPoint(AccessPointModel accessPoint) {

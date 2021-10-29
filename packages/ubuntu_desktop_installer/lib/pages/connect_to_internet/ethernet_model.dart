@@ -8,7 +8,7 @@ import 'property_stream_notifier.dart';
 class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
   EthernetModel(this._service) {
     addProperties(_service.propertiesChanged);
-    addPropertyListener('Devices', _resetDevices);
+    addPropertyListener('Devices', _updateDevices);
   }
 
   @override
@@ -67,6 +67,10 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
       device.dispose();
     }
     _devices = null;
+  }
+
+  void _updateDevices() {
+    _resetDevices();
     notifyListeners();
   }
 
