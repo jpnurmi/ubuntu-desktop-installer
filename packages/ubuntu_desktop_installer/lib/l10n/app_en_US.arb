@@ -64,22 +64,6 @@
   "selectWifiNetwork": "Connect to this Wi-Fi network",
   "hiddenWifiNetwork": "Connect to a hidden Wi-Fi network",
   "noInternet": "I don't want to connect to the internet just now",
-  "wifiAuthenticationRequired": "Authentication required by Wi-Fi network",
-  "wifiPasswordRequired": "Passwords or encryption keys are required to access the Wi-Fi network \"{network}\"",
-  "@wifiPasswordRequired": {
-    "type": "network",
-    "placeholders": {
-      "network": {}
-    }
-  },
-  "wifiSecurity": "Wi-Fi security",
-  "wpa2Personal": "WPA & WPA2 Personal",
-  "wpa3Personal": "WPA3 Personal",
-  "wifiPassword": "Password",
-  "storeWifiPasswordThisUser": "Store the password only for this user",
-  "storeWifiPasswordAllUsers": "Store the password for all users",
-  "askWifiPasswordAlways": "Ask for this password every time",
-  "showPassword": "Show password",
 
   "updatesOtherSoftwarePageTitle": "Updates and other software",
   "updatesOtherSoftwarePageDescription": "What apps would you like to install to start with?",

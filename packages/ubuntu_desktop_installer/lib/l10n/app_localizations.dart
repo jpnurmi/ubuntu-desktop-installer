@@ -378,66 +378,6 @@ abstract class AppLocalizations {
   /// **'I don\'t want to connect to the internet just now'**
   String get noInternet;
 
-  /// No description provided for @wifiAuthenticationRequired.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Authentication required by Wi-Fi network'**
-  String get wifiAuthenticationRequired;
-
-  /// No description provided for @wifiPasswordRequired.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Passwords or encryption keys are required to access the Wi-Fi network \"{network}\"'**
-  String wifiPasswordRequired(Object network);
-
-  /// No description provided for @wifiSecurity.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Wi-Fi security'**
-  String get wifiSecurity;
-
-  /// No description provided for @wpa2Personal.
-  ///
-  /// In en_US, this message translates to:
-  /// **'WPA & WPA2 Personal'**
-  String get wpa2Personal;
-
-  /// No description provided for @wpa3Personal.
-  ///
-  /// In en_US, this message translates to:
-  /// **'WPA3 Personal'**
-  String get wpa3Personal;
-
-  /// No description provided for @wifiPassword.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Password'**
-  String get wifiPassword;
-
-  /// No description provided for @storeWifiPasswordThisUser.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Store the password only for this user'**
-  String get storeWifiPasswordThisUser;
-
-  /// No description provided for @storeWifiPasswordAllUsers.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Store the password for all users'**
-  String get storeWifiPasswordAllUsers;
-
-  /// No description provided for @askWifiPasswordAlways.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Ask for this password every time'**
-  String get askWifiPasswordAlways;
-
-  /// No description provided for @showPassword.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Show password'**
-  String get showPassword;
-
   /// No description provided for @updatesOtherSoftwarePageTitle.
   ///
   /// In en_US, this message translates to:

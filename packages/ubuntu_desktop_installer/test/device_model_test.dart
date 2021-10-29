@@ -73,7 +73,6 @@ void main() {
       NetworkManagerDeviceState.config,
       NetworkManagerDeviceState.ip_check,
       NetworkManagerDeviceState.ip_config,
-      NetworkManagerDeviceState.deactivating,
     ];
 
     final device = model.device;

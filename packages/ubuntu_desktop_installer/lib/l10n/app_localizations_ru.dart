@@ -144,38 +144,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
-  String get wifiAuthenticationRequired => 'Authentication required by Wi-Fi network';
-
-  @override
-  String wifiPasswordRequired(Object network) {
-    return 'Passwords or encryption keys are required to access the Wi-Fi network \"$network\"';
-  }
-
-  @override
-  String get wifiSecurity => 'Wi-Fi security';
-
-  @override
-  String get wpa2Personal => 'WPA & WPA2 Personal';
-
-  @override
-  String get wpa3Personal => 'WPA3 Personal';
-
-  @override
-  String get wifiPassword => 'Password';
-
-  @override
-  String get storeWifiPasswordThisUser => 'Store the password only for this user';
-
-  @override
-  String get storeWifiPasswordAllUsers => 'Store the password for all users';
-
-  @override
-  String get askWifiPasswordAlways => 'Ask for this password every time';
-
-  @override
-  String get showPassword => 'Show password';
-
-  @override
   String get updatesOtherSoftwarePageTitle => 'Updates and other software';
 
   @override

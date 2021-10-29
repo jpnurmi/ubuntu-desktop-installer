@@ -134,13 +134,8 @@ void main() {
 
     final connection = MockNetworkManagerSettingsConnection();
     when(device.availableConnections).thenReturn([connection]);
-    when(service.activateConnection(device: device, connection: connection))
-        .thenAnswer((_) async => MockNetworkManagerActiveConnection());
-    when(service.activateConnection(
-      device: wifi.device,
-      connection: connection,
-      accessPoint: ap,
-    )).thenAnswer((_) async => MockNetworkManagerActiveConnection());
+    when(service.addAndActivateConnection(device: device, connection: {}))
+        .thenAnswer((_) async => MockNetworkManagerSettingsConnection());
 
     final settings = <String, Map<String, DBusValue>>{
       '802-11-wireless': <String, DBusValue>{

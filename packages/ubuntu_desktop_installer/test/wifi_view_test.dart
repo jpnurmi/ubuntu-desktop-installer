@@ -15,7 +15,9 @@ void main() {
     final device1 = MockWifiDeviceModel();
     when(device1.model).thenReturn('model1');
     when(device1.scanning).thenReturn(false);
+    when(device1.isBusy).thenReturn(false);
     when(device1.isAvailable).thenReturn(true);
+    when(device1.isActive).thenReturn(false);
 
     final accessPoint1 = MockAccessPointModel();
     when(accessPoint1.name).thenReturn('ap1');
@@ -30,6 +32,7 @@ void main() {
     when(device2.scanning).thenReturn(true);
     when(device2.isBusy).thenReturn(true);
     when(device2.isAvailable).thenReturn(true);
+    when(device2.isActive).thenReturn(true);
 
     final accessPoint2 = MockAccessPointModel();
     when(accessPoint2.name).thenReturn('ap2');
