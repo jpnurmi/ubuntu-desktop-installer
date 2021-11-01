@@ -136,26 +136,4 @@ void main() {
 
     ethernet.dispose();
   });
-
-  test('add connection', () async {
-    when(device.activeConnection).thenReturn(null);
-
-    final ethernet = EthernetDeviceModel(device);
-    model.selectDevice(ethernet);
-
-    final connection = MockNetworkManagerSettingsConnection();
-    when(device.availableConnections).thenReturn([]);
-    when(service.addWiredConnection(device: ethernet.device))
-        .thenAnswer((_) async => connection);
-
-    when(service.activateConnection(
-            device: ethernet.device, connection: connection))
-        .thenAnswer((_) async => MockNetworkManagerActiveConnection());
-
-    await model.connect();
-    verify(service.activateConnection(
-        device: ethernet.device, connection: connection));
-
-    ethernet.dispose();
-  });
 }

@@ -215,33 +215,6 @@ void main() {
     ));
   });
 
-  test('add connection', () async {
-    when(device.activeConnection).thenReturn(null);
-    when(wireless.accessPoints).thenReturn([ap]);
-
-    model.selectDevice(wifi);
-    wifi.selectAccessPoint(wifi.accessPoints.first);
-
-    final connection = MockNetworkManagerSettingsConnection();
-    when(device.availableConnections).thenReturn([]);
-    when(service.addWirelessConnection(ssid: kTestSsid))
-        .thenAnswer((_) async => connection);
-
-    when(service.addAndActivateConnection(
-      device: wifi.device,
-      connection: {},
-      accessPoint: ap,
-    )).thenAnswer((_) async => MockNetworkManagerSettingsConnection());
-
-    when(ap.flags).thenReturn([]);
-    await model.connect();
-    verify(service.addAndActivateConnection(
-      device: wifi.device,
-      connection: {},
-      accessPoint: ap,
-    ));
-  });
-
   test('scan', () async {
     when(service.wirelessDevices).thenReturn([device]);
 

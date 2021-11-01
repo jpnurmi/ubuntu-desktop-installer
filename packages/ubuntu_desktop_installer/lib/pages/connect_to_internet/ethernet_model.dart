@@ -31,17 +31,7 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
 
   @override
   Future<void> connect() async {
-    if (_selected == null || _selected!.activeConnection != null) {
-      return;
-    }
-    final connection = _selected!.availableConnections.firstOrNull ??
-        await _service.addWiredConnection(device: _selected!.device);
-    try {
-      await _service.activateConnection(
-          device: _selected!.device, connection: connection);
-    } on Exception catch (e) {
-      print('TODO: $e');
-    }
+    assert(false);
   }
 
   @override

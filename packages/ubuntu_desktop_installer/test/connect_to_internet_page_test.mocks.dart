@@ -494,32 +494,6 @@ class MockNetworkService extends _i1.Mock implements _i2.NetworkService {
               returnValue: _FakeNetworkManagerDnsManager_2())
           as _i2.NetworkManagerDnsManager);
   @override
-  _i5.Future<_i2.NetworkManagerSettingsConnection> addWiredConnection(
-          {_i2.NetworkManagerDevice? device}) =>
-      (super.noSuchMethod(
-              Invocation.method(#addWiredConnection, [], {#device: device}),
-              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
-                  _FakeNetworkManagerSettingsConnection_3()))
-          as _i5.Future<_i2.NetworkManagerSettingsConnection>);
-  @override
-  _i5.Future<_i2.NetworkManagerSettingsConnection> addWirelessConnection(
-          {List<int>? ssid,
-          String? bssid,
-          bool? private = false,
-          bool? hidden = false,
-          String? password}) =>
-      (super.noSuchMethod(
-              Invocation.method(#addWirelessConnection, [], {
-                #ssid: ssid,
-                #bssid: bssid,
-                #private: private,
-                #hidden: hidden,
-                #password: password
-              }),
-              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
-                  _FakeNetworkManagerSettingsConnection_3()))
-          as _i5.Future<_i2.NetworkManagerSettingsConnection>);
-  @override
   _i5.Future<void> connect() =>
       (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
