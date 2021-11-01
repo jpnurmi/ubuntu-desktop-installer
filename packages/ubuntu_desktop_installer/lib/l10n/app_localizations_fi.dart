@@ -20,6 +20,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get changeButtonText => 'Change';
 
   @override
+  String get connectButtonText => 'Connect';
+
+  @override
   String get okButtonText => 'OK';
 
   @override
@@ -118,6 +121,27 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get secureBootSecurityKeysDontMatch => 'Security keys do not match';
+
+  @override
+  String get connectToInternetPageTitle => 'Connect to internet';
+
+  @override
+  String get connectToInternetDescription => 'Connecting this computer to the internet will help Ubuntu install any extra software needed and help choose your time zone.\n\nConnect by ethernet cable, or choose a Wi-Fi network';
+
+  @override
+  String get useWiredConnection => 'Use wired connection';
+
+  @override
+  String get noWiredConnection => 'No wired connection detected';
+
+  @override
+  String get selectWifiNetwork => 'Connect to this Wi-Fi network';
+
+  @override
+  String get hiddenWifiNetwork => 'Connect to a hidden Wi-Fi network';
+
+  @override
+  String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
   String get updatesOtherSoftwarePageTitle => 'Updates and other software';
