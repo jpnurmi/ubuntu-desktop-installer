@@ -464,6 +464,20 @@ class MockNetworkService extends _i1.Mock implements _i5.NetworkService {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
   @override
+  _i3.Future<_i2.NetworkManagerSettingsConnection> addAndActivateConnection(
+          {Map<String, Map<String, _i4.DBusValue>>? connection = const {},
+          _i2.NetworkManagerDevice? device,
+          _i2.NetworkManagerAccessPoint? accessPoint}) =>
+      (super.noSuchMethod(
+              Invocation.method(#addAndActivateConnection, [], {
+                #connection: connection,
+                #device: device,
+                #accessPoint: accessPoint
+              }),
+              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
+                  _FakeNetworkManagerSettingsConnection_3()))
+          as _i3.Future<_i2.NetworkManagerSettingsConnection>);
+  @override
   _i3.Future<_i2.NetworkManagerActiveConnection> activateConnection(
           {_i2.NetworkManagerDevice? device,
           _i2.NetworkManagerSettingsConnection? connection,
@@ -477,20 +491,6 @@ class MockNetworkService extends _i1.Mock implements _i5.NetworkService {
               returnValue: Future<_i2.NetworkManagerActiveConnection>.value(
                   _FakeNetworkManagerActiveConnection_4()))
           as _i3.Future<_i2.NetworkManagerActiveConnection>);
-  @override
-  _i3.Future<_i2.NetworkManagerSettingsConnection> addAndActivateConnection(
-          {Map<String, Map<String, _i4.DBusValue>>? connection,
-          _i2.NetworkManagerDevice? device,
-          _i2.NetworkManagerAccessPoint? accessPoint}) =>
-      (super.noSuchMethod(
-              Invocation.method(#addAndActivateConnection, [], {
-                #connection: connection,
-                #device: device,
-                #accessPoint: accessPoint
-              }),
-              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
-                  _FakeNetworkManagerSettingsConnection_3()))
-          as _i3.Future<_i2.NetworkManagerSettingsConnection>);
   @override
   _i3.Future<void> deactivateConnection(
           _i2.NetworkManagerActiveConnection? connection) =>

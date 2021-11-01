@@ -156,6 +156,9 @@ class MockEthernetModel extends _i1.Mock implements _i7.EthernetModel {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   bool isSelectedDevice(_i7.EthernetDeviceModel? device) =>
       (super.noSuchMethod(Invocation.method(#isSelectedDevice, [device]),
           returnValue: false) as bool);
@@ -172,9 +175,6 @@ class MockEthernetModel extends _i1.Mock implements _i7.EthernetModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
@@ -329,6 +329,9 @@ class MockHiddenWifiModel extends _i1.Mock implements _i8.HiddenWifiModel {
   void enable() => super.noSuchMethod(Invocation.method(#enable, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   bool isSelectedDevice(_i9.WifiDeviceModel? device) =>
       (super.noSuchMethod(Invocation.method(#isSelectedDevice, [device]),
           returnValue: false) as bool);
@@ -349,9 +352,6 @@ class MockHiddenWifiModel extends _i1.Mock implements _i8.HiddenWifiModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
@@ -540,6 +540,20 @@ class MockNetworkService extends _i1.Mock implements _i2.NetworkService {
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
+  _i5.Future<_i2.NetworkManagerSettingsConnection> addAndActivateConnection(
+          {Map<String, Map<String, _i10.DBusValue>>? connection = const {},
+          _i2.NetworkManagerDevice? device,
+          _i2.NetworkManagerAccessPoint? accessPoint}) =>
+      (super.noSuchMethod(
+              Invocation.method(#addAndActivateConnection, [], {
+                #connection: connection,
+                #device: device,
+                #accessPoint: accessPoint
+              }),
+              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
+                  _FakeNetworkManagerSettingsConnection_3()))
+          as _i5.Future<_i2.NetworkManagerSettingsConnection>);
+  @override
   _i5.Future<_i2.NetworkManagerActiveConnection> activateConnection(
           {_i2.NetworkManagerDevice? device,
           _i2.NetworkManagerSettingsConnection? connection,
@@ -553,20 +567,6 @@ class MockNetworkService extends _i1.Mock implements _i2.NetworkService {
               returnValue: Future<_i2.NetworkManagerActiveConnection>.value(
                   _FakeNetworkManagerActiveConnection_4()))
           as _i5.Future<_i2.NetworkManagerActiveConnection>);
-  @override
-  _i5.Future<_i2.NetworkManagerSettingsConnection> addAndActivateConnection(
-          {Map<String, Map<String, _i10.DBusValue>>? connection,
-          _i2.NetworkManagerDevice? device,
-          _i2.NetworkManagerAccessPoint? accessPoint}) =>
-      (super.noSuchMethod(
-              Invocation.method(#addAndActivateConnection, [], {
-                #connection: connection,
-                #device: device,
-                #accessPoint: accessPoint
-              }),
-              returnValue: Future<_i2.NetworkManagerSettingsConnection>.value(
-                  _FakeNetworkManagerSettingsConnection_3()))
-          as _i5.Future<_i2.NetworkManagerSettingsConnection>);
   @override
   _i5.Future<void> deactivateConnection(
           _i2.NetworkManagerActiveConnection? connection) =>
@@ -633,6 +633,9 @@ class MockWifiModel extends _i1.Mock implements _i9.WifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   _i5.Future<void> connect() =>
       (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
@@ -658,9 +661,6 @@ class MockWifiModel extends _i1.Mock implements _i9.WifiModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
@@ -742,6 +742,9 @@ class MockWifiDeviceModel extends _i1.Mock implements _i9.WifiDeviceModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   bool isActiveAccessPoint(_i9.AccessPointModel? accessPoint) => (super
       .noSuchMethod(Invocation.method(#isActiveAccessPoint, [accessPoint]),
           returnValue: false) as bool);
@@ -784,9 +787,6 @@ class MockWifiDeviceModel extends _i1.Mock implements _i9.WifiDeviceModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),

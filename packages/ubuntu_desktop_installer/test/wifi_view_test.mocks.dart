@@ -140,6 +140,9 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   _i4.Future<void> connect() =>
       (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
@@ -165,9 +168,6 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
@@ -249,6 +249,9 @@ class MockWifiDeviceModel extends _i1.Mock implements _i3.WifiDeviceModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
   bool isActiveAccessPoint(_i3.AccessPointModel? accessPoint) => (super
       .noSuchMethod(Invocation.method(#isActiveAccessPoint, [accessPoint]),
           returnValue: false) as bool);
@@ -291,9 +294,6 @@ class MockWifiDeviceModel extends _i1.Mock implements _i3.WifiDeviceModel {
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
           returnValueForMissingStub: null);
-  @override
-  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
-      returnValueForMissingStub: null);
   @override
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
