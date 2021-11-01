@@ -64,6 +64,10 @@
   "selectWifiNetwork": "Connect to this Wi-Fi network",
   "hiddenWifiNetwork": "Connect to a hidden Wi-Fi network",
   "noInternet": "I don't want to connect to the internet just now",
+  "wirelessNetworkingDisabled": "Wireless networking disabled",
+  "noWifiDevicesDetected": "No Wi-Fi devices detected",
+  "wifiMustBeEnabled": "To use Wi-Fi on this computer, Wi-Fi must be enabled",
+  "enableWifi": "Enable Wi-Fi",
 
   "updatesOtherSoftwarePageTitle": "Updates and other software",
   "updatesOtherSoftwarePageDescription": "What apps would you like to install to start with?",

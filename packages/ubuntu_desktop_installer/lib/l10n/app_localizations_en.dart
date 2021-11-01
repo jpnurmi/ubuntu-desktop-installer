@@ -144,6 +144,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
+  String get wirelessNetworkingDisabled => 'Wireless networking disabled';
+
+  @override
+  String get noWifiDevicesDetected => 'No Wi-Fi devices detected';
+
+  @override
+  String get wifiMustBeEnabled => 'To use Wi-Fi on this computer, Wi-Fi must be enabled';
+
+  @override
+  String get enableWifi => 'Enable Wi-Fi';
+
+  @override
   String get updatesOtherSoftwarePageTitle => 'Updates and other software';
 
   @override
@@ -676,6 +688,18 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get noInternet => 'I don\'t want to connect to the internet just now';
+
+  @override
+  String get wirelessNetworkingDisabled => 'Wireless networking disabled';
+
+  @override
+  String get noWifiDevicesDetected => 'No Wi-Fi devices detected';
+
+  @override
+  String get wifiMustBeEnabled => 'To use Wi-Fi on this computer, Wi-Fi must be enabled';
+
+  @override
+  String get enableWifi => 'Enable Wi-Fi';
 
   @override
   String get updatesOtherSoftwarePageTitle => 'Updates and other software';

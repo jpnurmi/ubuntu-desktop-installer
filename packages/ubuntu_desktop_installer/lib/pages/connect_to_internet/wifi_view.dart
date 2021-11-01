@@ -34,8 +34,8 @@ class WifiRadioButton extends StatelessWidget {
           ? NetworkTile(
               leading: Icon(Icons.close, color: Theme.of(context).errorColor),
               title: !model.isEnabled
-                  ? const Text('Wireless networking disabled')
-                  : const Text('No Wi-Fi devices detected'),
+                  ? Text(lang.wirelessNetworkingDisabled)
+                  : Text(lang.noWifiDevicesDetected),
             )
           : RadioButton<ConnectMode>(
               title: Text(lang.selectWifiNetwork),
@@ -70,17 +70,18 @@ class _WifiViewState extends State<WifiView> {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context);
     final model = Provider.of<WifiModel>(context);
     if (!model.isEnabled) {
       return NetworkTile(
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('To use Wi-Fi on this computer, Wi-Fi must be enabled'),
+            Text(lang.wifiMustBeEnabled),
             const SizedBox(height: 16),
             OutlinedButton(
               onPressed: model.enable,
-              child: Text('Enable Wi-Fi'),
+              child: Text(lang.enableWifi),
             ),
           ],
         ),

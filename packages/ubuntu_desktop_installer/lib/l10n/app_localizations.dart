@@ -381,6 +381,30 @@ abstract class AppLocalizations {
   /// **'I don\'t want to connect to the internet just now'**
   String get noInternet;
 
+  /// No description provided for @wirelessNetworkingDisabled.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Wireless networking disabled'**
+  String get wirelessNetworkingDisabled;
+
+  /// No description provided for @noWifiDevicesDetected.
+  ///
+  /// In en_US, this message translates to:
+  /// **'No Wi-Fi devices detected'**
+  String get noWifiDevicesDetected;
+
+  /// No description provided for @wifiMustBeEnabled.
+  ///
+  /// In en_US, this message translates to:
+  /// **'To use Wi-Fi on this computer, Wi-Fi must be enabled'**
+  String get wifiMustBeEnabled;
+
+  /// No description provided for @enableWifi.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Enable Wi-Fi'**
+  String get enableWifi;
+
   /// No description provided for @updatesOtherSoftwarePageTitle.
   ///
   /// In en_US, this message translates to:
