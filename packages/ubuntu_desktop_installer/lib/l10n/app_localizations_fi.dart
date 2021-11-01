@@ -3,9 +3,9 @@
 
 import 'app_localizations.dart';
 
-/// The translations for French (`fr`).
-class AppLocalizationsFr extends AppLocalizations {
-  AppLocalizationsFr([String locale = 'fr']) : super(locale);
+/// The translations for Finnish (`fi`).
+class AppLocalizationsFi extends AppLocalizations {
+  AppLocalizationsFi([String locale = 'fi']) : super(locale);
 
   @override
   String get appTitle => 'Ubuntu Desktop Installer';
@@ -18,9 +18,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get changeButtonText => 'Change';
-
-  @override
-  String get connectButtonText => 'Connect';
 
   @override
   String get okButtonText => 'OK';
@@ -121,27 +118,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get secureBootSecurityKeysDontMatch => 'Security keys do not match';
-
-  @override
-  String get connectToInternetPageTitle => 'Connect to internet';
-
-  @override
-  String get connectToInternetDescription => 'Connecting this computer to the internet will help Ubuntu install any extra software needed and help choose your time zone.\n\nConnect by ethernet cable, or choose a Wi-Fi network';
-
-  @override
-  String get useWiredConnection => 'Use wired connection';
-
-  @override
-  String get noWiredConnection => 'No wired connection detected';
-
-  @override
-  String get selectWifiNetwork => 'Connect to this Wi-Fi network';
-
-  @override
-  String get hiddenWifiNetwork => 'Connect to a hidden Wi-Fi network';
-
-  @override
-  String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
   String get updatesOtherSoftwarePageTitle => 'Updates and other software';
@@ -537,160 +513,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get restartIntoWindows => 'Restart Into Windows';
 }
 
-/// The translations for French, as used in France (`fr_FR`).
-class AppLocalizationsFrFr extends AppLocalizationsFr {
-  AppLocalizationsFrFr(): super('fr_FR');
+/// The translations for Finnish, as used in Finland (`fi_FI`).
+class AppLocalizationsFiFi extends AppLocalizationsFi {
+  AppLocalizationsFiFi(): super('fi_FI');
 
   @override
-  String get appTitle => 'Programme d’installation du bureau Ubuntu';
+  String get appTitle => 'Ubuntun Työpöytäversion Asennusohjelma';
 
   @override
-  String get windowTitle => 'Installer Ubuntu';
+  String get windowTitle => 'Asenna Ubuntu';
 
   @override
-  String get restartButtonText => 'Redémarrer';
-
-  @override
-  String get welcome => 'Bienvenue';
-
-  @override
-  String get tryOrInstallPageTitle => 'Essayer ou installer';
-
-  @override
-  String get repairInstallation => 'Réparer l’installation';
-
-  @override
-  String get repairInstallationDescription => 'La réparation réinstallera tous les logiciels installés en conservant les documents et les paramètres.';
-
-  @override
-  String get tryUbuntu => 'Essayer Ubuntu';
-
-  @override
-  String get tryUbuntuDescription => 'Vous pouvez essayer Ubuntu sans appliquer aucun changement à votre ordinateur.';
-
-  @override
-  String get installUbuntu => 'Installer Ubuntu';
-
-  @override
-  String get installUbuntuDescription => 'Installer Ubuntu à côté (ou en remplacement) de votre système d’exploitation actuel. Ceci ne devrait pas prendre trop longtemps.';
-
-  @override
-  String releaseNotesLabel(Object url) {
-    return 'Vous pouvez éventuellement lire les <a href=\"$url\">notes de publication</a>.';
-  }
-
-  @override
-  String get turnOffRST => 'Désactiver RST';
-
-  @override
-  String get turnOffRSTDescription => 'Cet ordinateur utilise la technologie RST (Rapid Storage Technology) d’Intel. Il est nécessaire de désactiver RST sous Windows avant d’installer Ubuntu.';
-
-  @override
-  String instructionsForRST(Object url) {
-    return 'Pour des instructions détaillées, veuillez ouvrir ce lien sur un téléphone ou un autre appareil : <a href=\"https://$url\">$url</a>';
-  }
-
-  @override
-  String get keyboardLayoutPageTitle => 'Disposition du clavier';
-
-  @override
-  String get chooseYourKeyboardLayout => 'Indiquez la disposition de votre clavier :';
-
-  @override
-  String get typeToTest => 'Saisissez du texte ici pour tester votre clavier';
-
-  @override
-  String get detectLayout => 'Détecter la disposition du clavier';
-
-  @override
-  String get updatesOtherSoftwarePageTitle => 'Mises à jour et logiciels supplémentaires';
-
-  @override
-  String get updatesOtherSoftwarePageDescription => 'Quelles applications souhaitez-vous installer pour commencer?';
-
-  @override
-  String get normalInstallationTitle => 'Installation normale';
-
-  @override
-  String get normalInstallationSubtitle => 'Navigateur internet, utilitaires, bureautique, jeux et lecteurs multimédia.';
-
-  @override
-  String get minimalInstallationTitle => 'Installation minimale';
-
-  @override
-  String get minimalInstallationSubtitle => 'Navigateur internet et utilitaires de base.';
-
-  @override
-  String get otherOptions => 'Autres options';
-
-  @override
-  String get installThirdPartyTitle => 'Installer des logiciels tiers pour le support du matériel graphique et Wi-Fi, ainsi que des formats multimédia supplémentaires';
-
-  @override
-  String get installThirdPartySubtitle => 'Ce logiciel est soumis à des termes de licence inclus dans sa documentation. Certains sont propriétaires.';
-
-  @override
-  String get allocateDiskSpace => 'Allouer de l’espace disque';
-
-  @override
-  String get startInstallingButtonText => 'Commencer l’installation';
-
-  @override
-  String get diskHeadersDevice => 'Disque';
-
-  @override
-  String get diskHeadersType => 'Type';
-
-  @override
-  String get diskHeadersMountPoint => 'Point de montage';
-
-  @override
-  String get diskHeadersSize => 'Taille';
-
-  @override
-  String get diskHeadersUsed => 'Utilisé';
-
-  @override
-  String get diskHeadersSystem => 'Système';
-
-  @override
-  String get diskHeadersFormat => 'Formatter';
-
-  @override
-  String get writeChangesToDisk => 'Appliquer les changements sur les disques';
-
-  @override
-  String get writeChangesFallbackSerial => 'disque';
-
-  @override
-  String get writeChangesDescription => 'Si vous continuez, les changements ci-dessous seront écrits sur les disques. Vous pourrez faire des changements ultérieurs manuellement.';
-
-  @override
-  String get writeChangesPartitionTablesHeader => 'Les tables de partitions des périphériques suivants seront modifiées :';
-
-  @override
-  String writeChangesPartitionTablesEntry(Object serial, Object path) {
-    return '$serial ($path)';
-  }
-
-  @override
-  String get writeChangesPartitionsHeader => 'Les partitions suivantes seront formattées :';
-
-  @override
-  String get chooseYourLookPageTitle => 'Choisissez l’apparence';
-
-  @override
-  String get chooseYourLookPageHeader => 'Vous pourrez la changer ultérieurement dans les préférences d’apparence.';
-
-  @override
-  String get chooseYourLookPageDarkSetting => 'Sombre';
-
-  @override
-  String get chooseYourLookPageLightSetting => 'Clair';
-
-  @override
-  String get chooseYourLookPageLightBodyText => 'Clair et brillant';
-
-  @override
-  String get chooseYourLookPageDarkBodyText => 'Sombre et foncé';
+  String get welcome => 'Tervetuloa';
 }

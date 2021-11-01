@@ -8,6 +8,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+import 'app_localizations_fi.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_it.dart';
 import 'app_localizations_nl.dart';
@@ -100,6 +101,8 @@ abstract class AppLocalizations {
     Locale('en', 'US'),
     Locale('es'),
     Locale('es', 'ES'),
+    Locale('fi'),
+    Locale('fi', 'FI'),
     Locale('fr'),
     Locale('fr', 'FR'),
     Locale('it'),
@@ -431,6 +434,48 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'This software is subject to license terms included with its documentation. Some are proprietary.'**
   String get installThirdPartySubtitle;
+
+  /// No description provided for @chooseSecurityKeyTitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Choose a security key'**
+  String get chooseSecurityKeyTitle;
+
+  /// No description provided for @chooseSecurityKeyHeader.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Disk encryption protects your files in case you lose your computer. It requires you to enter a security key each time the computer starts up.\n\nAny files outside of Ubuntu will not be encrypted.'**
+  String get chooseSecurityKeyHeader;
+
+  /// No description provided for @chooseSecurityKeyHint.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Choose a security key'**
+  String get chooseSecurityKeyHint;
+
+  /// No description provided for @chooseSecurityKeyConfirmHint.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Confirm the security key'**
+  String get chooseSecurityKeyConfirmHint;
+
+  /// No description provided for @chooseSecurityKeyRequired.
+  ///
+  /// In en_US, this message translates to:
+  /// **'A security key is required'**
+  String get chooseSecurityKeyRequired;
+
+  /// No description provided for @chooseSecurityKeyMismatch.
+  ///
+  /// In en_US, this message translates to:
+  /// **'The security keys do not match'**
+  String get chooseSecurityKeyMismatch;
+
+  /// No description provided for @chooseSecurityKeyWarning.
+  ///
+  /// In en_US, this message translates to:
+  /// **'<font color=\"{color}\">Warning</font>: If you lose this security key, all data will be lost. If you need to, write down your key and keep it in a safe place elsewhere.'**
+  String chooseSecurityKeyWarning(Object color);
 
   /// No description provided for @installationTypeTitle.
   ///
@@ -1084,7 +1129,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es', 'fr', 'it', 'nl', 'oc', 'pt', 'ru'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fi', 'fr', 'it', 'nl', 'oc', 'pt', 'ru'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1103,6 +1148,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     case 'es': {
   switch (locale.countryCode) {
     case 'ES': return AppLocalizationsEsEs();
+   }
+  break;
+   }
+    case 'fi': {
+  switch (locale.countryCode) {
+    case 'FI': return AppLocalizationsFiFi();
    }
   break;
    }
@@ -1148,6 +1199,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
     case 'es': return AppLocalizationsEs();
+    case 'fi': return AppLocalizationsFi();
     case 'fr': return AppLocalizationsFr();
     case 'it': return AppLocalizationsIt();
     case 'nl': return AppLocalizationsNl();

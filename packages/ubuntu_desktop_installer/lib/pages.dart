@@ -1,4 +1,5 @@
 export 'pages/allocate_disk_space/allocate_disk_space_page.dart';
+export 'pages/choose_security_key/choose_security_key_page.dart';
 export 'pages/choose_your_look_page.dart';
 export 'pages/configure_secure_boot/configure_secure_boot_page.dart';
 export 'pages/connect_to_internet/connect_to_internet_page.dart';
