@@ -1,7 +1,5 @@
 import 'package:safe_change_notifier/safe_change_notifier.dart';
 
-import 'wifi_model.dart';
-
 enum ConnectMode {
   none,
   ethernet,
