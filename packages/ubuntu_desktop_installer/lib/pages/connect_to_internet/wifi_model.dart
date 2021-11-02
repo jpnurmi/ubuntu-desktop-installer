@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:dbus/dbus.dart';
+import 'package:flutter/material.dart';
 
 import '../../services.dart';
 import 'connect_model.dart';
@@ -10,7 +11,8 @@ import 'device_model.dart';
 import 'property_stream_notifier.dart';
 
 // TODO: appropriate timeout?
-const _kWifiScanTimeout = Duration(milliseconds: 7500);
+@visibleForTesting
+const kWifiScanTimeout = Duration(milliseconds: 7500);
 
 class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   WifiModel(this._service) {
@@ -253,7 +255,7 @@ class WifiDeviceModel extends DeviceModel {
     final ssids = <List<int>>[if (ssid != null) ssid.codeUnits];
     _setScanning(true);
     _completer = Completer();
-    _completer!.future.timeout(_kWifiScanTimeout, onTimeout: () {
+    _completer!.future.timeout(kWifiScanTimeout, onTimeout: () {
       _setLastScan(-1);
       _setScanning(false);
       _completer?.complete(null);

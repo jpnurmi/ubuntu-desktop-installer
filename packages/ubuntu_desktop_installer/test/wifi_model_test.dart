@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dbus/dbus.dart';
+import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -234,12 +235,15 @@ void main() {
     when(wireless.requestScan(ssids: [kTestSsid]))
         .thenAnswer((_) async => null);
 
-    final timeout = model.requestScan(ssid: String.fromCharCodes(kTestSsid));
-    expect(model.devices.first.lastScan, -1);
-    expect(model.devices.first.scanning, isTrue);
-    await timeout;
-    expect(model.devices.first.lastScan, -1);
-    expect(model.devices.first.scanning, isFalse);
+    fakeAsync((async) async {
+      final timeout = model.requestScan(ssid: String.fromCharCodes(kTestSsid));
+      expect(model.devices.first.lastScan, -1);
+      expect(model.devices.first.scanning, isTrue);
+      fakeAsync((async) => async.elapse(kWifiScanTimeout));
+      await timeout;
+      expect(model.devices.first.lastScan, -1);
+      expect(model.devices.first.scanning, isFalse);
+    });
 
     final scan = model.requestScan(ssid: String.fromCharCodes(kTestSsid));
     wirelessChanged.add(['LastScan']);
