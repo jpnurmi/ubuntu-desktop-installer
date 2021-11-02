@@ -140,6 +140,9 @@ class MockWifiModel extends _i1.Mock implements _i3.WifiModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void cleanup() => super.noSuchMethod(Invocation.method(#cleanup, []),
+      returnValueForMissingStub: null);
+  @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
   @override
@@ -225,6 +228,11 @@ class MockWifiDeviceModel extends _i1.Mock implements _i3.WifiDeviceModel {
               returnValue: _i2.NetworkManagerDeviceState.unknown)
           as _i2.NetworkManagerDeviceState);
   @override
+  _i2.NetworkManagerDeviceStateReason get stateReason =>
+      (super.noSuchMethod(Invocation.getter(#stateReason),
+              returnValue: _i2.NetworkManagerDeviceStateReason.none)
+          as _i2.NetworkManagerDeviceStateReason);
+  @override
   bool get isBusy =>
       (super.noSuchMethod(Invocation.getter(#isBusy), returnValue: false)
           as bool);
@@ -285,6 +293,11 @@ class MockWifiDeviceModel extends _i1.Mock implements _i3.WifiDeviceModel {
   _i3.AccessPointModel? findAccessPoint(String? ssid) =>
       (super.noSuchMethod(Invocation.method(#findAccessPoint, [ssid]))
           as _i3.AccessPointModel?);
+  @override
+  _i4.Future<void> disconnect() =>
+      (super.noSuchMethod(Invocation.method(#disconnect, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
   void addProperties(_i4.Stream<List<String>>? properties) =>
       super.noSuchMethod(Invocation.method(#addProperties, [properties]),

@@ -117,23 +117,4 @@ void main() {
     expect(model.canContinue, isTrue);
     expect(model.isBusy, isFalse);
   });
-
-  test('available connection', () async {
-    when(device.activeConnection).thenReturn(null);
-
-    final ethernet = EthernetDeviceModel(device);
-    model.selectDevice(ethernet);
-
-    final connection = MockNetworkManagerSettingsConnection();
-    when(device.availableConnections).thenReturn([connection]);
-    when(service.activateConnection(
-            device: ethernet.device, connection: connection))
-        .thenAnswer((_) async => MockNetworkManagerActiveConnection());
-
-    await model.connect();
-    verify(service.activateConnection(
-        device: ethernet.device, connection: connection));
-
-    ethernet.dispose();
-  });
 }

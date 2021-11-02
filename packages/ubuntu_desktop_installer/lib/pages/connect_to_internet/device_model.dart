@@ -18,6 +18,10 @@ class DeviceModel extends PropertyStreamNotifier {
 
   String get interface => _device.interface;
   NetworkManagerDeviceState get state => _device.state;
+  NetworkManagerDeviceStateReason get stateReason => _device.stateReason.reason;
+
+  @override
+  Future<void> disconnect() => _device.disconnect();
 
   bool get isActive => state == NetworkManagerDeviceState.activated;
   bool get isBusy {

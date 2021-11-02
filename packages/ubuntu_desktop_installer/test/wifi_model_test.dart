@@ -95,7 +95,7 @@ void main() {
     expect(wifi.accessPoints.map((model) => model.accessPoint), [ap]);
   });
 
-  test('init', () {
+  test('init and cleanup', () {
     when(service.wirelessDevices).thenReturn([device]);
 
     when(wireless.accessPoints).thenReturn([ap]);
@@ -107,6 +107,18 @@ void main() {
     model.init();
     expect(model.selectedDevice, isNotNull);
     expect(model.selectedDevice!.device, equals(device));
+
+    when(device.state).thenReturn(NetworkManagerDeviceState.prepare);
+    expect(model.selectedDevice!.isBusy, isTrue);
+
+    model.cleanup();
+    verify(device.disconnect()).called(1);
+
+    when(device.state).thenReturn(NetworkManagerDeviceState.activated);
+    expect(model.selectedDevice!.isBusy, isFalse);
+
+    model.cleanup();
+    verifyNever(device.disconnect());
   });
 
   test('select', () {

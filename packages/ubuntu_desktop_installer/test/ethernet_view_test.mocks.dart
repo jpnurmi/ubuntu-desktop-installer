@@ -68,6 +68,9 @@ class MockEthernetModel extends _i1.Mock implements _i3.EthernetModel {
   void init() => super.noSuchMethod(Invocation.method(#init, []),
       returnValueForMissingStub: null);
   @override
+  void cleanup() => super.noSuchMethod(Invocation.method(#cleanup, []),
+      returnValueForMissingStub: null);
+  @override
   _i5.Future<void> connect() =>
       (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),
@@ -131,6 +134,11 @@ class MockEthernetDeviceModel extends _i1.Mock
               returnValue: _i2.NetworkManagerDeviceState.unknown)
           as _i2.NetworkManagerDeviceState);
   @override
+  _i2.NetworkManagerDeviceStateReason get stateReason =>
+      (super.noSuchMethod(Invocation.getter(#stateReason),
+              returnValue: _i2.NetworkManagerDeviceStateReason.none)
+          as _i2.NetworkManagerDeviceStateReason);
+  @override
   bool get isActive =>
       (super.noSuchMethod(Invocation.getter(#isActive), returnValue: false)
           as bool);
@@ -155,6 +163,11 @@ class MockEthernetDeviceModel extends _i1.Mock
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
+  @override
+  _i5.Future<void> disconnect() =>
+      (super.noSuchMethod(Invocation.method(#disconnect, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
   void addProperties(_i5.Stream<List<String>>? properties) =>
       super.noSuchMethod(Invocation.method(#addProperties, [properties]),

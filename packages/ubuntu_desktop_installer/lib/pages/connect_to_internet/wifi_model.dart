@@ -47,6 +47,12 @@ class WifiModel extends PropertyStreamNotifier implements ConnectModel {
   }
 
   @override
+  void cleanup() {
+    if (_selected?.isBusy != true) return;
+    _selected!.disconnect();
+  }
+
+  @override
   void dispose() {
     _resetDevices();
     super.dispose();

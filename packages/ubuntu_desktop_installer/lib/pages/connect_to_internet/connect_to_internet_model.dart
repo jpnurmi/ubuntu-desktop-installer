@@ -24,6 +24,7 @@ class ConnectToInternetModel extends SafeChangeNotifier
     if (_connectModel == model) {
       return;
     }
+    _connectModel?.cleanup();
     _connectModel?.removeListener(notifyListeners);
     model.addListener(notifyListeners);
     model.init();
@@ -33,6 +34,9 @@ class ConnectToInternetModel extends SafeChangeNotifier
 
   @override
   void init() => _connectModel?.init();
+
+  @override
+  void cleanup() => _connectModel?.cleanup();
 
   @override
   Future<void> connect() => _connectModel!.connect();

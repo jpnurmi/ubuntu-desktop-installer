@@ -14,6 +14,7 @@ abstract class ConnectModel extends SafeChangeNotifier {
   bool get isBusy;
   ConnectMode? get connectMode;
   void init();
+  void cleanup();
   Future<void> connect();
 }
 
@@ -35,6 +36,9 @@ class NoConnectModel extends ConnectModel {
 
   @override
   void init() {}
+
+  @override
+  void cleanup() {}
 
   @override
   Future<void> connect() {

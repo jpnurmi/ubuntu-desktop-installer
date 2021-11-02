@@ -30,6 +30,9 @@ class EthernetModel extends PropertyStreamNotifier implements ConnectModel {
   void init() => selectDevice(devices.firstWhereOrNull((d) => d.isActive));
 
   @override
+  void cleanup() {}
+
+  @override
   Future<void> connect() async {
     assert(false);
   }
