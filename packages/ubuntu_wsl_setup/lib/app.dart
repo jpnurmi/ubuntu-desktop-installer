@@ -43,7 +43,7 @@ class UbuntuWslSetupApp extends StatelessWidget {
       case Variant.WSL_CONFIGURATION:
         return UbuntuWslReconfigureWizard(initialRoute: initialRoute);
       case null:
-        return const SizedBox.shrink();
+        return const UbuntuWslWaitWizard();
       default:
         throw UnsupportedError('Unsupported WSL variant: $variant');
     }

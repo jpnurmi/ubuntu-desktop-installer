@@ -4,6 +4,17 @@ import 'package:ubuntu_wizard/widgets.dart';
 import 'pages.dart';
 import 'routes.dart';
 
+class UbuntuWslWaitWizard extends StatelessWidget {
+  const UbuntuWslWaitWizard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
 class UbuntuWslSetupWizard extends StatelessWidget {
   const UbuntuWslSetupWizard({
     Key? key,
