@@ -549,6 +549,54 @@ abstract class AppLocalizations {
   /// **'<font color=\"{color}\">Warning</font>: If you lose this security key, all data will be lost. If you need to, write down your key and keep it in a safe place elsewhere.'**
   String chooseSecurityKeyWarning(Object color);
 
+  /// No description provided for @generateRecoveryKeyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a security key'**
+  String get generateRecoveryKeyTitle;
+
+  /// No description provided for @generateRecoveryKeyHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'A recovery key is generated and will be temporarily saved on the live system. You can select an alternative location. Save this file and keep it in a safe place elsewhere before rebooting.'**
+  String get generateRecoveryKeyHeader;
+
+  /// No description provided for @generateRecoveryKeyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location:'**
+  String get generateRecoveryKeyLocation;
+
+  /// No description provided for @generateRecoveryKeyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Show recovery key'**
+  String get generateRecoveryKeyLabel;
+
+  /// No description provided for @generateRecoveryKeyMoreSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'For more security:'**
+  String get generateRecoveryKeyMoreSecurity;
+
+  /// No description provided for @generateRecoveryKeyOverwriteEmptyDiskSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Overwrite empty disk space'**
+  String get generateRecoveryKeyOverwriteEmptyDiskSpace;
+
+  /// No description provided for @generateRecoveryKeyLongerInstallation.
+  ///
+  /// In en, this message translates to:
+  /// **'The installation may take much longer.'**
+  String get generateRecoveryKeyLongerInstallation;
+
+  /// No description provided for @generateRecoveryKeyInstallNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Install now'**
+  String get generateRecoveryKeyInstallNow;
+
   /// No description provided for @installationTypeTitle.
   ///
   /// In en, this message translates to:

@@ -182,6 +182,30 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
+  String get generateRecoveryKeyTitle => 'Choose a security key';
+
+  @override
+  String get generateRecoveryKeyHeader => 'A recovery key is generated and will be temporarily saved on the live system. You can select an alternative location. Save this file and keep it in a safe place elsewhere before rebooting.';
+
+  @override
+  String get generateRecoveryKeyLocation => 'Location:';
+
+  @override
+  String get generateRecoveryKeyLabel => 'Show recovery key';
+
+  @override
+  String get generateRecoveryKeyMoreSecurity => 'For more security:';
+
+  @override
+  String get generateRecoveryKeyOverwriteEmptyDiskSpace => 'Overwrite empty disk space';
+
+  @override
+  String get generateRecoveryKeyLongerInstallation => 'The installation may take much longer.';
+
+  @override
+  String get generateRecoveryKeyInstallNow => 'Install now';
+
+  @override
   String get installationTypeTitle => 'Installation type';
 
   @override

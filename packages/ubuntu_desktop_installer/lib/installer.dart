@@ -240,6 +240,9 @@ class _UbuntuDesktopInstallerWizardState
         ),
         Routes.chooseSecurityKey: WizardRoute(
           builder: ChooseSecurityKeyPage.create,
+        ),
+        Routes.generateRecoveryKey: WizardRoute(
+          builder: GenerateRecoveryKeyPage.create,
           onNext: (_) => Routes.writeChangesToDisk,
         ),
         Routes.allocateDiskSpace: const WizardRoute(

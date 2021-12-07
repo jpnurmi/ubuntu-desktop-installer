@@ -18,6 +18,9 @@ dependencies:
   dbus: ^0.6.3
   file: ^6.1.0
   filesize: ^2.0.0
+  file_selector: ^0.8.2
+  file_selector_linux: ^0.0.2+1
+  file_selector_platform_interface: ^2.0.2
   flutter_html: ^2.1.1
   flutter_spinbox: ^0.5.4
   flutter_svg: ^0.22.0

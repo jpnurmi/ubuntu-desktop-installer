@@ -106,6 +106,14 @@
       "color": {}
     }
   },
+  "generateRecoveryKeyTitle": "Choose a security key",
+  "generateRecoveryKeyHeader": "A recovery key is generated and will be temporarily saved on the live system. You can select an alternative location. Save this file and keep it in a safe place elsewhere before rebooting.",
+  "generateRecoveryKeyLocation": "Location:",
+  "generateRecoveryKeyLabel": "Show recovery key",
+  "generateRecoveryKeyMoreSecurity": "For more security:",
+  "generateRecoveryKeyOverwriteEmptyDiskSpace": "Overwrite empty disk space",
+  "generateRecoveryKeyLongerInstallation": "The installation may take much longer.",
+  "generateRecoveryKeyInstallNow": "Install now",
   "installationTypeTitle": "Installation type",
   "installationTypeOSDetected": "This computer currently has {os} on it. What would you like to do?",
   "@installationTypeOSDetected": {

@@ -1,5 +1,5 @@
 abstract class Routes {
-  static const initial = welcome;
+  static const initial = generateRecoveryKey;
   static const welcome = '/welcome';
   static const tryOrInstall = '/tryorinstall';
   static const turnOffRST = '/turnoffrst';
@@ -18,4 +18,5 @@ abstract class Routes {
   static const chooseSecurityKey = '/choosesecuritykey';
   static const installationType = '/installationtype';
   static const selectGuidedStorage = '/selectguidedstorage';
+  static const generateRecoveryKey = '/generaterecoverykey';
 }
