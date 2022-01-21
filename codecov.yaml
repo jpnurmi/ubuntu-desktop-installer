@@ -1,4 +1,10 @@
 comment: false
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 0.1%
 ignore:
   - "**/*.freezed.dart"
   - "**/*.g.dart"
