@@ -8,6 +8,7 @@ import 'package:yaru_icons/yaru_icons.dart';
 import '../../l10n.dart';
 import 'allocate_disk_space_dialogs.dart';
 import 'allocate_disk_space_model.dart';
+import 'storage_dialog.dart';
 
 class PartitionBar extends StatelessWidget {
   PartitionBar({Key? key}) : super(key: key);
@@ -319,8 +320,9 @@ class PartitionButtonRow extends StatelessWidget {
                     shape: const RoundedRectangleBorder(),
                   ),
                   onPressed: model.canAddPartition
-                      ? () => showCreatePartitionDialog(
-                          context, model.selectedDisk!)
+                      // ? () => showCreatePartitionDialog(
+                      //     context, model.selectedDisk!)
+                      ? () => showCreateStorageDialog(context)
                       : null,
                 ),
                 const VerticalDivider(width: 1),
