@@ -8,6 +8,7 @@ import 'package:yaru_icons/yaru_icons.dart';
 import '../../l10n.dart';
 import 'allocate_disk_space_dialogs.dart';
 import 'allocate_disk_space_model.dart';
+import 'lvm_group_dialog.dart';
 import 'storage_dialog.dart';
 
 class PartitionBar extends StatelessWidget {
@@ -320,9 +321,11 @@ class PartitionButtonRow extends StatelessWidget {
                     shape: const RoundedRectangleBorder(),
                   ),
                   onPressed: model.canAddPartition
-                      // ? () => showCreatePartitionDialog(
-                      //     context, model.selectedDisk!)
-                      ? () => showCreateStorageDialog(context)
+                      ? () => showCreateStorageDialog(context).then((mode) =>
+                          mode == CreateStorageMode.createPartition
+                              ? showCreatePartitionDialog(
+                                  context, model.selectedDisk!)
+                              : showCreateLvmGroupDialog(context))
                       : null,
                 ),
                 const VerticalDivider(width: 1),
@@ -396,14 +399,6 @@ class BootDiskSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<AllocateDiskSpaceModel>(context);
     final lang = AppLocalizations.of(context);
-
-    String prettyFormatDisk(Disk disk) {
-      final fullName = <String?>[
-        disk.model,
-        disk.vendor,
-      ].where((p) => p?.isNotEmpty == true).join(' ');
-      return '${disk.path} $fullName (${disk.prettySize})';
-    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,

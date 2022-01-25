@@ -270,3 +270,11 @@ extension PartitionExtension on Partition {
   bool get canWipe => preserve == true && mount != null;
   String get prettySize => filesize(size ?? 0);
 }
+
+String prettyFormatDisk(Disk disk) {
+  final fullName = <String?>[
+    disk.model,
+    disk.vendor,
+  ].where((p) => p?.isNotEmpty == true).join(' ');
+  return '${disk.path} $fullName (${disk.prettySize})';
+}
