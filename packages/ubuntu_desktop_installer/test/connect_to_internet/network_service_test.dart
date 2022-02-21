@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:ubuntu_desktop_installer/services/network_service.dart';
+import 'package:ubuntu_test/mocks.dart';
 
 void main() {
   test('mandatory wifi settings', () async {
-    final service = NetworkService();
+    final service = NetworkService(MockSubiquityClient());
     final settings = service.getWifiSettings(ssid: 'foo bar');
 
     final connection = settings['connection'];
@@ -18,5 +20,17 @@ void main() {
     final security = settings['802-11-wireless-security'];
     expect(security, isNotNull);
     expect(security, contains('key-mgmt'));
+  });
+
+  test('save settings', () async {
+    final client = MockSubiquityClient();
+    final service = NetworkService(client);
+
+    await service.saveSettings();
+    verify(
+      client.copyFiles(
+          source: '/etc/NetworkManager/system-connections/*',
+          target: '/etc/NetworkManager/system-connections'),
+    ).called(1);
   });
 }

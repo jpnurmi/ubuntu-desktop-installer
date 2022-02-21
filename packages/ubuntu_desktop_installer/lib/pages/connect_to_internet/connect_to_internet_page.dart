@@ -108,6 +108,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
           onActivated: () async {
             // suspend network activity when proceeding on the next page
             model.cleanup();
+            context.read<ConnectToInternetModel>().save();
             await Wizard.of(context).next();
             // resume network activity if/when returning back to this page
             model.init();

@@ -315,6 +315,12 @@ class MockSubiquityClient extends _i1.Mock implements _i6.SubiquityClient {
                   _FakeStorageResponseV2_8()))
           as _i5.Future<_i3.StorageResponseV2>);
   @override
+  _i5.Future<void> copyFiles({String? source, String? target}) =>
+      (super.noSuchMethod(
+          Invocation.method(#copyFiles, [], {#source: source, #target: target}),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+  @override
   _i5.Future<void> reboot({bool? immediate = false}) => (super.noSuchMethod(
       Invocation.method(#reboot, [], {#immediate: immediate}),
       returnValue: Future<void>.value(),

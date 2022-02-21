@@ -55,7 +55,7 @@ void runInstallerApp(
   registerService(() => GeoService(geoip, sources: [geodata, geoname]));
   registerService(() => JournalService(journalUnit));
   registerService(KeyboardService.new);
-  registerService(NetworkService.new);
+  registerService(() => NetworkService(subiquityClient));
   registerService(PowerService.new);
   registerService(TelemetryService.new);
   registerService(UdevService.new);

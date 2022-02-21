@@ -530,6 +530,11 @@ class MockNetworkService extends _i1.Mock implements _i5.NetworkService {
               returnValue: <String, Map<String, _i4.DBusValue>>{})
           as Map<String, Map<String, _i4.DBusValue>>);
   @override
+  _i3.Future<void> saveSettings() =>
+      (super.noSuchMethod(Invocation.method(#saveSettings, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i3.Future<void>);
+  @override
   _i3.Future<void> connect() =>
       (super.noSuchMethod(Invocation.method(#connect, []),
           returnValue: Future<void>.value(),

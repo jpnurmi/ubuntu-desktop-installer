@@ -1,10 +1,16 @@
 import 'package:dbus/dbus.dart';
 import 'package:nm/nm.dart';
+import 'package:subiquity_client/subiquity_client.dart';
 
 export 'package:nm/nm.dart';
 
 /// Extends [NetworkManagerClient] with convenience properties and methods.
 class NetworkService extends NetworkManagerClient {
+  /// Creates a new [NetworkService] instance.
+  NetworkService(this._subiquity);
+
+  final SubiquityClient _subiquity;
+
   /// `true` if there is a full network connection.
   bool get isConnected {
     return connectivity == NetworkManagerConnectivityState.full;
@@ -34,5 +40,12 @@ class NetworkService extends NetworkManagerClient {
         'key-mgmt': DBusString('wpa-psk'),
       },
     };
+  }
+
+  Future<void> saveSettings() {
+    return _subiquity.copyFiles(
+      source: '/etc/NetworkManager/system-connections/*',
+      target: '/etc/NetworkManager/system-connections',
+    );
   }
 }

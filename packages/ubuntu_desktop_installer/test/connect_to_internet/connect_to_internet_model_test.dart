@@ -240,4 +240,14 @@ void main() {
     model.selectConnectMode();
     expect(model.connectMode, equals(ConnectMode.wifi));
   });
+
+  test('save settings', () async {
+    final service = MockNetworkService();
+    when(service.saveSettings()).thenAnswer((_) async {});
+
+    final model = ConnectToInternetModel(service);
+
+    await model.save();
+    verify(service.saveSettings()).called(1);
+  });
 }

@@ -394,6 +394,14 @@ class SubiquityClient {
     return StorageResponseV2.fromJson(responseJson);
   }
 
+  Future<void> copyFiles({required String source, required String target}) {
+    final request = Request(
+        'POST',
+        Uri.http('localhost', 'storage/copy_files',
+            {'source': '"$source"', 'target': '"$target"'}));
+    return _send(request);
+  }
+
   Future<void> reboot({bool immediate = false}) async {
     final request = Request(
         'POST',
