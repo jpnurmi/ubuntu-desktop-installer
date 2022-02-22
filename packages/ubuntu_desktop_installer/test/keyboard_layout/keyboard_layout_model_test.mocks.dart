@@ -7,9 +7,8 @@ import 'dart:io' as _i2;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:subiquity_client/subiquity_client.dart' as _i4;
-import 'package:ubuntu_desktop_installer/pages/keyboard_layout/keyboard_layout_model.dart'
-    as _i6;
-import 'package:ubuntu_desktop_installer/services.dart' as _i3;
+import 'package:ubuntu_desktop_installer/services/keyboard_service.dart' as _i3;
+import 'package:ubuntu_desktop_installer/services/process_runner.dart' as _i6;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
