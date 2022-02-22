@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_wizard/settings.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 import '../../l10n.dart';
+import '../../services.dart';
+import 'choose_your_look_model.dart';
 
 class ChooseYourLookPage extends StatelessWidget {
   const ChooseYourLookPage({Key? key}) : super(key: key);
 
-  static Widget create(BuildContext context) => const ChooseYourLookPage();
+  static Widget create(BuildContext context) {
+    final client = getService<SubiquityClient>();
+    return ChangeNotifierProvider(
+      create: (_) => ChooseYourLookModel(client),
+      child: const ChooseYourLookPage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +29,10 @@ class ChooseYourLookPage extends StatelessWidget {
       header: Text(lang.chooseYourLookPageHeader),
       actions: <WizardAction>[
         WizardAction.back(context),
-        WizardAction.next(context),
+        WizardAction.next(context, onActivated: () {
+          final model = context.read<ChooseYourLookModel>();
+          model.save(Theme.of(context).brightness);
+        }),
       ],
       title: Text(lang.chooseYourLookPageTitle),
       content: Center(

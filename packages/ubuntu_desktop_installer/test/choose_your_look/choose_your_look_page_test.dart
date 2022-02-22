@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
-import 'package:ubuntu_desktop_installer/pages/choose_your_look_page.dart';
+import 'package:ubuntu_desktop_installer/pages/choose_your_look/choose_your_look_page.dart';
 import 'package:ubuntu_wizard/settings.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 

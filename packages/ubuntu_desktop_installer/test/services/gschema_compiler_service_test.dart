@@ -13,7 +13,7 @@ void main() {
     const testArgs = [
       '--targetdir',
       '/tmp/bar/gschemas',
-      '/etc/foo/gschemas',
+      '/usr/share/foo/gschemas',
     ];
 
     final processRunner = MockProcessRunner();
@@ -23,7 +23,7 @@ void main() {
     final service = GSchemaCompilerService(processRunner: processRunner);
 
     await service.compile(
-      source: '/etc/foo/gschemas',
+      source: '/usr/share/foo/gschemas',
       target: '/tmp/bar/gschemas',
     );
     verify(processRunner.run(kGlibCompileSchemas, testArgs)).called(1);
@@ -34,7 +34,7 @@ void main() {
       '--targetdir',
       '/tmp/bar/gschemas',
       '--dry-run',
-      '/etc/foo/gschemas',
+      '/usr/share/foo/gschemas',
     ];
 
     final processRunner = MockProcessRunner();
@@ -47,7 +47,7 @@ void main() {
     );
 
     await service.compile(
-      source: '/etc/foo/gschemas',
+      source: '/usr/share/foo/gschemas',
       target: '/tmp/bar/gschemas',
     );
     verify(processRunner.run(kGlibCompileSchemas, testArgs)).called(1);
