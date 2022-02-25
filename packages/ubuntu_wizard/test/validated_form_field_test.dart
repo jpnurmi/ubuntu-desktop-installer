@@ -388,4 +388,42 @@ void main() {
     expect(find.text('is ubuntu'), findsNothing);
     expect(find.text('not ubuntu'), findsOneWidget);
   });
+
+  testWidgets('status widget builder', (tester) async {
+    final controller = TextEditingController();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: ValidatedFormField(
+            autofocus: true,
+            controller: controller,
+            validator: EqualValidator('success', errorText: 'irrelevant'),
+            statusWidgetBuilder: (_, success) {
+              return success
+                  ? const SuccessIcon()
+                  : controller.text.isNotEmpty
+                      ? const ErrorIcon()
+                      : null;
+            },
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(SuccessIcon), findsNothing);
+    expect(find.byType(ErrorIcon), findsNothing);
+
+    await tester.enterText(find.byType(ValidatedFormField), 'success');
+    await tester.pumpAndSettle();
+
+    expect(find.byType(SuccessIcon), findsOneWidget);
+    expect(find.byType(ErrorIcon), findsNothing);
+
+    await tester.enterText(find.byType(ValidatedFormField), 'error');
+    await tester.pumpAndSettle();
+
+    expect(find.byType(SuccessIcon), findsNothing);
+    expect(find.byType(ErrorIcon), findsOneWidget);
+  });
 }
