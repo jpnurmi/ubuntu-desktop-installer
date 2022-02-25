@@ -12,7 +12,9 @@ void main() {
           child: ValidatedFormField(
             autofocus: true,
             validator: MinLengthValidator(2, errorText: 'error'),
-            successWidget: const Text('success'),
+            statusWidgetBuilder: (_, success) {
+              return success ? const Text('success') : null;
+            },
           ),
         ),
       ),
@@ -158,7 +160,9 @@ void main() {
         home: Material(
           child: Center(
             child: ValidatedFormField(
-              successWidget: SuccessIcon(),
+              statusWidgetBuilder: (context, success) {
+                return success ? SuccessIcon() : null;
+              },
               helperText: helperText,
             ),
           ),
@@ -190,7 +194,9 @@ void main() {
           child: ValidatedFormField(
             autofocus: true,
             validator: EqualValidator('ubuntu', errorText: 'not equal'),
-            successWidget: const Text('equal'),
+            statusWidgetBuilder: (context, success) {
+              return success ? const Text('equal') : null;
+            },
           ),
         ),
       ),
@@ -219,7 +225,9 @@ void main() {
           child: ValidatedFormField(
             autofocus: true,
             validator: EqualValidator('', errorText: 'not equal'),
-            successWidget: const Text('equal'),
+            statusWidgetBuilder: (context, success) {
+              return success ? const Text('equal') : null;
+            },
           ),
         ),
       ),
@@ -357,7 +365,9 @@ void main() {
             autofocus: true,
             validator: CallbackValidator((v) => v == 'ubuntu',
                 errorText: 'not ubuntu'),
-            successWidget: const Text('is ubuntu'),
+            statusWidgetBuilder: (context, success) {
+              return success ? const Text('is ubuntu') : null;
+            },
           ),
         ),
       ),

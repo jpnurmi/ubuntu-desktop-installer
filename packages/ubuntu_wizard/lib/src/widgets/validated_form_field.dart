@@ -6,6 +6,9 @@ import 'package:form_field_validator/form_field_validator.dart';
 // The spacing between the form field and the success icon.
 const _kIconSpacing = 10.0;
 
+typedef StatusWidgetBuilder = Widget? Function(
+    BuildContext context, bool success);
+
 /// A [TextFormField] rewarding a validated input with a specific widget.
 ///
 /// See also:
@@ -43,14 +46,14 @@ class ValidatedFormField extends StatefulWidget {
   /// if the digits should be obscured.
   final bool obscureText;
 
-  /// The specific widget shown right to the [TextField] if the
-  /// input value is valid.
-  final Widget? successWidget;
+  /// Builds the widget shown right to the [TextField] indicating
+  /// the status of the input.
+  final StatusWidgetBuilder? statusWidgetBuilder;
 
   /// Sets the optional field width for layout reasons.
   final double? fieldWidth;
 
-  /// Sets the optional space between the [TextField] and the successWidget
+  /// Sets the optional space between the [TextField] and the status widget
   final double? spacing;
 
   /// See [FormField.autovalidateMode].
@@ -76,14 +79,15 @@ class ValidatedFormField extends StatefulWidget {
     this.labelText,
     this.helperText,
     this.obscureText = false,
-    this.successWidget,
+    this.statusWidgetBuilder,
     double? spacing,
     this.fieldWidth,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.enabled = true,
     this.suffixIcon,
   })  : validator = validator ?? _NoValidator(),
-        spacing = spacing ?? (successWidget != null ? _kIconSpacing : null),
+        spacing =
+            spacing ?? (statusWidgetBuilder != null ? _kIconSpacing : null),
         super(key: key);
 
   @override
@@ -153,10 +157,8 @@ class _ValidatedFormFieldState extends State<ValidatedFormField> {
           builder: (context, value, child) {
             return Padding(
               padding: EdgeInsets.only(left: widget.spacing ?? 0.0),
-              child: widget.successWidget == null ||
-                      !widget.validator.isValid(value.text)
-                  ? const SizedBox.shrink()
-                  : _alignBaseline(widget.successWidget),
+              child: _alignBaseline(widget.statusWidgetBuilder
+                  ?.call(context, widget.validator.isValid(value.text))),
             );
           },
         ),
@@ -165,7 +167,7 @@ class _ValidatedFormFieldState extends State<ValidatedFormField> {
   }
 
   Widget? _alignBaseline(Widget? child) {
-    if (widget.helperText?.isNotEmpty != true) {
+    if (child == null || widget.helperText?.isNotEmpty != true) {
       return child;
     }
 
