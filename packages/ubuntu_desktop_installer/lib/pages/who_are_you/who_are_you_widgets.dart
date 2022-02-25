@@ -18,7 +18,9 @@ class _RealNameFormField extends StatelessWidget {
       autofocus: true,
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPageRealNameLabel,
-      successWidget: const SuccessIcon(),
+      statusWidgetBuilder: (context, success) {
+        return success ? const SuccessIcon() : null;
+      },
       initialValue: realName,
       validator: RequiredValidator(
         errorText: lang.whoAreYouPageRealNameRequired,
@@ -49,7 +51,9 @@ class _HostnameFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPageComputerNameLabel,
       helperText: lang.whoAreYouPageComputerNameInfo,
-      successWidget: const SuccessIcon(),
+      statusWidgetBuilder: (context, success) {
+        return success ? const SuccessIcon() : null;
+      },
       initialValue: hostname,
       validator: MultiValidator([
         RequiredValidator(
@@ -85,7 +89,9 @@ class _UsernameFormField extends StatelessWidget {
     return ValidatedFormField(
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPageUsernameLabel,
-      successWidget: const SuccessIcon(),
+      statusWidgetBuilder: (context, success) {
+        return success ? const SuccessIcon() : null;
+      },
       initialValue: username,
       validator: MultiValidator([
         RequiredValidator(
@@ -126,7 +132,11 @@ class _PasswordFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPagePasswordLabel,
       obscureText: !showPassword,
-      successWidget: PasswordStrengthLabel(strength: passwordStrength),
+      statusWidgetBuilder: (context, success) {
+        return success
+            ? PasswordStrengthLabel(strength: passwordStrength)
+            : null;
+      },
       initialValue: password,
       validator: RequiredValidator(
         errorText: lang.whoAreYouPagePasswordRequired,
@@ -161,7 +171,9 @@ class _ConfirmPasswordFormField extends StatelessWidget {
       obscureText: !showPassword,
       fieldWidth: fieldWidth,
       labelText: lang.whoAreYouPageConfirmPasswordLabel,
-      successWidget: password.isNotEmpty ? const SuccessIcon() : null,
+      statusWidgetBuilder: (context, success) {
+        return success && password.isNotEmpty ? const SuccessIcon() : null;
+      },
       initialValue: confirmedPassword,
       autovalidateMode: AutovalidateMode.always,
       validator: EqualValidator(

@@ -30,7 +30,9 @@ class SecurityKeyFormField extends StatelessWidget {
         validator: RequiredValidator(
           errorText: lang.configureSecureBootSecurityKeyRequired,
         ),
-        successWidget: const SuccessIcon(),
+        statusWidgetBuilder: (context, success) {
+          return success ? const SuccessIcon() : null;
+        },
       ),
     );
   }
@@ -57,8 +59,11 @@ class SecurityKeyConfirmFormField extends StatelessWidget {
         enabled: model.areTextFieldsEnabled,
         initialValue: model.confirmKey,
         onChanged: model.setConfirmKey,
-        successWidget:
-            model.securityKey.isNotEmpty ? const SuccessIcon() : null,
+        statusWidgetBuilder: (context, success) {
+          return success && model.securityKey.isNotEmpty
+              ? const SuccessIcon()
+              : null;
+        },
         validator: EqualValidator(
           model.securityKey,
           errorText: lang.secureBootSecurityKeysDontMatch,
