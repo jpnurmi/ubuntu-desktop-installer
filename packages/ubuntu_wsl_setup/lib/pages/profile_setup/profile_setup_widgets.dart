@@ -17,7 +17,9 @@ class _RealNameFormField extends StatelessWidget {
     return ValidatedFormField(
       fieldWidth: fieldWidth,
       labelText: lang.profileSetupRealnameLabel,
-      successWidget: const SuccessIcon(),
+      statusWidgetBuilder: (context, success) {
+        return success ? const SuccessIcon() : null;
+      },
       initialValue: realname,
       validator: RequiredValidator(
         errorText: lang.profileSetupRealnameRequired,
@@ -48,7 +50,9 @@ class _UsernameFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       labelText: lang.profileSetupUsernameHint,
       helperText: lang.profileSetupUsernameHelper,
-      successWidget: const SuccessIcon(),
+      statusWidgetBuilder: (context, success) {
+        return success ? const SuccessIcon() : null;
+      },
       initialValue: username,
       validator: MultiValidator([
         RequiredValidator(errorText: lang.profileSetupUsernameRequired),
@@ -86,7 +90,11 @@ class _PasswordFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       labelText: lang.profileSetupPasswordHint,
       obscureText: true,
-      successWidget: PasswordStrengthLabel(strength: passwordStrength),
+      statusWidgetBuilder: (context, success) {
+        return success
+            ? PasswordStrengthLabel(strength: passwordStrength)
+            : null;
+      },
       initialValue: password,
       validator: RequiredValidator(
         errorText: lang.profileSetupPasswordRequired,
@@ -119,7 +127,9 @@ class _ConfirmPasswordFormField extends StatelessWidget {
       fieldWidth: fieldWidth,
       obscureText: true,
       labelText: lang.profileSetupConfirmPasswordHint,
-      successWidget: password.isNotEmpty ? const SuccessIcon() : null,
+      statusWidgetBuilder: (context, success) {
+        return success && password.isNotEmpty ? const SuccessIcon() : null;
+      },
       initialValue: confirmedPassword,
       autovalidateMode: AutovalidateMode.always,
       validator: EqualValidator(
