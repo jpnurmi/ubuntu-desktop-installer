@@ -16,6 +16,16 @@ dependencies:
   gsettings: ^0.2.0
   mockito: 5.0.14
   subiquity_client:
+    git:
+      url: https://github.com/canonical/ubuntu-desktop-installer.git
+      path: packages/subiquity_client
+  ubuntu_wizard:
+    git:
+      url: https://github.com/canonical/ubuntu-desktop-installer.git
+      path: packages/ubuntu_wizard
+
+dependency_overrides:
+  subiquity_client:
     path: ../subiquity_client
   ubuntu_localizations:
     git:

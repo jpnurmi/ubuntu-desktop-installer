@@ -21,8 +21,16 @@ dependencies:
       url: https://github.com/canonical/ubuntu-flutter-plugins.git
       path: packages/ubuntu_logger
   ubuntu_wizard:
-    path: ../ubuntu_wizard
+    git:
+      url: https://github.com/canonical/ubuntu-desktop-installer.git
+      path: packages/ubuntu_wizard
   yaru: ^0.2.0
+
+dependency_overrides:
+  subiquity_client:
+    path: ../subiquity_client
+  ubuntu_wizard:
+    path: ../ubuntu_wizard
 
 dev_dependencies:
   build_runner: ^2.1.1
