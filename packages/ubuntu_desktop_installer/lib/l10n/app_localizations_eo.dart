@@ -40,9 +40,6 @@ class AppLocalizationsEo extends AppLocalizations {
   String get welcome => 'Bonvenon';
 
   @override
-  String get welcomeHeader => 'Elektu vian lingvon:';
-
-  @override
   String get tryOrInstallPageTitle => 'Provi aŭ instali';
 
   @override
@@ -157,15 +154,6 @@ class AppLocalizationsEo extends AppLocalizations {
   String get selectWifiNetwork => 'Konekti al sendrata reto';
 
   @override
-  String get hiddenWifiNetwork => 'Konekti al kaŝita sendrata reto';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'Nomo de reto';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'Nomo de reto estas postulata';
-
-  @override
   String get noInternet => 'Mi ne volas konekti al Interreto nun';
 
   @override
@@ -247,14 +235,6 @@ class AppLocalizationsEo extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return 'Ĉi tiu komputilo aktuale portas instalaĵon de $os. Kion vi volas?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'Ĉi tiu komputilo aktuale portas instalaĵojn de $os1 kaj $os2. Kion vi volas?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'Ĉi tiu komputilo aktuale portas instalaĵojn de pluraj mastrumaj sistemoj. Kion vi volas?';
 
   @override
   String get installationTypeNoOSDetected => 'Ĉi tiu komputilo aktuale portas neniun troveblan instalaĵon de mastruma sistemo. Kion vi volas?';
@@ -530,9 +510,6 @@ class AppLocalizationsEo extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'La pasvortoj ne kongruas';
 
   @override
-  String get whoAreYouPageShowPassword => 'Montri pasvorton';
-
-  @override
   String get writeChangesToDisk => 'Skribi ŝanĝojn sur diskon';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsEo extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Restartigi al Windows';
-
-  @override
-  String get whereAreYouPageTitle => 'Kie vi estas?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Loko';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Horzono';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'Bonvenon al $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Rapida kaj plena de novaj funkcioj, la plej nova versio de $RELEASE igas komputadon pli facila ol iam ajn. Jen nur kelke da novaj bonegaĵoj priatentindaj…';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Trovu eĉ pli da programoj';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Adiaŭu serĉadon en la reto por novaj programoj. Per Snap Store kaj la programarkivo de $RELEASE, vi povas trovi kaj instali novajn programojn facile. Nur entajpu tion, kion vi serĉas, aŭ esploru kategoriojn kiel «Grafiko kaj Fotografio», «Ludoj» kaj «Produktiveco», kune kun helpemaj recenzoj de aliaj uzantoj.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Portu vian muzikon kun vi';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE estas liverita kun la mirinda muzikludilo Rhythmbox. Per ĝiaj altnivelaj ludaj opcioj, vi povas simple vicigi perfekte taŭgajn kantojn. Kaj ĝi funkcias bonege kun KD-oj kaj porteblaj muzikludiloj, por ke vi ĝuu vian tutan muzikaron ĉie ajn.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Muzikludilo Rhythmbox';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Amuzu vin per fotoj';
-
-  @override
-  String get photoSlideDescription => 'Shotwell estas oportuna fotadministrilo preta por viaj aparatoj. Konektu fotilon aŭ telefonon por ricevi viajn fotojn, por facile kunhavigi ilin aŭ konservi ilin sekure. Kaj se vi sentas vin kreema, vi povas trovi multajn aliajn fotajn programojn ĉe Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Fotadministrilo Shotwell';
-
-  @override
-  String get photoSlideGimp => 'Bildoredaktilo GIMP';
-
-  @override
-  String get photoSlideShotcut => 'Filmoredaktilo Shotcut';
-
-  @override
-  String get webSlideTitle => 'Plene utiligu Interreton';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE inkluzivas Firefox, la TTT-legilon uzata de milionoj da homoj en la mondo. Retejoj ofte uzataj (kiel Facebook aŭ Gmail, ekzemple) estas alpingleblaj sur vian labortablon por rapida aliro, same kiel programoj en via komputilo.';
-  }
-
-  @override
-  String get webSlideFirefox => 'TTT-Legilo Firefox';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Ĉio bezonata por la oficejo';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice estas senpaga oficeja programaro plenplena de ĉio bezonata por verki dokumentojn, kalkultabelojn kaj prezentojn. Kongruante kun la dosierformoj de Microsoft Office, ĝi donas al vi ĉiujn funkciojn, kiujn vi bezonas, sen la prezetikedo.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Aliro por ĉiuj';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'Ĉe la koro de la filozofio de $RELEASE estas la kredo, ke komputado estu por ĉiuj. Per altnivelaj alirebligiloj kaj la kapablo ŝanĝi lingvon, kolorskemon kaj tekstograndon, $RELEASE faciligas komputadon – por ĉiuj ajn, ĉie ajn.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Opcioj pri adaptado';
-
-  @override
-  String get accessSlideAppearance => 'Aspekto';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Helpoteknikoj';
-
-  @override
-  String get accessSlideLanguageSupport => 'Lingvosubteno';
-
-  @override
-  String get supportSlideTitle => 'Helpado kaj subtenado';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'La oficiala dokumentaro prezentas multajn el la plej oftaj temoj pri $RELEASE. Ĝi estas disponebla kaj <a href=\"https://help.ubuntu.com\">Interrete</a> kaj per la Helpo-piktogramo en la doko.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'Ĉe <a href=\"https://askubuntu.com\">Ask Ubuntu</a>, vi povas demandi kaj serĉi impresan kolekton de jam responditaj demandoj. Subteno en via propra lingvo estas eble havebla ĉe via <a href=\"https://loco.ubuntu.com/teams\">Loka Komunuma Teamo</a>.';
-
-  @override
-  String get supportSlideResources => 'Por aliaj utilaj rimedoj, bonvolu viziti <a href=\"https://www.ubuntu.com/support/community-support\">la paĝojn pri Komunuma subtenado</a> aŭ <a href=\"https://www.ubuntu.com/support\">pri Entreprena subtenado</a>.';
-
-  @override
-  String get includedSoftware => 'Inkluzivitaj programoj';
-
-  @override
-  String get availableSoftware => 'Disponeblaj programoj';
-
-  @override
-  String get supportedSoftware => 'Subtenataj programoj';
 }

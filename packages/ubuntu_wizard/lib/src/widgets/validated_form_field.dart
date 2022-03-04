@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:yaru_icons/yaru_icons.dart';
 
 // The spacing between the form field and the success icon.
 const _kIconSpacing = 10.0;
@@ -39,9 +40,10 @@ class ValidatedFormField extends StatefulWidget {
   /// The label below the [TextField]
   final String? helperText;
 
-  /// This boolean is forwarded to the [TextField] to decide
-  /// if the digits should be obscured.
-  final bool obscureText;
+  /// If specified, this boolean is forwarded to the [TextField] to decide
+  /// if the digits should be obscured, and a show/hide icon button is shown
+  /// to toggle between the obscured and non-obscured state.
+  final bool? obscureText;
 
   /// The specific widget shown right to the [TextField] if the
   /// input value is valid.
@@ -75,7 +77,7 @@ class ValidatedFormField extends StatefulWidget {
     this.focusNode,
     this.labelText,
     this.helperText,
-    this.obscureText = false,
+    this.obscureText,
     this.successWidget,
     double? spacing,
     this.fieldWidth,
@@ -87,13 +89,16 @@ class ValidatedFormField extends StatefulWidget {
         super(key: key);
 
   @override
-  State<ValidatedFormField> createState() => _ValidatedFormFieldState();
+  State<ValidatedFormField> createState() => ValidatedFormFieldState();
 }
 
-class _ValidatedFormFieldState extends State<ValidatedFormField> {
+@visibleForTesting
+class ValidatedFormFieldState extends State<ValidatedFormField> {
   late final TextEditingController _controller;
   FocusNode? _focusNode;
+  bool? _obscureText;
 
+  bool get obscureText => _obscureText ?? false;
   FocusNode get focusNode => widget.focusNode ?? _focusNode!;
 
   @override
@@ -104,6 +109,7 @@ class _ValidatedFormFieldState extends State<ValidatedFormField> {
     if (widget.focusNode == null) {
       _focusNode ??= FocusNode();
     }
+    _obscureText = widget.obscureText;
   }
 
   @override
@@ -134,12 +140,24 @@ class _ValidatedFormFieldState extends State<ValidatedFormField> {
       focusNode: focusNode,
       onChanged: widget.onChanged,
       validator: widget.validator,
-      obscureText: widget.obscureText,
+      obscureText: obscureText,
       enabled: widget.enabled,
       decoration: InputDecoration(
         labelText: widget.labelText,
         helperText: widget.helperText,
-        suffixIcon: widget.suffixIcon,
+        suffixIcon: widget.suffixIcon != null
+            ? widget.suffixIcon
+            : widget.obscureText == true && _controller.text.isNotEmpty
+                ? Focus(
+                    canRequestFocus: false,
+                    descendantsAreFocusable: false,
+                    child: IconButton(
+                      onPressed: () =>
+                          setState(() => _obscureText = !obscureText),
+                      icon: Icon(obscureText ? YaruIcons.hide : YaruIcons.view),
+                    ),
+                  )
+                : null,
       ),
     );
 
@@ -183,33 +201,4 @@ class _NoValidator extends FieldValidator<String?> {
 
   @override
   bool isValid(String? value) => true;
-}
-
-/// Validates that a form field input is valid according to the given callback.
-///
-/// See also:
-///  * [ValidatedFormField]
-class CallbackValidator extends FieldValidator<String?> {
-  /// The callback used to validate the input.
-  CallbackValidator(this._callback, {required String errorText})
-      : super(errorText);
-
-  final bool Function(String?) _callback;
-
-  @override
-  bool isValid(String? value) => _callback(value);
-}
-
-/// Validates that a form field input is equal to the given value.
-///
-/// See also:
-///  * [ValidatedFormField]
-class EqualValidator extends FieldValidator<String?> {
-  /// Creates an equality validator for the given value and error.
-  EqualValidator(this._value, {required String errorText}) : super(errorText);
-
-  final String _value;
-
-  @override
-  bool isValid(String? value) => value == _value;
 }

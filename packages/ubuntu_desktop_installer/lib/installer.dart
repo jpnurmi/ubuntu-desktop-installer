@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:subiquity_client/subiquity_client.dart';
 import 'package:subiquity_client/subiquity_server.dart';
 import 'package:ubuntu_wizard/app.dart';
@@ -13,25 +12,14 @@ import 'l10n.dart';
 import 'pages.dart';
 import 'routes.dart';
 import 'services.dart';
-import 'slides.dart';
 
 export 'package:ubuntu_wizard/widgets.dart' show FlavorData;
-export 'slides.dart';
 
-const _kGeoIPUrl = 'https://geoip.ubuntu.com/lookup';
-const _kGeonameUrl = 'https://geoname-lookup.ubuntu.com/';
 const _kSystemdUnit = 'snap.ubuntu-desktop-installer.subiquity-server.service';
-
-final assetBundle =
-    ProxyAssetBundle(rootBundle, package: 'ubuntu_desktop_installer');
 
 enum AppStatus { loading, ready }
 
-void runInstallerApp(
-  List<String> args, {
-  FlavorData? flavor,
-  List<Slide>? slides,
-}) {
+void runInstallerApp(List<String> args, {FlavorData? flavor}) {
   final options = parseCommandLine(args, onPopulateOptions: (parser) {
     parser.addOption('machine-config',
         valueHelp: 'path',
@@ -44,25 +32,13 @@ void runInstallerApp(
 
   final journalUnit = isLiveRun(options) ? _kSystemdUnit : null;
 
-  final geodata = Geodata(
-    loadCities: () => assetBundle.loadString('assets/cities15000.txt'),
-    loadAdmins: () => assetBundle.loadString('assets/admin1CodesASCII.txt'),
-    loadCountries: () => assetBundle.loadString('assets/countryInfo.txt'),
-    loadTimezones: () => assetBundle.loadString('assets/timeZones.txt'),
-  );
-
-  final geoip = GeoIP(url: _kGeoIPUrl, geodata: geodata);
-  final geoname = Geoname(url: _kGeonameUrl, geodata: geodata);
-
   registerService(() => DiskStorageService(subiquityClient));
-  registerService(() => GeoService(geoip, sources: [geodata, geoname]));
   registerService(() => JournalService(journalUnit));
   registerService(KeyboardService.new);
   registerService(NetworkService.new);
   registerService(PowerService.new);
   registerService(TelemetryService.new);
   registerService(UdevService.new);
-  registerService(UrlLauncher.new);
 
   final appStatus = ValueNotifier(AppStatus.loading);
 
@@ -73,7 +49,6 @@ void runInstallerApp(
         return UbuntuDesktopInstallerApp(
           appStatus: value,
           flavor: flavor,
-          slides: slides,
           initialRoute: options['initial-route'],
         );
       },
@@ -87,9 +62,17 @@ void runInstallerApp(
         options['machine-config'],
       ],
     ],
+    serverEnvironment: {
+      // so subiquity doesn't think it's the installer or flutter snap...
+      'SNAP': '.',
+      'SNAP_NAME': 'subiquity',
+      'SNAP_REVISION': '',
+      'SNAP_VERSION': '',
+    },
     onInitSubiquity: (client) {
       appStatus.value = AppStatus.ready;
       client.setVariant(Variant.DESKTOP);
+      client.setTimezone('geoip');
     },
   );
 }
@@ -99,15 +82,12 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
     Key? key,
     this.initialRoute,
     FlavorData? flavor,
-    List<Slide>? slides,
     this.appStatus = AppStatus.ready,
   })  : flavor = flavor ?? defaultFlavor,
-        slides = slides ?? defaultSlides,
         super(key: key);
 
   final String? initialRoute;
   final FlavorData flavor;
-  final List<Slide> slides;
   final AppStatus appStatus;
 
   static FlavorData get defaultFlavor {
@@ -120,31 +100,25 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultAssetBundle(
-      bundle: assetBundle,
-      child: Flavor(
-        data: flavor,
-        child: SlidesContext(
-          slides: slides,
-          child: MaterialApp(
-            locale: Settings.of(context).locale,
-            onGenerateTitle: (context) {
-              final lang = AppLocalizations.of(context);
-              setWindowTitle(lang.windowTitle(flavor.name));
-              return lang.appTitle;
-            },
-            theme: flavor.theme,
-            darkTheme: flavor.darkTheme,
-            themeMode: Settings.of(context).theme,
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: <LocalizationsDelegate>[
-              ...localizationsDelegates,
-              ...?flavor.localizationsDelegates,
-            ],
-            supportedLocales: supportedLocales,
-            home: buildApp(context),
-          ),
-        ),
+    return Flavor(
+      data: flavor.copyWith(package: 'ubuntu_desktop_installer'),
+      child: MaterialApp(
+        locale: Settings.of(context).locale,
+        onGenerateTitle: (context) {
+          final lang = AppLocalizations.of(context);
+          setWindowTitle(lang.windowTitle(flavor.name));
+          return lang.appTitle;
+        },
+        theme: flavor.theme,
+        darkTheme: flavor.darkTheme,
+        themeMode: Settings.of(context).theme,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: <LocalizationsDelegate>[
+          ...localizationsDelegates,
+          ...?flavor.localizationsDelegates,
+        ],
+        supportedLocales: supportedLocales,
+        home: buildApp(context),
       ),
     );
   }
@@ -154,7 +128,7 @@ class UbuntuDesktopInstallerApp extends StatelessWidget {
       case AppStatus.loading:
         return _UbuntuDesktopInstallerLoadingPage();
       case AppStatus.ready:
-        return _UbuntuDesktopInstallerWizard(initialRoute: initialRoute);
+        return _UbuntuDesktopInstallerWizard.create(context, initialRoute);
     }
   }
 }
@@ -164,25 +138,11 @@ class _UbuntuDesktopInstallerLoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final lang = AppLocalizations.of(context);
     return WizardPage(
       title: Text(AppLocalizations.of(context).welcome),
-      header: Text(lang.welcomeHeader),
-      content: Row(
-        children: [
-          Expanded(
-            child: RoundedContainer(height: height),
-          ),
-          const SizedBox(width: 20),
-          Expanded(
-            child: SvgPicture.asset(
-              'assets/welcome/logo.svg',
-              height: height / 4,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ],
+      content: FractionallySizedBox(
+        widthFactor: 0.5,
+        child: RoundedContainer(),
       ),
       actions: <WizardAction>[
         WizardAction.back(context, enabled: false),
@@ -192,7 +152,7 @@ class _UbuntuDesktopInstallerLoadingPage extends StatelessWidget {
   }
 }
 
-class _UbuntuDesktopInstallerWizard extends StatelessWidget {
+class _UbuntuDesktopInstallerWizard extends StatefulWidget {
   const _UbuntuDesktopInstallerWizard({
     Key? key,
     this.initialRoute,
@@ -200,16 +160,40 @@ class _UbuntuDesktopInstallerWizard extends StatelessWidget {
 
   final String? initialRoute;
 
+  static Widget create(BuildContext context, String? initialRoute) {
+    final client = getService<SubiquityClient>();
+    return ChangeNotifierProvider(
+      create: (_) => _UbuntuDesktopInstallerModel(client),
+      child: _UbuntuDesktopInstallerWizard(initialRoute: initialRoute),
+    );
+  }
+
+  @override
+  State<_UbuntuDesktopInstallerWizard> createState() =>
+      _UbuntuDesktopInstallerWizardState();
+}
+
+class _UbuntuDesktopInstallerWizardState
+    extends State<_UbuntuDesktopInstallerWizard> {
+  @override
+  void initState() {
+    super.initState();
+    final model =
+        Provider.of<_UbuntuDesktopInstallerModel>(context, listen: false);
+    model.init();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<_UbuntuDesktopInstallerModel>(context);
     final service = getService<DiskStorageService>();
 
     return Wizard(
-      initialRoute: initialRoute ?? Routes.initial,
+      initialRoute: widget.initialRoute ?? Routes.initial,
       routes: <String, WizardRoute>{
         Routes.welcome: WizardRoute(
           builder: WelcomePage.create,
-          onNext: (_) => !service.hasRst ? Routes.keyboardLayout : null,
+          onNext: (_) => !model.hasRst ? Routes.keyboardLayout : null,
         ),
         // https://github.com/canonical/ubuntu-desktop-installer/issues/373
         // Routes.tryOrInstall: WizardRoute(
@@ -237,8 +221,7 @@ class _UbuntuDesktopInstallerWizard extends StatelessWidget {
         ),
         Routes.updatesOtherSoftware: WizardRoute(
           builder: UpdatesOtherSoftwarePage.create,
-          onNext: (_) =>
-              !service.hasSecureBoot ? Routes.installationType : null,
+          onNext: (_) => !model.hasSecureBoot ? Routes.installationType : null,
         ),
         Routes.configureSecureBoot: const WizardRoute(
           builder: ConfigureSecureBootPage.create,
@@ -272,14 +255,15 @@ class _UbuntuDesktopInstallerWizard extends StatelessWidget {
         ),
         Routes.writeChangesToDisk: WizardRoute(
           builder: WriteChangesToDiskPage.create,
-          onNext: (_) => !service.hasBitLocker ? Routes.whereAreYou : null,
+          onNext: (_) => !model.hasBitLocker ? Routes.whoAreYou : null,
         ),
         Routes.turnOffBitlocker: const WizardRoute(
           builder: TurnOffBitLockerPage.create,
         ),
-        Routes.whereAreYou: const WizardRoute(
-          builder: WhereAreYouPage.create,
-        ),
+        // https://github.com/canonical/ubuntu-desktop-installer/issues/38
+        // Routes.whereAreYou: const WizardRoute(
+        //   builder: WhereAreYouPage.create,
+        // ),
         Routes.whoAreYou: const WizardRoute(
           builder: WhoAreYouPage.create,
         ),
@@ -315,5 +299,37 @@ class _UbuntuDesktopInstallerWizardObserver extends NavigatorObserver {
     if (route.settings.name != null) {
       _telemetryService.addStage(route.settings.name!);
     }
+  }
+}
+
+class _UbuntuDesktopInstallerModel extends ChangeNotifier {
+  _UbuntuDesktopInstallerModel(this._client);
+
+  final SubiquityClient _client;
+  var _hasRst = false;
+  var _hasBitLocker = false;
+
+  bool get hasRst => _hasRst;
+  bool get hasBitLocker => _hasBitLocker;
+  // TODO: add secure boot support
+  bool get hasSecureBoot => false;
+
+  Future<void> init() {
+    return Future.wait([
+      _client.hasRst().then(_updateHasRst),
+      _client.hasBitLocker().then(_updateHasBitLocker),
+    ]);
+  }
+
+  void _updateHasRst(bool hasRst) {
+    if (_hasRst == hasRst) return;
+    _hasRst = hasRst;
+    notifyListeners();
+  }
+
+  void _updateHasBitLocker(bool hasBitLocker) {
+    if (_hasBitLocker == hasBitLocker) return;
+    _hasBitLocker = hasBitLocker;
+    notifyListeners();
   }
 }

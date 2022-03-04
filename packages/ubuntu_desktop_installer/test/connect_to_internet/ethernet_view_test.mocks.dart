@@ -110,11 +110,6 @@ class MockEthernetModel extends _i1.Mock implements _i3.EthernetModel {
       returnValue: Future<void>.value(),
       returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
   @override
-  _i5.Future<void> cleanup() =>
-      (super.noSuchMethod(Invocation.method(#cleanup, []),
-          returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
-  @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
       returnValueForMissingStub: null);
   @override
@@ -141,14 +136,6 @@ class MockEthernetModel extends _i1.Mock implements _i3.EthernetModel {
   void addPropertyListener(String? property, _i6.VoidCallback? onChanged) =>
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
-          returnValueForMissingStub: null);
-  @override
-  void enablePropertyListeners() =>
-      super.noSuchMethod(Invocation.method(#enablePropertyListeners, []),
-          returnValueForMissingStub: null);
-  @override
-  void disablePropertyListeners() =>
-      super.noSuchMethod(Invocation.method(#disablePropertyListeners, []),
           returnValueForMissingStub: null);
   @override
   void addListener(_i6.VoidCallback? listener) =>
@@ -221,12 +208,6 @@ class MockEthernetDevice extends _i1.Mock implements _i3.EthernetDevice {
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  void init() => super.noSuchMethod(Invocation.method(#init, []),
-      returnValueForMissingStub: null);
-  @override
-  void cleanup() => super.noSuchMethod(Invocation.method(#cleanup, []),
-      returnValueForMissingStub: null);
-  @override
   void updateDevice(_i2.NetworkManagerDevice? device) =>
       super.noSuchMethod(Invocation.method(#updateDevice, [device]),
           returnValueForMissingStub: null);
@@ -245,14 +226,6 @@ class MockEthernetDevice extends _i1.Mock implements _i3.EthernetDevice {
   void addPropertyListener(String? property, _i6.VoidCallback? onChanged) =>
       super.noSuchMethod(
           Invocation.method(#addPropertyListener, [property, onChanged]),
-          returnValueForMissingStub: null);
-  @override
-  void enablePropertyListeners() =>
-      super.noSuchMethod(Invocation.method(#enablePropertyListeners, []),
-          returnValueForMissingStub: null);
-  @override
-  void disablePropertyListeners() =>
-      super.noSuchMethod(Invocation.method(#disablePropertyListeners, []),
           returnValueForMissingStub: null);
   @override
   void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),

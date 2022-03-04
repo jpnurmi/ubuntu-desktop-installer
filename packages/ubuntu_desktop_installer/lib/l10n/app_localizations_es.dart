@@ -40,9 +40,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get welcome => 'Le damos la bienvenida';
 
   @override
-  String get welcomeHeader => 'Elija su idioma:';
-
-  @override
   String get tryOrInstallPageTitle => 'Probar o instalar';
 
   @override
@@ -133,40 +130,31 @@ class AppLocalizationsEs extends AppLocalizations {
   String get secureBootSecurityKeysDontMatch => 'Las claves de seguridad no coinciden';
 
   @override
-  String get connectToInternetPageTitle => 'Conectarse a Internet';
+  String get connectToInternetPageTitle => 'Connect to internet';
 
   @override
-  String get connectToInternetDescription => 'Entablar una conexión a Internet en el equipo permitirá que Ubuntu instale componentes adicionales necesarios y le permitirá seleccionar su huso horario.\n\nConéctese mediante cable Ethernet o elija una red inalámbrica.';
+  String get connectToInternetDescription => 'Connecting this computer to the internet will help Ubuntu install any extra software needed and help choose your time zone.\n\nConnect by ethernet cable, or choose a Wi-Fi network';
 
   @override
-  String get useWiredConnection => 'Utilizar conexión cableada';
+  String get useWiredConnection => 'Use wired connection';
 
   @override
-  String get noWiredConnection => 'No se detectó ninguna conexión cableada';
+  String get noWiredConnection => 'No wired connection detected';
 
   @override
-  String get wiredDisabled => 'La conexión cableada está desactivada';
+  String get wiredDisabled => 'Wired connection is turned off';
 
   @override
-  String get wiredMustBeEnabled => 'Para utilizar Ethernet en el equipo, debe activarse una conexión cableada';
+  String get wiredMustBeEnabled => 'To use ethernet on this computer, a wired connection must be enabled';
 
   @override
-  String get enableWired => 'Activar conexión cableada';
+  String get enableWired => 'Enable wired';
 
   @override
-  String get selectWifiNetwork => 'Conectar con una red inalámbrica';
+  String get selectWifiNetwork => 'Connect to a Wi-Fi network';
 
   @override
-  String get hiddenWifiNetwork => 'Conectar con una red inalámbrica oculta';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'Nombre de red';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'Se necesita un nombre de red';
-
-  @override
-  String get noInternet => 'No me conectaré a Internet ahora';
+  String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
   String get wirelessNetworkingDisabled => 'Wireless networking disabled';
@@ -247,14 +235,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return 'El equipo actualmente tiene instalado $os. ¿Qué quiere hacer?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'This computer currently has $os1 and $os2 on it. What would you like to do?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'This computer currently has multiple operating systems on it. What would you like to do?';
 
   @override
   String get installationTypeNoOSDetected => 'En el equipo no se ha detectado actualmente ningún sistema operativo. ¿Qué quiere hacer?';
@@ -530,9 +510,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'Las contraseñas no coinciden';
 
   @override
-  String get whoAreYouPageShowPassword => 'Mostrar contraseña';
-
-  @override
   String get writeChangesToDisk => 'Escribir cambios en el disco';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Reiniciar en Windows';
-
-  @override
-  String get whereAreYouPageTitle => '¿Dónde se encuentra?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Ubicación';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Huso horario';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'Le damos la bienvenida a $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Fast and full of new features, the latest version of $RELEASE makes computing easier than ever. Here are just a few cool new things to look out for...';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Find even more software';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Say goodbye to searching the web for new software. With access to the Snap Store and the $RELEASE software archive, you can find and install new apps with ease. Just type in what you\'re looking for, or explore categories such as Graphics & Photography, Games and Productivity, alongside helpful reviews from other users.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Lleve su música consigo';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE comes with the amazing Rhythmbox music player. With advanced playback options, it\'s simple to queue up the perfect songs. And it works great with CDs and portable music players, so you can enjoy all your music wherever you go.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Reproductor de música Rhythmbox';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Diviértase con sus fotos';
-
-  @override
-  String get photoSlideDescription => 'Shotwell is a handy photo manager that is ready for your gadgets. Connect a camera or a phone to transfer your photos, then it\'s easy to share them and keep them safe. And if you\'re feeling creative, you can find many other photo apps in Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Gestor fotográfico Shotwell';
-
-  @override
-  String get photoSlideGimp => 'Editor de imágenes GIMP';
-
-  @override
-  String get photoSlideShotcut => 'Editor de vídeos Shotcut';
-
-  @override
-  String get webSlideTitle => 'Saque el máximo partido de la web';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE includes Firefox, the web browser used by millions of people around the world. And web applications you use frequently (like Facebook or Gmail, for example) can be pinned to your desktop for faster access, just like apps on your computer.';
-  }
-
-  @override
-  String get webSlideFirefox => 'Navegador web Firefox';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Todo lo que necesita para la oficina';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice is a free office suite packed with everything you need to create documents, spreadsheets and presentations. Compatible with Microsoft Office file formats, it gives you all the features you need, without the price tag.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Access for everyone';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Opciones de personalización';
-
-  @override
-  String get accessSlideAppearance => 'Apariencia';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Tecnologías de asistencia';
-
-  @override
-  String get accessSlideLanguageSupport => 'Compatibilidad lingüística';
-
-  @override
-  String get supportSlideTitle => 'Ayuda y asistencia';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'The official documentation covers many of the most common areas about $RELEASE. It\'s available both <a href=\"https://help.ubuntu.com\">online</a> and via the Help icon in the dock.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'At <a href=\"https://askubuntu.com\">Ask Ubuntu</a> you can ask questions and search an impressive collection of already answered questions. Support in your own language may be provided at your <a href=\"https://loco.ubuntu.com/teams\">Local Community Team</a>.';
-
-  @override
-  String get supportSlideResources => 'For pointers to other useful resources, please visit <a href=\"https://www.ubuntu.com/support/community-support\">Community support</a> or <a href=\"https://www.ubuntu.com/support\">Commercial support</a>.';
-
-  @override
-  String get includedSoftware => 'Programas incluidos';
-
-  @override
-  String get availableSoftware => 'Programas disponibles';
-
-  @override
-  String get supportedSoftware => 'Programas compatibles';
 }

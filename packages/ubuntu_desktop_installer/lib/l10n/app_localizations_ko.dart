@@ -40,9 +40,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get welcome => '환영합니다';
 
   @override
-  String get welcomeHeader => '언어를 선택하십시오:';
-
-  @override
   String get tryOrInstallPageTitle => '체험 또는 설치';
 
   @override
@@ -157,15 +154,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get selectWifiNetwork => 'Wi-Fi 네트워크에 연결';
 
   @override
-  String get hiddenWifiNetwork => '숨겨진 Wi-Fi 네트워크에 연결';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => '네트워크 이름';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => '네트워크 이름이 필요합니다';
-
-  @override
   String get noInternet => '지금은 인터넷에 연결하지 않기';
 
   @override
@@ -212,7 +200,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String onBatteryWarning(Object color) {
-    return '<font color=\"$color\">경고</font>: 컴퓨터에 전원이 연결되어 있지 않습니다.';
+    return '<font color=\"$color\">Warning</font>: The computer is not plugged in to a power source.';
   }
 
   @override
@@ -247,14 +235,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return '현재 컴퓨터에 $os(이)가 설치되어 있습니다. 어떻게 하시겠습니까?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'This computer currently has $os1 and $os2 on it. What would you like to do?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => '이 컴퓨터에는 여러 운영체제가 설치되어 있습니다. 어떻게 하시겠습니까?';
 
   @override
   String get installationTypeNoOSDetected => '현재 이 컴퓨터에서 발견된 운영체제가 없습니다. 어떻게 하시겠습니까?';
@@ -530,9 +510,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => '암호가 일치하지 않습니다';
 
   @override
-  String get whoAreYouPageShowPassword => '암호 보여주기';
-
-  @override
   String get writeChangesToDisk => '디스크에 변경사항 쓰기';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Windows로 다시 시작';
-
-  @override
-  String get whereAreYouPageTitle => '어디에 계시나요?';
-
-  @override
-  String get whereAreYouLocationLabel => '위치';
-
-  @override
-  String get whereAreYouTimezoneLabel => '시간대';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return '$RELEASE에 오신 것을 환영합니다';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return '빠르고 새로운 기능으로 가득한 최신 버전의 $RELEASE가 그 어느 때 보다 컴퓨팅을 쉽게 해 줄 것입니다. 여기에 몇 가지의 눈 여겨 볼 만한 새로운 기능이 있습니다...';
-  }
-
-  @override
-  String get softwareSlideTitle => '더 많은 소프트웨어 찾아보기';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return '더 이상 웹에서 새로운 소프트웨어를 검색하지 않아도 됩니다. Snap 스토어와 $RELEASE 소프트웨어 아카이브를 통해, 새 소프트웨어를 쉽게 찾아 설치할 수 있습니다. 찾고 있는 것을 입력하거나, 다른 사용자의 유용한 후기와 함께 그래픽 및 사진, 게임 및 생산성과 같은 카테고리를 탐색 해 보십시오.';
-  }
-
-  @override
-  String get musicSlideTitle => '항상 음악과 함께 하십시오';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE에는 메우 훌룡한 리듬박스 음악 연주기가 포함되어 있습니다. 고급 재생 옵션으로 완벽한 노래를 간단히 선택할 수 있습니다. 또한 CD와 휴대용 음악 재생기와 잘 작동해서 어디를 가든 항상 음악을 즐길 수 있습니다.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => '리듬박스 음악 연주기';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => '사진과 함께하는 즐거운 시간';
-
-  @override
-  String get photoSlideDescription => '샷웰은 당신의 전자기기를 위해 준비된 편리한 사진 관리자 입니다. 카메라나 휴대전화를 연결하여 사진을 옮긴 후, 쉽게 공유하고 안전하게 보관할 수 있습니다. 번뜩이는 아이디어가 있다면 우분투 소프트웨어에서 수많은 사진 프로그램을 찾을 수 있습니다.';
-
-  @override
-  String get photoSlideShotwell => '샷웰 사진 관리자';
-
-  @override
-  String get photoSlideGimp => '김프 이미지 편집기';
-
-  @override
-  String get photoSlideShotcut => '샷컷 동영상 편집기';
-
-  @override
-  String get webSlideTitle => '웹을 최대한 활용하십시오';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE에는 전 세계 수백만 명이 사용하는 웹 브라우저인 파이어폭스가 포함되어 있습니다. 또한 페이스북이나 지메일 같은 웹 응용 프로그램을 데스크탑에 고정하여 컴퓨터에 설치된 프로그램처럼 빠르게 접근할 수 있습니다.';
-  }
-
-  @override
-  String get webSlideFirefox => '파이어폭스 웹 브라우저';
-
-  @override
-  String get webSlideThunderbird => '썬더버드';
-
-  @override
-  String get webSlideChromium => '크로미움';
-
-  @override
-  String get officeSlideTitle => '사무에 필요한 모든 것';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice는 문서, 스프레드시트와 발표 자료를 만드는데 필요한 모든 것을 제공하는 자유로운 사무용 프로그램 입니다. Microsoft Office 파일과 호환되며, 필요한 모든 기능을 무료로 제공합니다.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => '누구나 사용할 수 있습니다';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => '사용자 정의 옵션';
-
-  @override
-  String get accessSlideAppearance => '모습';
-
-  @override
-  String get accessSlideAssistiveTechnologies => '보조 기술';
-
-  @override
-  String get accessSlideLanguageSupport => '언어 지원';
-
-  @override
-  String get supportSlideTitle => '도움말과 지원';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'The official documentation covers many of the most common areas about $RELEASE. It\'s available both <a href=\"https://help.ubuntu.com\">online</a> and via the Help icon in the dock.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'At <a href=\"https://askubuntu.com\">Ask Ubuntu</a> you can ask questions and search an impressive collection of already answered questions. Support in your own language may be provided at your <a href=\"https://loco.ubuntu.com/teams\">Local Community Team</a>.';
-
-  @override
-  String get supportSlideResources => 'For pointers to other useful resources, please visit <a href=\"https://www.ubuntu.com/support/community-support\">Community support</a> or <a href=\"https://www.ubuntu.com/support\">Commercial support</a>.';
-
-  @override
-  String get includedSoftware => '포함된 소프트웨어';
-
-  @override
-  String get availableSoftware => '사용할 수 있는 소프트웨어';
-
-  @override
-  String get supportedSoftware => '지원되는 소프트웨어';
 }

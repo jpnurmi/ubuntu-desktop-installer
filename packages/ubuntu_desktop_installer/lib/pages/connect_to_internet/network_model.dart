@@ -21,17 +21,7 @@ abstract class NetworkModel<T extends NetworkDevice>
   @override
   Future<void> init() async {
     setProperties(service.propertiesChanged);
-    enablePropertyListeners();
     updateDevices();
-  }
-
-  @override
-  @mustCallSuper
-  Future<void> cleanup() async {
-    for (final device in _devices) {
-      device.cleanup();
-    }
-    disablePropertyListeners();
   }
 
   @override
@@ -118,12 +108,6 @@ class NetworkDevice extends PropertyStreamNotifier {
     addPropertyListener('State', notifyListeners);
     addPropertyListener('Udi', _updateUdi);
   }
-
-  @mustCallSuper
-  void init() => enablePropertyListeners();
-
-  @mustCallSuper
-  void cleanup() => disablePropertyListeners();
 
   void _setDevice(NetworkManagerDevice device) {
     _device = device;

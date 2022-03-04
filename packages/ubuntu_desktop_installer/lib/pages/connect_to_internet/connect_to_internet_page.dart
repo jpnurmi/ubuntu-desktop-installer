@@ -8,8 +8,6 @@ import 'connect_model.dart';
 import 'connect_to_internet_model.dart';
 import 'ethernet_model.dart';
 import 'ethernet_view.dart';
-import 'hidden_wifi_model.dart';
-import 'hidden_wifi_view.dart';
 import 'wifi_model.dart';
 import 'wifi_view.dart';
 
@@ -26,7 +24,6 @@ class ConnectToInternetPage extends StatefulWidget {
         ChangeNotifierProvider(create: (_) => ConnectToInternetModel(service)),
         ChangeNotifierProvider(create: (_) => EthernetModel(service, udev)),
         ChangeNotifierProvider(create: (_) => WifiModel(service, udev)),
-        ChangeNotifierProvider(create: (_) => HiddenWifiModel(service, udev)),
         ChangeNotifierProvider(create: (_) => NoConnectModel()),
       ],
       child: const ConnectToInternetPage(),
@@ -45,7 +42,6 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
     final model = context.read<ConnectToInternetModel>();
     model.addConnectMode(context.read<EthernetModel>());
     model.addConnectMode(context.read<WifiModel>());
-    model.addConnectMode(context.read<HiddenWifiModel>());
     model.addConnectMode(context.read<NoConnectModel>());
     model.init().then((_) => model.selectConnectMode());
   }
@@ -77,13 +73,6 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
             onEnabled: () => model.selectConnectMode(ConnectMode.wifi),
             onSelected: (_, __) => model.selectConnectMode(ConnectMode.wifi),
           ),
-          HiddenWifiRadioButton(
-            value: model.connectMode,
-            onChanged: (_) => model.selectConnectMode(ConnectMode.hiddenWifi),
-          ),
-          HiddenWifiView(
-            expanded: model.connectMode == ConnectMode.hiddenWifi,
-          ),
           RadioButton<ConnectMode>(
             title: Text(lang.noInternet),
             value: ConnectMode.none,
@@ -105,13 +94,7 @@ class _ConnectToInternetPageState extends State<ConnectToInternetPage> {
           context,
           enabled: model.isEnabled && !model.isConnecting && model.isConnected,
           visible: !model.isEnabled || !model.canConnect,
-          onActivated: () async {
-            // suspend network activity when proceeding on the next page
-            model.cleanup();
-            await Wizard.of(context).next();
-            // resume network activity if/when returning back to this page
-            model.init();
-          },
+          onActivated: Wizard.of(context).next,
         ),
       ],
     );

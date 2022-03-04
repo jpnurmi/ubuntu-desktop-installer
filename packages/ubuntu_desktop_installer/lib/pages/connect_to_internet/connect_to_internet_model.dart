@@ -98,12 +98,6 @@ class ConnectToInternetModel extends SafeChangeNotifier
     }
   }
 
-  Future<void> cleanup() async {
-    for (final model in _connectModels.values) {
-      await model.cleanup();
-    }
-  }
-
   @override
   Future<void> enable() => _connectModel!.enable();
 

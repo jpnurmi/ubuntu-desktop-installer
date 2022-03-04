@@ -8,166 +8,166 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Ubuntu en WSL';
+  String get appTitle => 'Ubuntu WSL';
 
   @override
-  String get windowTitle => 'Ubuntu en WSL';
+  String get windowTitle => 'Ubuntu WSL';
 
   @override
-  String get exitButton => 'Salir';
+  String get exitButton => 'Exit';
 
   @override
-  String get finishButton => 'Finalizar';
+  String get finishButton => 'Finish';
 
   @override
-  String get saveButton => 'Guardar';
+  String get saveButton => 'Save';
 
   @override
-  String get setupButton => 'Puesta en marcha';
+  String get setupButton => 'Setup';
 
   @override
-  String get selectLanguageTitle => 'Seleccione su idioma';
+  String get selectLanguageTitle => 'Select your language';
 
   @override
-  String get profileSetupTitle => 'Preparación del perfil';
+  String get profileSetupTitle => 'Profile setup';
 
   @override
-  String get profileSetupHeader => 'Cree una cuenta de usuario UNIX predeterminada. Para obtener más información al respecto: <a href=\"https://aka.ms/wslusers\">aka.ms/wslusers</a>';
+  String get profileSetupHeader => 'Please create a default UNIX user account. For more information visit: <a href=\"https://aka.ms/wslusers\">https://aka.ms/wslusers</a>';
 
   @override
-  String get profileSetupRealnameLabel => 'Su nombre';
+  String get profileSetupRealnameLabel => 'Your name';
 
   @override
-  String get profileSetupRealnameRequired => 'Se necesita un nombre';
+  String get profileSetupRealnameRequired => 'A name is required';
 
   @override
-  String get profileSetupUsernameHint => 'Elija un nombre de usuario';
+  String get profileSetupUsernameHint => 'Pick a username';
 
   @override
-  String get profileSetupUsernameHelper => 'Este nombre de usuario no necesita coincidir con el de Windows.';
+  String get profileSetupUsernameHelper => 'The username does not need to match your windows username.';
 
   @override
-  String get profileSetupPasswordHint => 'Elija una contraseña';
+  String get profileSetupPasswordHint => 'Choose a password';
 
   @override
-  String get profileSetupConfirmPasswordHint => 'Confirme su contraseña';
+  String get profileSetupConfirmPasswordHint => 'Confirm your password';
 
   @override
-  String get profileSetupShowAdvancedOptions => 'Mostrar opciones avanzadas en la próxima página';
+  String get profileSetupShowAdvancedOptions => 'Show advanced options next page';
 
   @override
-  String get profileSetupPasswordMismatch => 'Las contraseñas no coinciden';
+  String get profileSetupPasswordMismatch => 'The passwords do not match';
 
   @override
-  String get profileSetupUsernameRequired => 'Se necesita un nombre de usuario';
+  String get profileSetupUsernameRequired => 'A username is required';
 
   @override
-  String get profileSetupUsernameInvalid => 'El nombre de usuario no es válido';
+  String get profileSetupUsernameInvalid => 'The username is invalid';
 
   @override
-  String get profileSetupPasswordRequired => 'Se necesita una contraseña';
+  String get profileSetupPasswordRequired => 'A password is required';
 
   @override
-  String get advancedSetupTitle => 'Configuración avanzada';
+  String get advancedSetupTitle => 'Advanced setup';
 
   @override
-  String get advancedSetupHeader => 'En esta página puede adaptar Ubuntu en WSL a sus necesidades.';
+  String get advancedSetupHeader => 'In this page, you can tweak Ubuntu WSL to your needs.';
 
   @override
-  String get advancedSetupMountLocationHint => 'Ubicación de montaje';
+  String get advancedSetupMountLocationHint => 'Mount location';
 
   @override
-  String get advancedSetupMountLocationHelper => 'Ubicación del montaje automático';
+  String get advancedSetupMountLocationHelper => 'Location for the automount';
 
   @override
-  String get advancedSetupMountLocationInvalid => 'La ubicación no es válida';
+  String get advancedSetupMountLocationInvalid => 'The location is invalid';
 
   @override
-  String get advancedSetupMountOptionHint => 'Opción de montaje';
+  String get advancedSetupMountOptionHint => 'Mount option';
 
   @override
-  String get advancedSetupMountOptionHelper => 'Opción de montaje transmitida para el montaje automático';
+  String get advancedSetupMountOptionHelper => 'Mount option passed for the automount';
 
   @override
-  String get advancedSetupHostGenerationTitle => 'Activar generación de anfitrión';
+  String get advancedSetupHostGenerationTitle => 'Enable Host Generation';
 
   @override
-  String get advancedSetupHostGenerationSubtitle => 'Seleccionar esta opción regenerará /etc/hosts en cada inicio.';
+  String get advancedSetupHostGenerationSubtitle => 'Selecting enables /etc/hosts re-generation at every start.';
 
   @override
-  String get advancedSetupResolvConfGenerationTitle => 'Activar generación de resolv.conf';
+  String get advancedSetupResolvConfGenerationTitle => 'Enable resolv.conf Generation';
 
   @override
-  String get advancedSetupResolvConfGenerationSubtitle => 'Seleccionar esta opción regenerará /etc/resolv.conf en cada inicio.';
+  String get advancedSetupResolvConfGenerationSubtitle => 'Selecting enables /etc/resolv.conf re-generation at every start.';
 
   @override
-  String get advancedSetupGUIIntegrationTitle => 'Integración de interfaces gráficas';
+  String get advancedSetupGUIIntegrationTitle => 'GUI Integration';
 
   @override
-  String get advancedSetupGUIIntegrationSubtitle => 'Seleccionar esta opción configurará automáticamente el entorno DISPLAY. Se necesita un servidor X de terceros.';
+  String get advancedSetupGUIIntegrationSubtitle => 'Selecting enables automatic DISPLAY environment set-up. Third-party X server required.';
 
   @override
-  String get configurationUITitle => 'Interfaz de configuración de Ubuntu en WSL (experimental)';
+  String get configurationUITitle => 'Ubuntu WSL configuration UI (experimental)';
 
   @override
-  String get configurationUIInteroperabilityHeader => 'Interoperatividad';
+  String get configurationUIInteroperabilityHeader => 'Interoperability';
 
   @override
-  String get configurationUILegacyGUIIntegrationTitle => 'Integración de interfaces gráficas heredadas';
+  String get configurationUILegacyGUIIntegrationTitle => 'Legacy GUI Integration';
 
   @override
-  String get configurationUILegacyGUIIntegrationSubtitle => 'Esta opción activa la integración de IGU heredada en Windows 10. Necesita un servidor X de terceros.';
+  String get configurationUILegacyGUIIntegrationSubtitle => 'This option enables the Legacy GUI Integration on Windows 10. Requires Third-party X server.';
 
   @override
-  String get configurationUILegacyAudioIntegrationTitle => 'Integración de audio heredado';
+  String get configurationUILegacyAudioIntegrationTitle => 'Legacy Audio Integration';
 
   @override
-  String get configurationUILegacyAudioIntegrationSubtitle => 'Esta opción activa la integración de audio heredado en Windows 10. Necesita PulseAudio para Windows.';
+  String get configurationUILegacyAudioIntegrationSubtitle => 'This option enables the Legacy Audio Integration on Windows 10. Requires PulseAudio for Windows installed.';
 
   @override
-  String get configurationUIAdvancedIPDetectionTitle => 'Detección avanzada de IP';
+  String get configurationUIAdvancedIPDetectionTitle => 'Advanced IP Detection';
 
   @override
-  String get configurationUIAdvancedIPDetectionSubtitle => 'Esta opción activa la detección avanzada de IP por dirección IPv4 de Windows, que es más fiable para su uso con WSL2.\nNecesita la interoperatividad de WSL.';
+  String get configurationUIAdvancedIPDetectionSubtitle => 'This option enables advanced detection of IP by Windows IPv4 Address which is more reliable to use with WSL2.\nRequires WSL interoperability enabled.';
 
   @override
-  String get configurationUIMessageOfTheDayHeader => 'Mensaje del día (MOTD)';
+  String get configurationUIMessageOfTheDayHeader => 'Message Of The Day (MOTD)';
 
   @override
-  String get configurationUIWSLNewsTitle => 'Noticias de WSL';
+  String get configurationUIWSLNewsTitle => 'WSL News';
 
   @override
-  String get configurationUIWSLNewsSubtitle => 'Esta opción le permite controlar las noticias que recibe por MOTD. Activarla le permitirá consultar el MOTD.';
+  String get configurationUIWSLNewsSubtitle => 'This option allows you to control your MOTD News. Toggling it on allows you to see the MOTD.';
 
   @override
-  String get configurationUIAutoMountHeader => 'Montaje automático';
+  String get configurationUIAutoMountHeader => 'Auto-Mount';
 
   @override
-  String get configurationUIAutoMountTitle => 'Activado';
+  String get configurationUIAutoMountTitle => 'Enabled';
 
   @override
-  String get configurationUIAutoMountSubtitle => 'Indica si la función de montaje automático está activada. Esta función le permite montar la unidad de Windows en WSL.';
+  String get configurationUIAutoMountSubtitle => 'Whether the Auto-Mount feature is enabled. This feature allows you to mount Windows drive in WSL.';
 
   @override
-  String get configurationUIMountFstabTitle => 'Montar /etc/fstab';
+  String get configurationUIMountFstabTitle => 'Mount /etc/fstab';
 
   @override
-  String get configurationUIMountFstabSubtitle => 'Indica si se montará /etc/fstab. El archivo de configuración /etc/fstab contiene???';
+  String get configurationUIMountFstabSubtitle => 'Whether /etc/fstab will be mounted. The configuration file /etc/fstab contains the???';
 
   @override
-  String get setupCompleteTitle => 'Puesta en marcha finalizada';
+  String get setupCompleteTitle => 'Setup complete';
 
   @override
   String setupCompleteHeader(Object user) {
-    return 'Hola, $user:\nHa finalizado con éxito la configuración.';
+    return 'Hi $user,\nYou have successfully completed the setup.';
   }
 
   @override
-  String get setupCompleteUpdate => 'Se sugiere ejecutar esta orden para actualizar Ubuntu a la versión más reciente:';
+  String get setupCompleteUpdate => 'It is suggested to run the following command to update Ubuntu to the latest version:';
 
   @override
-  String get setupCompleteManage => 'Puede emplear la orden «ubuntuwsl» incorporada para gestionar la configuración de WSL:';
+  String get setupCompleteManage => 'You can use the builtin ubuntuwsl command to manage your WSL settings:';
 
   @override
-  String get setupCompleteRestart => '* Todas las configuraciones surtirán efecto tras reiniciar Ubuntu.';
+  String get setupCompleteRestart => '* All settings will take effect after restarting Ubuntu.';
 }

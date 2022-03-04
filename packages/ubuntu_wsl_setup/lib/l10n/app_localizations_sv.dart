@@ -83,7 +83,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get advancedSetupMountLocationInvalid => 'Platsen är ogiltig';
 
   @override
-  String get advancedSetupMountOptionHint => 'Monteringsalternativ';
+  String get advancedSetupMountOptionHint => 'Mount option';
 
   @override
   String get advancedSetupMountOptionHelper => 'Mount option passed for the automount';

@@ -40,9 +40,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get welcome => 'ברוך בואך';
 
   @override
-  String get welcomeHeader => 'בחירת השפה שלך:';
-
-  @override
   String get tryOrInstallPageTitle => 'לנסות להתקין';
 
   @override
@@ -157,15 +154,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get selectWifiNetwork => 'התחברות לרשת אלחוטית';
 
   @override
-  String get hiddenWifiNetwork => 'התחברות לרשת אלחוטית נסתרת';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'שם הרשת';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'שם הרשת נחוץ';
-
-  @override
   String get noInternet => 'לא רוצה להתחבר לאינטרנט כרגע';
 
   @override
@@ -247,14 +235,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return 'במחשב זה מותקן כרגע $os. מה לעשות?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'במחשב זה מותקנות כרגע $os1 ו־$os2. מה לעשות?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'במחשב זה מותקנות מספר מערכות הפעלה. מה לעשות?';
 
   @override
   String get installationTypeNoOSDetected => 'לא זוהו מערכות הפעלה כלשהן במחשב זה. מה לעשות?';
@@ -530,9 +510,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'הסיסמאות סותרות זו את זו';
 
   @override
-  String get whoAreYouPageShowPassword => 'הצגת הסיסמה';
-
-  @override
   String get writeChangesToDisk => 'כתיבת השינויים לכונן';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'הפעלה מחדש אל Windows';
-
-  @override
-  String get whereAreYouPageTitle => 'עם מי יש לי העונג?';
-
-  @override
-  String get whereAreYouLocationLabel => 'מיקום';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'אזור זמן';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'ברוך בואך אל $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'עם מהירות משופרת ומגוון יכולות, המהדורה העדכנית של $RELEASE מקלה על השימוש במחשב יותר מאי פעם. בהמשך מופיעים מגוון דברים מרתקים ששווה לצפות להם…';
-  }
-
-  @override
-  String get softwareSlideTitle => 'מגוון רחב של תוכנות';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'לא צריך עוד לחפש תוכנות חדשות באינטרנט. הגישה לחנות Snap ולארכיון התוכנות של $RELEASE מאפשרת לאתר ולהתקין יישומים חדשים בקלות. יש רק להקליד את מבוקשך או לחקור קטגוריות כגון גרפיקה וצילום, משחקים והפקה, לצד סקירות מועילות של משתמשים אחרים.';
-  }
-
-  @override
-  String get musicSlideTitle => 'המוזיקה שלך הולכת איתך';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return 'כחלק מההיצע של $RELEASE ניתן למצוא את נגן המוזיקה Rhythmbox. אפשרויות הנגינה המתקדמות שלו מאפשרות לך להכין רשימות עם השירים הכי מושלמים שיש. הוא עובד נפלא עם תקליטורים ונגני מוזיקה ניידים, כך שכל המוזיקה שלך יכולה ללוות אותך לכל מקום.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'נגן המוזיקה Rhythmbox';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'להשתולל עם תמונות';
-
-  @override
-  String get photoSlideDescription => 'Shotwell הוא מנהל תמונות שימושי עם הכנה לגאדג׳טים שלך. אפשר לחבר מצלמה או טלפון כדי להעביר את התמונות שלך, לאחר מכן, שיתופן וההגנה עליהן הן די פשוטות. כשתוקפת אותך היצירתיות אפשר למצוא יישומי תמונות נוספים בחנות התוכנה של אובונטו.';
-
-  @override
-  String get photoSlideShotwell => 'מנהל התמונות Shotwell';
-
-  @override
-  String get photoSlideGimp => 'עורך התמונות GIMP';
-
-  @override
-  String get photoSlideShotcut => 'עורך הווידאו Shotcut';
-
-  @override
-  String get webSlideTitle => 'להפיק מהאינטרנט כמה שיותר';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return 'למערכת $RELEASE מצורף Firefox, הדפדפן שמשמש מיליונים ברחבי העולם. וניתן לנעוץ יישומים שמשמשים אותך באופן תדיר (כגון Facebook או Gmail, למשל) לשולחן העבודה לגישה מהירה יותר, כמו כל יישום אחר במחשב שלך.';
-  }
-
-  @override
-  String get webSlideFirefox => 'דפדפן האינטרנט Firefox';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'כל מה שנחוץ למשרד';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice היא חבילת כלים משרדיים שכוללת בתוכה את כל מה שדרוש כדי ליצור מסמכים, גיליונות נתונים ומצגות. תואם לתצורות הקבצים של Microsoft Office, היא נותנת לך את כל מה שנחוץ לך, בלי שורת המחיר.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'גישה לכולם';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'בלבה של הפילוסופיה שמאחורי $RELEASE קיימת האמונה שמחשוב מיועד לכל אחד ואחת. עם כלי נגישות מתקדמים, אפשרויות להחלפת השפה, ערכות צבעים וגדלי כתב מקל $RELEASE על השימוש במחשב - ללא תלות בזהות או במיקום שלך.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'אפשרויות התאמה';
-
-  @override
-  String get accessSlideAppearance => 'מראה';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'טכנולוגיות מסייעות';
-
-  @override
-  String get accessSlideLanguageSupport => 'תמיכה בשפות';
-
-  @override
-  String get supportSlideTitle => 'עזרה ותמיכה';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'התיעוד הרשמי נותן מענה נרחב למגוון תחומים שקשורים ב־$RELEASE. הוא זמין גם באופן <a href=\"https://help.ubuntu.com\">מקוון</a> וגם דרך סמל העזרה במעגן.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'ב־<a href=\"https://askubuntu.com\">Ask Ubuntu</a> אפשר לשאול שאלות ולחפש במאגר מרשים של שאלות שנענו. יתכן ש<a href=\"https://loco.ubuntu.com/teams\">צוות הקהילה המקומית</a> שלך מספק תמיכה בשפה שנוחה לך.';
-
-  @override
-  String get supportSlideResources => 'לקבלת הכוונות למשאבים שימושיים נפוצים, מומלץ לפנות ל<a href=\"https://www.ubuntu.com/support/community-support\">תמיכה הקהילתית</a> או ל<a href=\"https://www.ubuntu.com/support\">תמיכה המסחרית</a>.';
-
-  @override
-  String get includedSoftware => 'תוכנות מצורפות';
-
-  @override
-  String get availableSoftware => 'תוכנות זמינות';
-
-  @override
-  String get supportedSoftware => 'תוכנות נתמכות';
 }

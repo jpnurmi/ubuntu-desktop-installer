@@ -6,7 +6,6 @@ import 'package:ubuntu_wizard/constants.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
 import '../../services.dart';
-import '../../slides.dart';
 import 'installation_slides_model.dart';
 
 /// Slideshow during installation.
@@ -45,7 +44,6 @@ class _InstallationSlidesPageState extends State<InstallationSlidesPage> {
     model.init();
 
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (!mounted) return;
       model.precacheSlideImages(context);
     });
   }
@@ -59,10 +57,40 @@ class _InstallationSlidesPageState extends State<InstallationSlidesPage> {
           Stack(
             children: <Widget>[
               SlideShow(
-                interval: const Duration(hours: 1),
-                slides: SlidesContext.of(context)
-                    .map((slide) => _SlidePage(slide: slide))
-                    .toList(),
+                slides: <Widget>[
+                  _Slide(
+                    image: model.slideImage('welcome'),
+                    title: 'Welcome to Ubuntu',
+                  ),
+                  _Slide(
+                    image: model.slideImage('usc'),
+                    title: 'Find even more software',
+                  ),
+                  _Slide(
+                    image: model.slideImage('music'),
+                    title: 'Take your music with you',
+                  ),
+                  _Slide(
+                    image: model.slideImage('photos'),
+                    title: 'Have fun with your photos',
+                  ),
+                  _Slide(
+                    image: model.slideImage('browse'),
+                    title: 'Make the most of the web',
+                  ),
+                  _Slide(
+                    image: model.slideImage('office'),
+                    title: 'Everything you need for the office',
+                  ),
+                  _Slide(
+                    image: model.slideImage('accessibility'),
+                    title: 'Access for everyone',
+                  ),
+                  _Slide(
+                    image: model.slideImage('gethelp'),
+                    title: 'Help and support',
+                  ),
+                ],
               ),
               Positioned(
                 left: kContentSpacing,
@@ -89,13 +117,15 @@ class _InstallationSlidesPageState extends State<InstallationSlidesPage> {
   }
 }
 
-class _SlidePage extends StatelessWidget {
-  const _SlidePage({
+class _Slide extends StatelessWidget {
+  const _Slide({
     Key? key,
-    required this.slide,
+    required this.image,
+    required this.title,
   }) : super(key: key);
 
-  final Slide slide;
+  final ImageProvider image;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -103,10 +133,13 @@ class _SlidePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         AppBar(
-          title: slide.title(context),
+          title: Text(title),
           automaticallyImplyLeading: false,
         ),
-        slide.body(context),
+        Image(
+          image: image,
+          fit: BoxFit.cover,
+        ),
       ],
     );
   }

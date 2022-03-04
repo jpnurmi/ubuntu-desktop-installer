@@ -17,7 +17,7 @@ void main() async {
   final methodChannel = MethodChannel('ubuntu_wizard');
 
   setUp(() {
-    methodChannel.setMockMethodCallHandler((_) async {});
+    methodChannel.setMockMethodCallHandler((_) {});
   });
 
   test('client status query loop', () async {
@@ -115,7 +115,7 @@ void main() async {
 
   test('reboot', () async {
     var windowClosed = false;
-    methodChannel.setMockMethodCallHandler((call) async {
+    methodChannel.setMockMethodCallHandler((call) {
       expect(call.method, equals('closeWindow'));
       windowClosed = true;
     });
@@ -131,7 +131,7 @@ void main() async {
 
   test('non-closable window', () async {
     final windowClosable = StreamController<bool>.broadcast();
-    methodChannel.setMockMethodCallHandler((call) async {
+    methodChannel.setMockMethodCallHandler((call) {
       expect(call.method, equals('setWindowClosable'));
       windowClosable.add(call.arguments[0] as bool);
     });

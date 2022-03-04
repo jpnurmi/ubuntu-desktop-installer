@@ -19,5 +19,4 @@ abstract class Routes {
   static const chooseSecurityKey = '/choosesecuritykey';
   static const installationType = '/installationtype';
   static const selectGuidedStorage = '/selectguidedstorage';
-  static const whereAreYou = '/whereareyou';
 }

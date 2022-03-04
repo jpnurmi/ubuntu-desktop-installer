@@ -93,7 +93,7 @@ class _SelectGuidedStoragePageState extends State<SelectGuidedStoragePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SvgPicture.asset(
-                    'assets/select_guided_storage/ubuntu.svg',
+                    'assets/cof_orange_hex.svg',
                     width: 48,
                     height: 48,
                   ),

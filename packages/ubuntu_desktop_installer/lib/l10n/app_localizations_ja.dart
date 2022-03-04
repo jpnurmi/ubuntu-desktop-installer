@@ -8,18 +8,18 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'Ubuntuデスクトップインストーラー';
+  String get appTitle => 'Ubuntu Desktop Installer';
 
   @override
   String windowTitle(Object RELEASE) {
-    return '$RELEASE をインストール';
+    return 'Install $RELEASE';
   }
 
   @override
-  String get cancelButtonText => 'キャンセル';
+  String get cancelButtonText => 'Cancel';
 
   @override
-  String get changeButtonText => '変更';
+  String get changeButtonText => 'Change';
 
   @override
   String get okButtonText => 'OK';
@@ -28,233 +28,213 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noButtonText => 'No';
 
   @override
-  String get restartButtonText => '再起動';
+  String get restartButtonText => 'Restart';
 
   @override
-  String get revertButtonText => '元に戻す';
+  String get revertButtonText => 'Revert';
 
   @override
-  String get yesButtonText => 'はい';
+  String get yesButtonText => 'Yes';
 
   @override
-  String get welcome => 'ようこそ';
+  String get welcome => 'Welcome';
 
   @override
-  String get welcomeHeader => '言語の選択:';
+  String get tryOrInstallPageTitle => 'Try or install';
 
   @override
-  String get tryOrInstallPageTitle => '試すまたはインストール';
+  String get repairInstallation => 'Repair installation';
 
   @override
-  String get repairInstallation => 'インストールの修復';
-
-  @override
-  String get repairInstallationDescription => '修復は設定や文書はそのままにしてすべてのソフトウェアを再インストールします。';
+  String get repairInstallationDescription => 'Repairing will reinstall all installed software without touching documents or settings.';
 
   @override
   String tryUbuntu(Object RELEASE) {
-    return '$RELEASE を試す';
+    return 'Try $RELEASE';
   }
 
   @override
   String tryUbuntuDescription(Object RELEASE) {
-    return 'このPCには何の変変更も加えずに $RELEASE を試します。';
+    return 'You can try $RELEASE without making any changes to your computer.';
   }
 
   @override
   String installUbuntu(Object RELEASE) {
-    return '$RELEASE をインストール';
+    return 'Install $RELEASE';
   }
 
   @override
   String installUbuntuDescription(Object RELEASE) {
-    return '現在のOSと並行して（または代わりに） $RELEASE をインストールします。多少時間がかかります。';
+    return 'Install $RELEASE alongside (or instead of) your current operating system. This shouldn\'t take too long.';
   }
 
   @override
   String releaseNotesLabel(Object url) {
-    return 'お望みならば <a href=\"$url\">リリースノート</a>をご覧ください。';
+    return 'You may wish to read the <a href=\"$url\">release notes</a>.';
   }
 
   @override
-  String get turnOffRST => 'RSTを無効にする';
+  String get turnOffRST => 'Turn off RST';
 
   @override
-  String get turnOffRSTDescription => 'このコンピューターはIntel RST（ラピッド・ストレージ・テクノロジー）を使用しています。Ubuntuをインストールする前にWindowsでRSTを無効にする必要があります。';
+  String get turnOffRSTDescription => 'This computer uses Intel RST (Rapid Storage Technology). You need to turn off RST in Windows before installing Ubuntu.';
 
   @override
   String instructionsForRST(Object url) {
-    return '<a href=\"https://$url\">$url</a> をスマートフォンや他のデバイスで開いて操作方法を確認してください';
+    return 'For instructions, open this page on a phone or other device: <a href=\"https://$url\">$url</a>';
   }
 
   @override
-  String get keyboardLayoutPageTitle => 'キーボードレイアウト';
+  String get keyboardLayoutPageTitle => 'Keyboard layout';
 
   @override
-  String get chooseYourKeyboardLayout => 'キーボードレイアウトの選択:';
+  String get chooseYourKeyboardLayout => 'Choose your keyboard layout:';
 
   @override
-  String get typeToTest => 'キーボード入力をここで試してください';
+  String get typeToTest => 'Type here to test your keyboard';
 
   @override
-  String get detectLayout => 'キーボードレイアウトを検出';
+  String get detectLayout => 'Detect Keyboard Layout';
 
   @override
-  String get pressOneKey => '以下のキーのうち1つを押してください:';
+  String get pressOneKey => 'Please press one of the following keys:';
 
   @override
-  String get isKeyPresent => '以下のキーはこのキーボードにありますか？';
+  String get isKeyPresent => 'Is the following key present on your keyboard?';
 
   @override
-  String get configureSecureBootTitle => 'セキュアブートを設定';
+  String get configureSecureBootTitle => 'Configure Secure Boot';
 
   @override
-  String get configureSecureBootDescription => 'サードパーティのドライバーソフトウェアのインストールを選択しました。セキュアブートの無効化が必要です。\nここでセキュリティキーを設定した上で、システム再起動時にそのキーを入力してください。';
+  String get configureSecureBootDescription => 'You\'ve chosen to install third-party driver software. This requires turning off Secure Boot.\nTo do this, you need to choose a security key now, and enter it when the system restarts.';
 
   @override
-  String get configureSecureBootOption => 'セキュアブートを設定';
+  String get configureSecureBootOption => 'Configure Secure Boot';
 
   @override
-  String get chooseSecurityKey => 'セキュリティキーを選択';
+  String get chooseSecurityKey => 'Choose a security key';
 
   @override
-  String get confirmSecurityKey => 'セキュリティキーを確認';
+  String get confirmSecurityKey => 'Confirm the security key';
 
   @override
-  String get dontInstallDriverSoftwareNow => '今はドライバーソフトウェアをインストールしない';
+  String get dontInstallDriverSoftwareNow => 'Don\'t install the driver software for now';
 
   @override
-  String get dontInstallDriverSoftwareNowDescription => '「ソフトウェアとアップデート」を使用し、あとからインストーロできます。';
+  String get dontInstallDriverSoftwareNowDescription => 'You can install it later from Software & Updates.';
 
   @override
-  String get configureSecureBootSecurityKeyRequired => 'セキュリティキーが必要です';
+  String get configureSecureBootSecurityKeyRequired => 'Security key is required';
 
   @override
-  String get secureBootSecurityKeysDontMatch => 'セキュリティキーが一致しません';
+  String get secureBootSecurityKeysDontMatch => 'Security keys do not match';
 
   @override
-  String get connectToInternetPageTitle => 'インターネットに接続';
+  String get connectToInternetPageTitle => 'Connect to internet';
 
   @override
-  String get connectToInternetDescription => 'このコンピューターをインターネットに接続すると、必要な追加ソフトウェアのインストールとタイムゾーン選択の手助けになります。\n\nイーサネットケーブルを接続するか、Wi-Fiネットワークを選択してください';
+  String get connectToInternetDescription => 'Connecting this computer to the internet will help Ubuntu install any extra software needed and help choose your time zone.\n\nConnect by ethernet cable, or choose a Wi-Fi network';
 
   @override
-  String get useWiredConnection => '有線接続を使用';
+  String get useWiredConnection => 'Use wired connection';
 
   @override
-  String get noWiredConnection => '有線接続されていません';
+  String get noWiredConnection => 'No wired connection detected';
 
   @override
-  String get wiredDisabled => '有線接続がオフになっています';
+  String get wiredDisabled => 'Wired connection is turned off';
 
   @override
-  String get wiredMustBeEnabled => 'このコンピューターでイーサネットを使用するには、有線接続を有効にする必要があります';
+  String get wiredMustBeEnabled => 'To use ethernet on this computer, a wired connection must be enabled';
 
   @override
-  String get enableWired => '有線接続有効';
+  String get enableWired => 'Enable wired';
 
   @override
-  String get selectWifiNetwork => 'Wi-Fiネットワークに接続';
+  String get selectWifiNetwork => 'Connect to a Wi-Fi network';
 
   @override
-  String get hiddenWifiNetwork => '隠しWi-Fiネットワークに接続';
+  String get noInternet => 'I don\'t want to connect to the internet just now';
 
   @override
-  String get hiddenWifiNetworkNameLabel => 'ネットワーク名';
+  String get wirelessNetworkingDisabled => 'Wireless networking disabled';
 
   @override
-  String get hiddenWifiNetworkNameRequired => 'ネットワーク名が必要です';
+  String get noWifiDevicesDetected => 'No Wi-Fi devices detected';
 
   @override
-  String get noInternet => '今すぐにはインターネットに接続しない';
+  String get wifiMustBeEnabled => 'To use Wi-Fi on this computer, wireless networking must be enabled';
 
   @override
-  String get wirelessNetworkingDisabled => '無線ネットワークが無効';
+  String get enableWifi => 'Enable Wi-Fi';
 
   @override
-  String get noWifiDevicesDetected => 'Wi-Fiデバイスが見つかりません';
+  String get connectButtonText => 'Connect';
 
   @override
-  String get wifiMustBeEnabled => 'このコンピューターでWi-Fiを使用するには。無線ネットワークを有効にする必要があります';
+  String get updatesOtherSoftwarePageTitle => 'Updates and other software';
 
   @override
-  String get enableWifi => 'Wi-Fiが有効';
+  String get updatesOtherSoftwarePageDescription => 'What apps would you like to install to start with?';
 
   @override
-  String get connectButtonText => '接続';
+  String get normalInstallationTitle => 'Normal installation';
 
   @override
-  String get updatesOtherSoftwarePageTitle => 'アップデートと追加のソフトウェア';
+  String get normalInstallationSubtitle => 'Web browser, utilities, office software, games and media players.';
 
   @override
-  String get updatesOtherSoftwarePageDescription => 'どのアプリを開始時に使用しますか？';
+  String get minimalInstallationTitle => 'Minimal installation';
 
   @override
-  String get normalInstallationTitle => '通常のインストール';
+  String get minimalInstallationSubtitle => 'Web browser and basic utilities.';
 
   @override
-  String get normalInstallationSubtitle => 'Webブラウザー、ユーティリティ、オフィスソフトウェア、ゲームとメディアプレイヤー。';
+  String get otherOptions => 'Other options';
 
   @override
-  String get minimalInstallationTitle => '最小インストール';
+  String get installThirdPartyTitle => 'Install third-party software for graphics and Wi-Fi hardware, as well as additional media formats';
 
   @override
-  String get minimalInstallationSubtitle => 'Webブラウザーと基本のユーティリティ。';
-
-  @override
-  String get otherOptions => 'その他のオプション';
-
-  @override
-  String get installThirdPartyTitle => 'グラフィックスとWi-Fiハードウェアと追加メディアフォーマットのサードパーティ製ソフトウェアをインストールする';
-
-  @override
-  String get installThirdPartySubtitle => 'このソフトウェアはそのドキュメントに含まれるライセンス規約に基づきます。いくつかはプロプライエタリです。';
+  String get installThirdPartySubtitle => 'This software is subject to license terms included with its documentation. Some are proprietary.';
 
   @override
   String onBatteryWarning(Object color) {
-    return '<font color=\"$color\">注意</font>: このコンピューターは電源に接続されていません。';
+    return '<font color=\"$color\">Warning</font>: The computer is not plugged in to a power source.';
   }
 
   @override
-  String get chooseSecurityKeyTitle => 'セキュリティキーを選択';
+  String get chooseSecurityKeyTitle => 'Choose a security key';
 
   @override
   String chooseSecurityKeyHeader(Object RELEASE) {
-    return 'ディスク暗号化はあなたがコンピュータを紛失した際、あなたのファイルを守ります。コンピュータを起動するたびにセキュリティキーを入力する必要があります。\n\n${RELEASE} 以外のファイルはどれも暗号化されません。';
+    return 'Disk encryption protects your files in case you lose your computer. It requires you to enter a security key each time the computer starts up.\n\nAny files outside of $RELEASE will not be encrypted.';
   }
 
   @override
-  String get chooseSecurityKeyHint => 'セキュリティキーを選択';
+  String get chooseSecurityKeyHint => 'Choose a security key';
 
   @override
-  String get chooseSecurityKeyConfirmHint => 'セキュリティキーを確認';
+  String get chooseSecurityKeyConfirmHint => 'Confirm the security key';
 
   @override
-  String get chooseSecurityKeyRequired => 'セキュリティキーが必要です';
+  String get chooseSecurityKeyRequired => 'A security key is required';
 
   @override
-  String get chooseSecurityKeyMismatch => 'セキュリティキーが一致しません';
+  String get chooseSecurityKeyMismatch => 'The security keys do not match';
 
   @override
   String chooseSecurityKeyWarning(Object color) {
-    return '<font color=\"$color\">注意</font>: このセキュリティキーを紛失するとすべてのデータが失われます。必要に応じてキーを書き留めておき、他の安全な場所で保管してください。';
+    return '<font color=\"$color\">Warning</font>: If you lose this security key, all data will be lost. If you need to, write down your key and keep it in a safe place elsewhere.';
   }
 
   @override
-  String get installationTypeTitle => 'インストールの種類';
+  String get installationTypeTitle => 'Installation type';
 
   @override
   String installationTypeOSDetected(Object os) {
     return 'This computer currently has $os on it. What would you like to do?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'This computer currently has $os1 and $os2 on it. What would you like to do?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'This computer currently has multiple operating systems on it. What would you like to do?';
 
   @override
   String get installationTypeNoOSDetected => 'This computer currently has no detected operating systems. What would you like to do?';
@@ -530,9 +510,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'The passwords do not match';
 
   @override
-  String get whoAreYouPageShowPassword => 'Show password';
-
-  @override
   String get writeChangesToDisk => 'Write changes to disk';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Restart Into Windows';
-
-  @override
-  String get whereAreYouPageTitle => 'Where are you?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Location';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Timezone';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'Welcome to $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Fast and full of new features, the latest version of $RELEASE makes computing easier than ever. Here are just a few cool new things to look out for...';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Find even more software';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Say goodbye to searching the web for new software. With access to the Snap Store and the $RELEASE software archive, you can find and install new apps with ease. Just type in what you\'re looking for, or explore categories such as Graphics & Photography, Games and Productivity, alongside helpful reviews from other users.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Take your music with you';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE comes with the amazing Rhythmbox music player. With advanced playback options, it\'s simple to queue up the perfect songs. And it works great with CDs and portable music players, so you can enjoy all your music wherever you go.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Rhythmbox Music Player';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Have fun with your photos';
-
-  @override
-  String get photoSlideDescription => 'Shotwell is a handy photo manager that is ready for your gadgets. Connect a camera or a phone to transfer your photos, then it\'s easy to share them and keep them safe. And if you\'re feeling creative, you can find many other photo apps in Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Shotwell Photo Manager';
-
-  @override
-  String get photoSlideGimp => 'GIMP Image Editor';
-
-  @override
-  String get photoSlideShotcut => 'Shotcut Video Editor';
-
-  @override
-  String get webSlideTitle => 'Make the most of the web';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE includes Firefox, the web browser used by millions of people around the world. And web applications you use frequently (like Facebook or Gmail, for example) can be pinned to your desktop for faster access, just like apps on your computer.';
-  }
-
-  @override
-  String get webSlideFirefox => 'Firefox web browser';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Everything you need for the office';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice is a free office suite packed with everything you need to create documents, spreadsheets and presentations. Compatible with Microsoft Office file formats, it gives you all the features you need, without the price tag.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Access for everyone';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Customization options';
-
-  @override
-  String get accessSlideAppearance => 'Appearance';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Assistive technologies';
-
-  @override
-  String get accessSlideLanguageSupport => 'Language support';
-
-  @override
-  String get supportSlideTitle => 'Help and support';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'The official documentation covers many of the most common areas about $RELEASE. It\'s available both <a href=\"https://help.ubuntu.com\">online</a> and via the Help icon in the dock.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'At <a href=\"https://askubuntu.com\">Ask Ubuntu</a> you can ask questions and search an impressive collection of already answered questions. Support in your own language may be provided at your <a href=\"https://loco.ubuntu.com/teams\">Local Community Team</a>.';
-
-  @override
-  String get supportSlideResources => 'For pointers to other useful resources, please visit <a href=\"https://www.ubuntu.com/support/community-support\">Community support</a> or <a href=\"https://www.ubuntu.com/support\">Commercial support</a>.';
-
-  @override
-  String get includedSoftware => 'Included software';
-
-  @override
-  String get availableSoftware => 'Available software';
-
-  @override
-  String get supportedSoftware => 'Supported software';
 }

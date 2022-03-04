@@ -9,7 +9,6 @@ environment:
 dependencies:
   collection: ^1.15.0
   dbus: ^0.6.3
-  dio: ^4.0.3
   file: ^6.1.0
   filesize: ^2.0.0
   flutter:
@@ -24,7 +23,7 @@ dependencies:
   glibc:
     path: ../glibc
   intl: ^0.17.0
-  nm: ^0.4.3
+  nm: ^0.4.1
   provider: ^6.0.0
   safe_change_notifier: ^0.1.0
   scroll_to_index: ^2.0.0
@@ -47,10 +46,9 @@ dependencies:
   udev:
     path: ../udev
   upower: ^0.6.1
-  xml: ^5.3.1
+  url_launcher: ^6.0.3
   yaru: ^0.2.0
   yaru_icons: ^0.1.2
-  yaru_widgets: 1.0.2
 
 dev_dependencies:
   build_runner: ^2.0.5
@@ -66,13 +64,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/choose_your_look/
-    - assets/installation_complete/
-    - assets/installation_slides/
-    - assets/installation_slides/icons/
-    - assets/installation_slides/screenshots/
-    - assets/select_guided_storage/
-    - assets/try_or_install/
-    - assets/turn_off_bitlocker/
-    - assets/turn_off_rst/
-    - assets/welcome/
+    - assets/slides/

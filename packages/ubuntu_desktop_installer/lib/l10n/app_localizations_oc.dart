@@ -40,9 +40,6 @@ class AppLocalizationsOc extends AppLocalizations {
   String get welcome => 'La benvenguda';
 
   @override
-  String get welcomeHeader => 'Causissètz vòstra lenga :';
-
-  @override
   String get tryOrInstallPageTitle => 'Ensajar o installar';
 
   @override
@@ -157,15 +154,6 @@ class AppLocalizationsOc extends AppLocalizations {
   String get selectWifiNetwork => 'Se connectar a un ret Wifi';
 
   @override
-  String get hiddenWifiNetwork => 'Se connectar a una ret Wi-Fi amagada';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'Nom de la ret';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'Un nom de ret es requerit';
-
-  @override
   String get noInternet => 'Vòli pas me connectar a internet pel moment';
 
   @override
@@ -212,7 +200,7 @@ class AppLocalizationsOc extends AppLocalizations {
 
   @override
   String onBatteryWarning(Object color) {
-    return '<font color=\"$color\">Avertiment </font>: l’ordenador es pas brancat a una font d’alimentacion.';
+    return '<font color=\"$color\">Warning</font>: The computer is not plugged in to a power source.';
   }
 
   @override
@@ -247,14 +235,6 @@ class AppLocalizationsOc extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return 'Aqueste ordenador possedís actualament $os. De qué volètz far ?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'This computer currently has $os1 and $os2 on it. What would you like to do?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'This computer currently has multiple operating systems on it. What would you like to do?';
 
   @override
   String get installationTypeNoOSDetected => 'Aqueste ordenador possedís pas cap de sistèma operatiu detectat actualament. De qué volètz far ?';
@@ -530,9 +510,6 @@ class AppLocalizationsOc extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'Los senhals correspondon pas';
 
   @override
-  String get whoAreYouPageShowPassword => 'Show password';
-
-  @override
   String get writeChangesToDisk => 'Aplicar las modificacions suls disques';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsOc extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Reaviar jos Windows';
-
-  @override
-  String get whereAreYouPageTitle => 'Ont sètz ?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Localizacion';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Fus orari';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'La benvenguda a $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Fast and full of new features, the latest version of $RELEASE makes computing easier than ever. Here are just a few cool new things to look out for...';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Obtenètz mai de logicials';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Say goodbye to searching the web for new software. With access to the Snap Store and the $RELEASE software archive, you can find and install new apps with ease. Just type in what you\'re looking for, or explore categories such as Graphics & Photography, Games and Productivity, alongside helpful reviews from other users.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Emportatz vòstra musica amb vos';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE comes with the amazing Rhythmbox music player. With advanced playback options, it\'s simple to queue up the perfect songs. And it works great with CDs and portable music players, so you can enjoy all your music wherever you go.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Lector de musica Rhythmbox';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Divertissètz vos amb vòstras fòtos';
-
-  @override
-  String get photoSlideDescription => 'Shotwell is a handy photo manager that is ready for your gadgets. Connect a camera or a phone to transfer your photos, then it\'s easy to share them and keep them safe. And if you\'re feeling creative, you can find many other photo apps in Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Gestionari de fòto Shotwell';
-
-  @override
-  String get photoSlideGimp => 'Editor d’imatge GIMP';
-
-  @override
-  String get photoSlideShotcut => 'Editor de vidèo Shotcut';
-
-  @override
-  String get webSlideTitle => 'Trapatz çò melhor del Web';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE includes Firefox, the web browser used by millions of people around the world. And web applications you use frequently (like Facebook or Gmail, for example) can be pinned to your desktop for faster access, just like apps on your computer.';
-  }
-
-  @override
-  String get webSlideFirefox => 'Navegador web Firefox';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Tot çò que vos fa mestièr pel burèu';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice is a free office suite packed with everything you need to create documents, spreadsheets and presentations. Compatible with Microsoft Office file formats, it gives you all the features you need, without the price tag.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Accès per totes';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Opcions de personalizacion';
-
-  @override
-  String get accessSlideAppearance => 'Aparéncia';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Accessibilitat';
-
-  @override
-  String get accessSlideLanguageSupport => 'Presa en carga de las lengas';
-
-  @override
-  String get supportSlideTitle => 'Ajuda e assisténcia';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'The official documentation covers many of the most common areas about $RELEASE. It\'s available both <a href=\"https://help.ubuntu.com\">online</a> and via the Help icon in the dock.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'At <a href=\"https://askubuntu.com\">Ask Ubuntu</a> you can ask questions and search an impressive collection of already answered questions. Support in your own language may be provided at your <a href=\"https://loco.ubuntu.com/teams\">Local Community Team</a>.';
-
-  @override
-  String get supportSlideResources => 'For pointers to other useful resources, please visit <a href=\"https://www.ubuntu.com/support/community-support\">Community support</a> or <a href=\"https://www.ubuntu.com/support\">Commercial support</a>.';
-
-  @override
-  String get includedSoftware => 'Logicials incluses';
-
-  @override
-  String get availableSoftware => 'Logicials disponibles';
-
-  @override
-  String get supportedSoftware => 'Logicials preses en carga';
 }

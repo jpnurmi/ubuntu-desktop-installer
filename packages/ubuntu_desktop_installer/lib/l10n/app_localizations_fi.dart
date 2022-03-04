@@ -40,9 +40,6 @@ class AppLocalizationsFi extends AppLocalizations {
   String get welcome => 'Tervetuloa';
 
   @override
-  String get welcomeHeader => 'Valitse kieli:';
-
-  @override
   String get tryOrInstallPageTitle => 'Kokeile tai asenna';
 
   @override
@@ -157,15 +154,6 @@ class AppLocalizationsFi extends AppLocalizations {
   String get selectWifiNetwork => 'Yhdistä Wi-Fi-verkkoon';
 
   @override
-  String get hiddenWifiNetwork => 'Yhdistä piilotettuun wifi-verkkoon';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'Verkon nimi';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'Verkon nimi vaaditaan';
-
-  @override
   String get noInternet => 'En halua muodostaa yhteyttä internetiin juuri nyt';
 
   @override
@@ -212,7 +200,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String onBatteryWarning(Object color) {
-    return '<font color=\"$color\">Varoitus</font>: Tietokonetta ei ole liitetty virtalähteeseen.';
+    return '<font color=\"$color\">Warning</font>: The computer is not plugged in to a power source.';
   }
 
   @override
@@ -247,14 +235,6 @@ class AppLocalizationsFi extends AppLocalizations {
   String installationTypeOSDetected(Object os) {
     return 'Tässä tietokoneessa on tällä hetkellä asennettuna käyttöjärjestelmä \"$os\". Mitä haluat tehdä?';
   }
-
-  @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'Tässä tietokoneessa on jo käyttöjärjestelmät $os1 ja $os2. Mitä haluat tehdä?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'Tässä tietokoneessa on jo useita käyttöjärjestelmiä. Mitä haluat tehdä?';
 
   @override
   String get installationTypeNoOSDetected => 'Tässä tietokoneessa ei havaittu asennettuja käyttöjärjestelmiä. Mitä haluat tehdä?';
@@ -530,9 +510,6 @@ class AppLocalizationsFi extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'Salasanat eivät täsmää';
 
   @override
-  String get whoAreYouPageShowPassword => 'Näytä salasana';
-
-  @override
   String get writeChangesToDisk => 'Tallenna muutokset levylle';
 
   @override
@@ -609,138 +586,4 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get restartIntoWindows => 'Uudelleenkäynnistä Windowsiin';
-
-  @override
-  String get whereAreYouPageTitle => 'Missä olet?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Sijainti';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Aikavyöhyke';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'Tervetuloa, tämä on $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Fast and full of new features, the latest version of $RELEASE makes computing easier than ever. Here are just a few cool new things to look out for...';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Find even more software';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Say goodbye to searching the web for new software. With access to the Snap Store and the $RELEASE software archive, you can find and install new apps with ease. Just type in what you\'re looking for, or explore categories such as Graphics & Photography, Games and Productivity, alongside helpful reviews from other users.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Ota musiikki mukaasi';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE comes with the amazing Rhythmbox music player. With advanced playback options, it\'s simple to queue up the perfect songs. And it works great with CDs and portable music players, so you can enjoy all your music wherever you go.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Rytmilaatikko-musiikkisoitin';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Have fun with your photos';
-
-  @override
-  String get photoSlideDescription => 'Shotwell is a handy photo manager that is ready for your gadgets. Connect a camera or a phone to transfer your photos, then it\'s easy to share them and keep them safe. And if you\'re feeling creative, you can find many other photo apps in Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Shotwell Photo Manager';
-
-  @override
-  String get photoSlideGimp => 'GIMP-kuvankäsittely';
-
-  @override
-  String get photoSlideShotcut => 'Shotcut Video Editor';
-
-  @override
-  String get webSlideTitle => 'Make the most of the web';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE includes Firefox, the web browser used by millions of people around the world. And web applications you use frequently (like Facebook or Gmail, for example) can be pinned to your desktop for faster access, just like apps on your computer.';
-  }
-
-  @override
-  String get webSlideFirefox => 'Firefox-selain';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Kaikki mitä tarvitset toimistossa';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice is a free office suite packed with everything you need to create documents, spreadsheets and presentations. Compatible with Microsoft Office file formats, it gives you all the features you need, without the price tag.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Access for everyone';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Customization options';
-
-  @override
-  String get accessSlideAppearance => 'Ulkoasu';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Avustavat teknologiat';
-
-  @override
-  String get accessSlideLanguageSupport => 'Kielituki';
-
-  @override
-  String get supportSlideTitle => 'Ohjeet ja tuki';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'The official documentation covers many of the most common areas about $RELEASE. It\'s available both <a href=\"https://help.ubuntu.com\">online</a> and via the Help icon in the dock.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'At <a href=\"https://askubuntu.com\">Ask Ubuntu</a> you can ask questions and search an impressive collection of already answered questions. Support in your own language may be provided at your <a href=\"https://loco.ubuntu.com/teams\">Local Community Team</a>.';
-
-  @override
-  String get supportSlideResources => 'For pointers to other useful resources, please visit <a href=\"https://www.ubuntu.com/support/community-support\">Community support</a> or <a href=\"https://www.ubuntu.com/support\">Commercial support</a>.';
-
-  @override
-  String get includedSoftware => 'Included software';
-
-  @override
-  String get availableSoftware => 'Available software';
-
-  @override
-  String get supportedSoftware => 'Supported software';
 }

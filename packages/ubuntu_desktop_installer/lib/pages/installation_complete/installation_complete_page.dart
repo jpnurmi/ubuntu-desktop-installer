@@ -42,7 +42,7 @@ class InstallationCompletePage extends StatelessWidget {
               child: const CircleAvatar(
                 radius: 80,
                 backgroundImage: AssetImage(
-                  'assets/installation_complete/logo.png',
+                  'assets/version.png',
                 ),
               ),
             ),

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:subiquity_client/subiquity_client.dart';
 import 'package:subiquity_client/subiquity_server.dart';
 import 'package:test/test.dart';
@@ -25,7 +23,7 @@ void main() {
         '--machine-config',
         'examples/simple.json',
         '--source-catalog',
-        '${Directory.current.path}/test/install-sources.yaml',
+        '../test/install-sources.yaml',
         '--bootloader',
         'uefi',
       ]);

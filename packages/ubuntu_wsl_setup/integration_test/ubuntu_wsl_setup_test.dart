@@ -38,7 +38,8 @@ void main() {
     await testSetupCompletePage(tester, username: 'wsl-user');
     await tester.pumpAndSettle();
 
-    await verifyStateFile('basic-setup/WSLLocale');
+    verifyStateFile('basic-setup/WSLLocale');
+    verifyConfigFile('basic-setup/wsl.conf');
   });
 
   // enter all WSLConfigurationBase values
@@ -70,7 +71,7 @@ void main() {
     await testSetupCompletePage(tester, username: 'wsl-user');
     await tester.pumpAndSettle();
 
-    await verifyConfigFile('advanced-setup/wsl.conf');
+    verifyConfigFile('advanced-setup/wsl.conf');
   });
 
   // enter all WSLConfigurationAdvanced values
@@ -96,8 +97,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await verifyConfigFile('reconfiguration/ubuntu-wsl.conf');
-    await verifyConfigFile('reconfiguration/wsl.conf');
+    verifyConfigFile('reconfiguration/ubuntu-wsl.conf');
+    verifyConfigFile('reconfiguration/wsl.conf');
   });
 }
 

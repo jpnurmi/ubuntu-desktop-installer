@@ -14,82 +14,82 @@ class AppLocalizationsZh extends AppLocalizations {
   String get windowTitle => 'Ubuntu WSL';
 
   @override
-  String get exitButton => '退出';
+  String get exitButton => 'Exit';
 
   @override
-  String get finishButton => '结束';
+  String get finishButton => 'Finish';
 
   @override
-  String get saveButton => '保存';
+  String get saveButton => 'Save';
 
   @override
-  String get setupButton => '设置';
+  String get setupButton => 'Setup';
 
   @override
-  String get selectLanguageTitle => '选择您的语言';
+  String get selectLanguageTitle => 'Select your language';
 
   @override
-  String get profileSetupTitle => '配置文件设置';
+  String get profileSetupTitle => 'Profile setup';
 
   @override
-  String get profileSetupHeader => '请创建默认的UNIX用户帐户。有关更多信息，请访问：<a href=\"https://aka.ms/wslusers\">https://aka.ms/wslusers</a>';
+  String get profileSetupHeader => 'Please create a default UNIX user account. For more information visit: <a href=\"https://aka.ms/wslusers\">https://aka.ms/wslusers</a>';
 
   @override
-  String get profileSetupRealnameLabel => '您的名字';
+  String get profileSetupRealnameLabel => 'Your name';
 
   @override
-  String get profileSetupRealnameRequired => '名字是必须的';
+  String get profileSetupRealnameRequired => 'A name is required';
 
   @override
-  String get profileSetupUsernameHint => '起一个用户名';
+  String get profileSetupUsernameHint => 'Pick a username';
 
   @override
-  String get profileSetupUsernameHelper => '这个用户名不一定需要和您Windows的用户名匹配。';
+  String get profileSetupUsernameHelper => 'The username does not need to match your windows username.';
 
   @override
-  String get profileSetupPasswordHint => '挑选一个密码';
+  String get profileSetupPasswordHint => 'Choose a password';
 
   @override
-  String get profileSetupConfirmPasswordHint => '确认您的密码';
+  String get profileSetupConfirmPasswordHint => 'Confirm your password';
 
   @override
-  String get profileSetupShowAdvancedOptions => '在下一页显示高级选项';
+  String get profileSetupShowAdvancedOptions => 'Show advanced options next page';
 
   @override
-  String get profileSetupPasswordMismatch => '密码不一致';
+  String get profileSetupPasswordMismatch => 'The passwords do not match';
 
   @override
-  String get profileSetupUsernameRequired => '用户名是必须的';
+  String get profileSetupUsernameRequired => 'A username is required';
 
   @override
-  String get profileSetupUsernameInvalid => '这个用户名是无效的';
+  String get profileSetupUsernameInvalid => 'The username is invalid';
 
   @override
-  String get profileSetupPasswordRequired => '密码是必须的';
+  String get profileSetupPasswordRequired => 'A password is required';
 
   @override
-  String get advancedSetupTitle => '进阶设置';
+  String get advancedSetupTitle => 'Advanced setup';
 
   @override
-  String get advancedSetupHeader => '在这个页面，您可以根据您的需要调整Ubuntu WSL。';
+  String get advancedSetupHeader => 'In this page, you can tweak Ubuntu WSL to your needs.';
 
   @override
-  String get advancedSetupMountLocationHint => '挂载位置';
+  String get advancedSetupMountLocationHint => 'Mount location';
 
   @override
-  String get advancedSetupMountLocationHelper => '自动安装的位置';
+  String get advancedSetupMountLocationHelper => 'Location for the automount';
 
   @override
-  String get advancedSetupMountLocationInvalid => '该位置无效';
+  String get advancedSetupMountLocationInvalid => 'The location is invalid';
 
   @override
-  String get advancedSetupMountOptionHint => '挂载选项';
+  String get advancedSetupMountOptionHint => 'Mount option';
 
   @override
-  String get advancedSetupMountOptionHelper => '为自动挂载传递了挂载选项';
+  String get advancedSetupMountOptionHelper => 'Mount option passed for the automount';
 
   @override
-  String get advancedSetupHostGenerationTitle => '启用主机生成';
+  String get advancedSetupHostGenerationTitle => 'Enable Host Generation';
 
   @override
   String get advancedSetupHostGenerationSubtitle => 'Selecting enables /etc/hosts re-generation at every start.';

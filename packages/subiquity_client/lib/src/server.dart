@@ -40,10 +40,7 @@ abstract class SubiquityServer {
   // to be resolved based on the location of the `subiquity_client` package.
   Future<String> _getSocketPath(ServerMode mode) async {
     if (mode == ServerMode.DRY_RUN) {
-      // Use a relative path to avoid hitting AF_UNIX path length limit because
-      // <path/to/ubuntu-desktop-installer>/packages/subiquity_client/subiquity/.subiquity/socket>
-      // grows easily to more than 108-1 characters (char sockaddr_un::sun_path[108]).
-      return p.relative(p.join(await _getSubiquityPath(), '.subiquity/socket'));
+      return p.join(await _getSubiquityPath(), '.subiquity/socket');
     }
     return '/run/subiquity/socket';
   }
@@ -52,11 +49,11 @@ abstract class SubiquityServer {
 
   // Returns the location of the local subiquity submodule.
   Future<String> _getSubiquityPath() async {
-    return _subiquityPath ??= await findSubiquityPath();
+    return _subiquityPath ??= await _findSubiquityPath();
   }
 
   // Finds local subiquity relative to the `subiquity_client` Dart package.
-  static Future<String> findSubiquityPath() async {
+  Future<String> _findSubiquityPath() async {
     Object? error;
     final config = await findPackageConfig(
       Directory.current,
@@ -120,20 +117,12 @@ abstract class SubiquityServer {
       Process.killPid(pid);
     }
 
-    // Use `/usr/bin/python3` over `/snap/flutter/current/usr/bin/python3` when
-    // developing with flutter-snap on the desktop. This ensures that subiquity
-    // has locally installed Python module dependencies available. (#364)
     _serverProcess = await Process.start(
-      Platform.environment['SNAP_PYTHON'] ?? '/usr/bin/python3',
+      'python3',
       subiquityCmd,
       workingDirectory: workingDirectory,
       environment: {
         ..._pythonPath(subiquityPath),
-        // so subiquity doesn't think it's some other snap (e.g. flutter or vs code)
-        'SNAP': '.',
-        'SNAP_NAME': 'subiquity',
-        'SNAP_REVISION': '',
-        'SNAP_VERSION': '',
         ...?environment,
       },
     ).then((process) {

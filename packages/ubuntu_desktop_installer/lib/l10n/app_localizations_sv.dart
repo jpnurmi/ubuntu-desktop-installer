@@ -8,7 +8,7 @@ class AppLocalizationsSv extends AppLocalizations {
   AppLocalizationsSv([String locale = 'sv']) : super(locale);
 
   @override
-  String get appTitle => 'Ubuntu Skrivbordsinstallerare';
+  String get appTitle => 'Ubuntu Desktop Installer';
 
   @override
   String windowTitle(Object RELEASE) {
@@ -31,7 +31,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get restartButtonText => 'Starta om';
 
   @override
-  String get revertButtonText => 'Återställ';
+  String get revertButtonText => 'Revert';
 
   @override
   String get yesButtonText => 'Ja';
@@ -40,25 +40,22 @@ class AppLocalizationsSv extends AppLocalizations {
   String get welcome => 'Välkommen';
 
   @override
-  String get welcomeHeader => 'Välj ditt språk:';
+  String get tryOrInstallPageTitle => 'Try or install';
 
   @override
-  String get tryOrInstallPageTitle => 'Prova eller installera';
+  String get repairInstallation => 'Repair installation';
 
   @override
-  String get repairInstallation => 'Reparera installation';
-
-  @override
-  String get repairInstallationDescription => 'Reparation kommer att installera om all installerad programvara utan att röra dokument eller inställningar.';
+  String get repairInstallationDescription => 'Repairing will reinstall all installed software without touching documents or settings.';
 
   @override
   String tryUbuntu(Object RELEASE) {
-    return 'Prova $RELEASE';
+    return 'Try $RELEASE';
   }
 
   @override
   String tryUbuntuDescription(Object RELEASE) {
-    return 'Du kan prova $RELEASE utan att göra några ändringar till din dator.';
+    return 'You can try $RELEASE without making any changes to your computer.';
   }
 
   @override
@@ -68,12 +65,12 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String installUbuntuDescription(Object RELEASE) {
-    return 'Installera $RELEASE bredvid (eller istället för) ditt nuvarande operativsystem. Det här ska inte ta för lång tid.';
+    return 'Install $RELEASE alongside (or instead of) your current operating system. This shouldn\'t take too long.';
   }
 
   @override
   String releaseNotesLabel(Object url) {
-    return 'Du kanske vill läsa <a href=\"$url\">kommentarer till utgåvan</a>.';
+    return 'You may wish to read the <a href=\"$url\">release notes</a>.';
   }
 
   @override
@@ -106,13 +103,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get isKeyPresent => 'Finns följande tangent på ditt tangentbord?';
 
   @override
-  String get configureSecureBootTitle => 'Konfigurera Säker start';
+  String get configureSecureBootTitle => 'Configure Secure Boot';
 
   @override
-  String get configureSecureBootDescription => 'Du har valt att installera drivrutinsprogram från tredje part. Detta kräver att du stänger av Säker Start.\nFör att göra detta måste du välja en säkerhetsnyckel nu och ange den när systemet startar om.';
+  String get configureSecureBootDescription => 'You\'ve chosen to install third-party driver software. This requires turning off Secure Boot.\nTo do this, you need to choose a security key now, and enter it when the system restarts.';
 
   @override
-  String get configureSecureBootOption => 'Konfigurera Säker start';
+  String get configureSecureBootOption => 'Configure Secure Boot';
 
   @override
   String get chooseSecurityKey => 'Välj en säkerhetsnyckel';
@@ -121,7 +118,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get confirmSecurityKey => 'Bekräfta säkerhetsnyckeln';
 
   @override
-  String get dontInstallDriverSoftwareNow => 'Installera inte drivrutinsprogramvara för tillfället';
+  String get dontInstallDriverSoftwareNow => 'Don\'t install the driver software for now';
 
   @override
   String get dontInstallDriverSoftwareNowDescription => 'Du kan installera det senare från Programvara och uppdateringar.';
@@ -155,15 +152,6 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get selectWifiNetwork => 'Anslut till ett Wi-Fi nätverk';
-
-  @override
-  String get hiddenWifiNetwork => 'Anslut till ett dolt Wi-Fi-nätverk';
-
-  @override
-  String get hiddenWifiNetworkNameLabel => 'Nätverksnamn';
-
-  @override
-  String get hiddenWifiNetworkNameRequired => 'Ett nätverksnamn krävs';
 
   @override
   String get noInternet => 'Jag vill inte ansluta till internet just nu';
@@ -212,7 +200,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String onBatteryWarning(Object color) {
-    return '<font color=\"$color\">Varning</font>: Datorn är inte ansluten till en strömkälla.';
+    return '<font color=\"$color\">Warning</font>: The computer is not plugged in to a power source.';
   }
 
   @override
@@ -220,7 +208,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String chooseSecurityKeyHeader(Object RELEASE) {
-    return 'Diskkryptering skyddar dina filer om du tappar bort din dator. Det kräver att du anger en säkerhetsnyckel varje gång datorn startar.\n\nAlla filer utanför $RELEASE kommer inte att krypteras.';
+    return 'Disk encryption protects your files in case you lose your computer. It requires you to enter a security key each time the computer starts up.\n\nAny files outside of $RELEASE will not be encrypted.';
   }
 
   @override
@@ -249,14 +237,6 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String installationTypeDualOSDetected(Object os1, Object os2) {
-    return 'Den här datorn har för närvarande $os1 och $os2 på sig. Vad skulle du vilja göra?';
-  }
-
-  @override
-  String get installationTypeMultiOSDetected => 'Den här datorn har för närvarande flera operativsystem på sig. Vad skulle du vilja göra?';
-
-  @override
   String get installationTypeNoOSDetected => 'Den här datorn har för närvarande inga upptäckta operativsystem. Vad skulle du vilja göra?';
 
   @override
@@ -283,7 +263,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String installationTypeLVM(Object RELEASE) {
-    return 'Använd LVM med den nya $RELEASE-installationen';
+    return 'Use LVM with the new $RELEASE installation';
   }
 
   @override
@@ -291,7 +271,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String installationTypeEncrypt(Object RELEASE) {
-    return 'Kryptera den nya $RELEASE-installationen för säkerhet';
+    return 'Encrypt the new $RELEASE installation for security';
   }
 
   @override
@@ -362,7 +342,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get diskHeadersSize => 'Storlek';
 
   @override
-  String get diskHeadersUsed => 'Använt';
+  String get diskHeadersUsed => 'Used';
 
   @override
   String get diskHeadersSystem => 'System';
@@ -380,7 +360,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get newPartitionTableConfirmationTitle => 'Skapa en ny tom partitionstabell på den här enheten?';
 
   @override
-  String get newPartitionTableConfirmationMessage => 'Du har valt en hel enhet att partitionera. Om du fortsätter med att skapa en ny partitionstabell på enheten kommer alla nuvarande partitioner att tas bort.\n\nObservera att du kommer att kunna ångra denna operation senare om du vill.';
+  String get newPartitionTableConfirmationMessage => 'You have selected an entire device to partition. If you proceed with creating a new partition table on the device, then all current partitions will be removed.\n\nNote that you will be able to undo this operation later if you wish.';
 
   @override
   String get bootLoaderDevice => 'Enhet för installation av starthanteraren';
@@ -458,7 +438,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get partitionFormatFat32 => 'FAT32 filsystem';
 
   @override
-  String get partitionFormatSwap => 'Swap område';
+  String get partitionFormatSwap => 'Swap area';
 
   @override
   String get partitionFormatIso9660 => 'ISO 9960 filsystem';
@@ -530,9 +510,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get whoAreYouPagePasswordMismatch => 'Lösenorden stämmer inte överens';
 
   @override
-  String get whoAreYouPageShowPassword => 'Visa lösenord';
-
-  @override
   String get writeChangesToDisk => 'Skriv ändringar till disk';
 
   @override
@@ -575,7 +552,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chooseYourLookPageLightSetting => 'Ljus';
 
   @override
-  String get chooseYourLookPageLightBodyText => 'Allt är ljust och lysande';
+  String get chooseYourLookPageLightBodyText => 'Everything is light and bright';
 
   @override
   String get chooseYourLookPageDarkBodyText => 'Hello darkness my old friend';
@@ -590,7 +567,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String restartInto(Object system) {
-    return 'Starta om till $system';
+    return 'Restart into $system';
   }
 
   @override
@@ -608,139 +585,5 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get restartIntoWindows => 'Starta om till Windows';
-
-  @override
-  String get whereAreYouPageTitle => 'Var är du?';
-
-  @override
-  String get whereAreYouLocationLabel => 'Plats';
-
-  @override
-  String get whereAreYouTimezoneLabel => 'Tidszon';
-
-  @override
-  String welcomeSlideTitle(Object RELEASE) {
-    return 'Välkommen till $RELEASE';
-  }
-
-  @override
-  String welcomeSlideDescription(Object RELEASE) {
-    return 'Snabb och full av nya funktioner, den senaste versionen av $RELEASE gör datoranvändning enklare än någonsin. Här är bara några coola nya saker att hålla utkik efter...';
-  }
-
-  @override
-  String get softwareSlideTitle => 'Hitta ännu mer programvara';
-
-  @override
-  String softwareSlideDescription(Object RELEASE) {
-    return 'Säg adjö till att söka på nätet efter ny programvara. Med åtkomst till Snap butiken och $RELEASE programvaru arkiv, så kan du kan enkelt hitta och installera nya program. Bara skriv in det du letar efter, eller utforska kategorier som Grafik och Fotografi, Spel och Produktivitet, tillsammans med användbara recensioner från andra användare.';
-  }
-
-  @override
-  String get musicSlideTitle => 'Ta din musik med dig';
-
-  @override
-  String musicSlideDescription(Object RELEASE) {
-    return '$RELEASE kommer med den fantastiska musikspelaren Rhythmbox. Med avancerade uppspelningsalternativ är det enkelt att ställa de perfekta låtarna i kö. Och det fungerar utmärkt med CD-skivor och bärbara musikspelare, så att du kan njuta av all din musik var du än går.';
-  }
-
-  @override
-  String get musicSlideRhythmbox => 'Rhythmbox Musikspelare';
-
-  @override
-  String get musicSlideSpotify => 'Spotify';
-
-  @override
-  String get musicSlideVLC => 'VLC';
-
-  @override
-  String get photoSlideTitle => 'Ha kul med dina bilder';
-
-  @override
-  String get photoSlideDescription => 'Shotwell är en praktisk fotohanterare som är redo för dina prylar. Anslut en kamera eller en telefon för att överföra dina foton, så är det enkelt att dela dem och förvara dem säkra. Och om du känner dig kreativ kan du hitta många andra fotoappar i Ubuntu Software.';
-
-  @override
-  String get photoSlideShotwell => 'Shotwell fotohanterare';
-
-  @override
-  String get photoSlideGimp => 'GIMP bildredigerare';
-
-  @override
-  String get photoSlideShotcut => 'Shotcut videoedigerare';
-
-  @override
-  String get webSlideTitle => 'Få ut det mesta av webben';
-
-  @override
-  String webSlideDescription(Object RELEASE) {
-    return '$RELEASE inkluderar Firefox, webbläsaren som används av miljontals människor runt om i världen. Och webbapplikationer som du använder ofta (som Facebook eller Gmail, till exempel) kan fästas på skrivbordet för snabbare åtkomst, precis som program på din dator.';
-  }
-
-  @override
-  String get webSlideFirefox => 'Firefox webbläsare';
-
-  @override
-  String get webSlideThunderbird => 'Thunderbird';
-
-  @override
-  String get webSlideChromium => 'Chromium';
-
-  @override
-  String get officeSlideTitle => 'Allt du behöver för kontoret';
-
-  @override
-  String get officeSlideDescription => 'LibreOffice är en gratis kontorssvit fullpackad med allt du behöver för att skapa dokument, kalkylblad och presentationer. Den är kompatibel med Microsoft Office-filformat och ger dig alla funktioner du behöver, utan någon hög prislapp.';
-
-  @override
-  String get officeSlideWriter => 'LibreOffice Writer';
-
-  @override
-  String get officeSlideCalc => 'LibreOffice Calc';
-
-  @override
-  String get officeSlideImpress => 'LibreOffice Impress';
-
-  @override
-  String get accessSlideTitle => 'Åtkomst för alla';
-
-  @override
-  String accessSlideDescription(Object RELEASE) {
-    return 'At the heart of the $RELEASE philosophy is the belief that computing is for everyone. With advanced accessibility tools and options to change language, color schome and text size, $RELEASE makes computing easy - whoever and wherever you are.';
-  }
-
-  @override
-  String get accessSlideCustomizationOptions => 'Anpassnings alternativ';
-
-  @override
-  String get accessSlideAppearance => 'Utseende';
-
-  @override
-  String get accessSlideAssistiveTechnologies => 'Hjälpmedel';
-
-  @override
-  String get accessSlideLanguageSupport => 'Språk stöd';
-
-  @override
-  String get supportSlideTitle => 'Hjälp och support';
-
-  @override
-  String supportSlideDocumentation(Object RELEASE) {
-    return 'Den officiella dokumentationen täcker många av de vanligaste områdena om $RELEASE. Den är tillgänglig både <a href=\"https://help.ubuntu.com\">online</a> och via hjälpikonen i dockan.';
-  }
-
-  @override
-  String get supportSlideQuestions => 'På <a href=\"https://askubuntu.com\">Fråga Ubuntu</a> kan du ställa frågor och söka i en imponerande samling av redan besvarade frågor. Support på ditt eget språk kan tillhandahållas av ditt <a href=\"https://loco.ubuntu.com/teams\">lokala gruppteam</a>.';
-
-  @override
-  String get supportSlideResources => 'För tips på andra användbara resurser, besök <a href=\"https://www.ubuntu.com/support/community-support\">Community-support</a> eller <a href=\"https://www.ubuntu. .com/support\">Kommersiell support</a>.';
-
-  @override
-  String get includedSoftware => 'Inkluderad programvara';
-
-  @override
-  String get availableSoftware => 'Tillgänglig programvara';
-
-  @override
-  String get supportedSoftware => 'Programvara som stöds';
+  String get restartIntoWindows => 'Restart Into Windows';
 }

@@ -3,6 +3,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:provider/provider.dart';
 import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_wizard/constants.dart';
+import 'package:ubuntu_wizard/utils.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
 import '../../l10n.dart';
@@ -77,10 +78,6 @@ class _WhoAreYouPageState extends State<WhoAreYouPage> {
             Padding(
               padding: fieldPadding,
               child: _ConfirmPasswordFormField(fieldWidth: fieldWidth),
-            ),
-            Padding(
-              padding: kContentPadding,
-              child: _ShowPasswordCheckButton(),
             ),
             // https://github.com/canonical/ubuntu-desktop-installer/issues/373
             // const SizedBox(height: kContentSpacing),

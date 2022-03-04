@@ -21,12 +21,10 @@ void main() {
         f.writeAsString(
             'Ubuntu 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Ubuntu 21.04');
+      expect(version, 'Ubuntu 21.04');
     });
 
     test('should return product info from disk when iso file doesnt exists',
@@ -50,21 +48,17 @@ UBUNTU_CODENAME=hirsute
 
           ''');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Ubuntu 21.04');
+      expect(version, 'Ubuntu 21.04');
     });
 
     test('should return Ubuntu as fallback value', () {
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, isNull);
-      expect(info.toString(), 'Ubuntu');
+      expect(version, 'Ubuntu');
     });
 
     test('should return product info with LTS when iso file exists', () async {
@@ -74,12 +68,10 @@ UBUNTU_CODENAME=hirsute
         f.writeAsString(
             'Ubuntu 20.04.2.0 LTS "Focal Fossa" - Release amd64 (20210209.1)');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, '20.04.2.0 LTS');
-      expect(info.toString(), 'Ubuntu 20.04.2.0 LTS');
+      expect(version, 'Ubuntu 20.04.2.0 LTS');
     });
 
     test('should return product info LTS from disk when iso file doesnt exists',
@@ -103,12 +95,10 @@ UBUNTU_CODENAME=focal
 
           ''');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, '20.04.2 LTS');
-      expect(info.toString(), 'Ubuntu 20.04.2 LTS');
+      expect(version, 'Ubuntu 20.04.2 LTS');
     });
 
     test('should return product info for kubuntu', () async {
@@ -118,12 +108,10 @@ UBUNTU_CODENAME=focal
         f.writeAsString(
             'Kubuntu 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Kubuntu');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Kubuntu 21.04');
+      expect(version, 'Kubuntu 21.04');
     });
 
     test('should return product info for kubuntu', () async {
@@ -133,12 +121,10 @@ UBUNTU_CODENAME=focal
         f.writeAsString(
             'Kubuntu 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Kubuntu');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Kubuntu 21.04');
+      expect(version, 'Kubuntu 21.04');
     });
 
     test('should return product info for ubuntu mate', () async {
@@ -148,12 +134,10 @@ UBUNTU_CODENAME=focal
         f.writeAsString(
             'Ubuntu-MATE 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      final info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      final version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu-MATE');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Ubuntu-MATE 21.04');
+      expect(version, 'Ubuntu-MATE 21.04');
     });
 
     test('should cache product info', () async {
@@ -163,19 +147,17 @@ UBUNTU_CODENAME=focal
         f.writeAsString(
             'Ubuntu 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      var info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      var version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
       await fileSystem.file(isoPath).create(recursive: true).then((f) {
         f.writeAsString(
             'Ubuntu-MATE 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
 
-      info = productInfoExtractor?.getProductInfo();
+      version = productInfoExtractor?.getProductInfo();
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Ubuntu 21.04');
+      expect(version, 'Ubuntu 21.04');
     });
 
     test('should reset cache when paramter is passed', () async {
@@ -185,19 +167,17 @@ UBUNTU_CODENAME=focal
         f.writeAsString(
             'Ubuntu 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
-      var info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      var version =
+          productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
       await fileSystem.file(isoPath).create(recursive: true).then((f) {
         f.writeAsString(
             'Ubuntu-MATE 21.04 "Hirsute Hippo" - Release amd64 (20210420)');
       });
 
-      info = productInfoExtractor?.getProductInfo(shouldResetCache: true);
+      version = productInfoExtractor?.getProductInfo(shouldResetCache: true);
 
-      expect(info, isNotNull);
-      expect(info!.name, 'Ubuntu-MATE');
-      expect(info.version, '21.04');
-      expect(info.toString(), 'Ubuntu-MATE 21.04');
+      expect(version, 'Ubuntu-MATE 21.04');
     });
   });
 }

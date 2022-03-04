@@ -9,7 +9,6 @@ import 'package:ubuntu_desktop_installer/pages/installation_type/installation_ty
 import 'package:ubuntu_desktop_installer/services.dart';
 import 'package:ubuntu_test/mocks.dart';
 import 'package:ubuntu_test/utils.dart';
-import 'package:ubuntu_wizard/utils.dart';
 import 'package:ubuntu_wizard/widgets.dart';
 
 import '../widget_tester_extensions.dart';
@@ -21,8 +20,8 @@ void main() {
     InstallationType? installationType,
     AdvancedFeature? advancedFeature,
     bool? encryption,
-    ProductInfo? productInfo,
-    List<OsProber>? existingOS,
+    String? productInfo,
+    String? existingOS,
   }) {
     final model = MockInstallationTypeModel();
     when(model.installationType)
@@ -30,7 +29,7 @@ void main() {
     when(model.advancedFeature)
         .thenReturn(advancedFeature ?? AdvancedFeature.none);
     when(model.encryption).thenReturn(encryption ?? false);
-    when(model.productInfo).thenReturn(productInfo ?? ProductInfo(name: ''));
+    when(model.productInfo).thenReturn(productInfo ?? '');
     when(model.existingOS).thenReturn(existingOS);
     return model;
   }
@@ -42,64 +41,8 @@ void main() {
     );
   }
 
-  testWidgets('no existing OS', (tester) async {
-    await tester.pumpWidget(tester.buildApp((_) => buildPage(buildModel())));
-
-    expect(
-      find.text(tester.lang.installationTypeNoOSDetected),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('one existing OS', (tester) async {
-    final model = buildModel(existingOS: [
-      OsProber(long: 'Ubuntu 18.04 LTS', label: 'Ubuntu', type: 'ext4')
-    ]);
-    await tester.pumpWidget(tester.buildApp((_) => buildPage(model)));
-
-    expect(
-      find.text(tester.lang.installationTypeOSDetected('Ubuntu 18.04 LTS')),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('two existing OSes', (tester) async {
-    final model = buildModel(existingOS: [
-      OsProber(long: 'Ubuntu 18.04 LTS', label: 'Ubuntu', type: 'ext4'),
-      OsProber(long: 'Ubuntu 20.04 LTS', label: 'Ubuntu', type: 'ext4')
-    ]);
-    await tester.pumpWidget(tester.buildApp((_) => buildPage(model)));
-
-    expect(
-      find.text(tester.lang.installationTypeDualOSDetected(
-          'Ubuntu 18.04 LTS', 'Ubuntu 20.04 LTS')),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('multiple existing OSes', (tester) async {
-    final model = buildModel(existingOS: [
-      OsProber(long: 'Windows 10', label: 'windows', type: 'ntfs'),
-      OsProber(long: 'Ubuntu 20.04 LTS', label: 'Ubuntu', type: 'ext4'),
-      OsProber(long: 'Ubuntu 20.04 LTS', label: 'Ubuntu', type: 'ext4')
-    ]);
-    await tester.pumpWidget(tester.buildApp((_) => buildPage(model)));
-
-    expect(
-      find.text(tester.lang.installationTypeMultiOSDetected),
-      findsOneWidget,
-    );
-  });
-
   testWidgets('reinstall', (tester) async {
-    final model = buildModel(existingOS: [
-      OsProber(
-        long: 'Ubuntu 18.04 LTS',
-        label: 'Ubuntu',
-        version: '18.04 LTS',
-        type: 'ext4',
-      )
-    ]);
+    final model = buildModel(existingOS: 'Ubuntu 18.04 LTS');
     await tester.pumpWidget(tester.buildApp((_) => buildPage(model)));
 
     final radio = find.widgetWithText(typeOf<RadioButton<InstallationType>>(),
@@ -107,19 +50,12 @@ void main() {
     expect(radio, findsOneWidget);
     await tester.tap(radio);
     verify(model.installationType = InstallationType.reinstall).called(1);
-  }, skip: true);
+  });
 
   testWidgets('alongside', (tester) async {
     final model = buildModel(
-      productInfo: ProductInfo(name: 'Ubuntu 21.10'),
-      existingOS: [
-        OsProber(
-          long: 'Ubuntu 18.04 LTS',
-          label: 'Ubuntu',
-          version: '18.04 LTS',
-          type: 'ext4',
-        )
-      ],
+      productInfo: 'Ubuntu 21.10',
+      existingOS: 'Ubuntu 18.04 LTS',
     );
     await tester.pumpWidget(tester.buildApp((_) => buildPage(model)));
 
@@ -130,7 +66,7 @@ void main() {
     expect(radio, findsOneWidget);
     await tester.tap(radio);
     verify(model.installationType = InstallationType.alongside).called(1);
-  }, skip: true);
+  });
 
   testWidgets('erase', (tester) async {
     final model = buildModel();
@@ -172,8 +108,6 @@ void main() {
     when(client.isOpen).thenAnswer((_) async => true);
     when(client.getGuidedStorage())
         .thenAnswer((_) async => GuidedStorageResponse());
-    when(client.hasRst()).thenAnswer((_) async => false);
-    when(client.hasBitLocker()).thenAnswer((_) async => false);
     registerMockService<SubiquityClient>(client);
     registerMockService<DiskStorageService>(DiskStorageService(client));
     registerMockService<TelemetryService>(TelemetryService());
