@@ -1,0 +1,23 @@
+name: LXD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  install:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - ubuntu-daily:jammy
+    steps:
+    - uses: actions/checkout@v2
+    - name: run
+      run: sudo ./scripts/install-in-lxd.sh ${{matrix.image}}
