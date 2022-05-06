@@ -1,0 +1,41 @@
+name: Integration test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-20.04
+    container: ubuntu:devel
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install Flutter
+        run: sudo snap install flutter
+
+      - name: Configure Flutter
+        run: |
+          flutter config --enable-linux-desktop
+          flutter doctor -v
+
+      - name: Prepare environment for subiquity
+        run: |
+          sudo loginctl enable-linger $USER
+          sudo systemctl start user@$UID.service
+          echo "XDG_RUNTIME_DIR=/run/user/$UID" >> $GITHUB_ENV
+
+      - name: Run tests
+        run: |
+          xvfb-run -a -s '-screen 0 1024x768x24 +extension GLX' \
+            flutter test integration_test
+        working-directory: packages/${{matrix.package}}
+        env:
+          LIVE_RUN: 1
