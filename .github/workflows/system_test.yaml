@@ -1,0 +1,83 @@
+name: System test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # install:
+  #   runs-on: ubuntu-20.04
+  #   container: ubuntu:22.04
+
+  #   steps:
+  #     # Input 'submodules' not supported when falling back to download using the
+  #     # GitHub REST API. To create a local Git repository instead, add Git 2.18
+  #     # or higher to the PATH.
+  #     - name: Install Git
+  #       run: apt update && apt install -y git
+
+      # - name: Git checkout
+      #   uses: actions/checkout@v2
+      #   with:
+      #     submodules: recursive
+
+  #     - name: Install dependencies
+  #       working-directory: packages/subiquity_client/subiquity
+  #       run: |
+  #         apt update
+          # apt install -y clang cmake curl libgtk-3-dev ninja-build pkg-config unzip xvfb
+          # apt install -y dbus network-manager upower
+  #         ./scripts/installdeps.sh
+  #       env:
+  #         DEBIAN_FRONTEND: noninteractive
+
+  #     - name: Install Flutter
+  #       run: |
+  #         git clone --branch stable --depth 1 https://github.com/flutter/flutter.git /usr/libexec/flutter
+  #         ln -s /usr/libexec/flutter/bin/flutter /usr/bin/flutter
+
+      # - name: Configure Flutter
+      #   run: |
+      #     flutter config --enable-linux-desktop
+      #     flutter doctor -v
+
+  #     - name: Prepare environment for subiquity
+  #       run: |
+  #         loginctl enable-linger $USER
+  #         systemctl start user@$UID.service
+  #         echo "XDG_RUNTIME_DIR=/run/user/$UID" >> $GITHUB_ENV
+
+      # - name: Run tests
+      #   run: |
+      #     xvfb-run -a -s '-screen 0 1024x768x24 +extension GLX' \
+      #       flutter test integration_test
+      #   working-directory: packages/${{matrix.package}}
+      #   env:
+      #     LIVE_RUN: 1
+
+  docker:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      # few at a time to possibly reduce conflicts due to docker host mounts
+      max-parallel: 3
+      matrix:
+        image:
+          - ubuntu-22.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Build image
+        run: sudo ./.github/scripts/build-image.sh ./.github/docker/Dockerfile.${{ matrix.image }}
+
+      - name: Setup Subiquity
+        run: sudo ./.github/scripts/setup-subiquity.sh ${{ github.workspace }}
+
+      - name: Run tests
+        run: sudo ./.github/scripts/test-install.sh
