@@ -19,6 +19,8 @@ VOLUME ["/sys/fs/cgroup"]
 STOPSIGNAL SIGRTMIN+3
 CMD ["/sbin/init"]
 
+RUN apt-get install -y cloud-init
+
 RUN apt-get install -y dbus git libgtk-3-0 libegl1 network-manager python3 tree upower xvfb
 
 RUN apt-get install -y clang cmake curl libgtk-3-dev ninja-build pkg-config unzip

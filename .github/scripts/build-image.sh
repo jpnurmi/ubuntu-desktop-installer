@@ -40,5 +40,7 @@ echo " done"
 
 docker exec snapc snap install core --edge
 
+docker exec snapc cloud-init status --wait
+
 docker exec snapc loginctl enable-linger root
 docker exec snapc systemctl start user@0.service
