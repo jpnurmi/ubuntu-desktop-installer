@@ -16,6 +16,6 @@ docker exec \
 docker exec \
     -e PYTHONPATH="$SUBIQUITY_PATH:$SUBIQUITY_PATH/curtin:$SUBIQUITY_PATH/probert" \
     -w $SUBIQUITY_PATH \
-    --detach \
     snapc \
         python3 -m subiquity.cmd.server
+    # --detach \
