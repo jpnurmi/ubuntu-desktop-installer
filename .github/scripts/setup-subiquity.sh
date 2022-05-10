@@ -13,9 +13,13 @@ docker exec \
     snapc \
         ./scripts/installdeps.sh
 
+echo "BEFORE"
+
 docker exec \
     -e PYTHONPATH="$SUBIQUITY_PATH:$SUBIQUITY_PATH/curtin:$SUBIQUITY_PATH/probert" \
     -w $SUBIQUITY_PATH \
     snapc \
         python3 -m subiquity.cmd.server
     # --detach \
+
+echo "AFTER"
