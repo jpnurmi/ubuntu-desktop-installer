@@ -15,6 +15,9 @@ docker exec \
 
 echo "BEFORE"
 
+docker exec snapc env
+docker exec snapc ls -la /run/user
+
 docker exec \
     -e PYTHONPATH="$SUBIQUITY_PATH:$SUBIQUITY_PATH/curtin:$SUBIQUITY_PATH/probert" \
     -w $SUBIQUITY_PATH \
