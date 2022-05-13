@@ -54,7 +54,7 @@ class StorageDeviceColumn extends StorageColumn {
               children: [
                 const Icon(YaruIcons.drive_harddisk),
                 const SizedBox(width: 16),
-                Text('${disk.path}${partition.number}'),
+                Text(partition.path ?? ''),
               ],
             );
           },

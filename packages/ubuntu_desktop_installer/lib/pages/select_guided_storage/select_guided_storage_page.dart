@@ -39,10 +39,6 @@ class _SelectGuidedStoragePageState extends State<SelectGuidedStoragePage> {
     model.loadGuidedStorage();
   }
 
-  String prettyFormatPartition(Disk disk, Partition partition) {
-    return '${disk.sysname}${partition.number}';
-  }
-
   /// Formats a disk in a pretty way e.g. "/dev/sda ATA Maxtor (123 GB)"
   String prettyFormatStorage(Disk disk) {
     final fullName = <String?>[

@@ -39,7 +39,7 @@ void main() {
     diskBuilder: (_, disk) => Text(disk.path!),
     gapBuilder: (_, disk, gap) => SizedBox.shrink(),
     partitionBuilder: (_, disk, partition) {
-      return Text('${disk.path}${partition.number}');
+      return Text(partition.path ?? '');
     },
   );
 

@@ -106,7 +106,7 @@ class PartitionLegend extends StatelessWidget {
             // TODO:
             // - localize?
             // - partition type?
-            title: '${model.selectedDisk!.id}${partition.number}',
+            title: partition.path ?? '',
             size: partition.size ?? 0,
             color: _partitionColor(index, objects.length),
           );
