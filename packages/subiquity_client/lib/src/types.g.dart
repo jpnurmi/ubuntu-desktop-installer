@@ -305,6 +305,7 @@ _$Partition _$_$PartitionFromJson(Map<String, dynamic> json) {
     os: json['os'] == null
         ? null
         : OsProber.fromJson(json['os'] as Map<String, dynamic>),
+    path: json['path'] as String?,
   );
 }
 
@@ -320,6 +321,7 @@ Map<String, dynamic> _$_$PartitionToJson(_$Partition instance) =>
       'format': instance.format,
       'grub_device': instance.grubDevice,
       'os': instance.os?.toJson(),
+      'path': instance.path,
     };
 
 _$Gap _$_$GapFromJson(Map<String, dynamic> json) {

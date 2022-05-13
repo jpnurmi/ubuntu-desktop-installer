@@ -227,6 +227,7 @@ class DiskObject with _$DiskObject {
     String? format,
     bool? grubDevice,
     OsProber? os,
+    String? path,
   }) = Partition;
 
   @FreezedUnionValue('Gap')

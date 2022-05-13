@@ -152,6 +152,7 @@ void main() {
         subpath: '/efi/Microsoft/Boot/bootmgfw.efi',
         version: '11',
       ),
+      path: '/dev/sda2',
     );
     const json = <String, dynamic>{
       'offset': 678,
@@ -170,6 +171,7 @@ void main() {
         'subpath': '/efi/Microsoft/Boot/bootmgfw.efi',
         'version': '11',
       },
+      'path': '/dev/sda2',
       '\$type': 'Partition',
     };
     expect(partition.toJson(), equals(json));
