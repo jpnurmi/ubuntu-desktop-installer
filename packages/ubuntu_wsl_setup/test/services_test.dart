@@ -18,7 +18,7 @@ void main() {
   });
 
   test('wont attempt forever', () async {
-    IOOverrides.runZoned(
+    await IOOverrides.runZoned(
       () async {
         const lower = 50000;
         const higher = 51000;
@@ -54,6 +54,6 @@ void main() {
 
     //extra precaution in case test fails.
     addTearDown(() => socket?.close());
-    expectLater(closure(), throwsAssertionError);
+    await expectLater(closure(), throwsAssertionError);
   });
 }
