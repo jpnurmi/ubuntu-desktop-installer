@@ -44,6 +44,7 @@ dependencies:
       path: packages/timezone_map
   ubuntu_localizations:
     git:
+      ref: 4b5d2abbe62423bc43f28d1452d887c200dccbab
       url: https://github.com/canonical/ubuntu-flutter-plugins.git
       path: packages/ubuntu_localizations
   ubuntu_logger:
@@ -53,6 +54,7 @@ dependencies:
   ubuntu_service: ^0.2.0
   ubuntu_widgets:
     git:
+      ref: 4b5d2abbe62423bc43f28d1452d887c200dccbab
       url: https://github.com/canonical/ubuntu-flutter-plugins.git
       path: packages/ubuntu_widgets
   ubuntu_wizard:
