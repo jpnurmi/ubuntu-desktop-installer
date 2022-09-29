@@ -146,7 +146,7 @@ parts:
   ubuntu-desktop-installer:
     after: [flutter-git]
     source: .
-    source-type: git
+    # source-type: git
     plugin: nil
     override-build: |
       set -eux
