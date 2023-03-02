@@ -553,6 +553,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get partitionMountPointLabel => '挂载点：';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => '您是谁？';
 
   @override

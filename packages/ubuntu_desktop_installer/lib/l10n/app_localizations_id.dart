@@ -553,6 +553,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get partitionMountPointLabel => 'Titik kait:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Siapa kamu?';
 
   @override

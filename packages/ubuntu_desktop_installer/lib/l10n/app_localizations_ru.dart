@@ -553,6 +553,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get partitionMountPointLabel => 'Точка монтирования:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Кто вы?';
 
   @override

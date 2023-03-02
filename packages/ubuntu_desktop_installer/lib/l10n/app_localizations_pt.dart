@@ -553,6 +553,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get partitionMountPointLabel => 'Ponto de montagem:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Quem é?';
 
   @override

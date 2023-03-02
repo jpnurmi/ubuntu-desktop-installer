@@ -553,6 +553,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get partitionMountPointLabel => 'Csatlakoztatási pont:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Ki vagy te?';
 
   @override

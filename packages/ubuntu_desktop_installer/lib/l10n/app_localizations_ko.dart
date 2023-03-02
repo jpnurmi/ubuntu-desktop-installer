@@ -553,6 +553,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get partitionMountPointLabel => '마운트 위치:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => '당신은 누구십니까?';
 
   @override

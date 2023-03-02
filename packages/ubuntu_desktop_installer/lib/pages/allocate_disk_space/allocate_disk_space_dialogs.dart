@@ -289,6 +289,7 @@ class _PartitionMountField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context);
     return ValueListenableBuilder<PartitionFormat?>(
       valueListenable: partitionFormat,
       builder: (context, format, child) {
@@ -305,6 +306,14 @@ class _PartitionMountField extends StatelessWidget {
               enabled: format != PartitionFormat.swap,
               controller: textEditingController,
               focusNode: focusNode,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) => value == null || value.isEmpty
+                  ? null
+                  : !value.startsWith('/')
+                      ? lang.partitionMountPointSlash
+                      : value.contains(RegExp(r'\s'))
+                          ? lang.partitionMountPointSpaces
+                          : null,
               onChanged: (value) => partitionMount.value = value,
               onFieldSubmitted: (_) => onFieldSubmitted(),
             );

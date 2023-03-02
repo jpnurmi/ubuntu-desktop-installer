@@ -1232,6 +1232,18 @@ abstract class AppLocalizations {
   /// **'Mount point:'**
   String get partitionMountPointLabel;
 
+  /// No description provided for @partitionMountPointSlash.
+  ///
+  /// In en, this message translates to:
+  /// **'Must start with slash (/)'**
+  String get partitionMountPointSlash;
+
+  /// No description provided for @partitionMountPointSpaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot contain spaces'**
+  String get partitionMountPointSpaces;
+
   /// No description provided for @whoAreYouPageTitle.
   ///
   /// In en, this message translates to:

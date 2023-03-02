@@ -553,6 +553,12 @@ class AppLocalizationsEo extends AppLocalizations {
   String get partitionMountPointLabel => 'Surmetingo:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Kiu vi estas?';
 
   @override

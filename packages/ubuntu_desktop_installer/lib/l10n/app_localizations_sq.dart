@@ -553,6 +553,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get partitionMountPointLabel => 'Pika e montimit:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Kush jeni ju?';
 
   @override

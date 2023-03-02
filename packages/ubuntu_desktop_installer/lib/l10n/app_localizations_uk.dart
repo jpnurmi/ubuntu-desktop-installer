@@ -553,6 +553,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get partitionMountPointLabel => 'Точка монтування:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Хто ви?';
 
   @override

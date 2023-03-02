@@ -553,6 +553,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get partitionMountPointLabel => 'Einhängepunkt:';
 
   @override
+  String get partitionMountPointSlash => 'Must start with slash (/)';
+
+  @override
+  String get partitionMountPointSpaces => 'Cannot contain spaces';
+
+  @override
   String get whoAreYouPageTitle => 'Wer sind Sie?';
 
   @override
