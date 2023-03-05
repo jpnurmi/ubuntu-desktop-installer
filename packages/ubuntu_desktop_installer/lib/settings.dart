@@ -21,15 +21,18 @@ class Settings extends SafeChangeNotifier {
   }
 
   /// Applies a theme matching the given [brightness].
-  void applyTheme(Brightness brightness) {
+  Future<void> applyTheme(Brightness brightness) async {
+    final gtkTheme = (await _gsettings.get('gtk-theme')).asString();
     switch (brightness) {
       case Brightness.dark:
-        _gsettings.set('gtk-theme', const DBusString('Yaru-dark'));
-        _gsettings.set('color-scheme', const DBusString('prefer-dark'));
+        await _gsettings.set(
+            'gtk-theme', DBusString(gtkTheme.addSuffix('-dark')));
+        await _gsettings.set('color-scheme', const DBusString('prefer-dark'));
         break;
       case Brightness.light:
-        _gsettings.set('gtk-theme', const DBusString('Yaru'));
-        _gsettings.set('color-scheme', const DBusString('prefer-light'));
+        await _gsettings.set(
+            'gtk-theme', DBusString(gtkTheme.removeSuffix('-dark')));
+        await _gsettings.set('color-scheme', const DBusString('prefer-light'));
         break;
     }
   }
@@ -43,5 +46,17 @@ class Settings extends SafeChangeNotifier {
     if (_locale == locale) return;
     _locale = locale;
     notifyListeners();
+  }
+}
+
+extension on String {
+  String addSuffix(String suffix) {
+    if (endsWith(suffix)) return this;
+    return '$this$suffix';
+  }
+
+  String removeSuffix(String suffix) {
+    if (!endsWith(suffix)) return this;
+    return substring(0, length - suffix.length);
   }
 }
