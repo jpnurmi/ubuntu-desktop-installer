@@ -45,7 +45,7 @@ Future<void> runInstallerApp(
   final options = parseCommandLine(args, onPopulateOptions: (parser) {
     parser.addOption('machine-config',
         valueHelp: 'path',
-        defaultsTo: 'examples/simple.json',
+        defaultsTo: 'examples/win10-along-ubuntu.json',
         help: 'Path of the machine config (dry-run only)');
     parser.addOption('source-catalog',
         valueHelp: 'path',

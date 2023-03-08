@@ -177,6 +177,11 @@ class DiskStorageService {
     return _client.resetStorageV2().then(_updateStorage);
   }
 
+  /// Gets potential boot disks.
+  Future<List<String>> getPotentialBootDisks() {
+    return _client.getPotentialBootDisksV2();
+  }
+
   /// Adds a boot partition on the specified [disk].
   Future<List<Disk>> addBootPartition(Disk disk) {
     return _client.addBootPartitionV2(disk).then(_updateStorage);

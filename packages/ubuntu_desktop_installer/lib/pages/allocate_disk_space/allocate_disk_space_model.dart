@@ -38,6 +38,7 @@ class AllocateDiskSpaceModel extends SafeChangeNotifier {
   var _disks = <Disk>[];
   var _selectedDiskIndex = -1;
   var _selectedObjectIndex = -1;
+  var _potentialBootDisks = <String>{};
   int _bootDiskIndex = -1;
 
   /// Whether the current input is valid.
@@ -160,6 +161,9 @@ class AllocateDiskSpaceModel extends SafeChangeNotifier {
   /// The index of the selected boot disk.
   int? get bootDiskIndex => _bootDiskIndex != -1 ? _bootDiskIndex : null;
 
+  /// Whether the specified disk is a potential boot disk.
+  bool isPotentialBootDisk(Disk disk) => _potentialBootDisks.contains(disk.id);
+
   /// Selects the specified boot disk.
   void selectBootDisk(int diskIndex) {
     if (_bootDiskIndex == diskIndex || disks[diskIndex].bootDevice == true) {
@@ -169,8 +173,15 @@ class AllocateDiskSpaceModel extends SafeChangeNotifier {
     _service.addBootPartition(disks[diskIndex]).then(_updateDisks);
   }
 
+  /// Initializes the storage information.
+  Future<void> init() async {
+    _potentialBootDisks =
+        await _service.getPotentialBootDisks().then((ids) => Set.of(ids));
+    return getStorage();
+  }
+
   /// Fetches storage from the service.
-  Future<void> getStorage() {
+  Future<void> getStorage() async {
     return _service.getStorage().then(_updateDisks);
   }
 
