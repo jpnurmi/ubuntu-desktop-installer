@@ -456,16 +456,18 @@ class _UbuntuDesktopInstallerWizard extends StatelessWidget {
 
   String? _nextStorageRoute(DiskStorageService service, dynamic arguments) {
     if (arguments == InstallationType.manual) {
-      return service.hasBitLocker
+      return /* service.hasBitLocker
           ? Routes.turnOffBitlocker
-          : Routes.allocateDiskSpace;
+          : */
+          Routes.allocateDiskSpace;
     } else if (service.guidedTarget == null) {
       if (arguments == InstallationType.erase) {
         return Routes.selectGuidedStorage;
       } else if (arguments == InstallationType.alongside) {
-        return service.hasBitLocker
+        return /* service.hasBitLocker
             ? Routes.turnOffBitlocker
-            : Routes.installAlongside;
+            : */
+            Routes.installAlongside;
       }
     } else if (service.useEncryption && service.securityKey == null) {
       return Routes.chooseSecurityKey;
