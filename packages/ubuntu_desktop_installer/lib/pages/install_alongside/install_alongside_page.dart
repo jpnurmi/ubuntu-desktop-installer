@@ -111,7 +111,10 @@ class _InstallAlongsidePageState extends State<InstallAlongsidePage> {
         ],
       ),
       actions: <WizardAction>[
-        WizardAction.back(context),
+        WizardAction.back(
+          context,
+          onBack: model.reset,
+        ),
         WizardAction.next(
           context,
           label: lang.selectGuidedStorageInstallNow,
