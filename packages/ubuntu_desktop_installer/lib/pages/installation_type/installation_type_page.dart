@@ -166,7 +166,7 @@ class _InstallationTypePageState extends State<InstallationTypePage> {
           // If the user returns back to select another installation type, the
           // previously configured storage must be reset to make all guided
           // partitioning targets available.
-          onBack: model.resetStorage,
+          onBack: model.init,
         ),
       ],
     );
