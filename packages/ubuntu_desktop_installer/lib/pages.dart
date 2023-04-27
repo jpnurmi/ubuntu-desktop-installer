@@ -1,5 +1,5 @@
 export 'pages/active_directory/active_directory_page.dart';
-export 'pages/filesystem/filesystem_page.dart';
+export 'pages/filesystem/filesystem_wizard.dart';
 export 'pages/identity/identity_page.dart';
 export 'pages/installation_complete/installation_complete_page.dart';
 export 'pages/installation_slides/installation_slides_page.dart';

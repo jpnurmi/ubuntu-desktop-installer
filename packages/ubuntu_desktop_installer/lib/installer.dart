@@ -404,7 +404,7 @@ class _UbuntuDesktopInstallerWizardState
           userData: InstallationStep.type.index,
         ),
         Routes.filesystem: WizardRoute(
-          builder: FilesystemPage.create,
+          builder: FilesystemWizard.create,
           userData: InstallationStep.filesystem.index,
         ),
         Routes.writeChangesToDisk: WizardRoute(
