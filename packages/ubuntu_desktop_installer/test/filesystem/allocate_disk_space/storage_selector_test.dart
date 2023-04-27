@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ubuntu_desktop_installer/pages/filesystem/allocate_disk_space/storage_selector.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 
 // ignore_for_file: type=lint
 

@@ -5,7 +5,7 @@ import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_desktop_installer/pages/filesystem/installation_type/installation_type_model.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'installation_type_model_test.mocks.dart';
 
 // ignore_for_file: type=lint

@@ -72,9 +72,9 @@ class FilesystemWizard extends StatelessWidget {
       } else if (arguments == InstallationType.alongside) {
         return Routes.installAlongside;
       }
-    } else if (service.useEncryption && service.securityKey == null) {
+    } else if (service.useEncryption) {
       return Routes.securityKey;
     }
-    return Routes.writeChangesToDisk;
+    return null;
   }
 }

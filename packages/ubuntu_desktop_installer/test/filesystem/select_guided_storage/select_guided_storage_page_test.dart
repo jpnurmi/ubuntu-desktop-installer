@@ -11,7 +11,7 @@ import 'package:ubuntu_desktop_installer/pages/filesystem/select_guided_storage/
 import 'package:ubuntu_desktop_installer/services.dart';
 import 'package:ubuntu_widgets/ubuntu_widgets.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'select_guided_storage_model_test.mocks.dart';
 import 'select_guided_storage_page_test.mocks.dart';
 

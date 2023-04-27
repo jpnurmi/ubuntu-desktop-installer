@@ -82,6 +82,7 @@ class _InstallationTypePageState extends State<InstallationTypePage> {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<InstallationTypeModel>(context);
+    print([model.hasStorage, model.isDone]);
     final lang = AppLocalizations.of(context);
     final flavor = Flavor.of(context);
     return WizardPage(

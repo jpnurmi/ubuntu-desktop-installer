@@ -5,7 +5,7 @@ import 'package:ubuntu_desktop_installer/pages/filesystem/allocate_disk_space/al
 import 'package:ubuntu_desktop_installer/pages/filesystem/allocate_disk_space/storage_types.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'allocate_disk_space_model_test.mocks.dart';
 
 // ignore_for_file: type=lint

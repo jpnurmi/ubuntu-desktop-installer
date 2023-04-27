@@ -14,7 +14,7 @@ import 'package:ubuntu_desktop_installer/pages/filesystem/allocate_disk_space/st
 import 'package:ubuntu_desktop_installer/services.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'allocate_disk_space_model_test.mocks.dart';
 import 'allocate_disk_space_page_test.mocks.dart';
 

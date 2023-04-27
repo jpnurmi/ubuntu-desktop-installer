@@ -109,6 +109,7 @@ class InstallationTypeModel extends SafeChangeNotifier {
 
   /// Whether the filesystem wizard is at the end.
   bool get isDone {
+    print(_installationType);
     switch (_installationType) {
       case InstallationType.erase:
         return !_diskService.useEncryption &&

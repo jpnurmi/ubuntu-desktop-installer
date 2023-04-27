@@ -5,7 +5,7 @@ import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_desktop_installer/pages/filesystem/select_guided_storage/select_guided_storage_model.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'select_guided_storage_model_test.mocks.dart';
 
 @GenerateMocks([DiskStorageService])

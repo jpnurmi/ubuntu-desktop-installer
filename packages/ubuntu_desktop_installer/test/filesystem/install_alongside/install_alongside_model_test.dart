@@ -5,7 +5,7 @@ import 'package:subiquity_client/subiquity_client.dart';
 import 'package:ubuntu_desktop_installer/pages/filesystem/install_alongside/install_alongside_model.dart';
 import 'package:ubuntu_desktop_installer/services.dart';
 
-import '../test_utils.dart';
+import '../../test_utils.dart';
 import 'install_alongside_model_test.mocks.dart';
 
 const ubuntu2110 = OsProber(
